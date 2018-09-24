@@ -1,0 +1,34 @@
+Package: oolax
+Title: Objected-orientated Loglikelihood Adjustment for Extreme Value Models
+Version: 1.0.0.9000
+Date: 2018-09-20
+Authors@R: c(
+    person(c("Paul", "J."), "Northrop", email = "p.northrop@ucl.ac.uk",
+      role = c("aut", "cre", "cph")),
+    person("An", "Other", role = c("aut", "cph"))
+    )
+Description: Performs adjustments of the independence loglikelihood for 
+    fitted model objects produced by several R packages for extreme value 
+    modelling.  The packages are \code{evd}, \code{ismev}, ...
+Imports: graphics,
+    methods,
+    numDeriv,
+    oola,
+    stats,
+    utils
+License: GPL (>= 2)
+LazyData: TRUE
+Encoding: UTF-8
+Depends:
+    R (>= 3.3.0)
+RoxygenNote: 6.1.0
+Suggests: AER,
+    evd,
+    ismev,
+    knitr,
+    revdbayes,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
+URL: http://github.com/paulnorthrop/oolax
+BugReports: http://github.com/paulnorthrop/oolax/issues
