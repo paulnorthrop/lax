@@ -2,7 +2,7 @@
 
 S3method(alogLik,evd)
 S3method(coef,evd_fgev)
-S3method(estfun,oolax)
+S3method(estfun,default)
 S3method(logLikVec,evd_fgev)
 S3method(nobs,evd_fgev)
 S3method(vcov,evd_fgev)
