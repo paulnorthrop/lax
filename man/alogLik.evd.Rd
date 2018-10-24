@@ -2,7 +2,7 @@
 % Please edit documentation in R/evd.R
 \name{alogLik.evd}
 \alias{alogLik.evd}
-\title{Loglikelihood adjustment of GLM fits}
+\title{Loglikelihood adjustment of evd fits}
 \usage{
 \method{alogLik}{evd}(x, cluster = NULL, use_vcov = TRUE, ...)
 }
