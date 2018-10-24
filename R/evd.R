@@ -67,6 +67,9 @@ alogLik.evd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # Set the class
   name_of_class <- names(supported_by_oolax)[which(is_supported)]
   class(x) <- name_of_class
+  print(class(x))
   # Call oola::adjust_object to adjust the loglikelihood
-  oola::adjust_object(x, cluster = cluster, use_vcov = use_vcov, ...)
+  res <- oola::adjust_object(x, cluster = cluster, use_vcov = use_vcov, ...)
+  class(res) <- c("oolax", "chandwich")
+  return(res)
 }
