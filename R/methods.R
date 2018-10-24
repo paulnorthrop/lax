@@ -5,7 +5,3 @@ logLikVec <- function(x, ...) {
 alogLik <- function(x, ...) {
   UseMethod("alogLik")
 }
-
-estfun <- function(x, ...) {
-  UseMethod("estfun")
-}
