@@ -1,5 +1,5 @@
 logLikVec <- function(x, ...) {
-  UseMethod("logLikFn")
+  UseMethod("logLikVec")
 }
 
 alogLik <- function(x, ...) {
