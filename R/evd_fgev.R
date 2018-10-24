@@ -19,8 +19,8 @@ logLikVec.evd_fgev <- function(object, contrib = FALSE, ...) {
   if (sigma <= 0) {
     val <- -Inf
   } else {
-    val <- revdbayes::dgev(object$data, loc = as.vector(mu), scale = sigma,
-                           shape = xi, log = TRUE)
+    val <- evd::dgev(object$data, loc = as.vector(mu), scale = sigma,
+                     shape = xi, log = TRUE)
   }
   # Sum them if we want the overall loglikelihood
   # ... and return the usual logLik object
