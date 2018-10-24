@@ -35,7 +35,7 @@ logLikVec.evd_fgev <- function(object, contrib = FALSE, ...) {
 
 #' @export
 nobs.evd_fgev <- function(object) {
-  return(length(object$data))
+  return(object$n)
 }
 
 #' @export
