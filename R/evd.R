@@ -1,6 +1,6 @@
 # =================================== evd =================================== #
 
-#' Loglikelihood adjustment of GLM fits
+#' Loglikelihood adjustment of evd fits
 #'
 #' Description
 #'
