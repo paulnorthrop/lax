@@ -26,7 +26,6 @@ Suggests: AER,
     evd,
     ismev,
     knitr,
-    revdbayes,
     rmarkdown,
     testthat
 VignetteBuilder: knitr
