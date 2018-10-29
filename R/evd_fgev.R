@@ -1,12 +1,15 @@
 # ================================ evd::fgev ================================ #
 
 #' @export
-logLikVec.evd_fgev <- function(object, contrib = FALSE, ...) {
+logLikVec.evd_fgev <- function(object, pars = NULL, contrib = FALSE, ...) {
   if (!missing(...)) {
     warning("extra arguments discarded")
   }
-  # Extract the parameter estimates
-  pars <- object$estimate
+  # If the parameter estimates have not been provided in pars then extract
+  # them from the fitted object
+  if (is.null(pars)) {
+    pars <- object$estimate
+  }
   n_pars <- length(pars)
   mu <- pars[1]
   sigma <- pars[n_pars - 1]
@@ -44,7 +47,7 @@ coef.evd_fgev <- function(object) {
 }
 
 #' @export
-vcov.evd_fgev <- function(x, ...) {
-  class(x) <- "evd"
-  return(vcov(x))
+vcov.evd_fgev <- function(object, ...) {
+  class(object) <- "evd"
+  return(vcov(object))
 }
