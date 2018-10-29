@@ -37,7 +37,7 @@
 #' if (got_evd) {
 #'   library(evd)
 #'   # An example from the evd::fgev documentation
-#'   uvdata <- evd::rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
+#'   uvdata <- rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
 #'   M1 <- fgev(uvdata, nsloc = (-49:50)/100)
 #'   adj_fgev <- alogLik(M1)
 #'   summary(adj_fgev)
@@ -54,7 +54,7 @@
 alogLik.evd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # List of evd objects supported
   supported_by_oolax <- list(evd_fgev = c("gev", "uvevd", "evd"),
-                            evd_fpot = c("pot", "uvevd", "evd"))
+                             evd_fpot = c("pot", "uvevd", "evd"))
   # Does x have a supported class?
   is_supported <- NULL
   for (i in 1:length(supported_by_oolax)) {
