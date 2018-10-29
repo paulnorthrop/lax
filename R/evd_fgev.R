@@ -8,7 +8,7 @@ logLikVec.evd_fgev <- function(object, pars = NULL, contrib = FALSE, ...) {
   # If the parameter estimates have not been provided in pars then extract
   # them from the fitted object
   if (is.null(pars)) {
-    pars <- object$estimate
+    pars <- coef(object)
   }
   n_pars <- length(pars)
   mu <- pars[1]

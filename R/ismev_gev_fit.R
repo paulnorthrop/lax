@@ -1,12 +1,15 @@
 # ================================ evd::fgev ================================ #
 
 #' @export
-logLikVec.ismev_gev <- function(object, contrib = FALSE, ...) {
+logLikVec.ismev_gev <- function(object, pars = NULL, contrib = FALSE, ...) {
   if (!missing(...)) {
     warning("extra arguments discarded")
   }
-  # Extract the parameter estimates
-  pars <- object$mle
+  # If the parameter estimates have not been provided in pars then extract
+  # them from the fitted object
+  if (is.null(pars)) {
+    pars <- coef(object)
+  }
   n_pars <- length(pars)
   #
   if (object$trans) {
