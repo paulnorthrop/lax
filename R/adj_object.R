@@ -136,8 +136,8 @@ adj_object <- function(x, cluster = NULL, use_sandwich = TRUE,
   if (!any(has_logLikVec_method)) {
     stop("A logLikVec method must be available for x")
   }
-  loglik_fn <- function(pars, fitted_object, contrib = TRUE, ...) {
-    return(logLikVec(fitted_object, pars = pars, contrib = contrib))
+  loglik_fn <- function(pars, fitted_object, ...) {
+    return(logLikVec(fitted_object, pars = pars))
   }
   #
   # Set H, but not if use_cov = FALSE or no vcov method exists ----------
