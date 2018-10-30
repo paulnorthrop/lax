@@ -16,4 +16,5 @@
 #' @docType package
 #' @name oolax
 #' @import methods
+#' @import sandwich
 NULL
