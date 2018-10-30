@@ -37,8 +37,8 @@
 #' if (got_evd) {
 #'   library(evd)
 #'   # An example from the evd::fgev documentation
-#'   uvdata <- rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
-#'   M1 <- fgev(uvdata, nsloc = (-49:50)/100)
+#'   uvdata <- evd::rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
+#'   M1 <- evd::fgev(uvdata, nsloc = (-49:50)/100)
 #'   adj_fgev <- alogLik(M1)
 #'   summary(adj_fgev)
 #'
