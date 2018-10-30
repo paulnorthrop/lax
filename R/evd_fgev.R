@@ -1,7 +1,7 @@
 # ================================ evd::fgev ================================ #
 
 #' @export
-logLikVec.evd_fgev <- function(object, pars = NULL, contrib = FALSE, ...) {
+logLikVec.evd_fgev <- function(object, pars = NULL, ...) {
   if (!missing(...)) {
     warning("extra arguments discarded")
   }
@@ -24,14 +24,6 @@ logLikVec.evd_fgev <- function(object, pars = NULL, contrib = FALSE, ...) {
   } else {
     val <- evd::dgev(object$data, loc = as.vector(mu), scale = sigma,
                      shape = xi, log = TRUE)
-  }
-  # Sum them if we want the overall loglikelihood
-  # ... and return the usual logLik object
-  if (!contrib) {
-    val <- sum(val)
-    attr(val, "nobs") <- length(object$data)
-    attr(val, "df") <- n_pars
-    class(val) <- "logLik"
   }
   return(val)
 }
