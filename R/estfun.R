@@ -1,7 +1,3 @@
-estfun <- function(x, ...) {
-  UseMethod("estfun")
-}
-
 #' @export
 estfun.default <- function(x, loglik_fn, ...) {
   U <- numDeriv::jacobian(loglik_fn, x = coef(x), ...)
