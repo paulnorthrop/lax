@@ -1,7 +1,7 @@
 # ================================ evd::fgev ================================ #
 
 #' @export
-logLikVec.ismev_gev <- function(object, pars = NULL, contrib = FALSE, ...) {
+logLikVec.ismev_gev <- function(object, pars = NULL, ...) {
   if (!missing(...)) {
     warning("extra arguments discarded")
   }
@@ -26,14 +26,6 @@ logLikVec.ismev_gev <- function(object, pars = NULL, contrib = FALSE, ...) {
   } else {
     val <- revdbayes::dgev(object$data, loc = mu, scale = sigma,
                            shape = xi, log = TRUE)
-  }
-  # Sum them if we want the overall loglikelihood
-  # ... and return the usual logLik object
-  if (!contrib) {
-    val <- sum(val)
-    attr(val, "nobs") <- length(object$data)
-    attr(val, "df") <- n_pars
-    class(val) <- "logLik"
   }
   return(val)
 }
