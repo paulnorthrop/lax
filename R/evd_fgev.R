@@ -25,21 +25,31 @@ logLikVec.evd_fgev <- function(object, pars = NULL, ...) {
     val <- evd::dgev(object$data, loc = as.vector(mu), scale = sigma,
                      shape = xi, log = TRUE)
   }
+  # Return the usual attributes for a "logLik" object
+  attr(val, "nobs") <- object$n
+  attr(val, "df") <- n_pars
+  class(val) <- "logLikVec"
   return(val)
 }
 
 #' @export
-nobs.evd_fgev <- function(object) {
+nobs.evd_fgev <- function(object, ...) {
   return(object$n)
 }
 
 #' @export
-coef.evd_fgev <- function(object) {
+coef.evd_fgev <- function(object, ...) {
   return(object$estimate)
 }
 
 #' @export
 vcov.evd_fgev <- function(object, ...) {
   class(object) <- "evd"
+  return(object$var.cov)
   return(vcov(object))
+}
+
+#' @export
+logLik.evd_fgev <- function(object, ...) {
+  return(logLik(logLikVec(object)))
 }
