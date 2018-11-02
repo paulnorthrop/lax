@@ -47,8 +47,7 @@ got_ismev <- requireNamespace("ismev", quietly = TRUE)
 if (got_ismev) {
   library(ismev)
   # An example from the ismev::gev.fit documentation
-  data(portpirie)
-  gev_fit <- gev.fit(portpirie[, 2], show = FALSE)
+  gev_fit <- gev.fit(revdbayes::portpirie, show = FALSE)
   adj_gev_fit <- alogLik(gev_fit)
   summary(adj_gev_fit)
 
