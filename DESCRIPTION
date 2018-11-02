@@ -13,6 +13,7 @@ Description: Performs adjustments of the independence loglikelihood for
 Imports: graphics,
     methods,
     numDeriv,
+    revdbayes,
     sandwich,
     stats,
     utils
