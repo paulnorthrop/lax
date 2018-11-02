@@ -12,14 +12,13 @@ oogev.fit(xdat, ydat = NULL, mul = NULL, sigl = NULL, shl = NULL,
 \description{
 This is a slightly modified versions of \code{\link[ismev]{gev.fit}}.
 The modification is to add to the returned object the arguments
-\code{xdat} and \code{ydat} supplied by the user.
+\code{xdat, ydat, mulink, siglink, shlink}.
 }
 \examples{
 if (got_ismev) {
-  data(portpirie)
-  fit1 <- gev.fit(portpirie[,2])
+  fit1 <- gev.fit(revdbayes::portpirie)
   ls(fit1)
-  fit2 <- oogev.fit(portpirie[,2])
+  fit2 <- oogev.fit(revdbayes::portpirie)
   ls(fit2)
 }
 }
