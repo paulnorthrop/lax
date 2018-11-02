@@ -1,4 +1,6 @@
-# ================================ evd::fgev ================================ #
+# ============================== ismev::gev.fit ============================= #
+
+# Methods for class ismev_gev
 
 #' @export
 logLikVec.ismev_gev <- function(object, pars = NULL, ...) {
