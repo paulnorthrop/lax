@@ -49,6 +49,12 @@
 #'   year <- rep(1:(length(y) / 2), 2)
 #'   adj_owfit <- alogLik(owfit, cluster = year)
 #'   summary(adj_owfit)
+#'
+#'   # An example from the evd::fpot documentation
+#'   uvdata <- rgpd(100, loc = 0, scale = 1.1, shape = 0.2)
+#'   M1 <- fpot(uvdata, 1)
+#'   adj_fpot <- alogLik(M1)
+#'   summary(adj_fpot)
 #' }
 #' @export
 alogLik.evd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
