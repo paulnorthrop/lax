@@ -18,23 +18,18 @@ logLikVec.ismev_gev <- function(object, pars = NULL, ...) {
     stop("Covariate data are needed.  Refit the model using oolax::oogev.fit")
   }
   if (!object$trans) {
+    response_data <- object$data
     # If trans = FALSE then there are no covariates and object$data contains
     # the response data
     mu <- pars[1]
     sigma <- pars[2]
     xi <- pars[3]
-    # Calculate the loglikelihood contributions
-    if (sigma <= 0) {
-      val <- -Inf
-    } else {
-      val <- revdbayes::dgev(object$data, loc = mu, scale = sigma,
-                             shape = xi, log = TRUE)
-    }
   } else {
     # If trans = TRUE then there are covariates, object$xdat contains the
     # response data and object$ydat the matrix of covariate data
     # object$model is a list containing the columns of ydat for mu, sigma, xi
     # Numbers of regression parameters for mu, sigma and xi
+    response_data <- object$xdat
     reg_pars <- sapply(object$model, length)
     cum_reg_pars <- cumsum(reg_pars)
     mu <- pars[1]
@@ -53,13 +48,13 @@ logLikVec.ismev_gev <- function(object, pars = NULL, ...) {
       xi_reg <- pars[(4 + cum_reg_pars[2]):(3 + cum_reg_pars[3])]
       xi <- xi + object$ydat[, object$model[[3]], drop = FALSE] %*% xi_reg
     }
-    # Calculate the loglikelihood contributions
-    if (any(sigma <= 0)) {
-      val <- -Inf
-    } else {
-      val <- revdbayes::dgev(object$xdat, loc = mu, scale = sigma,
-                             shape = xi, log = TRUE)
-    }
+  }
+  # Calculate the loglikelihood contributions
+  if (any(sigma <= 0)) {
+    val <- -Inf
+  } else {
+    val <- revdbayes::dgev(response_data, loc = mu, scale = sigma,
+                           shape = xi, log = TRUE)
   }
   # Return the usual attributes for a "logLik" object
   attr(val, "nobs") <- nobs(object)
