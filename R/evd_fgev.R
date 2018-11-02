@@ -24,8 +24,8 @@ logLikVec.evd_fgev <- function(object, pars = NULL, ...) {
   if (sigma <= 0) {
     val <- -Inf
   } else {
-    val <- evd::dgev(object$data, loc = as.vector(mu), scale = sigma,
-                     shape = xi, log = TRUE)
+    val <- revdbayes::dgev(object$data, loc = as.vector(mu), scale = sigma,
+                           shape = xi, log = TRUE)
   }
   # Return the usual attributes for a "logLik" object
   attr(val, "nobs") <- nobs(object)
