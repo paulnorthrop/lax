@@ -2,6 +2,8 @@ context("logLik")
 
 # Check that logLik(object) and logLik(logLikVec(object)) agree
 
+# evd::fgev
+
 if (requireNamespace("evd", quietly = TRUE)) {
   library(evd)
   # An example from the evd::fgev documentation
@@ -16,6 +18,39 @@ if (requireNamespace("evd", quietly = TRUE)) {
   })
   # Check logLik.evd_fgev: trivially correct
   test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
+  })
+}
+
+# ismev::gev.fit
+
+if (requireNamespace("ismev", quietly = TRUE)) {
+  library(ismev)
+  # The example from the ismev::gev.fit documentation
+  gev_fit <- ismev::gev.fit(revdbayes::portpirie, show = FALSE)
+  temp <- gev_fit
+  class(temp) <- "ismev_gev"
+  test_that("ismev::gev.fit: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(gev_fit), logLik(logLikVec(temp)))
+  })
+  # Check logLik.evd_fgev: trivially correct
+  test_that("ismev::gev.fit: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
+  })
+
+  # An example from page 113 of Coles (2001)
+  data(fremantle)
+  xdat <- fremantle[, "SeaLevel"]
+  # Set year 1897 to 1 for consistency with page 113 of Coles (2001)
+  ydat <- cbind(fremantle[, 1] - 1896, fremantle[, 3])
+  gev_fit <- oogev.fit(xdat, ydat, mul = 1:2, show = FALSE)
+  temp <- gev_fit
+  class(temp) <- "ismev_gev"
+  test_that("ismev::gev.fit: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(gev_fit), logLik(logLikVec(temp)))
+  })
+  # Check logLik.evd_fgev: trivially correct
+  test_that("ismev::gev.fit: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
 }
