@@ -36,17 +36,20 @@ logLikVec.ismev_gev <- function(object, pars = NULL, ...) {
     if (reg_pars[1] > 0) {
       mu_reg <- pars[2:(1 + reg_pars[1])]
       mu <- mu + object$ydat[, object$model[[1]], drop = FALSE] %*% mu_reg
+      mu <- object$mulink(mu)
     }
     sigma <- pars[2 + reg_pars[1]]
     if (reg_pars[2] > 0) {
       sigma_reg <- pars[(3 + reg_pars[1]):(2 + cum_reg_pars[1])]
       sigma <- sigma + object$ydat[, object$model[[2]], drop = FALSE] %*%
         sigma_reg
+      sigma <- object$siglink(sigma)
     }
     xi <- pars[3 + cum_reg_pars[2]]
     if (reg_pars[3] > 0) {
       xi_reg <- pars[(4 + cum_reg_pars[2]):(3 + cum_reg_pars[3])]
       xi <- xi + object$ydat[, object$model[[3]], drop = FALSE] %*% xi_reg
+      xi <- object$shlink(xi)
     }
   }
   # Calculate the loglikelihood contributions
