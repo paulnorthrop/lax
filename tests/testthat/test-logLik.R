@@ -22,6 +22,26 @@ if (requireNamespace("evd", quietly = TRUE)) {
   })
 }
 
+# evd::fpot
+
+if (requireNamespace("evd", quietly = TRUE)) {
+  library(evd)
+  # An example from the evd::fpot documentation
+  uvdata <- evd::rgpd(100, loc = 0, scale = 1.1, shape = 0.2)
+  M1 <- evd::fpot(uvdata, 1)
+  temp <- M1
+  class(temp) <- "evd_fpot"
+  # Note: evd::logLik.evd returns non-standard attributes (no nobs)
+  # Therefore, use expect_equivalent(), rather than expect_equal()
+  test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(M1), logLik(logLikVec(temp)))
+  })
+  # Check logLik.evd_fgev: trivially correct
+  test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
+  })
+}
+
 # ismev::gev.fit
 
 if (requireNamespace("ismev", quietly = TRUE)) {
@@ -47,7 +67,7 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   temp <- gev_fit
   class(temp) <- "ismev_gev"
   test_that("ismev::gev.fit: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(gev_fit), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(gev_fit), logLik(logLikVec(temp)))
   })
   # Check logLik.evd_fgev: trivially correct
   test_that("ismev::gev.fit: logLik() vs. logLik(logLikVec)", {
