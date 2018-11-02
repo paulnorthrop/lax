@@ -59,20 +59,59 @@ logLikVec.ismev_gev <- function(object, pars = NULL, ...) {
                              shape = xi, log = TRUE)
     }
   }
+  # Return the usual attributes for a "logLik" object
+  attr(val, "nobs") <- nobs(object)
+  attr(val, "df") <- n_pars
+  class(val) <- "logLikVec"
   return(val)
 }
 
 #' @export
-nobs.ismev_gev <- function(object) {
+nobs.ismev_gev <- function(object, ...) {
   return(length(object$data))
 }
 
 #' @export
-coef.ismev_gev <- function(object) {
+coef.ismev_gev <- function(object, ...) {
   return(object$mle)
 }
 
 #' @export
 vcov.ismev_gev <- function(object, ...) {
   return(object$cov)
+}
+
+#' @export
+logLik.ismev_gev <- function(object, ...) {
+  val <- -object$nllh
+  attr(val, "nobs") <- nobs(object)
+  attr(val, "df") <- length(coef(object))
+  class(val) <- "logLik"
+  return(val)
+}
+
+# Methods for class gev.fit
+
+#' @export
+nobs.gev.fit <- function(object, ...) {
+  return(length(object$data))
+}
+
+#' @export
+coef.gev.fit <- function(object, ...) {
+  return(object$mle)
+}
+
+#' @export
+vcov.gev.fit <- function(object, ...) {
+  return(object$cov)
+}
+
+#' @export
+logLik.gev.fit <- function(object, ...) {
+  val <- -object$nllh
+  attr(val, "nobs") <- nobs(object)
+  attr(val, "df") <- length(coef(object))
+  class(val) <- "logLik"
+  return(val)
 }
