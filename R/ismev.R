@@ -38,9 +38,13 @@
 #'   library(ismev)
 #'   # An example from the ismev::gev.fit documentation
 #'   data(portpirie)
-#'   gev_fit <- gev.fit(portpirie[,2], show = FALSE)
+#'   gev_fit <- gev.fit(portpirie[, 2], show = FALSE)
 #'   adj_gev_fit <- alogLik(gev_fit)
 #'   summary(adj_gev_fit)
+#'
+#'   ydat <- as.matrix(rnorm(length(portpirie[, 2])))
+#'   gev_fit <- oogev.fit(portpirie[,2], ydat = ydat, mul = 1, show = FALSE)
+#'   adj_gev_fit <- alogLik(gev_fit)
 #' }
 #' @export
 alogLik.gev.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
