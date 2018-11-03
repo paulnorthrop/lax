@@ -22,11 +22,31 @@ logLikVec.evd_fpot <- function(object, pars = NULL, ...) {
     if (sigma <= 0) {
       val <- -Inf
     } else {
-      val <- evd::dgpd(object$exceedances, loc = 0, scale = sigma,
-                       shape = xi, log = TRUE)
+      val <- revdbayes::dgp(object$exceedances, loc = object$threshold,
+                            scale = sigma, shape = xi, log = TRUE)
     }
   } else {
-    stop("pp not coded yet")
+    mu <- pars[1]
+    sigma <- pars[2]
+    xi <- pars[3]
+    # Calculate the loglikelihood contributions
+    if (sigma <= 0) {
+      val <- -Inf
+    } else {
+      pp_loglik_vec <- function(x, u, mu, sigma, xi) {
+        logFu <- revdbayes::pgev(q = u, loc = mu, scale = sigma, shape = xi,
+                                 log.p = TRUE)
+        logFx <- revdbayes::pgev(q = x, loc = mu, scale = sigma, shape = xi,
+                                 log.p = TRUE)
+        logfx <- revdbayes::dgev(x = x, loc = mu, scale = sigma,
+                                 shape = xi, log = TRUE)
+        rate_term <-  logFu / object$npp
+        exc_term <- (x > u) * (logfx - logFx)
+        return(rate_term + exc_term)
+      }
+      val <- pp_loglik_vec(x = object$data, u = object$threshold, mu = mu,
+                           sigma = sigma, xi = xi)
+    }
   }
   # Return the usual attributes for a "logLik" object
   attr(val, "nobs") <- nobs(object)
