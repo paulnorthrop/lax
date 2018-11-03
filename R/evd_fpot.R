@@ -57,7 +57,14 @@ logLikVec.evd_fpot <- function(object, pars = NULL, ...) {
 
 #' @export
 nobs.evd_fpot <- function(object, ...) {
-  return(object$nat)
+  if (length(object$param) == 2) {
+    val <- object$nat
+  } else if (length(object$param) == 3) {
+    val <- length(object$data)
+  } else {
+    val <- NA
+  }
+  return(val)
 }
 
 #' @export
@@ -79,7 +86,14 @@ logLik.evd_fpot <- function(object, ...) {
 
 #' @export
 nobs.pot <- function(object, ...) {
-  return(object$nat)
+  if (length(object$param) == 2) {
+    val <- object$nat
+  } else if (length(object$param) == 3) {
+    val <- length(object$data)
+  } else {
+    val <- NA
+  }
+  return(val)
 }
 
 #' @export
