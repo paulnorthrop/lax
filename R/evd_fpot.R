@@ -7,17 +7,22 @@ logLikVec.evd_fpot <- function(object, pars = NULL, ...) {
   if (!missing(...)) {
     warning("extra arguments discarded")
   }
-  # If the parameter estimates have not been provided in pars then extract
-  # them from the fitted object
-  if (is.null(pars)) {
-    pars <- coef(object)
+  # Extract from object all the parameter estimates: free and fixed
+  all_pars <- coef(object, complete = TRUE)
+  free_pars <- coef(object, complete = FALSE)
+  # If pars is supplied then overwrite the values of the free parameters
+  if (!is.null(pars)) {
+    names_all_pars <- names(all_pars)
+    names_free_pars <- names(free_pars)
+    which_free <- which(all_pars %in% free_pars)
+    all_pars[which_free] <- pars
   }
-  n_pars <- length(pars)
-  # If n_pars = 2 then model = "gp".
-  # If n_pars = 3 then model = "pp".
-  if (n_pars == 2) {
-    sigma <- pars[1]
-    xi <- pars[2]
+  n_all_pars <- length(all_pars)
+  # If n_all_pars = 2 then model = "gp".
+  # If n_all_pars = 3 then model = "pp".
+  if (n_all_pars == 2) {
+    sigma <- all_pars["scale"]
+    xi <- all_pars["shape"]
     # Calculate the loglikelihood contributions
     if (sigma <= 0) {
       val <- -Inf
@@ -26,9 +31,9 @@ logLikVec.evd_fpot <- function(object, pars = NULL, ...) {
                             scale = sigma, shape = xi, log = TRUE)
     }
   } else {
-    mu <- pars[1]
-    sigma <- pars[2]
-    xi <- pars[3]
+    mu <- all_pars["loc"]
+    sigma <- all_pars["scale"]
+    xi <- all_pars["shape"]
     # Calculate the loglikelihood contributions
     if (sigma <= 0) {
       val <- -Inf
@@ -50,7 +55,7 @@ logLikVec.evd_fpot <- function(object, pars = NULL, ...) {
   }
   # Return the usual attributes for a "logLik" object
   attr(val, "nobs") <- nobs(object)
-  attr(val, "df") <- n_pars
+  attr(val, "df") <- length(free_pars)
   class(val) <- "logLikVec"
   return(val)
 }
@@ -68,13 +73,31 @@ nobs.evd_fpot <- function(object, ...) {
 }
 
 #' @export
-coef.evd_fpot <- function(object, ...) {
-  return(object$estimate)
+coef.evd_fpot <- function(object, complete = FALSE, ...) {
+  if (complete) {
+    val <- object$param
+  } else {
+    val <- object$estimate
+  }
+  return(val)
 }
 
 #' @export
-vcov.evd_fpot <- function(object, ...) {
-  return(object$var.cov)
+vcov.evd_fpot <- function(object, complete = FALSE, ...) {
+  # Variance-covariance matrix for the free parameters
+  vc <- object$var.cov
+  free_pars <- names(coef(object, complete = FALSE))
+  dimnames(vc) <- list(free_pars, free_pars)
+  if (complete) {
+    all_pars <- names(coef(object, complete = TRUE))
+    np <- length(all_pars)
+    dummy <- matrix(NA, np, np)
+    which_free <- which(all_pars %in% free_pars)
+    dummy[which_free, which_free] <- vc
+    vc <- dummy
+    dimnames(vc) <- list(all_pars, all_pars)
+  }
+  return(vc)
 }
 
 #' @export
@@ -97,7 +120,11 @@ nobs.pot <- function(object, ...) {
 }
 
 #' @export
-coef.pot <- function(object, ...) {
-  return(object$estimate)
+coef.pot <- function(object, complete = FALSE, ...) {
+  if (complete) {
+    val <- object$param
+  } else {
+    val <- object$estimate
+  }
+  return(val)
 }
-
