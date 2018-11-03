@@ -52,7 +52,8 @@
 #' @export
 alogLik.gev.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # List of evd objects supported
-  supported_by_oolax <- list(ismev_gev = c("gev.fit"))
+  supported_by_oolax <- list(ismev_gev = "gev.fit",
+                             ismev_pp = "pp.fit")
   # Does x have a supported class?
   is_supported <- NULL
   for (i in 1:length(supported_by_oolax)) {
