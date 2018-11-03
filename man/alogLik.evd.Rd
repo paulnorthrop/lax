@@ -65,5 +65,9 @@ if (got_evd) {
   M1 <- fpot(uvdata, 1)
   adj_fpot <- alogLik(M1)
   summary(adj_fpot)
+  # Fit using the pp model, rather than the gpd
+  M1 <- fpot(uvdata, 1, model = "pp")
+  adj_fpot <- alogLik(M1)
+  summary(adj_fpot)
 }
 }
