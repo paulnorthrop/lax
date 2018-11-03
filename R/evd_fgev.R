@@ -7,22 +7,24 @@ logLikVec.evd_fgev <- function(object, pars = NULL, ...) {
   if (!missing(...)) {
     warning("extra arguments discarded")
   }
-  # If the free parameter values have not been provided in pars then extract
-  # them from the fitted object
-  if (is.null(pars)) {
-    pars <- coef(object, complete = FALSE)
+  # Extract from object all the parameter estimates: free and fixed
+  all_pars <- coef(object, complete = TRUE)
+  free_pars <- coef(object, complete = FALSE)
+  # If pars is supplied then overwrite the values of the free parameters
+  if (!is.null(pars)) {
+    names_all_pars <- names(all_pars)
+    names_free_pars <- names(free_pars)
+    which_free <- which(all_pars %in% free_pars)
+    all_pars[which_free] <- pars
   }
-  # Add fixed parameter values (if any)
-#  pars <- c(pars, object$fixed)
-  n_pars <- length(pars)
-  mu <- pars[1]
-  sigma <- pars[n_pars - 1]
-  xi <- pars[n_pars]
-  if (n_pars > 3) {
-    mu_reg <- pars[2:(n_pars - 2)]
+  mu <- all_pars["loc"]
+  sigma <- all_pars["scale"]
+  xi <- all_pars["shape"]
+  if (!is.null(object$nsloc)) {
+    mu_reg <- all_pars[paste0("loc", names(object$nsloc))]
     mu <- mu + as.matrix(object$nsloc) %*% mu_reg
   }
-  # Calculate the loglikelihood contributions
+  # Calculate the weighted loglikelihood contributions
   if (sigma <= 0) {
     val <- -Inf
   } else {
@@ -31,7 +33,7 @@ logLikVec.evd_fgev <- function(object, pars = NULL, ...) {
   }
   # Return the usual attributes for a "logLik" object
   attr(val, "nobs") <- nobs(object)
-  attr(val, "df") <- n_pars
+  attr(val, "df") <- length(free_pars)
   class(val) <- "logLikVec"
   return(val)
 }
