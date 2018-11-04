@@ -1,7 +1,9 @@
-pp.fit <- function (xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
-          sigl = NULL, shl = NULL, mulink = identity, siglink = identity,
-          shlink = identity, muinit = NULL, siginit = NULL, shinit = NULL,
-          show = TRUE, method = "Nelder-Mead", maxit = 10000, ...) {
+#' @export
+oopp.fit <- function (xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
+                      sigl = NULL, shl = NULL, mulink = identity,
+                      siglink = identity, shlink = identity, muinit = NULL,
+                      siginit = NULL, shinit = NULL, show = TRUE,
+                      method = "Nelder-Mead", maxit = 10000, ...) {
   z <- list()
   npmu <- length(mul) + 1
   npsc <- length(sigl) + 1
