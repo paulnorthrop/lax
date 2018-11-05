@@ -14,7 +14,7 @@ logLikVec.ismev_gev <- function(object, pars = NULL, ...) {
   }
   n_pars <- length(pars)
   #
-  if (object$trans & is.null(object$ydat)) {
+  if (object$trans & is.null(object$xdat)) {
     stop("Covariate data are needed.  Refit the model using oolax::oogev.fit")
   }
   if (!object$trans) {
