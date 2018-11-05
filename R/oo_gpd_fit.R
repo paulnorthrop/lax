@@ -6,6 +6,14 @@
 #' \code{sigmat, shmat} giving the respective regression design matrices
 #' for the scale and shape parameters of the model.
 #'
+#' @examples
+#' if (got_ismev) {
+#'   data(rain)
+#'   fit1 <- gpd.fit(rain, 10)
+#'   ls(fit1)
+#'   fit2 <- oogpd.fit(rain, 10)
+#'   ls(fit2)
+#' }
 #' @export
 oogpd.fit <- function (xdat, threshold, npy = 365, ydat = NULL, sigl = NULL,
                        shl = NULL, siglink = identity, shlink = identity,

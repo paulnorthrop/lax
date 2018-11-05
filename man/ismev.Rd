@@ -4,11 +4,14 @@
 \alias{ismev}
 \alias{alogLik.gev.fit}
 \alias{alogLik.pp.fit}
+\alias{alogLik.gpd.fit}
 \title{Loglikelihood adjustment of ismev fits}
 \usage{
 \method{alogLik}{gev.fit}(x, cluster = NULL, use_vcov = TRUE, ...)
 
 \method{alogLik}{pp.fit}(x, cluster = NULL, use_vcov = TRUE, ...)
+
+\method{alogLik}{gpd.fit}(x, cluster = NULL, use_vcov = TRUE, ...)
 }
 \arguments{
 \item{x}{A fitted model object with certain associated S3 methods.
@@ -64,6 +67,18 @@ if (got_ismev) {
   gev_fit <- oogev.fit(xdat, ydat, mul = 1:2, show = FALSE)
   adj_gev_fit <- alogLik(gev_fit)
   summary(adj_gev_fit)
+
+  # An example from the ismev::gpd.fit documentation
+  data(rain)
+  rain_fit <- gpd.fit(rain, 10, show = FALSE)
+  adj_rain_fit <- alogLik(rain_fit)
+  summary(adj_rain_fit)
+  # Continuing to regression example on page 119 of Coles (2001)
+  ydat <- as.matrix((1:length(rain)) / length(rain))
+  reg_rain_fit <- oogpd.fit(rain, 30, ydat = ydat, sigl = 1, siglink = exp,
+                            show = FALSE)
+  adj_reg_rain_fit <- alogLik(reg_rain_fit)
+  summary(adj_reg_rain_fit)
 
   # An example from the ismev::pp.fit documentation
   data(rain)

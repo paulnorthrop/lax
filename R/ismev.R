@@ -25,6 +25,18 @@
 #'   adj_gev_fit <- alogLik(gev_fit)
 #'   summary(adj_gev_fit)
 #'
+#'   # An example from the ismev::gpd.fit documentation
+#'   data(rain)
+#'   rain_fit <- gpd.fit(rain, 10, show = FALSE)
+#'   adj_rain_fit <- alogLik(rain_fit)
+#'   summary(adj_rain_fit)
+#'   # Continuing to regression example on page 119 of Coles (2001)
+#'   ydat <- as.matrix((1:length(rain)) / length(rain))
+#'   reg_rain_fit <- oogpd.fit(rain, 30, ydat = ydat, sigl = 1, siglink = exp,
+#'                             show = FALSE)
+#'   adj_reg_rain_fit <- alogLik(reg_rain_fit)
+#'   summary(adj_reg_rain_fit)
+#'
 #'   # An example from the ismev::pp.fit documentation
 #'   data(rain)
 #'   rain_fit <- oopp.fit(rain, 10, show = FALSE)
@@ -77,6 +89,29 @@ alogLik.gev.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
 alogLik.pp.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # List of evd objects supported
   supported_by_oolax <- list(ismev_pp = "pp.fit")
+  # Does x have a supported class?
+  is_supported <- NULL
+  for (i in 1:length(supported_by_oolax)) {
+    is_supported[i] <- identical(class(x), unlist(supported_by_oolax[i],
+                                                  use.names = FALSE))
+  }
+  if (!any(is_supported)) {
+    stop(paste("x's class", deparse(class(x)), "is not supported"))
+  }
+  # Set the class
+  name_of_class <- names(supported_by_oolax)[which(is_supported)]
+  class(x) <- name_of_class
+  # Call oola::adjust_object to adjust the loglikelihood
+  res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
+  class(res) <- c("oolax", "chandwich")
+  return(res)
+}
+
+#' @rdname ismev
+#' @export
+alogLik.gpd.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
+  # List of evd objects supported
+  supported_by_oolax <- list(ismev_gpd = "gpd.fit")
   # Does x have a supported class?
   is_supported <- NULL
   for (i in 1:length(supported_by_oolax)) {

@@ -16,3 +16,12 @@ The modification is to add to the returned object the arguments
 \code{sigmat, shmat} giving the respective regression design matrices
 for the scale and shape parameters of the model.
 }
+\examples{
+if (got_ismev) {
+  data(rain)
+  fit1 <- gpd.fit(rain, 10)
+  ls(fit1)
+  fit2 <- oogpd.fit(rain, 10)
+  ls(fit2)
+}
+}
