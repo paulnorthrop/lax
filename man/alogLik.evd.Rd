@@ -62,7 +62,7 @@ if (got_evd) {
   summary(adj_owfit)
 
   # An example from the evd::fpot documentation
-  uvdata <- rgpd(100, loc = 0, scale = 1.1, shape = 0.2)
+  uvdata <- evd::rgpd(100, loc = 0, scale = 1.1, shape = 0.2)
   M1 <- evd::fpot(uvdata, 1)
   adj_fpot <- alogLik(M1)
   summary(adj_fpot)
