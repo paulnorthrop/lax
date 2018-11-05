@@ -46,7 +46,7 @@ logLikVec.evd_fpot <- function(object, pars = NULL, ...) {
         logfx <- revdbayes::dgev(x = x, loc = mu, scale = sigma,
                                  shape = xi, log = TRUE)
         rate_term <-  logFu / object$npp
-        exc_term <- (x > u) * (logfx - logFx)
+        exc_term <- ifelse(x > u, logfx - logFx, 0)
         return(rate_term + exc_term)
       }
       val <- pp_loglik_vec(x = object$data, u = object$threshold, mu = mu,
