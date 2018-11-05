@@ -4,32 +4,7 @@
 #'
 #' Description
 #'
-#' @param x A fitted model object.
-#' @param cluster A vector or factor indicating from which cluster the
-#'   respective loglikelihood contributions from \code{loglik} originate.
-#'   This must have the same length as the vector returned by \code{loglik}.
-#'   If \code{cluster} is not supplied then it is set inside
-#'   \code{\link[chandwich]{adjust_loglik}} under the assumption that
-#'   each observation forms its own cluster.
-#'
-#'   If the sandwich package
-#'   \href{http://dx.doi.org/10.18637/jss.v016.i09}{(Zeleis, 2006)}
-#'   is used to estimate the quantities required to adjust the loglikelihood
-#'   then \code{cluster} determines whether the variance matrix \code{V}
-#'   of the score vector is estimated using \code{\link[sandwich]{meat}}
-#'   (\code{cluster} is \code{NULL}) or
-#'   \code{\link[sandwich:vcovCL]{meatCL}}
-#'   (\code{cluster} is not \code{NULL}).
-#' @param use_vcov A logical scalar.  Should we use the \code{vcov} S3 method
-#'   for \code{x} (if this exists) to estimate the Hessian of the independence
-#'   loglikelihood to be passed as the argument \code{H} to
-#'   \code{\link[chandwich]{adjust_loglik}}?
-#'   Otherwise, \code{H} is estimated inside
-#'   \code{\link[chandwich]{adjust_loglik}} using
-#'   \code{\link[stats:optim]{optimHess}}.
-#' @param ... Further arguments to be passed to the functions in the
-#'   sandwich package \code{\link[sandwich]{meat}}, if \code{cluster = NULL},
-#'   or \code{\link[sandwich:vcovCL]{meatCL}}, otherwise.
+#' @inheritParams adj_object
 #' @examples
 #' # We need the evd package
 #' got_ismev <- requireNamespace("ismev", quietly = TRUE)
@@ -41,6 +16,7 @@
 #'   adj_gev_fit <- alogLik(gev_fit)
 #'   summary(adj_gev_fit)
 #'
+#'   # An example from chapter 6 of Coles (2001)
 #'   data(fremantle)
 #'   xdat <- fremantle[, "SeaLevel"]
 #'   # Set year 1897 to 1 for consistency with page 113 of Coles (2001)
@@ -48,12 +24,59 @@
 #'   gev_fit <- oogev.fit(xdat, ydat, mul = 1:2, show = FALSE)
 #'   adj_gev_fit <- alogLik(gev_fit)
 #'   summary(adj_gev_fit)
+#'
+#'   # An example from the ismev::pp.fit documentation
+#'   data(rain)
+#'   rain_fit <- oopp.fit(rain, 10, show = FALSE)
+#'   adj_rain_fit <- alogLik(rain_fit)
+#'   summary(adj_rain_fit)
+#'
+#'   # An example from chapter 7 of Coles (2001).
+#'   # Code from demo ismev::wooster.temps
+#'   data(wooster)
+#'   x <- seq(along = wooster)
+#'   usin <- function(x, a, b, d) {
+#'    a + b * sin(((x - d) * 2 * pi) / 365.25)
+#'   }
+#'   wu <- usin(x, -30, 25, -75)
+#'   ydat <- cbind(sin(2 * pi * x / 365.25), cos(2 * pi *x / 365.25))
+#'   wooster.pp <- oopp.fit(-wooster, threshold = wu, ydat = ydat, mul = 1:2,
+#'                          sigl = 1:2, siglink = exp, method = "BFGS")
+#'   adj_pp_fit <- alogLik(wooster.pp)
+#'   summary(adj_pp_fit)
 #' }
+#' @name ismev
+NULL
+## NULL
+
+#' @rdname ismev
 #' @export
 alogLik.gev.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # List of evd objects supported
-  supported_by_oolax <- list(ismev_gev = "gev.fit",
-                             ismev_pp = "pp.fit")
+  supported_by_oolax <- list(ismev_gev = "gev.fit")
+  # Does x have a supported class?
+  is_supported <- NULL
+  for (i in 1:length(supported_by_oolax)) {
+    is_supported[i] <- identical(class(x), unlist(supported_by_oolax[i],
+                                                  use.names = FALSE))
+  }
+  if (!any(is_supported)) {
+    stop(paste("x's class", deparse(class(x)), "is not supported"))
+  }
+  # Set the class
+  name_of_class <- names(supported_by_oolax)[which(is_supported)]
+  class(x) <- name_of_class
+  # Call oola::adjust_object to adjust the loglikelihood
+  res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
+  class(res) <- c("oolax", "chandwich")
+  return(res)
+}
+
+#' @rdname ismev
+#' @export
+alogLik.pp.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
+  # List of evd objects supported
+  supported_by_oolax <- list(ismev_pp = "pp.fit")
   # Does x have a supported class?
   is_supported <- NULL
   for (i in 1:length(supported_by_oolax)) {
