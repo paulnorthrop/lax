@@ -7,23 +7,24 @@
 \method{alogLik}{evd}(x, cluster = NULL, use_vcov = TRUE, ...)
 }
 \arguments{
-\item{x}{A fitted model object.}
+\item{x}{A fitted model object with certain associated S3 methods.
+See \strong{Details}.}
 
 \item{cluster}{A vector or factor indicating from which cluster the
   respective loglikelihood contributions from \code{loglik} originate.
-  This must have the same length as the vector returned by \code{loglik}.
-  If \code{cluster} is not supplied then it is set inside
-  \code{\link[chandwich]{adjust_loglik}} under the assumption that
+  This must have the same length as the vector returned by the
+  \code{logLikVec} method for object like \code{x}.
+  If \code{cluster} is not supplied then it is assumed that
   each observation forms its own cluster.
 
   If the sandwich package
   \href{http://dx.doi.org/10.18637/jss.v016.i09}{(Zeleis, 2006)}
   is used to estimate the quantities required to adjust the loglikelihood
-  then \code{cluster} determines whether the variance matrix \code{V}
-  of the score vector is estimated using \code{\link[sandwich]{meat}}
-  (\code{cluster} is \code{NULL}) or
-  \code{\link[sandwich:vcovCL]{meatCL}}
-  (\code{cluster} is not \code{NULL}).}
+  (i.e. \code{use_sanswich = TRUE}) then \code{cluster} determines whether
+  the variance matrix \code{V} of the score vector is estimated using
+  \code{\link[sandwich]{meat}} (\code{cluster} is \code{NULL}) or
+  \code{\link[sandwich:vcovCL]{meatCL}} (\code{cluster} is not \code{NULL}).
+  See \code{use_sandwich} and \strong{Details}.}
 
 \item{use_vcov}{A logical scalar.  Should we use the \code{vcov} S3 method
 for \code{x} (if this exists) to estimate the Hessian of the independence
@@ -62,11 +63,11 @@ if (got_evd) {
 
   # An example from the evd::fpot documentation
   uvdata <- rgpd(100, loc = 0, scale = 1.1, shape = 0.2)
-  M1 <- fpot(uvdata, 1)
+  M1 <- evd::fpot(uvdata, 1)
   adj_fpot <- alogLik(M1)
   summary(adj_fpot)
   # Fit using the pp model, rather than the gpd
-  M1 <- fpot(uvdata, 1, model = "pp")
+  M1 <- evd::fpot(uvdata, 1, model = "pp", npp = 365)
   adj_fpot <- alogLik(M1)
   summary(adj_fpot)
 }
