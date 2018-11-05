@@ -4,32 +4,7 @@
 #'
 #' Description
 #'
-#' @param x A fitted model object.
-#' @param cluster A vector or factor indicating from which cluster the
-#'   respective loglikelihood contributions from \code{loglik} originate.
-#'   This must have the same length as the vector returned by \code{loglik}.
-#'   If \code{cluster} is not supplied then it is set inside
-#'   \code{\link[chandwich]{adjust_loglik}} under the assumption that
-#'   each observation forms its own cluster.
-#'
-#'   If the sandwich package
-#'   \href{http://dx.doi.org/10.18637/jss.v016.i09}{(Zeleis, 2006)}
-#'   is used to estimate the quantities required to adjust the loglikelihood
-#'   then \code{cluster} determines whether the variance matrix \code{V}
-#'   of the score vector is estimated using \code{\link[sandwich]{meat}}
-#'   (\code{cluster} is \code{NULL}) or
-#'   \code{\link[sandwich:vcovCL]{meatCL}}
-#'   (\code{cluster} is not \code{NULL}).
-#' @param use_vcov A logical scalar.  Should we use the \code{vcov} S3 method
-#'   for \code{x} (if this exists) to estimate the Hessian of the independence
-#'   loglikelihood to be passed as the argument \code{H} to
-#'   \code{\link[chandwich]{adjust_loglik}}?
-#'   Otherwise, \code{H} is estimated inside
-#'   \code{\link[chandwich]{adjust_loglik}} using
-#'   \code{\link[stats:optim]{optimHess}}.
-#' @param ... Further arguments to be passed to the functions in the
-#'   sandwich package \code{\link[sandwich]{meat}}, if \code{cluster = NULL},
-#'   or \code{\link[sandwich:vcovCL]{meatCL}}, otherwise.
+#' @inheritParams adj_object
 #' @examples
 #' # We need the evd package
 #' got_evd <- requireNamespace("evd", quietly = TRUE)
@@ -52,11 +27,11 @@
 #'
 #'   # An example from the evd::fpot documentation
 #'   uvdata <- rgpd(100, loc = 0, scale = 1.1, shape = 0.2)
-#'   M1 <- fpot(uvdata, 1)
+#'   M1 <- evd::fpot(uvdata, 1)
 #'   adj_fpot <- alogLik(M1)
 #'   summary(adj_fpot)
 #'   # Fit using the pp model, rather than the gpd
-#'   M1 <- fpot(uvdata, 1, model = "pp")
+#'   M1 <- evd::fpot(uvdata, 1, model = "pp", npp = 365)
 #'   adj_fpot <- alogLik(M1)
 #'   summary(adj_fpot)
 #' }
