@@ -1,3 +1,21 @@
+#' Maximum-likelihood Fitting for the Point Process Model
+#'
+#' This is a slightly modified versions of \code{\link[ismev]{gev.fit}}.
+#' The main modification is to add to the returned object the arguments
+#' \code{xdat, mulink, siglink, shlink} and matrices
+#' \code{mumat, sigmat, shmat} giving the respective regression design matrices
+#' for the location, scale and shape parameters of the model.  In addition, a
+#' bug in the code that sets initial estimates has been corrected: the bug
+#' meant that if \code{threshold} is a vector then the optimization hangs.
+#'
+#' @examples
+#' if (got_ismev) {
+#'   data(rain)
+#'   fit1 <- pp.fit(rain, 100, show = FALSE)
+#'   ls(fit1)
+#'   fit2 <- oopp.fit(rain, 10, show = FALSE)
+#'   ls(fit2)
+#' }
 #' @export
 oopp.fit <- function (xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
                       sigl = NULL, shl = NULL, mulink = identity,
@@ -23,8 +41,12 @@ oopp.fit <- function (xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
   if (is.null(shinit))
     in3 <- 1e-08
   else in3 <- shinit
-  in2 <- exp(log(in2) + in3 * log(lrate))
-  in1 <- threshold - (in2/in3) * (lrate^(-in3) - 1)
+  # Change from ismev::pp.fit(). These initial estimates are only sensible if
+  # threshold is a scalar.  Using them means that the wooster.temps demo hangs
+  if (length(threshold) == 1) {
+    in2 <- exp(log(in2) + in3 * log(lrate))
+    in1 <- threshold - (in2/in3) * (lrate^(-in3) - 1)
+  }
   if (is.null(mul)) {
     mumat <- as.matrix(rep(1, length(xdat)))
     if (is.null(muinit))
@@ -79,8 +101,9 @@ oopp.fit <- function (xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
       y <- 1 + xi * y
       if (min(y) <= 0)
         l <- 10^6
-      else l <- sum(uInd * log(sc)) + sum(uInd * log(y) *
-                                            (1/xi + 1)) + n/npy * mean((1 + (xi * (u - mu))/sc)^(-1/xi))
+      else l <- sum(uInd * log(sc)) +
+        sum(uInd * log(y) * (1/xi + 1)) +
+        n/npy * mean((1 + (xi * (u - mu))/sc)^(-1/xi))
     }
     l
   }
@@ -94,8 +117,8 @@ oopp.fit <- function (xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
   z$vals <- cbind(mu, sc, xi, u)
   z$gpd <- apply(z$vals, 1, ppp, npy)
   if (z$trans) {
-    z$data <- as.vector((1 + (xi[uInd] * (xdatu - u[uInd]))/z$gpd[2,
-                                                                  uInd])^(-1/xi[uInd]))
+    z$data <- as.vector((1 + (xi[uInd] * (xdatu - u[uInd])) /
+                           z$gpd[2,uInd])^(-1/xi[uInd]))
   }
   z$mle <- x$par
   z$cov <- solve(x$hessian)
@@ -110,7 +133,9 @@ oopp.fit <- function (xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
       print(z[c(9, 12, 14)])
   }
   z$xdat <- xdat
-  z$ydat <- ydat
+  z$mumat <- mumat
+  z$sigmat <- sigmat
+  z$shmat <- shmat
   z$mulink <- mulink
   z$siglink <- siglink
   z$shlink <- shlink

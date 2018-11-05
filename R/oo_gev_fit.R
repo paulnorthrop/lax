@@ -1,14 +1,16 @@
 #' Maximum-likelihood Fitting of the GEV Distribution
 #'
-#' This is a slightly modified versions of \code{\link[ismev]{gev.fit}}.
+#' This is a slightly modified version of \code{\link[ismev]{gev.fit}}.
 #' The modification is to add to the returned object the arguments
-#' \code{xdat, ydat, mulink, siglink, shlink}.
+#' \code{xdat, mulink, siglink, shlink} and matrices
+#' \code{mumat, sigmat, shmat} giving the respective regression design matrices
+#' for the location, scale and shape parameters of the model.
 #'
 #' @examples
 #' if (got_ismev) {
-#'   fit1 <- gev.fit(revdbayes::portpirie)
+#'   fit1 <- gev.fit(revdbayes::portpirie, show = FALSE)
 #'   ls(fit1)
-#'   fit2 <- oogev.fit(revdbayes::portpirie)
+#'   fit2 <- oogev.fit(revdbayes::portpirie, show = FALSE)
 #'   ls(fit2)
 #' }
 #' @export
@@ -93,7 +95,9 @@ oogev.fit <- function (xdat, ydat = NULL, mul = NULL, sigl = NULL, shl = NULL,
       print(z[c(5, 7, 9)])
   }
   z$xdat <- xdat
-  z$ydat <- ydat
+  z$mumat <- mumat
+  z$sigmat <- sigmat
+  z$shmat <- shmat
   z$mulink <- mulink
   z$siglink <- siglink
   z$shlink <- shlink
