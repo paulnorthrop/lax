@@ -80,7 +80,11 @@ alogLik.gev.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   class(x) <- name_of_class
   # Call oola::adjust_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
-  class(res) <- c("oolax", "chandwich")
+  if (x$trans) {
+    class(res) <- c("oolax", "chandwich", "gev", "nonstat")
+  } else {
+    class(res) <- c("oolax", "chandwich", "gev", "stat")
+  }
   return(res)
 }
 
