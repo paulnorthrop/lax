@@ -69,16 +69,7 @@ User-supplied objects can also be supported: the requirements for these
 objects are explained in \strong{Details}.
 }
 \details{
-Supported classes, and the functions from which they are returned are:
-  \itemize{
-    \item{"lm": }{\code{\link[stats]{lm}} in the
-      \code{\link[stats:stats-package]{stats}} package,}
-    \item{"glm": }{\code{\link[stats]{glm}} in the
-      \code{\link[stats:stats-package]{stats}} package}
-  }
-  Objects of other classes are supported provided that they have
-  certain S3 methods.
-  The class of the object \code{x} \emph{must} have the following S3
+Object \code{x} \emph{must} have the following S3
   methods:
   \itemize{
     \item{\code{logLikVec: }}{returns a vector of the contributions to the
