@@ -10,6 +10,11 @@ logLikVec <- function(x, ...) {
   UseMethod("logLikVec")
 }
 
+#' Loglikelihood adjustment of model fits
+#'
+#' Description
+#'
+#' @inherit adj_object params details return references seealso
 #' @export
 alogLik <- function(x, ...) {
   UseMethod("alogLik")
