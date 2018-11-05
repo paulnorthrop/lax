@@ -1,9 +1,9 @@
-# ============================== ismev::gev.fit ============================= #
+# =============================== ismev::pp.fit ============================= #
 
-# Methods for class ismev_gev
+# Methods for class ismev_pp
 
 #' @export
-logLikVec.ismev_gev <- function(object, pars = NULL, ...) {
+logLikVec.ismev_pp <- function(object, pars = NULL, ...) {
   if (!missing(...)) {
     warning("extra arguments discarded")
   }
@@ -13,12 +13,14 @@ logLikVec.ismev_gev <- function(object, pars = NULL, ...) {
     pars <- coef(object)
   }
   n_pars <- length(pars)
-  #
-  if (object$trans & is.null(object$ydat)) {
-    stop("Covariate data are needed.  Refit the model using oolax::oogev.fit")
+  # object$data only contains the exceedances.  We need all the data.
+  # We could pack it with -Inf for non-exceedances but if cluster is not NULL
+  # then we need the dat to be in the correct order.
+  if (is.null(object$xdat)) {
+    stop("Please refit the model using oolax::oopp.fit")
   }
+  response_data <- object$xdat
   if (!object$trans) {
-    response_data <- object$data
     # If trans = FALSE then there are no covariates and object$data contains
     # the response data
     mu <- pars[1]
@@ -26,7 +28,6 @@ logLikVec.ismev_gev <- function(object, pars = NULL, ...) {
     xi <- pars[3]
   } else {
     # If trans = TRUE then there are covariates
-    response_data <- object$xdat
     # The numbers of parameters for mu, sigma, xi
     reg_pars <- sapply(object$model, length)
     npmu <- reg_pars[1] + 1
@@ -44,8 +45,19 @@ logLikVec.ismev_gev <- function(object, pars = NULL, ...) {
   if (any(sigma <= 0)) {
     val <- -Inf
   } else {
-    val <- revdbayes::dgev(response_data, loc = mu, scale = sigma,
-                           shape = xi, log = TRUE)
+    pp_loglik_vec <- function(x, u, mu, sigma, xi) {
+      logFu <- revdbayes::pgev(q = u, loc = mu, scale = sigma, shape = xi,
+                               log.p = TRUE)
+      logFx <- revdbayes::pgev(q = x, loc = mu, scale = sigma, shape = xi,
+                               log.p = TRUE)
+      logfx <- revdbayes::dgev(x = x, loc = mu, scale = sigma,
+                               shape = xi, log = TRUE)
+      rate_term <-  logFu / object$npy
+      exc_term <- ifelse(x > u, logfx - logFx, 0)
+      return(rate_term + exc_term)
+    }
+    val <- pp_loglik_vec(x = response_data, u = object$threshold, mu = mu,
+                         sigma = sigma, xi = xi)
   }
   # Return the usual attributes for a "logLik" object
   attr(val, "nobs") <- nobs(object)
@@ -55,22 +67,22 @@ logLikVec.ismev_gev <- function(object, pars = NULL, ...) {
 }
 
 #' @export
-nobs.ismev_gev <- function(object, ...) {
-  return(length(object$data))
+nobs.ismev_pp <- function(object, ...) {
+  return(nrow(object$vals))
 }
 
 #' @export
-coef.ismev_gev <- function(object, ...) {
+coef.ismev_pp <- function(object, ...) {
   return(object$mle)
 }
 
 #' @export
-vcov.ismev_gev <- function(object, ...) {
+vcov.ismev_pp <- function(object, ...) {
   return(object$cov)
 }
 
 #' @export
-logLik.ismev_gev <- function(object, ...) {
+logLik.ismev_pp <- function(object, ...) {
   val <- -object$nllh
   attr(val, "nobs") <- nobs(object)
   attr(val, "df") <- length(coef(object))
@@ -81,22 +93,22 @@ logLik.ismev_gev <- function(object, ...) {
 # Methods for class gev.fit
 
 #' @export
-nobs.gev.fit <- function(object, ...) {
-  return(length(object$data))
+nobs.pp.fit <- function(object, ...) {
+  return(nrow(object$vals))
 }
 
 #' @export
-coef.gev.fit <- function(object, ...) {
+coef.pp.fit <- function(object, ...) {
   return(object$mle)
 }
 
 #' @export
-vcov.gev.fit <- function(object, ...) {
+vcov.pp.fit <- function(object, ...) {
   return(object$cov)
 }
 
 #' @export
-logLik.gev.fit <- function(object, ...) {
+logLik.pp.fit <- function(object, ...) {
   val <- -object$nllh
   attr(val, "nobs") <- nobs(object)
   attr(val, "df") <- length(coef(object))
