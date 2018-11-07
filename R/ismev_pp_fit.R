@@ -73,12 +73,16 @@ nobs.ismev_pp <- function(object, ...) {
 
 #' @export
 coef.ismev_pp <- function(object, ...) {
-  return(object$mle)
+  val <- object$mle
+  names(val) <- ismev_gev_names(object)
+  return(val)
 }
 
 #' @export
 vcov.ismev_pp <- function(object, ...) {
-  return(object$cov)
+  vc <- object$cov
+  dimnames(vc) <- list(ismev_gev_names(object), ismev_gev_names(object))
+  return(vc)
 }
 
 #' @export
@@ -99,12 +103,16 @@ nobs.pp.fit <- function(object, ...) {
 
 #' @export
 coef.pp.fit <- function(object, ...) {
-  return(object$mle)
+  val <- object$mle
+  names(val) <- ismev_gev_names(object)
+  return(val)
 }
 
 #' @export
 vcov.pp.fit <- function(object, ...) {
-  return(object$cov)
+  vc <- object$cov
+  dimnames(vc) <- list(ismev_gev_names(object), ismev_gev_names(object))
+  return(vc)
 }
 
 #' @export

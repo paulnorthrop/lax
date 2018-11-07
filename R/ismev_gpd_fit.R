@@ -58,12 +58,16 @@ nobs.ismev_gpd <- function(object, ...) {
 
 #' @export
 coef.ismev_gpd <- function(object, ...) {
-  return(object$mle)
+  val <- object$mle
+  names(val) <- ismev_gpd_names(object)
+  return(val)
 }
 
 #' @export
 vcov.ismev_gpd <- function(object, ...) {
-  return(object$cov)
+  vc <- object$cov
+  dimnames(vc) <- list(ismev_gpd_names(object), ismev_gpd_names(object))
+  return(vc)
 }
 
 #' @export
@@ -84,12 +88,16 @@ nobs.gpd.fit <- function(object, ...) {
 
 #' @export
 coef.gpd.fit <- function(object, ...) {
-  return(object$mle)
+  val <- object$mle
+  names(val) <- ismev_gpd_names(object)
+  return(val)
 }
 
 #' @export
 vcov.gpd.fit <- function(object, ...) {
-  return(object$cov)
+  vc <- object$cov
+  dimnames(vc) <- list(ismev_gpd_names(object), ismev_gpd_names(object))
+  return(vc)
 }
 
 #' @export
@@ -98,5 +106,22 @@ logLik.gpd.fit <- function(object, ...) {
   attr(val, "nobs") <- nobs(object)
   attr(val, "df") <- length(coef(object))
   class(val) <- "logLik"
+  return(val)
+}
+
+ismev_gpd_names <- function(x) {
+  if (x$trans) {
+    if (is.null(colnames(x$ydat))) {
+      scale_names <- paste0("scale", c("", x$model[[1]]))
+      shape_names <- paste0("shape", c("", x$model[[2]]))
+    } else {
+      cov_names <- colnames(x$ydat)
+      scale_names <- paste0("scale", c("", cov_names[x$model[[1]]]))
+      shape_names <- paste0("shape", c("", cov_names[x$model[[2]]]))
+    }
+    val <- c(scale_names, shape_names)
+  } else {
+    val <- c("scale", "shape")
+  }
   return(val)
 }
