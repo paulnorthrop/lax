@@ -2,7 +2,7 @@
 #'
 #' This is a slightly modified version of \code{\link[ismev]{gpd.fit}}.
 #' The modification is to add to the returned object the arguments
-#' \code{xdat, siglink, shlink} and matrices
+#' \code{xdat, ydat, siglink, shlink} and matrices
 #' \code{sigmat, shmat} giving the respective regression design matrices
 #' for the scale and shape parameters of the model.
 #'
@@ -105,6 +105,7 @@ oogpd.fit <- function (xdat, threshold, npy = 365, ydat = NULL, sigl = NULL,
       print(z[c(8, 10, 11, 13)])
   }
   z$xdat <- xdat
+  z$ydat <- ydat
   z$sigmat <- sigmat
   z$shmat <- shmat
   z$siglink <- siglink

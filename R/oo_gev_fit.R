@@ -2,7 +2,7 @@
 #'
 #' This is a slightly modified version of \code{\link[ismev]{gev.fit}}.
 #' The modification is to add to the returned object the arguments
-#' \code{xdat, mulink, siglink, shlink} and matrices
+#' \code{xdat, ydat, mulink, siglink, shlink} and matrices
 #' \code{mumat, sigmat, shmat} giving the respective regression design matrices
 #' for the location, scale and shape parameters of the model.
 #'
@@ -95,6 +95,7 @@ oogev.fit <- function (xdat, ydat = NULL, mul = NULL, sigl = NULL, shl = NULL,
       print(z[c(5, 7, 9)])
   }
   z$xdat <- xdat
+  z$ydat <- ydat
   z$mumat <- mumat
   z$sigmat <- sigmat
   z$shmat <- shmat

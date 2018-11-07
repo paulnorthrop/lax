@@ -2,7 +2,7 @@
 #'
 #' This is a slightly modified versions of \code{\link[ismev]{gev.fit}}.
 #' The main modification is to add to the returned object the arguments
-#' \code{xdat, mulink, siglink, shlink} and matrices
+#' \code{xdat, ydat, mulink, siglink, shlink} and matrices
 #' \code{mumat, sigmat, shmat} giving the respective regression design matrices
 #' for the location, scale and shape parameters of the model.  In addition, a
 #' bug in the code that sets initial estimates has been corrected: the bug
@@ -133,6 +133,7 @@ oopp.fit <- function (xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
       print(z[c(9, 12, 14)])
   }
   z$xdat <- xdat
+  z$ydat <- ydat
   z$mumat <- mumat
   z$sigmat <- sigmat
   z$shmat <- shmat

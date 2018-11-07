@@ -12,7 +12,7 @@ oogpd.fit(xdat, threshold, npy = 365, ydat = NULL, sigl = NULL,
 \description{
 This is a slightly modified version of \code{\link[ismev]{gpd.fit}}.
 The modification is to add to the returned object the arguments
-\code{xdat, siglink, shlink} and matrices
+\code{xdat, ydat, siglink, shlink} and matrices
 \code{sigmat, shmat} giving the respective regression design matrices
 for the scale and shape parameters of the model.
 }
