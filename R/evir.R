@@ -13,6 +13,8 @@
 #'   # An example from the evir::gev documentation
 #'   data(bmw)
 #'   out <- evir::gev(bmw, "month")
+#'   adj_out <- alogLik(out)
+#'   summary(adj_out)
 #' }
 #' @name evir
 NULL
