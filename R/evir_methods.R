@@ -1,4 +1,4 @@
-# nobs, coef, vcov and logLik methods for class "gev"
+# nobs, coef, vcov and logLik methods for class "gev", produced by evir::gev()
 
 #' @export
 nobs.gev <- function(object, ...) {
@@ -47,3 +47,31 @@ logLik.gev <- function(object, ...) {
   return(val)
 }
 
+# nobs, coef, vcov and logLik methods for class "gpd", produced by evir::gpd()
+
+#' @export
+nobs.gpd <- function(object, ...) {
+  return(object$n.exceed)
+}
+
+#' @export
+coef.gpd <- function(object, ...) {
+  return(object$par.ests)
+}
+
+#' @export
+vcov.gpd <- function(object, ...) {
+  vc <- object$varcov
+  par_names <- names(coef(object))
+  dimnames(vc) <- list(par_names, par_names)
+  return(vc)
+}
+
+#' @export
+logLik.gpd <- function(object, ...) {
+  val <- -object$nllh.final
+  attr(val, "nobs") <- nobs(object)
+  attr(val, "df") <- length(coef(object))
+  class(val) <- "logLik"
+  return(val)
+}
