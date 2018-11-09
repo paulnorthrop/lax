@@ -1,11 +1,21 @@
 #' oolax: Objected-orientated Loglikelihood Adjustment for Extreme Value Models
 #'
-#' Performs adjustments of the independence loglikelihood for fitted model
-#' objects produced by several R packages for extreme value modelling.
-#' The packages are \code{evd}, \code{ismev}, ...
-#'
+#' Performs adjusted inferences using fitted model objects returned from the
+#' extreme value analysis packages
+#' \code{evd} \url{https://cran.r-project.org/package=evd},
+#' \code{ismev} \url{https://cran.r-project.org/package=ismev}, ...
+#' Adjusted standard errors and an adjusted loglikelihood are provided.
+#' The adjustment is based on a robust sandwich estimator of the parameter
+#' covariance matrix, based on the methodology in Chandler and Bate (2007)
+#' <doi:10.1093/biomet/asm015>. This can be used for cluster correlated data
+#' when interest lies in the parameters of the marginal distributions or for
+#' performing inferences that are robust to certain types of model
+#' misspecification.  Currently only univariate extreme value models are
+#' supported.  As a byproduct, generic S3 methods logLik, coef, vcov and nobs
+#' are provided, where these are not already provided in the original package.
 #' @details
-#' Add details.
+#' \code{\link[oolax]{evd}},
+#' \code{\link[oolax]{ismev}}.
 #'
 #' See Chandler and Bate (2007) for full details and
 #' \code{vignette("oola-vignette", package = "oola")} for an
