@@ -4,7 +4,7 @@
 #'
 #' Description
 #'
-#' @inheritParams adj_object
+#' @inherit adj_object params details return references seealso
 #' @examples
 #' # We need the evd package
 #' got_evd <- requireNamespace("evd", quietly = TRUE)
@@ -35,8 +35,15 @@
 #'   adj_fpot <- alogLik(M1)
 #'   summary(adj_fpot)
 #' }
+#' @name evd
+NULL
+## NULL
+
+#' @rdname evd
 #' @export
 alogLik.evd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
+  # Reverse the order of the classes: they were reversed in alogLik.gev()
+  class(x) <- rev(class(x))
   # List of evd objects supported
   supported_by_oolax <- list(evd_fgev = c("gev", "uvevd", "evd"),
                              evd_fpot = c("pot", "uvevd", "evd"))
@@ -54,6 +61,25 @@ alogLik.evd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   class(x) <- name_of_class
   # Call oola::adjust_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
-  class(res) <- c("oolax", "chandwich")
+  if (name_of_class == "evd_fgev") {
+    if (is.null(x$nsloc)) {
+      class(res) <- c("oolax", "chandwich", "evd", "gev", "stat")
+    } else {
+      class(res) <- c("oolax", "chandwich", "evd", "gev", "nonstat")
+    }
+  } else {
+    all_pars <- coef(x, complete = TRUE)
+    free_pars <- coef(x, complete = FALSE)
+    which_free <- which(all_pars %in% free_pars)
+    all_pars[which_free] <- pars
+    n_all_pars <- length(all_pars)
+    # If n_all_pars = 2 then model = "gp".
+    # If n_all_pars = 3 then model = "pp".
+    if (n_all_pars == 2) {
+      class(res) <- c("oolax", "chandwich", "evd", "pot", "gpd")
+    } else {
+      class(res) <- c("oolax", "chandwich", "evd", "pot", "pp")
+    }
+  }
   return(res)
 }
