@@ -75,3 +75,41 @@ logLik.gpd <- function(object, ...) {
   class(val) <- "logLik"
   return(val)
 }
+
+# nobs, coef, vcov and logLik methods for class "potd", produced by evir::pot()
+
+#' @export
+nobs.potd <- function(object, ...) {
+  return(object$n)
+}
+
+#' @export
+coef.potd <- function(object, complete = FALSE, ...) {
+  if (complete) {
+    val <- object$par.ests
+  } else {
+    val <- object$par.ests[c("xi", "sigma", "mu")]
+  }
+  return(val)
+}
+
+#' @export
+vcov.potd <- function(object, complete = FALSE, ...) {
+  vc <- object$varcov
+  par_names <- names(coef(object))
+  if (complete) {
+    vc <- rbind(cbind(vc, NA), NA)
+    par_names <- c(names(coef(object)), "beta")
+  }
+  dimnames(vc) <- list(par_names, par_names)
+  return(vc)
+}
+
+#' @export
+logLik.potd <- function(object, ...) {
+  val <- -object$nllh.final
+  attr(val, "nobs") <- nobs(object)
+  attr(val, "df") <- length(coef(object))
+  class(val) <- "logLik"
+  return(val)
+}
