@@ -21,6 +21,11 @@
 #'   out <- gpd(danish, 10)
 #'   adj_out <- alogLik(out)
 #'   summary(adj_out)
+#'
+#'   # An example from the evir::pot documentation
+#'   out <- oopot(danish, 10)
+#'   adj_out <- alogLik(out)
+#'   summary(adj_out)
 #' }
 #' @name evir
 NULL
@@ -77,5 +82,28 @@ alogLik.gpd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # Call oola::adjust_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
   class(res) <- c("oolax", "chandwich", "evir", "gpd", "stat")
+  return(res)
+}
+
+#' @rdname evir
+#' @export
+alogLik.potd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
+  # List of evir objects supported
+  supported_by_oolax <- list(evir_pot = c("potd"))
+  # Does x have a supported class?
+  is_supported <- NULL
+  for (i in 1:length(supported_by_oolax)) {
+    is_supported[i] <- identical(class(x), unlist(supported_by_oolax[i],
+                                                  use.names = FALSE))
+  }
+  if (!any(is_supported)) {
+    stop(paste("x's class", deparse(class(x)), "is not supported"))
+  }
+  # Set the class
+  name_of_class <- names(supported_by_oolax)[which(is_supported)]
+  class(x) <- name_of_class
+  # Call oola::adjust_object to adjust the loglikelihood
+  res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
+  class(res) <- c("oolax", "chandwich", "evir", "potd", "stat")
   return(res)
 }

@@ -4,11 +4,14 @@
 \alias{evir}
 \alias{alogLik.gev}
 \alias{alogLik.gpd}
+\alias{alogLik.potd}
 \title{Loglikelihood adjustment of evir fits}
 \usage{
 \method{alogLik}{gev}(x, cluster = NULL, use_vcov = TRUE, ...)
 
 \method{alogLik}{gpd}(x, cluster = NULL, use_vcov = TRUE, ...)
+
+\method{alogLik}{potd}(x, cluster = NULL, use_vcov = TRUE, ...)
 }
 \arguments{
 \item{x}{A fitted model object with certain associated S3 methods.
@@ -108,6 +111,11 @@ if (got_evir) {
   # An example from the evir::gpd documentation
   data(danish)
   out <- gpd(danish, 10)
+  adj_out <- alogLik(out)
+  summary(adj_out)
+
+  # An example from the evir::pot documentation
+  out <- oopot(danish, 10)
   adj_out <- alogLik(out)
   summary(adj_out)
 }
