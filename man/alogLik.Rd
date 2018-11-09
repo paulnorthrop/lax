@@ -4,11 +4,34 @@
 \alias{alogLik}
 \title{Loglikelihood adjustment of model fits}
 \usage{
-alogLik(x, ...)
+alogLik(x, cluster = NULL, use_vcov = TRUE, ...)
 }
 \arguments{
 \item{x}{A fitted model object with certain associated S3 methods.
 See \strong{Details}.}
+
+\item{cluster}{A vector or factor indicating from which cluster the
+  respective loglikelihood contributions from \code{loglik} originate.
+  This must have the same length as the vector returned by the
+  \code{logLikVec} method for object like \code{x}.
+  If \code{cluster} is not supplied then it is assumed that
+  each observation forms its own cluster.
+
+  If the sandwich package
+  is used to estimate the quantities required to adjust the loglikelihood
+  (i.e. \code{use_sanswich = TRUE}) then \code{cluster} determines whether
+  the variance matrix \code{V} of the score vector is estimated using
+  \code{\link[sandwich]{meat}} (\code{cluster} is \code{NULL}) or
+  \code{\link[sandwich:vcovCL]{meatCL}} (\code{cluster} is not \code{NULL}).
+  See \code{use_sandwich} and \strong{Details}.}
+
+\item{use_vcov}{A logical scalar.  Should we use the \code{vcov} S3 method
+for \code{x} (if this exists) to estimate the Hessian of the independence
+loglikelihood to be passed as the argument \code{H} to
+\code{\link[chandwich]{adjust_loglik}}?
+Otherwise, \code{H} is estimated inside
+\code{\link[chandwich]{adjust_loglik}} using
+\code{\link[stats:optim]{optimHess}}.}
 
 \item{...}{Further arguments to be passed to the functions in the
 sandwich package \code{\link[sandwich]{meat}}, if \code{cluster = NULL},
@@ -23,7 +46,15 @@ An object of class inheriting from \code{"oola"}, which inherits
   by \code{_}.
 }
 \description{
-Description
+This function is generic.  It performs adjustment of the loglikelihood
+associated with fited model objects, following
+\href{http://dx.doi.org/10.1093/biomet/asm015}{Chandler and Bate (2007)}.
+Certain classes of extreme value model objects are supported automatically.
+For details see the \code{alogLik} help pages for the packages:
+\code{\link[oolax]{evd}},
+\code{\link[oolax]{ismev}}.
+User-supplied objects can also be supported: the requirements for these
+objects are explained in \strong{Details}.
 }
 \details{
 Object \code{x} \emph{must} have the following S3
