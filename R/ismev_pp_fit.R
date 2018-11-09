@@ -4,6 +4,12 @@
 
 #' @export
 logLikVec.ismev_pp <- function(object, pars = NULL, ...) {
+  # object$data only contains the exceedances.  We need all the data.
+  # We could pack it with -Inf for non-exceedances but if cluster is not NULL
+  # then we need the dat to be in the correct order.
+  if (is.null(object$xdat)) {
+    stop("Please refit the model using oolax::oopp.fit")
+  }
   if (!missing(...)) {
     warning("extra arguments discarded")
   }
@@ -13,12 +19,6 @@ logLikVec.ismev_pp <- function(object, pars = NULL, ...) {
     pars <- coef(object)
   }
   n_pars <- length(pars)
-  # object$data only contains the exceedances.  We need all the data.
-  # We could pack it with -Inf for non-exceedances but if cluster is not NULL
-  # then we need the dat to be in the correct order.
-  if (is.null(object$xdat)) {
-    stop("Please refit the model using oolax::oopp.fit")
-  }
   response_data <- object$xdat
   if (!object$trans) {
     # If trans = FALSE then there are no covariates and object$data contains
