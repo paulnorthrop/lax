@@ -1,6 +1,7 @@
 # ================================ evd::fgev ================================ #
 
 # Methods for class evd_fgev
+# The returned object has class c("gev", "uvdata", "evd")
 
 #' @export
 logLikVec.evd_fgev <- function(object, pars = NULL, ...) {
@@ -72,28 +73,9 @@ vcov.evd_fgev <- function(object, complete = FALSE, ...) {
 }
 
 #' @export
-vcov.evd_fgev <- function(object, ...) {
-  return(object$var.cov)
-}
-
-#' @export
 logLik.evd_fgev <- function(object, ...) {
   return(logLik(logLikVec(object)))
 }
 
-# Methods for class gev (evd already has vcov and logLik methods)
-
-#' @export
-nobs.gev <- function(object, ...) {
-  return(object$n)
-}
-
-#' @export
-coef.gev <- function(object, complete = FALSE, ...) {
-  if (complete) {
-    val <- object$param
-  } else {
-    val <- object$estimate
-  }
-  return(val)
-}
+# See evd_methods.R for nobs and coef methods for class "evd"
+# (evd already has vcov and logLik methods)

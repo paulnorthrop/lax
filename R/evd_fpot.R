@@ -18,8 +18,8 @@ logLikVec.evd_fpot <- function(object, pars = NULL, ...) {
     all_pars[which_free] <- pars
   }
   n_all_pars <- length(all_pars)
-  # If n_all_pars = 2 then model = "gp".
-  # If n_all_pars = 3 then model = "pp".
+  # If n_all_pars = 2 then model = "gp"
+  # If n_all_pars = 3 then model = "pp"
   if (n_all_pars == 2) {
     sigma <- all_pars["scale"]
     xi <- all_pars["shape"]
@@ -105,26 +105,5 @@ logLik.evd_fpot <- function(object, ...) {
   return(logLik(logLikVec(object)))
 }
 
-# Methods for class pot (evd already has vcov and logLik methods)
-
-#' @export
-nobs.pot <- function(object, ...) {
-  if (length(object$param) == 2) {
-    val <- object$nat
-  } else if (length(object$param) == 3) {
-    val <- length(object$data)
-  } else {
-    val <- NA
-  }
-  return(val)
-}
-
-#' @export
-coef.pot <- function(object, complete = FALSE, ...) {
-  if (complete) {
-    val <- object$param
-  } else {
-    val <- object$estimate
-  }
-  return(val)
-}
+# See evd_methods.R for nobs and coef methods for class "evd"
+# (evd already has vcov and logLik methods)
