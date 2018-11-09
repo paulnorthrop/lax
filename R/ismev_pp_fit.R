@@ -94,32 +94,4 @@ logLik.ismev_pp <- function(object, ...) {
   return(val)
 }
 
-# Methods for class gev.fit
-
-#' @export
-nobs.pp.fit <- function(object, ...) {
-  return(nrow(object$vals))
-}
-
-#' @export
-coef.pp.fit <- function(object, ...) {
-  val <- object$mle
-  names(val) <- ismev_gev_names(object)
-  return(val)
-}
-
-#' @export
-vcov.pp.fit <- function(object, ...) {
-  vc <- object$cov
-  dimnames(vc) <- list(ismev_gev_names(object), ismev_gev_names(object))
-  return(vc)
-}
-
-#' @export
-logLik.pp.fit <- function(object, ...) {
-  val <- -object$nllh
-  attr(val, "nobs") <- nobs(object)
-  attr(val, "df") <- length(coef(object))
-  class(val) <- "logLik"
-  return(val)
-}
+# See ismev_methods.R for nobs, coef, vcov, logLik methods for class "pp.fit"

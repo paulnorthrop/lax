@@ -82,36 +82,6 @@ logLik.ismev_gev <- function(object, ...) {
   return(val)
 }
 
-# Methods for class gev.fit
-
-#' @export
-nobs.gev.fit <- function(object, ...) {
-  return(length(object$data))
-}
-
-#' @export
-coef.gev.fit <- function(object, ...) {
-  val <- object$mle
-  names(val) <- ismev_gev_names(object)
-  return(val)
-}
-
-#' @export
-vcov.gev.fit <- function(object, ...) {
-  vc <- object$cov
-  dimnames(vc) <- list(ismev_gev_names(object), ismev_gev_names(object))
-  return(vc)
-}
-
-#' @export
-logLik.gev.fit <- function(object, ...) {
-  val <- -object$nllh
-  attr(val, "nobs") <- nobs(object)
-  attr(val, "df") <- length(coef(object))
-  class(val) <- "logLik"
-  return(val)
-}
-
 ismev_gev_names <- function(x) {
   if (x$trans) {
     if (is.null(colnames(x$ydat))) {
@@ -130,3 +100,5 @@ ismev_gev_names <- function(x) {
   }
   return(val)
 }
+
+# See ismev_methods.R for nobs, coef, vcov, logLik methods for class "gev.fit"

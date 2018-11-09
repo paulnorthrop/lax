@@ -79,36 +79,6 @@ logLik.ismev_gpd <- function(object, ...) {
   return(val)
 }
 
-# Methods for class gev.fit
-
-#' @export
-nobs.gpd.fit <- function(object, ...) {
-  return(object$nexc)
-}
-
-#' @export
-coef.gpd.fit <- function(object, ...) {
-  val <- object$mle
-  names(val) <- ismev_gpd_names(object)
-  return(val)
-}
-
-#' @export
-vcov.gpd.fit <- function(object, ...) {
-  vc <- object$cov
-  dimnames(vc) <- list(ismev_gpd_names(object), ismev_gpd_names(object))
-  return(vc)
-}
-
-#' @export
-logLik.gpd.fit <- function(object, ...) {
-  val <- -object$nllh
-  attr(val, "nobs") <- nobs(object)
-  attr(val, "df") <- length(coef(object))
-  class(val) <- "logLik"
-  return(val)
-}
-
 ismev_gpd_names <- function(x) {
   if (x$trans) {
     if (is.null(colnames(x$ydat))) {
@@ -125,3 +95,5 @@ ismev_gpd_names <- function(x) {
   }
   return(val)
 }
+
+# See ismev_methods.R for nobs, coef, vcov, logLik methods for class "gpd.fit"
