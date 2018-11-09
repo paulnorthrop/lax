@@ -4,7 +4,7 @@
 #'
 #' Description
 #'
-#' @inheritParams adj_object
+#' @inherit adj_object params details return references seealso
 #' @examples
 #' # We need the evd package
 #' got_ismev <- requireNamespace("ismev", quietly = TRUE)
@@ -30,7 +30,7 @@
 #'   rain_fit <- gpd.fit(rain, 10, show = FALSE)
 #'   adj_rain_fit <- alogLik(rain_fit)
 #'   summary(adj_rain_fit)
-#'   # Continuing to regression example on page 119 of Coles (2001)
+#'   # Continuing to the regression example on page 119 of Coles (2001)
 #'   ydat <- as.matrix((1:length(rain)) / length(rain))
 #'   reg_rain_fit <- oogpd.fit(rain, 30, ydat = ydat, sigl = 1, siglink = exp,
 #'                             show = FALSE)
@@ -81,9 +81,9 @@ alogLik.gev.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # Call oola::adjust_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
   if (x$trans) {
-    class(res) <- c("oolax", "chandwich", "gev", "nonstat")
+    class(res) <- c("oolax", "chandwich", "ismev", "gev", "nonstat")
   } else {
-    class(res) <- c("oolax", "chandwich", "gev", "stat")
+    class(res) <- c("oolax", "chandwich", "ismev", "gev", "stat")
   }
   return(res)
 }
@@ -107,7 +107,11 @@ alogLik.pp.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   class(x) <- name_of_class
   # Call oola::adjust_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
-  class(res) <- c("oolax", "chandwich")
+  if (x$trans) {
+    class(res) <- c("oolax", "chandwich", "ismev", "pp", "nonstat")
+  } else {
+    class(res) <- c("oolax", "chandwich", "ismev", "pp", "stat")
+  }
   return(res)
 }
 
@@ -130,6 +134,10 @@ alogLik.gpd.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   class(x) <- name_of_class
   # Call oola::adjust_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
-  class(res) <- c("oolax", "chandwich")
+  if (x$trans) {
+    class(res) <- c("oolax", "chandwich", "ismev", "gpd", "nonstat")
+  } else {
+    class(res) <- c("oolax", "chandwich", "ismev", "gpd", "stat")
+  }
   return(res)
 }
