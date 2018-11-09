@@ -9,6 +9,8 @@
 #' meant that if \code{threshold} is a vector then the optimization hangs.
 #'
 #' @examples
+#' # We need the evd package
+#' got_ismev <- requireNamespace("ismev", quietly = TRUE)
 #' if (got_ismev) {
 #'   data(rain)
 #'   fit1 <- pp.fit(rain, 100, show = FALSE)

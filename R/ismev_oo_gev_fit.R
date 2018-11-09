@@ -7,6 +7,8 @@
 #' for the location, scale and shape parameters of the model.
 #'
 #' @examples
+#' # We need the evd package
+#' got_ismev <- requireNamespace("ismev", quietly = TRUE)
 #' if (got_ismev) {
 #'   fit1 <- gev.fit(revdbayes::portpirie, show = FALSE)
 #'   ls(fit1)

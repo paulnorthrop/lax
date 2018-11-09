@@ -7,6 +7,8 @@
 #' for the scale and shape parameters of the model.
 #'
 #' @examples
+#' # We need the evd package
+#' got_ismev <- requireNamespace("ismev", quietly = TRUE)
 #' if (got_ismev) {
 #'   data(rain)
 #'   fit1 <- gpd.fit(rain, 10)
