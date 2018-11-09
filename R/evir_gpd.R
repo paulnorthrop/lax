@@ -1,6 +1,7 @@
-# ============================== ismev::gev.fit ============================= #
+# ================================= evir::gpd =============================== #
 
-# Methods for class ismev_gev
+# Methods for class evir_gpd
+# The returned object has class "gpd"
 
 #' @export
 logLikVec.evir_gpd <- function(object, pars = NULL, ...) {
@@ -77,4 +78,4 @@ ismev_gpd_names <- function(x) {
   return(val)
 }
 
-# See ismev_methods.R for nobs, coef, vcov, logLik methods for class "gpd.fit"
+# See evir_methods.R for nobs, coef, vcov, logLik methods for class "gpd"

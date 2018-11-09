@@ -1,7 +1,7 @@
 # ================================ evir::gev ================================ #
 
 # Methods for class evir_gev
-# The returned object has class c("gev")
+# The returned object has class "gev"
 
 #' @export
 logLikVec.evir_gev <- function(object, pars = NULL, ...) {
@@ -55,5 +55,4 @@ logLik.evir_gev <- function(object, ...) {
   return(logLik(logLikVec(object)))
 }
 
-# See evd_methods.R for nobs and coef methods for class "evd"
-# (evd already has vcov and logLik methods)
+# See evir_methods.R for nobs, coef, vcov, logLik methods for class "gev"
