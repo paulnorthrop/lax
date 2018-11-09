@@ -20,7 +20,6 @@
 #'   each observation forms its own cluster.
 #'
 #'   If the sandwich package
-#'   \href{http://dx.doi.org/10.18637/jss.v016.i09}{(Zeleis, 2006)}
 #'   is used to estimate the quantities required to adjust the loglikelihood
 #'   (i.e. \code{use_sanswich = TRUE}) then \code{cluster} determines whether
 #'   the variance matrix \code{V} of the score vector is estimated using
