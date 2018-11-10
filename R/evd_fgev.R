@@ -25,7 +25,7 @@ logLikVec.evd_fgev <- function(object, pars = NULL, ...) {
     mu_reg <- all_pars[paste0("loc", names(object$nsloc))]
     mu <- mu + as.matrix(object$nsloc) %*% mu_reg
   }
-  # Calculate the weighted loglikelihood contributions
+  # Calculate the loglikelihood contributions
   if (sigma <= 0) {
     val <- -Inf
   } else {
