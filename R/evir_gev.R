@@ -18,7 +18,7 @@ logLikVec.evir_gev <- function(object, pars = NULL, ...) {
   mu <- pars["mu"]
   sigma <- pars["sigma"]
   xi <- pars["xi"]
-  # Calculate the weighted loglikelihood contributions
+  # Calculate the loglikelihood contributions
   if (sigma <= 0) {
     val <- -Inf
   } else {
