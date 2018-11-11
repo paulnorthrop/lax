@@ -20,7 +20,7 @@
 #'   data(fremantle)
 #'   xdat <- fremantle[, "SeaLevel"]
 #'   # Set year 1897 to 1 for consistency with page 113 of Coles (2001)
-#'   ydat <- cbind(fremantle[, 1] - 1896, fremantle[, 3])
+#'   ydat <- cbind(fremantle[, "Year"] - 1896, fremantle[, "SOI"])
 #'   gev_fit <- oogev.fit(xdat, ydat, mul = 1:2, show = FALSE)
 #'   adj_gev_fit <- alogLik(gev_fit)
 #'   summary(adj_gev_fit)
