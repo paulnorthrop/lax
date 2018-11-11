@@ -94,14 +94,16 @@ Object \code{x} \emph{must} have the following S3
 \examples{
 # We need the texmex package
 got_texmex <- requireNamespace("texmex", quietly = TRUE)
-got_ismev <- requireNamespace("ismev", quietly = TRUE)
 if (got_texmex) {
   library(texmex)
   # Examples from the texmex::evm documentation
+
+  # GEV
   mod <- evm(SeaLevel, data = portpirie, family = gev)
   adj_mod <- alogLik(mod)
   summary(adj_mod)
 
+  # GP
   mod <- evm(rain, th = 30)
   adj_mod <- alogLik(mod)
   summary(adj_mod)
@@ -110,7 +112,14 @@ if (got_texmex) {
   vcov(adj_mod)
   vcov(mod)
 
+  # EGP3
+  mod <- evm(rain, th = 30, family = egp3)
+  adj_mod <- alogLik(mod)
+  summary(adj_mod)
+
+  got_ismev <- requireNamespace("ismev", quietly = TRUE)
   if (got_ismev) {
+    # GEV regression
     # An example from page 113 of Coles (2001)
     data(fremantle)
     new_fremantle <- fremantle
@@ -121,6 +130,7 @@ if (got_texmex) {
     adj_evm_fit <- alogLik(evm_fit)
     summary(adj_evm_fit)
 
+    # GP regression
     # An example from page 119 of Coles (2001)
     n_rain <- length(rain)
     rain_df <- data.frame(rain = rain, time = 1:n_rain / n_rain)

@@ -8,14 +8,16 @@
 #' @examples
 #' # We need the texmex package
 #' got_texmex <- requireNamespace("texmex", quietly = TRUE)
-#' got_ismev <- requireNamespace("ismev", quietly = TRUE)
 #' if (got_texmex) {
 #'   library(texmex)
 #'   # Examples from the texmex::evm documentation
+#'
+#'   # GEV
 #'   mod <- evm(SeaLevel, data = portpirie, family = gev)
 #'   adj_mod <- alogLik(mod)
 #'   summary(adj_mod)
 #'
+#'   # GP
 #'   mod <- evm(rain, th = 30)
 #'   adj_mod <- alogLik(mod)
 #'   summary(adj_mod)
@@ -24,7 +26,14 @@
 #'   vcov(adj_mod)
 #'   vcov(mod)
 #'
+#'   # EGP3
+#'   mod <- evm(rain, th = 30, family = egp3)
+#'   adj_mod <- alogLik(mod)
+#'   summary(adj_mod)
+#'
+#'   got_ismev <- requireNamespace("ismev", quietly = TRUE)
 #'   if (got_ismev) {
+#'     # GEV regression
 #'     # An example from page 113 of Coles (2001)
 #'     data(fremantle)
 #'     new_fremantle <- fremantle
@@ -35,6 +44,7 @@
 #'     adj_evm_fit <- alogLik(evm_fit)
 #'     summary(adj_evm_fit)
 #'
+#'     # GP regression
 #'     # An example from page 119 of Coles (2001)
 #'     n_rain <- length(rain)
 #'     rain_df <- data.frame(rain = rain, time = 1:n_rain / n_rain)
@@ -56,9 +66,6 @@ NULL
 #' @rdname texmex
 #' @export
 alogLik.evmOpt <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
-  if (x$family$name == "EGP3") {
-    stop("family egp3 is not supported (yet)")
-  }
   # List of texmex objects supported
   supported_by_oolax <- list(texmex_evmOpt = c("evmOpt"))
   # Does x have a supported class?
@@ -87,6 +94,12 @@ alogLik.evmOpt <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
       class(res) <- c("oolax", "chandwich", "texmex", "gpd", "stat")
     } else {
       class(res) <- c("oolax", "chandwich", "texmex", "gpd", "nonstat")
+    }
+  } else if (x$family$name == "GPD") {
+    if (n_pars == 3) {
+      class(res) <- c("oolax", "chandwich", "texmex", "egp3", "stat")
+    } else {
+      class(res) <- c("oolax", "chandwich", "texmex", "egp3", "nonstat")
     }
   }
   return(res)

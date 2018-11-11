@@ -64,6 +64,34 @@ logLikVec.texmex_evmOpt <- function(object, pars = NULL, ...) {
       val <- revdbayes::dgp(response_data, loc = object$threshold,
                             scale = sigma, shape = xi, log = TRUE)
     }
+  } else if (object$family$name == "EGP3") {
+    if (n_pars == 2) {
+      lambda <- pars["lambda: "]
+      phi <- pars["phi: "]
+      xi <- pars["xi: "]
+    } else {
+      lambda_mat <- object$data$D$lambda
+      phi_mat <- object$data$D$phi
+      xi_mat <- object$data$D$xi
+      n_lambda <- ncol(lambda_mat)
+      n_phi <- ncol(phi_mat)
+      n_xi <- ncol(xi_mat)
+      lambda_pars <- pars[1:n_lambda]
+      phi_pars <- pars[(n_lambda + 1):(n_lambda + n_phi)]
+      xi_pars <- pars[(n_lambda + n_phi + 1):n_pars]
+      lambda <- as.vector(lambda_mat %*% lambda_pars)
+      phi <- as.vector(phi_mat %*% phi_pars)
+      xi <- as.vector(xi_mat %*% xi_pars)
+    }
+    sigma <- exp(phi)
+    kappa <- exp(lambda)
+    # Calculate the loglikelihood contributions
+    if (any(sigma <= 0)) {
+      val <- -Inf
+    } else {
+      val <- texmex::degp3(response_data, kappa = kappa, sigma = sigma,
+                           xi = xi, u = object$threshold, log.d = TRUE)
+    }
   }
   # Return the usual attributes for a "logLik" object
   attr(val, "nobs") <- nobs(object)
