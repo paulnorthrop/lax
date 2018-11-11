@@ -10,8 +10,14 @@ Authors@R: c(
 Description: Performs adjusted inferences using fitted model objects 
     returned from the extreme value analysis packages 
     'evd' <https://cran.r-project.org/package=evd>, 
-    'ismev' <https://cran.r-project.org/package=ismev>, ...
-    Adjusted standard errors and an adjusted loglikelihood are provided.    
+    'evir' <https://cran.r-project.org/package=evir>, 
+    'ismev' <https://cran.r-project.org/package=ismev>, 
+    'texmex' <https://cran.r-project.org/package=texmex>, 
+    ...
+    Adjusted standard errors and an adjusted loglikelihood are provided, using    
+    the 'chandwich' package <https://cran.r-project.org/package=chandwich>
+    and the object-orientated features of the  
+    'sandwich' package <https://cran.r-project.org/package=sandwich>.
     The adjustment is based on a robust sandwich estimator of the parameter 
     covariance matrix, based on the methodology in Chandler and Bate (2007) 
     <doi:10.1093/biomet/asm015>. This can be used for cluster correlated data 
@@ -19,7 +25,7 @@ Description: Performs adjusted inferences using fitted model objects
     performing inferences that are robust to certain types of model 
     misspecification.  
     Currently only univariate extreme value models are supported.
-    As a byproduct, generic S3 methods logLik, coef, vcov and nobs are 
+    As a byproduct, generic S3 logLik, coef, vcov and nobs methods are 
     provided, where these are not already provided in the original package.
 Imports: graphics,
     methods,
@@ -39,7 +45,8 @@ Suggests: evd,
     ismev,
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    texmex
 VignetteBuilder: knitr
 URL: http://github.com/paulnorthrop/oolax
 BugReports: http://github.com/paulnorthrop/oolax/issues
