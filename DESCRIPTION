@@ -11,6 +11,7 @@ Description: Performs adjusted inferences using fitted model objects
     returned from the extreme value analysis packages 
     'evd' <https://cran.r-project.org/package=evd>, 
     'evir' <https://cran.r-project.org/package=evir>, 
+    'fExtremes' <https://cran.r-project.org/package=fExtremes>, 
     'ismev' <https://cran.r-project.org/package=ismev>, 
     'texmex' <https://cran.r-project.org/package=texmex>, 
     ...
@@ -42,6 +43,7 @@ Depends:
 RoxygenNote: 6.1.0
 Suggests: evd,
     evir,
+    fExtremes,
     ismev,
     knitr,
     rmarkdown,
