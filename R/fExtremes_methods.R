@@ -25,3 +25,33 @@ logLik.fGEVFIT <- function(object, ...) {
   return(val)
 }
 
+# nobs, coef, vcov and logLik methods for class "fGPDFIT", produced by
+# fExtremes::gpdFit()
+
+#' @export
+nobs.fGPDFIT <- function(object, ...) {
+  return(sum(object@fit$data > object@fit$threshold))
+}
+
+#' @export
+coef.fGPDFIT <- function(object, ...) {
+  return(object@fit$par.ests)
+}
+
+#' @export
+vcov.fGPDFIT <- function(object, ...) {
+  vc <- object@fit$varcov
+  par_names <- names(coef(object))
+  dimnames(vc) <- list(par_names, par_names)
+  return(vc)
+}
+
+#' @export
+logLik.fGPDFIT <- function(object, ...) {
+  val <- object@fit$fit$value
+  attr(val, "nobs") <- nobs(object)
+  attr(val, "df") <- length(coef(object))
+  class(val) <- "logLik"
+  return(val)
+}
+

@@ -70,7 +70,7 @@ alogLik.fGPDFIT <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # Does x have a supported class?
   is_supported <- NULL
   for (i in 1:length(supported_by_oolax)) {
-    is_supported[i] <- identical(class(x), unlist(supported_by_oolax[i],
+    is_supported[i] <- identical(class(x)[1], unlist(supported_by_oolax[i],
                                                   use.names = FALSE))
   }
   if (!any(is_supported)) {
