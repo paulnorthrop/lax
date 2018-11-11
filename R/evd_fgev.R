@@ -1,7 +1,6 @@
 # ================================ evd::fgev ================================ #
 
 # Methods for class evd_fgev
-# The returned object has class c("gev", "uvdata", "evd")
 
 #' @export
 logLikVec.evd_fgev <- function(object, pars = NULL, ...) {

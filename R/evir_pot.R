@@ -1,7 +1,6 @@
 # ================================== evir::pot ============================== #
 
 # Methods for class evir_pot
-# The returned object has class "potd"
 
 #' @export
 logLikVec.evir_pot <- function(object, pars = NULL, ...) {

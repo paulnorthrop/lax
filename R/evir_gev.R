@@ -1,7 +1,6 @@
 # ================================ evir::gev ================================ #
 
 # Methods for class evir_gev
-# The returned object has class "gev"
 
 #' @export
 logLikVec.evir_gev <- function(object, pars = NULL, ...) {

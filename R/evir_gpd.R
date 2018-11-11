@@ -1,7 +1,6 @@
 # ================================= evir::gpd =============================== #
 
 # Methods for class evir_gpd
-# The returned object has class "gpd"
 
 #' @export
 logLikVec.evir_gpd <- function(object, pars = NULL, ...) {
