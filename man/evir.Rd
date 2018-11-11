@@ -110,11 +110,12 @@ if (got_evir) {
 
   # An example from the evir::gpd documentation
   data(danish)
-  out <- gpd(danish, 10)
+  out <- evir::gpd(danish, 10)
   adj_out <- alogLik(out)
   summary(adj_out)
 
   # An example from the evir::pot documentation
+  # We use oolax::oopot() to return the input data
   out <- oopot(danish, 10)
   adj_out <- alogLik(out)
   summary(adj_out)

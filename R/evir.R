@@ -18,11 +18,12 @@
 #'
 #'   # An example from the evir::gpd documentation
 #'   data(danish)
-#'   out <- gpd(danish, 10)
+#'   out <- evir::gpd(danish, 10)
 #'   adj_out <- alogLik(out)
 #'   summary(adj_out)
 #'
 #'   # An example from the evir::pot documentation
+#'   # We use oolax::oopot() to return the input data
 #'   out <- oopot(danish, 10)
 #'   adj_out <- alogLik(out)
 #'   summary(adj_out)
@@ -62,7 +63,7 @@ alogLik.gev <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
 #' @rdname evir
 #' @export
 alogLik.gpd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
-  if (x$method == "pwm") {
+  if (x$method != "ml") {
     stop("Loglikelihood adjustment is only relevant when method = ''ml''")
   }
   # List of evir objects supported
