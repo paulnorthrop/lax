@@ -10,6 +10,7 @@ Performs adjusted inferences using fitted model objects returned from the
 extreme value analysis packages
 \href{https://cran.r-project.org/package=evd}{evd}
 \href{https://cran.r-project.org/package=evir}{evir}
+\href{https://cran.r-project.org/package=fExtremes}{fExtremes}
 \href{https://cran.r-project.org/package=ismev}{ismev}
 \href{https://cran.r-project.org/package=texmex}{texmex}.
 Adjusted standard errors and an adjusted loglikelihood are provided,
