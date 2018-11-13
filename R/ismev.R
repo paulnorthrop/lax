@@ -64,7 +64,7 @@ NULL
 #' @rdname ismev
 #' @export
 alogLik.gev.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
-  # List of evd objects supported
+  # List of ismev objects supported
   supported_by_oolax <- list(ismev_gev = "gev.fit")
   # Does x have a supported class?
   is_supported <- NULL
@@ -91,7 +91,7 @@ alogLik.gev.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
 #' @rdname ismev
 #' @export
 alogLik.pp.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
-  # List of evd objects supported
+  # List of ismev objects supported
   supported_by_oolax <- list(ismev_pp = "pp.fit")
   # Does x have a supported class?
   is_supported <- NULL
@@ -118,7 +118,7 @@ alogLik.pp.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
 #' @rdname ismev
 #' @export
 alogLik.gpd.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
-  # List of evd objects supported
+  # List of ismev objects supported
   supported_by_oolax <- list(ismev_gpd = "gpd.fit")
   # Does x have a supported class?
   is_supported <- NULL
