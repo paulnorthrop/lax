@@ -12,7 +12,7 @@ coef.fevd <- function(object, ...) {
 
 #' @export
 vcov.fevd <- function(object, ...) {
-  return(solve(object$results$hessian))
+  return(extRemes::parcov.fevd(object))
 }
 
 #' @export
