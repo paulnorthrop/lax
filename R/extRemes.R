@@ -48,6 +48,8 @@
 #'   fit <- fevd(Prec, Fort, threshold=0.475,
 #'               threshold.fun=~I(-0.15 * cos(2 * pi * month / 12)),
 #'               type="GP")
+#'   adj_fit <- alogLik(fit)
+#'   summary(adj_fit)
 #' }
 #' @name extRemes
 NULL
