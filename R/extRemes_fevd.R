@@ -1,16 +1,3 @@
-# NOTE: needs to deal with the -1 case in the formula.
-#       check what this does!
-#> fitPORTstdmax <- fevd(PORTw$TMX1, PORTw, scale.fun=~STDTMAX, use.phi=TRUE)
-#> coef(fitPORTstdmax)
-#location       phi0       phi1      shape
-#14.9413877  0.1177255  0.2062192 -0.3677961
-#> fitPORTstdmax <- fevd(PORTw$TMX1, PORTw, scale.fun=~STDTMAX-1, use.phi=TRUE)
-#> coef(fitPORTstdmax)
-#location  log.scale      shape
-#14.9275962  0.2294392 -0.3732653
-
-# Deal with names and getting correct covariate values
-
 # ============================= extRemes::fevd ============================== #
 
 # Methods for class "fevd"
