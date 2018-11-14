@@ -1,12 +1,12 @@
 ---
-title: "oolax: Objected-oriented Loglikelihood Adjustment for Extreme Value Models"
+title: "The evir package"
 author: "Paul Northrop"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{oolax: Objected-oriented Loglikelihood Adjustment for Extreme Value Models}
+  %\VignetteIndexEntry{The evir package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 bibliography: oolax.bib
@@ -16,7 +16,7 @@ bibliography: oolax.bib
 knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
 ```
 
-The *oolax* 
+@evir
 
 ## References
 
