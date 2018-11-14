@@ -1,5 +1,5 @@
 Package: oolax
-Title: Objected-orientated Loglikelihood Adjustment for Extreme Value Models
+Title: Objected-oriented Loglikelihood Adjustment for Extreme Value Models
 Version: 1.0.0.9000
 Date: 2018-09-20
 Authors@R: c(
@@ -18,7 +18,7 @@ Description: Performs adjusted inferences using fitted model objects
     ...
     Adjusted standard errors and an adjusted loglikelihood are provided, using    
     the 'chandwich' package <https://cran.r-project.org/package=chandwich>
-    and the object-orientated features of the  
+    and the object-oriented features of the  
     'sandwich' package <https://cran.r-project.org/package=sandwich>.
     The adjustment is based on a robust sandwich estimator of the parameter 
     covariance matrix, based on the methodology in Chandler and Bate (2007) 
