@@ -4,7 +4,7 @@
 \name{oolax}
 \alias{oolax}
 \alias{oolax-package}
-\title{oolax: Objected-orientated Loglikelihood Adjustment for Extreme Value Models}
+\title{oolax: Objected-oriented Loglikelihood Adjustment for Extreme Value Models}
 \description{
 Performs adjusted inferences using fitted model objects returned from the
 extreme value analysis packages
@@ -16,7 +16,7 @@ extreme value analysis packages
 Adjusted standard errors and an adjusted loglikelihood are provided,
 using the
 \href{https://cran.r-project.org/package=chandwich}{chandwich package}
- and the object-orientated features of the
+ and the object-oriented features of the
  \href{https://cran.r-project.org/package=sandwich}{sandwich package}.
 Adjusted standard errors and an adjusted loglikelihood are provided.
 The adjustment is based on a robust sandwich estimator of the parameter
