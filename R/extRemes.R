@@ -25,16 +25,29 @@
 #'   adj_fit <- alogLik(fitPORTstdmax)
 #'   summary(adj_fit)
 #'
-#'   # Gumbel (if you really, really want!)
+#'   # Gumbel
 #'   fit0 <- fevd(TMX1, PORTw, type = "Gumbel", units = "deg C")
 #'   adj_fit0 <- alogLik(fit0)
 #'   summary(adj_fit0)
 #'
 #'   # GP
 #'   data(damage)
-#'   fit1 <- fevd(Dam, damage, threshold=6, type="GP", time.units="2.05/year")
+#'   fit1 <- fevd(Dam, damage, threshold = 6, type = "GP",
+#'                time.units = "2.05/year")
 #'   adj_fit1 <- alogLik(fit1)
 #'   summary(adj_fit1)
+#'
+#'   # Exponential
+#'   fit0 <- fevd(Dam, damage, threshold = 6, type="Exponential",
+#'                time.units = "2.05/year")
+#'   adj_fit0 <- alogLik(fit0)
+#'   summary(adj_fit0)
+#'
+#'   # GP regression
+#'   data(Fort)
+#'   fit <- fevd(Prec, Fort, threshold=0.475,
+#'               threshold.fun=~I(-0.15 * cos(2 * pi * month / 12)),
+#'               type="GP")
 #' }
 #' @name extRemes
 NULL
@@ -62,11 +75,17 @@ alogLik.fevd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   class(x) <- name_of_class
   # Call oola::adjust_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
-  if (x$type == "GEV") {
+  if (x$type == "GEV" || x$type == "Gumbel") {
     if (extRemes::is.fixedfevd(x)) {
       class(res) <- c("oolax", "chandwich", "extRemes", "gev", "stat")
     } else {
       class(res) <- c("oolax", "chandwich", "extRemes", "gev", "nonstat")
+    }
+  } else if (x$type == "GP" || x$type == "Exponential") {
+    if (extRemes::is.fixedfevd(x)) {
+      class(res) <- c("oolax", "chandwich", "extRemes", "gp", "stat")
+    } else {
+      class(res) <- c("oolax", "chandwich", "extRemes", "gp", "nonstat")
     }
   }
   return(res)
