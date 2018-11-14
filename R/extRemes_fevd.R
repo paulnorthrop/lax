@@ -136,6 +136,11 @@ fevd_gp_logLikVec <- function(object, pars = NULL, ...) {
   the_data <- distillery::datagrabber(object)
   # Calculate the threshold exceedances (values above the threshold)
   response_data <- the_data$y[the_data$y > object$threshold]
+  if (object$const.thresh) {
+    the_threshold <- object$threshold
+  } else {
+    the_threshold <- object$threshold[the_data$y > object$threshold]
+  }
   # Determine whether or not there are covariates
   stat_model <- extRemes::is.fixedfevd(object)
   if (stat_model) {
@@ -151,20 +156,8 @@ fevd_gp_logLikVec <- function(object, pars = NULL, ...) {
     }
   } else {
     design_matrices <- extRemes::setup.design(object)
-    X.loc <- design_matrices$X.loc
     X.sc <- design_matrices$X.sc
     X.sh <- design_matrices$X.sh
-    if (object$const.loc) {
-      mu <- pars["location"]
-    } else {
-      n_mu <- object$results$num.pars$location
-      if (n_mu == 1) {
-        mu_pars <- "location"
-      } else {
-        mu_pars <- paste0("mu", 0:(ncol(X.loc) - 1))
-      }
-      mu <- as.vector(X.loc %*% pars[mu_pars])
-    }
     if (object$const.scale) {
       if (object$par.models$log.scale) {
         sig <- exp(pars["log.scale"])
@@ -191,7 +184,7 @@ fevd_gp_logLikVec <- function(object, pars = NULL, ...) {
         }
       }
     }
-    if (object$type == "GEV") {
+    if (object$type == "GP") {
       if (object$const.shape) {
         xi <- pars["shape"]
       } else {
@@ -211,7 +204,7 @@ fevd_gp_logLikVec <- function(object, pars = NULL, ...) {
   if (any(sig <= 0)) {
     val <- -Inf
   } else {
-    val <- revdbayes::dgp(response_data, loc = object$threshold, scale = sig,
+    val <- revdbayes::dgp(response_data, loc = the_threshold, scale = sig,
                           shape = xi, log = TRUE) * object$weights
   }
   return(val)
