@@ -47,7 +47,15 @@
 #'   data(Fort)
 #'   fit <- fevd(Prec, Fort, threshold=0.475,
 #'               threshold.fun=~I(-0.15 * cos(2 * pi * month / 12)),
-#'               type="GP")
+#'               type = "GP")
+#'   adj_fit <- alogLik(fit)
+#'   summary(adj_fit)
+#'
+#'   # Exponential regression
+#'   data(Fort)
+#'   fit <- fevd(Prec, Fort, threshold=0.475,
+#'               threshold.fun=~I(-0.15 * cos(2 * pi * month / 12)),
+#'               type = "Exponential")
 #'   adj_fit <- alogLik(fit)
 #'   summary(adj_fit)
 #' }
