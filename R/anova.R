@@ -94,10 +94,12 @@ anova.oolax <- function (object, object2, ...) {
   model_list <- model_list[m_order]
   n_pars <- n_pars[m_order]
   n_models <- length(model_list)
-  # The largest model is model_list[[1]]
-  # Nested models
+  # Nested models: the largest model is model_list[[1]]
+  alrts <- p_value <- numeric(n_models - 1)
   for (i in 2:n_models) {
-    all_pars <- attr(model_list[[i - 1]], "free_pars")
+    larger <- model_list[[i - 1]]
+    smaller <- model_list[[i]]
+    all_pars <- attr(larger, "free_pars")
     larger_names <- names(all_pars)
     smaller_names <- names(attr(model_list[[i]], "free_pars"))
     # Check that the names of all the parameters in the smaller model are
@@ -110,17 +112,12 @@ anova.oolax <- function (object, object2, ...) {
     fixed_pars <- all_pars[fixed_pars]
     fixed_at <- rep(0, length(fixed_pars))
     names(fixed_at) <- names(fixed_pars)
-    attr(model_list[[i]], "fixed_pars") <- fixed_pars
-    attr(model_list[[i]], "fixed_at") <- fixed_at
-  }
-  # Do the testing
-  alrts <- p_value <- numeric(n_models - 1)
-  for (i in 2:n_models) {
-    larger <- model_list[[i - 1]]
-    smaller <- model_list[[i]]
+    attr(smaller, "fixed_pars") <- fixed_pars
+    attr(smaller, "fixed_at") <- fixed_at
     # In comparing smaller to larger, treat larger as the full model,
-    # i.e. no fixed parameters
+    # i.e. having no fixed parameters
     attr(larger, "fixed_pars") <- NULL
+    # Do the testing
     res <- do.call(chandwich::compare_models,
                    c(list(larger = larger, smaller = smaller),
                      for_compare_models))
