@@ -1,3 +1,7 @@
+# Create my own methods for which the coef names of nested models are consistent
+# Done GEV (but check)
+# To do: GP and PP
+
 # ================================= extRemes ================================ #
 
 #' Loglikelihood adjustment of extRemes fits
@@ -12,18 +16,27 @@
 #'
 #' if (got_extRemes & got_distillery) {
 #'   library(extRemes)
+#'   library(distillery)
 #'   # Examples from the extRemes::fevd documentation
 #'   data(PORTw)
 #'
 #'   # GEV
-#'   fit1 <- fevd(TMX1, PORTw, units = "deg C")
-#'   adj_fit1 <- alogLik(fit1)
-#'   summary(adj_fit1)
+#'   fit0 <- fevd(TMX1, PORTw, units = "deg C", use.phi=TRUE)
+#'   adj_fit0 <- alogLik(fit0)
+#'   summary(adj_fit0)
 #'
 #'   # GEV regression
-#'   fitPORTstdmax <- fevd(PORTw$TMX1, PORTw, scale.fun=~STDTMAX, use.phi=TRUE)
-#'   adj_fit <- alogLik(fitPORTstdmax)
-#'   summary(adj_fit)
+#'   fitPORTstdmax <- fevd(TMX1, PORTw, scale.fun = ~STDTMAX, use.phi=TRUE)
+#'   adj_fit1 <- alogLik(fitPORTstdmax)
+#'   summary(adj_fit1)
+#'   fitPORTstdmax2 <- fevd(TMX1, PORTw, location.fun = ~STDTMAX,
+#'                          scale.fun = ~STDTMAX, use.phi=TRUE)
+#'   adj_fit2 <- alogLik(fitPORTstdmax2)
+#'   summary(adj_fit2)
+#'   anova(adj_fit0, adj_fit1)
+#'   anova(adj_fit1, adj_fit2)
+#'   anova(adj_fit0, adj_fit2)
+#'   anova(adj_fit0, adj_fit1, adj_fit2)
 #'
 #'   # Gumbel
 #'   fit0 <- fevd(TMX1, PORTw, type = "Gumbel", units = "deg C")
@@ -102,6 +115,13 @@ alogLik.fevd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # Set the class
   name_of_class <- names(supported_by_oolax)[which(is_supported)]
   class(x) <- name_of_class
+  if (x$type == "GEV" || x$type == "Gumbel") {
+    class(x) <- "fevd_gev"
+  } else if (x$type == "GP" || x$type == "Exponential") {
+    class(x) <- "fevd_gp"
+  } else if (x$type == "PP") {
+    class(x) <- "fevd_pp"
+  }
   # Call oola::adjust_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
   if (x$type == "GEV" || x$type == "Gumbel") {

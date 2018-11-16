@@ -98,18 +98,27 @@ got_distillery <- requireNamespace("distillery", quietly = TRUE)
 
 if (got_extRemes & got_distillery) {
   library(extRemes)
+  library(distillery)
   # Examples from the extRemes::fevd documentation
   data(PORTw)
 
   # GEV
-  fit1 <- fevd(TMX1, PORTw, units = "deg C")
-  adj_fit1 <- alogLik(fit1)
-  summary(adj_fit1)
+  fit0 <- fevd(TMX1, PORTw, units = "deg C", use.phi=TRUE)
+  adj_fit0 <- alogLik(fit0)
+  summary(adj_fit0)
 
   # GEV regression
-  fitPORTstdmax <- fevd(PORTw$TMX1, PORTw, scale.fun=~STDTMAX, use.phi=TRUE)
-  adj_fit <- alogLik(fitPORTstdmax)
-  summary(adj_fit)
+  fitPORTstdmax <- fevd(TMX1, PORTw, scale.fun = ~STDTMAX, use.phi=TRUE)
+  adj_fit1 <- alogLik(fitPORTstdmax)
+  summary(adj_fit1)
+  fitPORTstdmax2 <- fevd(TMX1, PORTw, location.fun = ~STDTMAX,
+                         scale.fun = ~STDTMAX, use.phi=TRUE)
+  adj_fit2 <- alogLik(fitPORTstdmax2)
+  summary(adj_fit2)
+  anova(adj_fit0, adj_fit1)
+  anova(adj_fit1, adj_fit2)
+  anova(adj_fit0, adj_fit2)
+  anova(adj_fit0, adj_fit1, adj_fit2)
 
   # Gumbel
   fit0 <- fevd(TMX1, PORTw, type = "Gumbel", units = "deg C")
@@ -129,7 +138,7 @@ if (got_extRemes & got_distillery) {
   adj_fit0 <- alogLik(fit0)
   summary(adj_fit0)
 
-  # GP regression
+  # GP non-constant threshold
   data(Fort)
   fit <- fevd(Prec, Fort, threshold=0.475,
               threshold.fun=~I(-0.15 * cos(2 * pi * month / 12)),
@@ -137,7 +146,7 @@ if (got_extRemes & got_distillery) {
   adj_fit <- alogLik(fit)
   summary(adj_fit)
 
-  # Exponential regression
+  # Exponential non-constant threshold
   fit <- fevd(Prec, Fort, threshold=0.475,
               threshold.fun=~I(-0.15 * cos(2 * pi * month / 12)),
               type = "Exponential")
@@ -149,11 +158,19 @@ if (got_extRemes & got_distillery) {
   adj_fit <- alogLik(fit)
   summary(adj_fit)
 
-  fitGPcross <- fevd(Prec, Fort, threshold=0.395,
-                     scale.fun=~cos(day/365.25) + sin(day/365.25) +
-                     I((year - 1900)/99), type = "PP", use.phi = TRUE,
-                     units = "inches")
-  adj_fit <- alogLik(fitGPcross)
+  # PP non-constant threshold
+  fit <- fevd(Prec, Fort, threshold=0.475,
+              threshold.fun=~I(-0.15 * cos(2 * pi * month / 12)),
+              type = "PP")
+  adj_fit <- alogLik(fit)
+  summary(adj_fit)
+
+  # PP regression
+  fitPP <- fevd(Prec, Fort, threshold = 0.395,
+               location.fun = ~cos(day/365.25) + sin(day/365.25) +
+               I((year - 1900)/99), type = "PP", use.phi = TRUE,
+               units = "inches")
+  adj_fit <- alogLik(fitPP)
   summary(adj_fit)
 }
 }
