@@ -136,6 +136,12 @@ alogLik.fevd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
     } else {
       class(res) <- c("oolax", "chandwich", "extRemes", "gp", "nonstat")
     }
+  } else if (x$type == "PP") {
+    if (extRemes::is.fixedfevd(x)) {
+      class(res) <- c("oolax", "chandwich", "extRemes", "pp", "stat")
+    } else {
+      class(res) <- c("oolax", "chandwich", "extRemes", "pp", "nonstat")
+    }
   }
   return(res)
 }

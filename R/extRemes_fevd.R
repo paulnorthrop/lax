@@ -22,9 +22,10 @@ logLikVec.fevd <- function(object, pars = NULL, ...) {
   return(val)
 }
 
-#fevd_gev_logLikVec <- function(object, pars = NULL, ...) {
 #' @export
 logLikVec.fevd_gev <- function(object, pars = NULL, ...) {
+  # Create an "fevd" object, so that we can work with the usual "fevd"
+  # parameter names when calculating the loglikelihood contributions
   fevd_object <- object
   class(fevd_object) <- "fevd"
   # If the parameter estimates have not been provided in pars then extract
@@ -161,14 +162,19 @@ logLik.fevd_gev <- function(object, ...) {
   return(val)
 }
 
-fevd_gp_logLikVec <- function(object, pars = NULL, ...) {
+#' @export
+logLikVec.fevd_gp <- function(object, pars = NULL, ...) {
+  # Create an "fevd" object, so that we can work with the usual "fevd"
+  # parameter names when calculating the loglikelihood contributions
+  fevd_object <- object
+  class(fevd_object) <- "fevd"
   # If the parameter estimates have not been provided in pars then extract
   # them from the fitted object
   if (is.null(pars)) {
-    pars <- coef(object)
+    pars <- coef(fevd_object)
   }
   # Use the datagrabber method for "fevd" to grab the data
-  the_data <- distillery::datagrabber(object)
+  the_data <- distillery::datagrabber(fevd_object)
   # Calculate the threshold exceedances (values above the threshold)
   exc_ind <- the_data$y > object$threshold
   response_data <- the_data$y[exc_ind]
@@ -178,33 +184,33 @@ fevd_gp_logLikVec <- function(object, pars = NULL, ...) {
     the_threshold <- object$threshold[exc_ind]
   }
   # Determine whether or not there are covariates
-  stat_model <- extRemes::is.fixedfevd(object)
+  stat_model <- extRemes::is.fixedfevd(fevd_object)
   if (stat_model) {
     if (object$par.models$log.scale) {
-      sig <- exp(pars["log.scale"])
+      sig <- exp(pars["phi0"])
     } else {
-      sig <- pars["scale"]
+      sig <- pars["sigma0"]
     }
     if (object$type == "GP") {
-      xi <- pars["shape"]
+      xi <- pars["xi0"]
     } else {
       xi <- 0
     }
   } else {
-    design_matrices <- extRemes::setup.design(object)
+    design_matrices <- extRemes::setup.design(fevd_object)
     X.sc <- design_matrices$X.sc[exc_ind, , drop = FALSE]
     X.sh <- design_matrices$X.sh[exc_ind, , drop = FALSE]
     if (object$const.scale) {
       if (object$par.models$log.scale) {
-        sig <- exp(pars["log.scale"])
+        sig <- exp(pars["phi0"])
       } else {
-        sig <- pars["scale"]
+        sig <- pars["sigma0"]
       }
     } else {
       n_sig <- object$results$num.pars$scale
       if (n_sig == 1) {
-        sigphi_pars <- ifelse(object$par.models$log.scale, "log.scale",
-                              "scale")
+        sigphi_pars <- ifelse(object$par.models$log.scale, "phi0",
+                              "sigma0")
         sig <- as.vector(X.sc %*% pars[sigphi_pars])
         if (object$par.models$log.scale) {
           sig <- exp(sig)
@@ -222,11 +228,11 @@ fevd_gp_logLikVec <- function(object, pars = NULL, ...) {
     }
     if (object$type == "GP") {
       if (object$const.shape) {
-        xi <- pars["shape"]
+        xi <- pars["xi0"]
       } else {
         n_xi <- object$results$num.pars$shape
         if (n_xi == 1) {
-          xi_pars <- "shape"
+          xi_pars <- "xi0"
         } else {
           xi_pars <- paste0("xi", 0:(ncol(X.sh) - 1))
         }
@@ -246,37 +252,80 @@ fevd_gp_logLikVec <- function(object, pars = NULL, ...) {
   return(val)
 }
 
-fevd_pp_logLikVec <- function(object, pars = NULL, ...) {
+#' @export
+nobs.fevd_gp <- function(object, ...) {
+  return(object$n)
+}
+
+#' @export
+coef.fevd_gp <- function(object, ...) {
+  fevd_names <- names(object$results$par)
+  which_scale <- which(fevd_names == "scale")
+  which_logscale <- which(fevd_names == "log.scale")
+  which_shape <- which(fevd_names == "shape")
+  fevd_names[which_scale] <- "sigma0"
+  fevd_names[which_logscale] <- "phi0"
+  fevd_names[which_shape] <- "xi0"
+  val <- object$results$par
+  names(val) <- fevd_names
+  return(val)
+}
+
+#' @export
+vcov.fevd_gp <- function(object, ...) {
+  temp <- object
+  class(temp) <- "fevd"
+  vc <- extRemes::parcov.fevd(temp)
+  par_names <- names(coef(object))
+  dimnames(vc) <- list(par_names, par_names)
+  return(vc)
+}
+
+#' @export
+logLik.fevd_gp <- function(object, ...) {
+  val <- -object$results$value
+  attr(val, "nobs") <- nobs(object)
+  attr(val, "df") <- length(coef(object))
+  class(val) <- "logLik"
+  return(val)
+}
+
+#' @export
+logLikVec.fevd_pp <- function(object, pars = NULL, ...) {
+  # Create an "fevd" object, so that we can work with the usual "fevd"
+  # parameter names when calculating the loglikelihood contributions
+  fevd_object <- object
+  class(fevd_object) <- "fevd"
   # If the parameter estimates have not been provided in pars then extract
   # them from the fitted object
   if (is.null(pars)) {
-    pars <- coef(object)
+    pars <- coef(fevd_object)
   }
   # Use the datagrabber method for "fevd" to grab the data
-  the_data <- distillery::datagrabber(object)
+  the_data <- distillery::datagrabber(fevd_object)
   response_data <- the_data$y
   the_threshold <- object$threshold
   # Determine whether or not there are covariates
-  stat_model <- extRemes::is.fixedfevd(object)
+  stat_model <- extRemes::is.fixedfevd(fevd_object)
   if (stat_model) {
-    mu <- pars["location"]
+    mu <- pars["mu0"]
     if (object$par.models$log.scale) {
-      sig <- exp(pars["log.scale"])
+      sig <- exp(pars["phi0"])
     } else {
-      sig <- pars["scale"]
+      sig <- pars["sigma0"]
     }
-    xi <- pars["shape"]
+    xi <- pars["xi0"]
   } else {
-    design_matrices <- extRemes::setup.design(object)
+    design_matrices <- extRemes::setup.design(fevd_object)
     X.loc <- design_matrices$X.loc
     X.sc <- design_matrices$X.sc
     X.sh <- design_matrices$X.sh
     if (object$const.loc) {
-      mu <- pars["location"]
+      mu <- pars["mu0"]
     } else {
       n_mu <- object$results$num.pars$location
       if (n_mu == 1) {
-        mu_pars <- "location"
+        mu_pars <- "mu0"
       } else {
         mu_pars <- paste0("mu", 0:(ncol(X.loc) - 1))
       }
@@ -284,15 +333,15 @@ fevd_pp_logLikVec <- function(object, pars = NULL, ...) {
     }
     if (object$const.scale) {
       if (object$par.models$log.scale) {
-        sig <- exp(pars["log.scale"])
+        sig <- exp(pars["phi0"])
       } else {
-        sig <- pars["scale"]
+        sig <- pars["sigma0"]
       }
     } else {
       n_sig <- object$results$num.pars$scale
       if (n_sig == 1) {
-        sigphi_pars <- ifelse(object$par.models$log.scale, "log.scale",
-                              "scale")
+        sigphi_pars <- ifelse(object$par.models$log.scale, "phi0",
+                              "sigma0")
         sig <- as.vector(X.sc %*% pars[sigphi_pars])
         if (object$par.models$log.scale) {
           sig <- exp(sig)
@@ -309,11 +358,11 @@ fevd_pp_logLikVec <- function(object, pars = NULL, ...) {
       }
     }
     if (object$const.shape) {
-      xi <- pars["shape"]
+      xi <- pars["xi0"]
     } else {
       n_xi <- object$results$num.pars$shape
       if (n_xi == 1) {
-        xi_pars <- "shape"
+        xi_pars <- "xi0"
       } else {
         xi_pars <- paste0("xi", 0:(ncol(X.sh) - 1))
       }
@@ -338,6 +387,46 @@ fevd_pp_logLikVec <- function(object, pars = NULL, ...) {
     val <- pp_loglik_vec(x = response_data, u = object$threshold, mu = mu,
                          sigma = sig, xi = xi)
   }
+  return(val)
+}
+
+#' @export
+nobs.fevd_pp <- function(object, ...) {
+  return(object$n)
+}
+
+#' @export
+coef.fevd_gev <- function(object, ...) {
+  fevd_names <- names(object$results$par)
+  which_location <- which(fevd_names == "location")
+  which_scale <- which(fevd_names == "scale")
+  which_logscale <- which(fevd_names == "log.scale")
+  which_shape <- which(fevd_names == "shape")
+  fevd_names[which_location] <- "mu0"
+  fevd_names[which_scale] <- "sigma0"
+  fevd_names[which_logscale] <- "phi0"
+  fevd_names[which_shape] <- "xi0"
+  val <- object$results$par
+  names(val) <- fevd_names
+  return(val)
+}
+
+#' @export
+vcov.fevd_pp <- function(object, ...) {
+  temp <- object
+  class(temp) <- "fevd"
+  vc <- extRemes::parcov.fevd(temp)
+  par_names <- names(coef(object))
+  dimnames(vc) <- list(par_names, par_names)
+  return(vc)
+}
+
+#' @export
+logLik.fevd_pp <- function(object, ...) {
+  val <- -object$results$value
+  attr(val, "nobs") <- nobs(object)
+  attr(val, "df") <- length(coef(object))
+  class(val) <- "logLik"
   return(val)
 }
 
