@@ -16,7 +16,7 @@
 #' @param ... Further objects of class \code{"oolax"} and/or arguments
 #'   to be passed to \code{\link[chandwich]{anova.chandwich}}.
 #'
-#'   The objects of class \code{"oolax"} need not be provided in nested
+#' @details The objects of class \code{"oolax"} need not be provided in nested
 #'   order: they will be ordered inside \code{anova.oolax} based on the
 #'   values of \code{attr(., "p_current")}.
 #' @return An object of class \code{"anova"} inheriting from class
@@ -29,7 +29,7 @@
 #'       model is a valid simplification of the model in the previous row.}
 #'  The row names are the names of the model objects.
 #' @seealso \code{\link[chandwich]{anova.chandwich}}.
-#' @seealso \code{\link{adjust_object}}.
+#' @seealso \code{\link{adj_object}}.
 #' @references Chandler, R. E. and Bate, S. (2007). Inference for clustered
 #'   data using the independence loglikelihood. \emph{Biometrika},
 #'   \strong{94}(1), 167-183. \url{http://dx.doi.org/10.1093/biomet/asm015}
@@ -94,27 +94,33 @@ anova.oolax <- function (object, object2, ...) {
   model_list <- model_list[m_order]
   n_pars <- n_pars[m_order]
   n_models <- length(model_list)
-  # Infer the values of fixed_pars and fixed_at for all models
   # The largest model is model_list[[1]]
-  all_pars <- attr(model_list[[1]], "free_pars")
-  names_all_pars <- names(attr(model_list[[1]], "free_pars"))
   # Nested models
-#  class(model_list[[1]]) <- "chandwich"
   for (i in 2:n_models) {
+    all_pars <- attr(model_list[[i - 1]], "free_pars")
+    larger_names <- names(all_pars)
     smaller_names <- names(attr(model_list[[i]], "free_pars"))
-    fixed_pars <- which(!(names_all_pars %in% smaller_names))
+    # Check that the names of all the parameters in the smaller model are
+    # present in the larger model
+    if (!all(smaller_names %in% larger_names)) {
+      stop("parameter names are not nested")
+    }
+    # Which parameters have been fixed in moving from larger to smaller?
+    fixed_pars <- which(!(larger_names %in% smaller_names))
     fixed_pars <- all_pars[fixed_pars]
     fixed_at <- rep(0, length(fixed_pars))
     names(fixed_at) <- names(fixed_pars)
     attr(model_list[[i]], "fixed_pars") <- fixed_pars
     attr(model_list[[i]], "fixed_at") <- fixed_at
-#    class(model_list[[i]]) <- "chandwich"
   }
   # Do the testing
   alrts <- p_value <- numeric(n_models - 1)
   for (i in 2:n_models) {
     larger <- model_list[[i - 1]]
     smaller <- model_list[[i]]
+    # In comparing smaller to larger, treat larger as the full model,
+    # i.e. no fixed parameters
+    attr(larger, "fixed_pars") <- NULL
     res <- do.call(chandwich::compare_models,
                    c(list(larger = larger, smaller = smaller),
                      for_compare_models))
