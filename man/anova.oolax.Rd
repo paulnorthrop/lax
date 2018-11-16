@@ -14,11 +14,7 @@
 \code{\link{alogLik}} or \code{\link{adjust_object}}.}
 
 \item{...}{Further objects of class \code{"oolax"} and/or arguments
-  to be passed to \code{\link[chandwich]{anova.chandwich}}.
-
-  The objects of class \code{"oolax"} need not be provided in nested
-  order: they will be ordered inside \code{anova.oolax} based on the
-  values of \code{attr(., "p_current")}.}
+to be passed to \code{\link[chandwich]{anova.chandwich}}.}
 }
 \value{
 An object of class \code{"anova"} inheriting from class
@@ -38,6 +34,11 @@ test statistic (ALRTS) described in Section 3.5 of
 \href{http://dx.doi.org/10.1093/biomet/asm015}{Chandler and Bate (2007)}.
 The nesting must result from the simple constraint that a subset of the
 parameters of the larger model is held fixed.
+}
+\details{
+The objects of class \code{"oolax"} need not be provided in nested
+  order: they will be ordered inside \code{anova.oolax} based on the
+  values of \code{attr(., "p_current")}.
 }
 \examples{
 got_evd <- requireNamespace("evd", quietly = TRUE)
@@ -64,5 +65,5 @@ Chandler, R. E. and Bate, S. (2007). Inference for clustered
 \seealso{
 \code{\link[chandwich]{anova.chandwich}}.
 
-\code{\link{adjust_object}}.
+\code{\link{adj_object}}.
 }
