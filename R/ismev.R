@@ -56,6 +56,21 @@
 #'                          sigl = 1:2, siglink = exp, method = "BFGS")
 #'   adj_pp_fit <- alogLik(wooster.pp)
 #'   summary(adj_pp_fit)
+#'
+#'   # An example from Chandler and Bate (2007)
+#'   y <- c(chandwich::owtemps[, "Oxford"], chandwich::owtemps[, "Worthing"])
+#'   x <- as.matrix(rep(c(-1, 1), each = length(y) / 2))
+#'   gev_fit <- oogev.fit(y, x, mul = 1, sigl = 1, shl = 1, show = FALSE)
+#'   year <- rep(rownames(chandwich::owtemps), 2)
+#'   adj_gev_fit <- alogLik(gev_fit, cluster = year)
+#'   summary(adj_gev_fit)
+#'   # Get closer to the values reported in Table 2 of Chandler and Bate (2007)
+#'   gev_fit <- oogev.fit(y, x, mul = 1, sigl = 1, shl = 1, show = FALSE,
+#'                        method = "BFGS")
+#'   year <- rep(rownames(chandwich::owtemps), 2)
+#'   # Call sandwich::meatCL() with cadjust = FALSE
+#'   adj_gev_fit <- alogLik(gev_fit, cluster = year, cadjust = FALSE)
+#'   summary(adj_gev_fit)
 #' }
 #' @name ismev
 NULL
