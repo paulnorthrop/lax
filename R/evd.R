@@ -42,8 +42,10 @@ NULL
 #' @rdname evd
 #' @export
 alogLik.evd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
-  # Reverse the order of the classes: they were reversed in alogLik.gev()
-  class(x) <- rev(class(x))
+  # Reverse the order of the classes: if they were reversed in alogLik.gev()
+  if (class(x)[1] == "evd") {
+    class(x) <- rev(class(x))
+  }
   # List of evd objects supported
   supported_by_oolax <- list(evd_fgev = c("gev", "uvevd", "evd"),
                              evd_fpot = c("pot", "uvevd", "evd"))
@@ -71,7 +73,7 @@ alogLik.evd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
     all_pars <- coef(x, complete = TRUE)
     free_pars <- coef(x, complete = FALSE)
     which_free <- which(all_pars %in% free_pars)
-    all_pars[which_free] <- pars
+    all_pars[which_free] <- free_pars
     n_all_pars <- length(all_pars)
     # If n_all_pars = 2 then model = "gp".
     # If n_all_pars = 3 then model = "pp".
