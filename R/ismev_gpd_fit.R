@@ -72,11 +72,7 @@ vcov.ismev_gpd <- function(object, ...) {
 
 #' @export
 logLik.ismev_gpd <- function(object, ...) {
-  val <- -object$nllh
-  attr(val, "nobs") <- nobs(object)
-  attr(val, "df") <- length(coef(object))
-  class(val) <- "logLik"
-  return(val)
+  return(logLik(logLikVec(object)))
 }
 
 ismev_gpd_names <- function(x) {

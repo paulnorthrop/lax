@@ -75,11 +75,7 @@ vcov.ismev_gev <- function(object, ...) {
 
 #' @export
 logLik.ismev_gev <- function(object, ...) {
-  val <- -object$nllh
-  attr(val, "nobs") <- nobs(object)
-  attr(val, "df") <- length(coef(object))
-  class(val) <- "logLik"
-  return(val)
+  return(logLik(logLikVec(object)))
 }
 
 ismev_gev_names <- function(x) {

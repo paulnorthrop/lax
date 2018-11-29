@@ -87,11 +87,7 @@ vcov.ismev_pp <- function(object, ...) {
 
 #' @export
 logLik.ismev_pp <- function(object, ...) {
-  val <- -object$nllh
-  attr(val, "nobs") <- nobs(object)
-  attr(val, "df") <- length(coef(object))
-  class(val) <- "logLik"
-  return(val)
+  return(logLik(logLikVec(object)))
 }
 
 # See ismev_methods.R for nobs, coef, vcov, logLik methods for class "pp.fit"
