@@ -155,12 +155,17 @@ vcov.fevd_gev <- function(object, ...) {
 
 #' @export
 logLik.fevd_gev <- function(object, ...) {
-  val <- -object$results$value
-  attr(val, "nobs") <- nobs(object)
-  attr(val, "df") <- length(coef(object))
-  class(val) <- "logLik"
-  return(val)
+  return(logLik(logLikVec(object)))
 }
+
+##' @export
+#logLik.fevd_gev <- function(object, ...) {
+#  val <- -object$results$value
+#  attr(val, "nobs") <- nobs(object)
+#  attr(val, "df") <- length(coef(object))
+#  class(val) <- "logLik"
+#  return(val)
+#}
 
 #' @export
 logLikVec.fevd_gp <- function(object, pars = NULL, ...) {
@@ -283,12 +288,17 @@ vcov.fevd_gp <- function(object, ...) {
 
 #' @export
 logLik.fevd_gp <- function(object, ...) {
-  val <- -object$results$value
-  attr(val, "nobs") <- nobs(object)
-  attr(val, "df") <- length(coef(object))
-  class(val) <- "logLik"
-  return(val)
+  return(logLik(logLikVec(object)))
 }
+
+##' @export
+#logLik.fevd_gp <- function(object, ...) {
+#  val <- -object$results$value
+#  attr(val, "nobs") <- nobs(object)
+#  attr(val, "df") <- length(coef(object))
+#  class(val) <- "logLik"
+#  return(val)
+#}
 
 #' @export
 logLikVec.fevd_pp <- function(object, pars = NULL, ...) {
@@ -396,7 +406,7 @@ nobs.fevd_pp <- function(object, ...) {
 }
 
 #' @export
-coef.fevd_gev <- function(object, ...) {
+coef.fevd_pp <- function(object, ...) {
   fevd_names <- names(object$results$par)
   which_location <- which(fevd_names == "location")
   which_scale <- which(fevd_names == "scale")
@@ -423,11 +433,16 @@ vcov.fevd_pp <- function(object, ...) {
 
 #' @export
 logLik.fevd_pp <- function(object, ...) {
-  val <- -object$results$value
-  attr(val, "nobs") <- nobs(object)
-  attr(val, "df") <- length(coef(object))
-  class(val) <- "logLik"
-  return(val)
+  return(logLik(logLikVec(object)))
 }
+
+##' @export
+#logLik.fevd_pp <- function(object, ...) {
+#  val <- -object$results$value
+#  attr(val, "nobs") <- nobs(object)
+#  attr(val, "df") <- length(coef(object))
+#  class(val) <- "logLik"
+#  return(val)
+#}
 
 # See extRemes_methods.R for nobs, coef, vcov, logLik methods for class "fevd"
