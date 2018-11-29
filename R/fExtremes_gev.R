@@ -48,11 +48,7 @@ vcov.fExtremes_gev <- function(object, ...) {
 
 #' @export
 logLik.fExtremes_gev <- function(object, ...) {
-  val <- -object@fit$nllh.final
-  attr(val, "nobs") <- nobs(object)
-  attr(val, "df") <- length(coef(object))
-  class(val) <- "logLik"
-  return(val)
+  return(logLik(logLikVec(object)))
 }
 
 # See fExtremes_methods.R for nobs, coef, vcov, logLik methods for
