@@ -32,8 +32,11 @@ are provided, where these are not already provided in the original package.
 }
 \details{
 \code{\link[oolax]{evd}},
-\code{\link[oolax]{evir}}.
+\code{\link[oolax]{evir}},
+\code{\link[oolax]{extRemes}},
+\code{\link[oolax]{fExtremes}},
 \code{\link[oolax]{ismev}},
+\code{\link[oolax]{POT}},
 \code{\link[oolax]{texmex}}.
 
 See Chandler and Bate (2007) for full details and
