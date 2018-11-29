@@ -158,15 +158,6 @@ logLik.fevd_gev <- function(object, ...) {
   return(logLik(logLikVec(object)))
 }
 
-##' @export
-#logLik.fevd_gev <- function(object, ...) {
-#  val <- -object$results$value
-#  attr(val, "nobs") <- nobs(object)
-#  attr(val, "df") <- length(coef(object))
-#  class(val) <- "logLik"
-#  return(val)
-#}
-
 #' @export
 logLikVec.fevd_gp <- function(object, pars = NULL, ...) {
   # Create an "fevd" object, so that we can work with the usual "fevd"
@@ -290,15 +281,6 @@ vcov.fevd_gp <- function(object, ...) {
 logLik.fevd_gp <- function(object, ...) {
   return(logLik(logLikVec(object)))
 }
-
-##' @export
-#logLik.fevd_gp <- function(object, ...) {
-#  val <- -object$results$value
-#  attr(val, "nobs") <- nobs(object)
-#  attr(val, "df") <- length(coef(object))
-#  class(val) <- "logLik"
-#  return(val)
-#}
 
 #' @export
 logLikVec.fevd_pp <- function(object, pars = NULL, ...) {
@@ -435,14 +417,5 @@ vcov.fevd_pp <- function(object, ...) {
 logLik.fevd_pp <- function(object, ...) {
   return(logLik(logLikVec(object)))
 }
-
-##' @export
-#logLik.fevd_pp <- function(object, ...) {
-#  val <- -object$results$value
-#  attr(val, "nobs") <- nobs(object)
-#  attr(val, "df") <- length(coef(object))
-#  class(val) <- "logLik"
-#  return(val)
-#}
 
 # See extRemes_methods.R for nobs, coef, vcov, logLik methods for class "fevd"
