@@ -5,13 +5,24 @@
 # evd::fextreme() : c("extreme","evd")
 # evd::forder() : c("extreme","evd")
 
-# fExtremes::gevFit() : "gev"
-# fExtremes::gpdFit() : "gpd"
+# fExtremes::gevFit() : "fGEVFIT"
+# fExtremes::gpdFit() : fGPDFIT
 
 # evir::gev() "gev"
-# evir::gev() "gpd"
+# evir::gpd() "gpd"
 
-# texmex::evm() : "evmOpt"
+# texmex::evm() : "evmOpt" (gev, gpd and egp3)
 
 # ismev::gev.fit : "gev.fit"
 # ismev::gpd.fit : "gpd.fit"
+
+# extRemes::fevd() : "fevd"
+
+# evmix::fgpd() : "list"   Oh dear!
+
+# POT::fitgpd() : c("uvpot", "pot")
+
+# mev::gp.fit() : "gpd"  (clash with evir::gpd())
+# mev::egp.fit() : "list"  Oh dear
+# mev::egp2.fit() : "list"  Oh dear
+# mev::gev.mle() : "numeric"   Oh dear!
