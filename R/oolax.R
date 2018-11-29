@@ -4,8 +4,10 @@
 #' extreme value analysis packages
 #' \href{https://cran.r-project.org/package=evd}{evd}
 #' \href{https://cran.r-project.org/package=evir}{evir}
+#' \href{https://cran.r-project.org/package=extRemes}{extRemes}
 #' \href{https://cran.r-project.org/package=fExtremes}{fExtremes}
 #' \href{https://cran.r-project.org/package=ismev}{ismev}
+#' \href{https://cran.r-project.org/package=POT}{POT}
 #' \href{https://cran.r-project.org/package=texmex}{texmex}.
 #' Adjusted standard errors and an adjusted loglikelihood are provided,
 #' using the
