@@ -39,7 +39,13 @@
 #'
 #'   # An example from the ismev::pp.fit documentation
 #'   data(rain)
-#'   rain_fit <- oopp.fit(rain, 10, show = FALSE)
+#'   # Start from the mle to save time
+#'   init <- c(40.55755732, 8.99195409, 0.05088103)
+#'   muinit <- init[1]
+#'   siginit <- init[2]
+#'   shinit <- init[3]
+#'   rain_fit <- oopp.fit(rain, 10, muinit = muinit, siginit = siginit,
+#'                        shinit = shinit, show = FALSE)
 #'   adj_rain_fit <- alogLik(rain_fit)
 #'   summary(adj_rain_fit)
 #'
@@ -52,8 +58,16 @@
 #'   }
 #'   wu <- usin(x, -30, 25, -75)
 #'   ydat <- cbind(sin(2 * pi * x / 365.25), cos(2 * pi *x / 365.25))
+#'   # Start from the mle to save time
+#'   init <- c(-15.3454188, 9.6001844, 28.5493828, 0.5067104, 0.1023488,
+#'             0.5129783, -0.3504231)
+#'   muinit <- init[1:3]
+#'   siginit <- init[4:6]
+#'   shinit <- init[7]
 #'   wooster.pp <- oopp.fit(-wooster, threshold = wu, ydat = ydat, mul = 1:2,
-#'                          sigl = 1:2, siglink = exp, method = "BFGS")
+#'                          sigl = 1:2, siglink = exp, method = "BFGS",
+#'                          muinit = muinit, siginit = siginit, shinit = shinit,
+#'                          show = FALSE)
 #'   adj_pp_fit <- alogLik(wooster.pp)
 #'   summary(adj_pp_fit)
 #'
