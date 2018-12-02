@@ -9,7 +9,8 @@ oopot(data, threshold = NA, nextremes = NA, run = NA,
   picture = TRUE, ...)
 }
 \description{
-This is a slightly modified versions of \code{\link[evir]{pot}}.
+This is a slightly modified versions of the \code{\link[evir]{pot}}
+function in the \code{evir} package.
 The main modification is to add to the returned object the argument
 \code{data} supplied by the user.  This is added to the returned
 (list) object with the name \code{input_data}.
@@ -22,4 +23,9 @@ if (got_evir) {
   out <- oopot(danish, 10)
   ls(out)
 }
+}
+\references{
+Bernhard Pfaff and Alexander McNeil (2018). evir: Extreme
+  Values in R. R package version 1.7-4.
+  \url{https://CRAN.R-project.org/package=evir}.
 }
