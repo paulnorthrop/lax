@@ -10,7 +10,8 @@ oogev.fit(xdat, ydat = NULL, mul = NULL, sigl = NULL, shl = NULL,
   method = "Nelder-Mead", maxit = 10000, ...)
 }
 \description{
-This is a slightly modified version of \code{\link[ismev]{gev.fit}}.
+This is a slightly modified version of the \code{\link[ismev]{gev.fit}}
+function in the \code{\link[ismev]{ismev}} package.
 The modification is to add to the returned object the arguments
 \code{xdat, ydat, mulink, siglink, shlink} and matrices
 \code{mumat, sigmat, shmat} giving the respective regression design matrices
@@ -25,4 +26,10 @@ if (got_ismev) {
   fit2 <- oogev.fit(revdbayes::portpirie, show = FALSE)
   ls(fit2)
 }
+}
+\references{
+Heffernan, J. E. and Stephenson, A. G. (2018). ismev: An
+  Introduction to Statistical Modeling of Extreme Values.
+  R package version 1.42.
+  \url{https://CRAN.R-project.org/package=ismev}.
 }

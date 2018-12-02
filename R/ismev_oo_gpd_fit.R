@@ -1,11 +1,15 @@
 #' Maximum-likelihood Fitting for the GPD Distribution
 #'
-#' This is a slightly modified version of \code{\link[ismev]{gpd.fit}}.
+#' This is a slightly modified version of the \code{\link[ismev]{gpd.fit}}
+#' function in the \code{\link[ismev]{ismev}} package.
 #' The modification is to add to the returned object the arguments
 #' \code{xdat, ydat, siglink, shlink} and matrices
 #' \code{sigmat, shmat} giving the respective regression design matrices
 #' for the scale and shape parameters of the model.
-#'
+#' @references Heffernan, J. E. and Stephenson, A. G. (2018). ismev: An
+#'   Introduction to Statistical Modeling of Extreme Values.
+#'   R package version 1.42.
+#'   \url{https://CRAN.R-project.org/package=ismev}.
 #' @examples
 #' # We need the evd package
 #' got_ismev <- requireNamespace("ismev", quietly = TRUE)

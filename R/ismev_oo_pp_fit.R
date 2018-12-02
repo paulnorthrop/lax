@@ -1,13 +1,17 @@
 #' Maximum-likelihood Fitting for the Point Process Model
 #'
-#' This is a slightly modified versions of \code{\link[ismev]{gev.fit}}.
+#' This is a slightly modified versions of the \code{\link[ismev]{gev.fit}}
+#' function in the \code{\link[ismev]{ismev}} package.
 #' The main modification is to add to the returned object the arguments
 #' \code{xdat, ydat, mulink, siglink, shlink} and matrices
 #' \code{mumat, sigmat, shmat} giving the respective regression design matrices
 #' for the location, scale and shape parameters of the model.  In addition, a
 #' bug in the code that sets initial estimates has been corrected: the bug
 #' meant that if \code{threshold} is a vector then the optimization hangs.
-#'
+#' @references Heffernan, J. E. and Stephenson, A. G. (2018). ismev: An
+#'   Introduction to Statistical Modeling of Extreme Values.
+#'   R package version 1.42.
+#'   \url{https://CRAN.R-project.org/package=ismev}.
 #' @examples
 #' # We need the evd package
 #' got_ismev <- requireNamespace("ismev", quietly = TRUE)

@@ -10,7 +10,8 @@ oopp.fit(xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
   show = TRUE, method = "Nelder-Mead", maxit = 10000, ...)
 }
 \description{
-This is a slightly modified versions of \code{\link[ismev]{gev.fit}}.
+This is a slightly modified versions of the \code{\link[ismev]{gev.fit}}
+function in the \code{\link[ismev]{ismev}} package.
 The main modification is to add to the returned object the arguments
 \code{xdat, ydat, mulink, siglink, shlink} and matrices
 \code{mumat, sigmat, shmat} giving the respective regression design matrices
@@ -28,4 +29,10 @@ if (got_ismev) {
   fit2 <- oopp.fit(rain, 10, show = FALSE)
   ls(fit2)
 }
+}
+\references{
+Heffernan, J. E. and Stephenson, A. G. (2018). ismev: An
+  Introduction to Statistical Modeling of Extreme Values.
+  R package version 1.42.
+  \url{https://CRAN.R-project.org/package=ismev}.
 }

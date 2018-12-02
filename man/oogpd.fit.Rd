@@ -10,7 +10,8 @@ oogpd.fit(xdat, threshold, npy = 365, ydat = NULL, sigl = NULL,
   method = "Nelder-Mead", maxit = 10000, ...)
 }
 \description{
-This is a slightly modified version of \code{\link[ismev]{gpd.fit}}.
+This is a slightly modified version of the \code{\link[ismev]{gpd.fit}}
+function in the \code{\link[ismev]{ismev}} package.
 The modification is to add to the returned object the arguments
 \code{xdat, ydat, siglink, shlink} and matrices
 \code{sigmat, shmat} giving the respective regression design matrices
@@ -26,4 +27,10 @@ if (got_ismev) {
   fit2 <- oogpd.fit(rain, 10)
   ls(fit2)
 }
+}
+\references{
+Heffernan, J. E. and Stephenson, A. G. (2018). ismev: An
+  Introduction to Statistical Modeling of Extreme Values.
+  R package version 1.42.
+  \url{https://CRAN.R-project.org/package=ismev}.
 }
