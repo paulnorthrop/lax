@@ -26,6 +26,15 @@ if (requireNamespace("evd", quietly = TRUE)) {
 
 if (requireNamespace("evd", quietly = TRUE)) {
   library(evd)
+  # Check whether logLik.pot exists (from package POT)
+  # If it does then reverse the class of M1 so that "evd" is first, not "pot"
+  all_logLik_methods <- utils::methods(logLik)
+  if ("logLik.pot" %in% all_logLik_methods) {
+    pot_to_evd <- TRUE
+  } else {
+    pot_to_evd <- FALSE
+  }
+
   # An example from the evd::fpot documentation
   uvdata <- evd::rgpd(100, loc = 0, scale = 1.1, shape = 0.2)
 
@@ -33,13 +42,16 @@ if (requireNamespace("evd", quietly = TRUE)) {
   M1 <- evd::fpot(uvdata, 1)
   temp <- M1
   class(temp) <- "evd_fpot"
+  if (pot_to_evd) {
+    class(M1) <- rev(class(M1))
+  }
   # Note: evd::logLik.evd returns non-standard attributes (no nobs)
   # Therefore, use expect_equivalent(), rather than expect_equal()
-  test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
+  test_that("evd::fpot, gpd: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(M1), logLik(logLikVec(temp)))
   })
   # Check logLik.evd_fgev: trivially correct
-  test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
+  test_that("evd::fpot, gpd: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
 
@@ -47,13 +59,16 @@ if (requireNamespace("evd", quietly = TRUE)) {
   M1 <- evd::fpot(uvdata, 1, model = "pp")
   temp <- M1
   class(temp) <- "evd_fpot"
+  if (pot_to_evd) {
+    class(M1) <- rev(class(M1))
+  }
   # Note: evd::logLik.evd returns non-standard attributes (no nobs)
   # Therefore, use expect_equivalent(), rather than expect_equal()
-  test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
+  test_that("evd::fpot, pp: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(M1), logLik(logLikVec(temp)))
   })
   # Check logLik.evd_fgev: trivially correct
-  test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
+  test_that("evd::fpot, pp: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
 }
