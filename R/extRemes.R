@@ -6,7 +6,9 @@
 
 #' Loglikelihood adjustment of extRemes fits
 #'
-#' Description
+#' S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
+#' extreme value model objects produced by the
+#' \code{\link[extRemes:extRemes-package]{extRemes}} package.
 #'
 #' @inherit adj_object params details return references seealso
 #' @examples

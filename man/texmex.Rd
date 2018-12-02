@@ -47,7 +47,9 @@ An object of class inheriting from \code{"oola"}, which inherits
   by \code{_}.
 }
 \description{
-Description
+S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
+extreme value model objects produced by the
+\code{\link[texmex:texmex-package]{texmex}} package.
 }
 \details{
 Object \code{x} \emph{must} have the following S3
