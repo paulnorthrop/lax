@@ -2,10 +2,11 @@ context("logLik, ismev package")
 
 # Check that logLik(object) and logLik(logLikVec(object)) agree
 
-# ismev::gev.fit
-
 if (requireNamespace("ismev", quietly = TRUE)) {
   library(ismev)
+
+  # ismev::gev.fit
+
   # The example from the ismev::gev.fit documentation
   gev_fit <- ismev::gev.fit(revdbayes::portpirie, show = FALSE)
   temp <- gev_fit
@@ -33,12 +34,9 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   test_that("ismev::gev.fit, reg: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
-}
 
-# ismev::gpd.fit
+  # ismev::gpd.fit
 
-if (requireNamespace("ismev", quietly = TRUE)) {
-  library(ismev)
   # An example from the ismev::gpd.fit documentation
   data(rain)
   rain_fit <- gpd.fit(rain, 10, show = FALSE)
@@ -64,12 +62,9 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   test_that("ismev::gpd.fit, reg: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
-}
 
-# ismev::pp.fit
+  # ismev::pp.fit
 
-if (requireNamespace("ismev", quietly = TRUE)) {
-  library(ismev)
   # An example from the ismev::pp.fit documentation
   data(rain)
   init <- c(40.55755732, 8.99195409, 0.05088103)
