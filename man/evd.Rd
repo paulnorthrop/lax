@@ -106,7 +106,7 @@ if (got_evd) {
 
   # An example from Chandler and Bate (2007)
   y <- c(chandwich::owtemps[, "Oxford"], chandwich::owtemps[, "Worthing"])
-  x <- rep(c(-1, 1), each = length(y) / 2)
+  x <- rep(c(1, -1), each = length(y) / 2)
   owfit <- evd::fgev(y, nsloc = x)
   year <- rep(rownames(chandwich::owtemps), 2)
   adj_owfit <- alogLik(owfit, cluster = year)

@@ -75,7 +75,7 @@
 #'
 #'   # An example from Chandler and Bate (2007)
 #'   y <- c(chandwich::owtemps[, "Oxford"], chandwich::owtemps[, "Worthing"])
-#'   x <- as.matrix(rep(c(-1, 1), each = length(y) / 2))
+#'   x <- as.matrix(rep(c(1, -1), each = length(y) / 2))
 #'   gev_fit <- oogev.fit(y, x, mul = 1, sigl = 1, shl = 1, show = FALSE)
 #'   year <- rep(rownames(chandwich::owtemps), 2)
 #'   adj_gev_fit <- alogLik(gev_fit, cluster = year)
