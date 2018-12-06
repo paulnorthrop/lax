@@ -50,6 +50,7 @@ Suggests: distillery,
     fExtremes,
     ismev,
     knitr,
+    POT,
     rmarkdown,
     testthat,
     texmex
