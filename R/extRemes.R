@@ -1,7 +1,3 @@
-# Create my own methods for which the coef names of nested models are consistent
-# Done GEV (but check)
-# To do: GP and PP
-
 # ================================= extRemes ================================ #
 
 #' Loglikelihood adjustment of extRemes fits
