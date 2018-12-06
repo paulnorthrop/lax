@@ -2,10 +2,11 @@ context("logLik, evd package")
 
 # Check that logLik(object) and logLik(logLikVec(object)) agree
 
-# evd::fgev
-
 if (requireNamespace("evd", quietly = TRUE)) {
   library(evd)
+
+  # evd::fgev
+
   # An example from the evd::fgev documentation
   uvdata <- evd::rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
   M1 <- evd::fgev(uvdata, nsloc = (-49:50)/100)
@@ -20,12 +21,9 @@ if (requireNamespace("evd", quietly = TRUE)) {
   test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
-}
 
-# evd::fpot
+  # evd::fpot
 
-if (requireNamespace("evd", quietly = TRUE)) {
-  library(evd)
   # Check whether logLik.pot exists (from package POT)
   # If it does then reverse the class of M1 so that "evd" is first, not "pot"
   all_logLik_methods <- utils::methods(logLik)
