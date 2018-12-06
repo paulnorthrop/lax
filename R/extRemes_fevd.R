@@ -2,26 +2,6 @@
 
 # Methods for class "extRemes_gev"
 
-##' @export
-#logLikVec.fevd <- function(object, pars = NULL, ...) {
-#  if (!missing(...)) {
-#    warning("extra arguments discarded")
-#  }
-#  # Use a model-dependent logLikVec method
-#  if (object$type == "GEV" || object$type == "Gumbel") {
-#    val <- extRemes_gev_logLikVec(object, pars, ...)
-#  } else if (object$type == "GP" || object$type == "Exponential") {
-#    val <- extRemes_gp_logLikVec(object, pars, ...)
-#  } else if (object$type == "PP") {
-#    val <- extRemes_pp_logLikVec(object, pars, ...)
-# }
-#  # Return the usual attributes for a "logLik" object
-# attr(val, "nobs") <- nobs(object)
-#  attr(val, "df") <- length(pars)
-#  class(val) <- "logLikVec"
-#  return(val)
-#}
-
 #' @export
 logLikVec.extRemes_gev <- function(object, pars = NULL, ...) {
   # Create an "fevd" object, so that we can use functions to extract
