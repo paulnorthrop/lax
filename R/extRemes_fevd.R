@@ -1,37 +1,38 @@
 # ============================= extRemes::fevd ============================== #
 
-# Methods for class "fevd"
+# Methods for class "extRemes_gev"
+
+##' @export
+#logLikVec.fevd <- function(object, pars = NULL, ...) {
+#  if (!missing(...)) {
+#    warning("extra arguments discarded")
+#  }
+#  # Use a model-dependent logLikVec method
+#  if (object$type == "GEV" || object$type == "Gumbel") {
+#    val <- extRemes_gev_logLikVec(object, pars, ...)
+#  } else if (object$type == "GP" || object$type == "Exponential") {
+#    val <- extRemes_gp_logLikVec(object, pars, ...)
+#  } else if (object$type == "PP") {
+#    val <- extRemes_pp_logLikVec(object, pars, ...)
+# }
+#  # Return the usual attributes for a "logLik" object
+# attr(val, "nobs") <- nobs(object)
+#  attr(val, "df") <- length(pars)
+#  class(val) <- "logLikVec"
+#  return(val)
+#}
 
 #' @export
-logLikVec.fevd <- function(object, pars = NULL, ...) {
-  if (!missing(...)) {
-    warning("extra arguments discarded")
-  }
-  # Use a model-dependent logLikVec method
-  if (object$type == "GEV" || object$type == "Gumbel") {
-    val <- fevd_gev_logLikVec(object, pars, ...)
-  } else if (object$type == "GP" || object$type == "Exponential") {
-    val <- fevd_gp_logLikVec(object, pars, ...)
-  } else if (object$type == "PP") {
-    val <- fevd_pp_logLikVec(object, pars, ...)
-  }
-  # Return the usual attributes for a "logLik" object
-  attr(val, "nobs") <- nobs(object)
-  attr(val, "df") <- length(pars)
-  class(val) <- "logLikVec"
-  return(val)
-}
-
-#' @export
-logLikVec.fevd_gev <- function(object, pars = NULL, ...) {
-  # Create an "fevd" object, so that we can work with the usual "fevd"
-  # parameter names when calculating the loglikelihood contributions
+logLikVec.extRemes_gev <- function(object, pars = NULL, ...) {
+  # Create an "fevd" object, so that we can use functions to extract
+  # information about the data and the model
   fevd_object <- object
   class(fevd_object) <- "fevd"
   # If the parameter estimates have not been provided in pars then extract
-  # them from the fitted object
+  # them from the fitted object.  We use bespoke methods for which the coef
+  # names of nested models are consistent
   if (is.null(pars)) {
-    pars <- coef(fevd_object)
+    pars <- coef(object)
   }
   # Use the datagrabber method for "fevd" to grab the data
   the_data <- distillery::datagrabber(fevd_object)
@@ -123,12 +124,12 @@ logLikVec.fevd_gev <- function(object, pars = NULL, ...) {
 }
 
 #' @export
-nobs.fevd_gev <- function(object, ...) {
+nobs.extRemes_gev <- function(object, ...) {
   return(object$n)
 }
 
 #' @export
-coef.fevd_gev <- function(object, ...) {
+coef.extRemes_gev <- function(object, ...) {
   fevd_names <- names(object$results$par)
   which_location <- which(fevd_names == "location")
   which_scale <- which(fevd_names == "scale")
@@ -144,7 +145,7 @@ coef.fevd_gev <- function(object, ...) {
 }
 
 #' @export
-vcov.fevd_gev <- function(object, ...) {
+vcov.extRemes_gev <- function(object, ...) {
   temp <- object
   class(temp) <- "fevd"
   vc <- extRemes::parcov.fevd(temp)
@@ -154,20 +155,23 @@ vcov.fevd_gev <- function(object, ...) {
 }
 
 #' @export
-logLik.fevd_gev <- function(object, ...) {
+logLik.extRemes_gev <- function(object, ...) {
   return(logLik(logLikVec(object)))
 }
 
+# Methods for class "extRemes_gp"
+
 #' @export
-logLikVec.fevd_gp <- function(object, pars = NULL, ...) {
-  # Create an "fevd" object, so that we can work with the usual "fevd"
-  # parameter names when calculating the loglikelihood contributions
+logLikVec.extRemes_gp <- function(object, pars = NULL, ...) {
+  # Create an "fevd" object, so that we can use functions to extract
+  # information about the data and the model
   fevd_object <- object
   class(fevd_object) <- "fevd"
   # If the parameter estimates have not been provided in pars then extract
-  # them from the fitted object
+  # them from the fitted object.  We use bespoke methods for which the coef
+  # names of nested models are consistent
   if (is.null(pars)) {
-    pars <- coef(fevd_object)
+    pars <- coef(object)
   }
   # Use the datagrabber method for "fevd" to grab the data
   the_data <- distillery::datagrabber(fevd_object)
@@ -249,12 +253,12 @@ logLikVec.fevd_gp <- function(object, pars = NULL, ...) {
 }
 
 #' @export
-nobs.fevd_gp <- function(object, ...) {
+nobs.extRemes_gp <- function(object, ...) {
   return(object$n)
 }
 
 #' @export
-coef.fevd_gp <- function(object, ...) {
+coef.extRemes_gp <- function(object, ...) {
   fevd_names <- names(object$results$par)
   which_scale <- which(fevd_names == "scale")
   which_logscale <- which(fevd_names == "log.scale")
@@ -268,7 +272,7 @@ coef.fevd_gp <- function(object, ...) {
 }
 
 #' @export
-vcov.fevd_gp <- function(object, ...) {
+vcov.extRemes_gp <- function(object, ...) {
   temp <- object
   class(temp) <- "fevd"
   vc <- extRemes::parcov.fevd(temp)
@@ -278,20 +282,23 @@ vcov.fevd_gp <- function(object, ...) {
 }
 
 #' @export
-logLik.fevd_gp <- function(object, ...) {
+logLik.extRemes_gp <- function(object, ...) {
   return(logLik(logLikVec(object)))
 }
 
+# Methods for class "extRemes_pp"
+
 #' @export
-logLikVec.fevd_pp <- function(object, pars = NULL, ...) {
-  # Create an "fevd" object, so that we can work with the usual "fevd"
-  # parameter names when calculating the loglikelihood contributions
+logLikVec.extRemes_pp <- function(object, pars = NULL, ...) {
+  # Create an "fevd" object, so that we can use functions to extract
+  # information about the data and the model
   fevd_object <- object
   class(fevd_object) <- "fevd"
   # If the parameter estimates have not been provided in pars then extract
-  # them from the fitted object
+  # them from the fitted object.  We use bespoke methods for which the coef
+  # names of nested models are consistent
   if (is.null(pars)) {
-    pars <- coef(fevd_object)
+    pars <- coef(object)
   }
   # Use the datagrabber method for "fevd" to grab the data
   the_data <- distillery::datagrabber(fevd_object)
@@ -383,12 +390,12 @@ logLikVec.fevd_pp <- function(object, pars = NULL, ...) {
 }
 
 #' @export
-nobs.fevd_pp <- function(object, ...) {
+nobs.extRemes_pp <- function(object, ...) {
   return(object$n)
 }
 
 #' @export
-coef.fevd_pp <- function(object, ...) {
+coef.extRemes_pp <- function(object, ...) {
   fevd_names <- names(object$results$par)
   which_location <- which(fevd_names == "location")
   which_scale <- which(fevd_names == "scale")
@@ -404,7 +411,7 @@ coef.fevd_pp <- function(object, ...) {
 }
 
 #' @export
-vcov.fevd_pp <- function(object, ...) {
+vcov.extRemes_pp <- function(object, ...) {
   temp <- object
   class(temp) <- "fevd"
   vc <- extRemes::parcov.fevd(temp)
@@ -414,7 +421,7 @@ vcov.fevd_pp <- function(object, ...) {
 }
 
 #' @export
-logLik.fevd_pp <- function(object, ...) {
+logLik.extRemes_pp <- function(object, ...) {
   return(logLik(logLikVec(object)))
 }
 

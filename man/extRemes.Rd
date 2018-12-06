@@ -105,16 +105,16 @@ if (got_extRemes & got_distillery) {
   data(PORTw)
 
   # GEV
-  fit0 <- fevd(TMX1, PORTw, units = "deg C", use.phi=TRUE)
+  fit0 <- fevd(TMX1, PORTw, units = "deg C", use.phi = TRUE)
   adj_fit0 <- alogLik(fit0)
   summary(adj_fit0)
 
   # GEV regression
-  fitPORTstdmax <- fevd(TMX1, PORTw, scale.fun = ~STDTMAX, use.phi=TRUE)
+  fitPORTstdmax <- fevd(TMX1, PORTw, scale.fun = ~STDTMAX, use.phi = TRUE)
   adj_fit1 <- alogLik(fitPORTstdmax)
   summary(adj_fit1)
   fitPORTstdmax2 <- fevd(TMX1, PORTw, location.fun = ~STDTMAX,
-                         scale.fun = ~STDTMAX, use.phi=TRUE)
+                         scale.fun = ~STDTMAX, use.phi = TRUE)
   adj_fit2 <- alogLik(fitPORTstdmax2)
   summary(adj_fit2)
   anova(adj_fit0, adj_fit1)
@@ -156,7 +156,7 @@ if (got_extRemes & got_distillery) {
   summary(adj_fit)
 
   # PP model
-  fit <- fevd(Prec, Fort, threshold = 0.395, type="GP", units="inches")
+  fit <- fevd(Prec, Fort, threshold = 0.395, type = "GP", units = "inches")
   adj_fit <- alogLik(fit)
   summary(adj_fit)
 
