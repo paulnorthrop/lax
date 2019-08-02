@@ -52,7 +52,12 @@ associated with fited model objects, following
 Certain classes of extreme value model objects are supported automatically.
 For details see the \code{alogLik} help pages for the packages:
 \code{\link[oolax]{evd}},
-\code{\link[oolax]{ismev}}.
+\code{\link[oolax]{evir}},
+\code{\link[oolax]{extRemes}},
+\code{\link[oolax]{fExtremes}},
+\code{\link[oolax]{ismev}},
+\code{\link[oolax]{POT}},
+\code{\link[oolax]{texmex}}.
 User-supplied objects can also be supported: the requirements for these
 objects are explained in \strong{Details}.
 }
