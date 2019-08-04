@@ -1,21 +1,38 @@
-# Can I just reparameterise a chandwich object?
-# ... or use the plot.chandwich emthod
-
-# GEV, GP, PP
-# npy
-# plot.retlevs()
-# lax-internal.R
-
-#' Return levels
+#' Return level inferences for Stationary Extreme Value Models
 #'
-#' Add description
+#' Calculates point estimates and confidence intervals for \code{m}-year
+#' return levels for stationary extreme value fitted model objects returned
+#' from \code{\link{alogLik}}.  Two types of interval may be returned:
+#' (a) intervals based on approximate large-sample normality of the ML
+#' estimator for return level, which is symmetric about the MLE,
+#' and (b) profile likelihood-based intervals based on an (adjusted)
+#' loglikelihood.
 #'
+#' @param x An object inheriting from class \code{"lax"} returned from
+#'   \code{\link{alogLik}}.
+#' @param m A numeric scalar.  The return period.
+#' @param level The (maximum) confidence level required for the confidence
+#'   intervals for the \code{m}-year return level.
+#' @param npy A numeric scalar.
+#' @param prof A logical scalar.  Should we calculate intervals based on
+#'   profile log-likelihood?
+#' @param inc A numeric scalar. Only relevant if \code{prof = TRUE}. The
+#'   increment in return level by which we move upwards and downwards from the
+#'   MLE for the return level in the search for the lower and upper confidence
+#'   limits.  If this is not supplied then \code{inc} is set to one hundredth
+#'   of the length of the symmetric confidence interval for return level.
+#' @param type A character scalar.  The argument \code{type} to the function
+#'   returned by \code{\link[chandwich]{adjust_loglik}}, that is, the type of
+#'   adjustment made to the independence loglikelihood function in creating
+#'   an adjusted loglikelihood function.
+#' @details Add details
 #' @examples
 #' got_evd <- requireNamespace("evd", quietly = TRUE)
 #'
 #' if (got_evd) {
 #'   library(evd)
 #'   # An example from the evd::fgev documentation
+#'   set.seed(4082019)
 #'   uvdata <- evd::rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
 #'   M1 <- evd::fgev(uvdata)
 #'   adj_fgev <- alogLik(M1)
@@ -33,7 +50,8 @@
 #'   ismev::gev.prof(gev_fit, m = 100, xlow = 4.45, xup = 5.5)
 #' }
 #' @export
-return_level <- function(x, m = 100, level = 0.95, npy = 1, inc = NULL,
+return_level <- function(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
+                         inc = NULL,
                          type = c("vertical", "cholesky", "spectral", "none")) {
   if (!inherits(x, "lax")) {
     stop("use only with \"lax\" objects")
@@ -43,15 +61,18 @@ return_level <- function(x, m = 100, level = 0.95, npy = 1, inc = NULL,
   }
   type <- match.arg(type)
   if (inherits(x, "gev")) {
-    temp <- return_level_gev(x, m, level, npy, inc, type)
+    temp <- return_level_gev(x, m, level, npy, prof, inc, type)
   }
+  class(temp) <- c("retlev", "lax")
   return(temp)
 }
 
-return_level_gev <- function(x, m, level, npy, inc, type) {
+return_level_gev <- function(x, m, level, npy, prof, inc, type) {
   # MLE and symmetric conf% CI for the return level
   rl_sym <- gev_rl_CI(x, m, level, npy, type)
-  # Set inc (if it hasn't been supplied)
+  if (!prof) {
+    return(list(rl_sym = rl_sym, rl_prof = NA))
+  }
   rl_prof <- gev_rl_prof(x, m, level, npy, inc, type, rl_sym)
   return(list(rl_sym = rl_sym, rl_prof = rl_prof))
 }
@@ -110,11 +131,34 @@ gev_rl_prof <- function(x, m, level, npy, inc, type, rl_sym) {
     my_val <- v1[ii]
   }
   sol_low <- sol
+  #
+  # Find the limits of the confidence interval
+  #
+  prof_lik <- c(rev(v1), v2)
+  ret_levs <- c(rev(x1), x2)
+  # Find where the curve crosses conf_line
+  temp <- diff(prof_lik - conf_line > 0)
+  # Find the upper limit of the confidence interval
+  loc <- which(temp == -1)
+  x1 <- ret_levs[loc]
+  x2 <- ret_levs[loc + 1]
+  y1 <- prof_lik[loc]
+  y2 <- prof_lik[loc + 1]
+  up_lim <- x1 + (conf_line - y1) * (x2 - x1) / (y2 - y1)
+  # Find the lower limit of the confidence interval
+  loc <- which(temp == 1)
+  x1 <- ret_levs[loc]
+  x2 <- ret_levs[loc+1]
+  y1 <- prof_lik[loc]
+  y2 <- prof_lik[loc+1]
+  low_lim <- x1 + (conf_line - y1) * (x2 - x1) / (y2 - y1)
+  limits <- c(low_lim, up_lim)
 #  plot(x, v, type = "l", xlab = paste(round(m, 0), "year return level"),
 #       ylab = "profile Log-likelihood")
 #  abline(h = max_loglik, col = 4)
 #  abline(h = conf_line, col = 4)
-  return(list(ret_levs = c(rev(x1), x2), prof_lik = c(rev(v1), v2)))
+  return(list(limits = limits, conf_line = conf_line, ret_levs = ret_levs,
+              prof_lik = prof_lik))
 }
 
 gev_rl_CI <- function (x, m, level, npy, type){

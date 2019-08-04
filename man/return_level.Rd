@@ -2,13 +2,47 @@
 % Please edit documentation in R/return_level.R
 \name{return_level}
 \alias{return_level}
-\title{Return levels}
+\title{Return level inferences for Stationary Extreme Value Models}
 \usage{
-return_level(x, m = 100, level = 0.95, npy = 1, inc = NULL,
-  type = c("vertical", "cholesky", "spectral", "none"))
+return_level(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
+  inc = NULL, type = c("vertical", "cholesky", "spectral", "none"))
+}
+\arguments{
+\item{x}{An object inheriting from class \code{"lax"} returned from
+\code{\link{alogLik}}.}
+
+\item{m}{A numeric scalar.  The return period.}
+
+\item{level}{The (maximum) confidence level required for the confidence
+intervals for the \code{m}-year return level.}
+
+\item{npy}{A numeric scalar.}
+
+\item{prof}{A logical scalar.  Should we calculate intervals based on
+profile log-likelihood?}
+
+\item{inc}{A numeric scalar. Only relevant if \code{prof = TRUE}. The
+increment in return level by which we move upwards and downwards from the
+MLE for the return level in the search for the lower and upper confidence
+limits.  If this is not supplied then \code{inc} is set to one hundredth
+of the length of the symmetric confidence interval for return level.}
+
+\item{type}{A character scalar.  The argument \code{type} to the function
+returned by \code{\link[chandwich]{adjust_loglik}}, that is, the type of
+adjustment made to the independence loglikelihood function in creating
+an adjusted loglikelihood function.}
 }
 \description{
-Add description
+Calculates point estimates and confidence intervals for \code{m}-year
+return levels for stationary extreme value fitted model objects returned
+from \code{\link{alogLik}}.  Two types of interval may be returned:
+(a) intervals based on approximate large-sample normality of the ML
+estimator for return level, which is symmetric about the MLE,
+and (b) profile likelihood-based intervals based on an (adjusted)
+loglikelihood.
+}
+\details{
+Add details
 }
 \examples{
 got_evd <- requireNamespace("evd", quietly = TRUE)
@@ -16,6 +50,7 @@ got_evd <- requireNamespace("evd", quietly = TRUE)
 if (got_evd) {
   library(evd)
   # An example from the evd::fgev documentation
+  set.seed(4082019)
   uvdata <- evd::rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
   M1 <- evd::fgev(uvdata)
   adj_fgev <- alogLik(M1)
