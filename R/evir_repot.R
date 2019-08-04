@@ -7,6 +7,21 @@
 #' \code{data} supplied by the user.  This is added to the returned
 #' (list) object with the name \code{input_data}.
 #' @inheritParams evir::pot
+#' @param data numeric vector of data, which may have a times attribute
+#'   containing (in an object of class \code{"POSIXct"}, or an object that can
+#'   be converted to that class; see \code{\link{as.POSIXct}}) the times/dates
+#'   of each observation. If no times attribute exists, the data are assumed to
+#'   be equally spaced.
+#' @param threshold a threshold value (either this or \code{nextremes} must be
+#'   given but not both).
+#' @param nextremes the number of upper extremes to be used (either this or
+#'   \code{threshold} must be given but not both).
+#' @param run if the data are to be declustered the run length parameter for
+#'   the runs method (see \code{\link[evir]{decluster}}) should be entered
+#'   here.
+#' @param picture whether or not a picture should be drawn if declustering is
+#'   performed.
+#' @param ... arguments passed to \code{\link[stats]{optim}}.
 #' @references Bernhard Pfaff and Alexander McNeil (2018). evir: Extreme
 #'   Values in R. R package version 1.7-4.
 #'   \url{https://CRAN.R-project.org/package=evir}.
