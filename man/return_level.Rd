@@ -33,10 +33,21 @@ adjustment made to the independence loglikelihood function in creating
 an adjusted loglikelihood function.}
 }
 \value{
-Describe
+A object (a list) of class \code{"retlev", "lax"} with the
+  components
+  \item{rl_sym,rl_prof }{Named numeric vectors containing the respective
+    lower 100\code{level}\% limit, the MLE and the upper
+    100\code{level}\% limit.  If \code{prof = FALSE} then \code{rl_prof}
+    will be missing.}
+  \item{max_loglik,crit,for_plot }{If \code{prof = TRUE} then
+    these components will be present, containing respectively: the maximised
+    loglikelihood; the critical value and a matrix with return levels in
+    the first column (\code{ret_levs}) and the corresponding values of the
+    (adjusted) profile loglikelihood (\code{prof_loglik}).}
+  \item{m,level }{The input values of \code{m} and \code{level}.}
 }
 \description{
-Calculates point estimates and confidence intervals for \code{m}-year
+Calculates point estimates and confidence intervals for \code{m}-observation
 return levels for stationary extreme value fitted model objects returned
 from \code{\link{alogLik}}.  Two types of interval may be returned:
 (a) intervals based on approximate large-sample normality of the maximum
@@ -45,7 +56,9 @@ estimate, and (b) profile likelihood-based intervals based on an (adjusted)
 loglikelihood.
 }
 \details{
-The profile likelihood-based intervals are calculated by
+The input value of \code{m} ... GEV, GP, PP
+
+  The profile likelihood-based intervals are calculated by
   reparameterising in terms of the \code{m}-year return level and estimating
   the values at which the (adjusted) profile log-likelihood reaches
   the critical value \code{logLik(x) - 0.5 * stats::qchisq(level, 1)}.

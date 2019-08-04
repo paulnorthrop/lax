@@ -1,6 +1,6 @@
 #' Return level inferences for Stationary Extreme Value Models
 #'
-#' Calculates point estimates and confidence intervals for \code{m}-year
+#' Calculates point estimates and confidence intervals for \code{m}-observation
 #' return levels for stationary extreme value fitted model objects returned
 #' from \code{\link{alogLik}}.  Two types of interval may be returned:
 #' (a) intervals based on approximate large-sample normality of the maximum
@@ -25,7 +25,9 @@
 #'   returned by \code{\link[chandwich]{adjust_loglik}}, that is, the type of
 #'   adjustment made to the independence loglikelihood function in creating
 #'   an adjusted loglikelihood function.
-#' @details The profile likelihood-based intervals are calculated by
+#' @details The input value of \code{m} ... GEV, GP, PP
+#'
+#'   The profile likelihood-based intervals are calculated by
 #'   reparameterising in terms of the \code{m}-year return level and estimating
 #'   the values at which the (adjusted) profile log-likelihood reaches
 #'   the critical value \code{logLik(x) - 0.5 * stats::qchisq(level, 1)}.
@@ -35,7 +37,18 @@
 #'   estimated by interpolating linearly between the cases lying either side of
 #'   the critical value. The smaller \code{inc} the more accurate (but slower)
 #'   the calculation will be.
-#' @return Describe
+#' @return A object (a list) of class \code{"retlev", "lax"} with the
+#'   components
+#'   \item{rl_sym,rl_prof }{Named numeric vectors containing the respective
+#'     lower 100\code{level}\% limit, the MLE and the upper
+#'     100\code{level}\% limit.  If \code{prof = FALSE} then \code{rl_prof}
+#'     will be missing.}
+#'   \item{max_loglik,crit,for_plot }{If \code{prof = TRUE} then
+#'     these components will be present, containing respectively: the maximised
+#'     loglikelihood; the critical value and a matrix with return levels in
+#'     the first column (\code{ret_levs}) and the corresponding values of the
+#'     (adjusted) profile loglikelihood (\code{prof_loglik}).}
+#'   \item{m,level }{The input values of \code{m} and \code{level}.}
 #' @examples
 #' got_evd <- requireNamespace("evd", quietly = TRUE)
 #'
@@ -75,6 +88,8 @@ return_level <- function(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
   if (inherits(x, "gev")) {
     temp <- return_level_gev(x, m, level, npy, prof, inc, type)
   }
+  temp$m <- m
+  temp$level <- level
   class(temp) <- c("retlev", "lax")
   return(temp)
 }
@@ -85,13 +100,14 @@ return_level_gev <- function(x, m, level, npy, prof, inc, type) {
   if (!prof) {
     return(list(rl_sym = rl_sym, rl_prof = NULL))
   }
-  rl_prof <- gev_rl_prof(x, m, level, npy, inc, type, rl_sym)
-  return(list(rl_sym = rl_sym, rl_prof = rl_prof))
+  temp <- gev_rl_prof(x, m, level, npy, inc, type, rl_sym)
+  return(list(rl_sym = rl_sym, rl_prof = temp$rl_prof, max_loglik = logLik(x),
+              crit = temp$crit, for_plot = temp$for_plot))
 }
 
 gev_rl_prof <- function(x, m, level, npy, inc, type, rl_sym) {
   if (is.null(inc)) {
-    inc <- (rl_sym$upper - rl_sym$lower) / 100
+    inc <- (rl_sym["upper"] - rl_sym["lower"]) / 100
   }
   p <- 1 / (m * npy)
   # Calculates the negated profile log-likelihood of the m-year return level
@@ -103,7 +119,7 @@ gev_rl_prof <- function(x, m, level, npy, inc, type, rl_sym) {
     gev_pars <- c(mu, a[1:2])
     return(-x(gev_pars))
   }
-  rl_mle <- rl_sym$mle
+  rl_mle <- rl_sym["mle"]
   max_loglik <- attr(x, "max_loglik")
   conf_line <- max_loglik - 0.5 * stats::qchisq(level, 1)
   v1 <- v2 <- x1 <- x2 <- NULL
@@ -164,13 +180,14 @@ gev_rl_prof <- function(x, m, level, npy, inc, type, rl_sym) {
   y1 <- prof_lik[loc]
   y2 <- prof_lik[loc+1]
   low_lim <- x1 + (conf_line - y1) * (x2 - x1) / (y2 - y1)
-  limits <- c(low_lim, up_lim)
+#  limits <- c(low_lim, up_lim)
 #  plot(x, v, type = "l", xlab = paste(round(m, 0), "year return level"),
 #       ylab = "profile Log-likelihood")
 #  abline(h = max_loglik, col = 4)
 #  abline(h = conf_line, col = 4)
-  return(list(limits = limits, conf_line = conf_line, ret_levs = ret_levs,
-              prof_lik = prof_lik))
+  rl_prof <- c(lower = low_lim, mle = rl_mle, upper = up_lim)
+  return(list(rl_prof = rl_prof, crit = conf_line,
+              for_plot = cbind(ret_levs = ret_levs, prof_loglik = prof_lik)))
 }
 
 gev_rl_CI <- function (x, m, level, npy, type){
@@ -197,7 +214,8 @@ gev_rl_CI <- function (x, m, level, npy, type){
   z_val <- stats::qnorm(1 - (1 - level) / 2)
   rl_lower <- rl_mle - z_val * rl_se
   rl_upper <- rl_mle + z_val * rl_se
-  list(mle = rl_mle, lower = rl_lower, upper = rl_upper)
+  res <- c(lower = rl_lower, mle = rl_mle, upper = rl_upper)
+  return(res)
 }
 
 # ------------------------------- plot.retlev ------------------------------- #
@@ -225,7 +243,17 @@ plot.retlev <- function(x, y = NULL, ...) {
   if (is.null(x$rl_prof)) {
     stop("No prof loglik info: call return_level() using prof = TRUE")
   }
-  graphics::plot(x$rl_prof$ret_levs, x$rl_prof$prof_lik, type = "l", ...)
+  my_xlab <- paste0(x$m, "-observation return level")
+  my_ylab <- "profile loglikelihood"
+  my_plot <- function(x, y, ..., xlab = my_xlab, ylab = my_ylab, type = "l") {
+    graphics::plot(x, y, ..., xlab = xlab, ylab = ylab, type = type)
+  }
+  my_plot(x$for_plot[, "ret_levs"], x$for_plot[, "prof_loglik"], ...)
+  hline <- function(x, ..., col = "blue", lty = 2) {
+    graphics::abline(h = x, ..., col = col, lty = lty)
+  }
+  hline(x$max_loglik, ...)
+  hline(x$crit, ...)
   return(invisible())
 }
 
