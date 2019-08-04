@@ -8,10 +8,10 @@
 }
 \arguments{
 \item{object}{An object of class \code{"lax"}, returned by
-\code{\link{alogLik}} or \code{\link{adjust_object}}.}
+\code{\link{alogLik}} or \code{\link{adj_object}}.}
 
 \item{object2}{An object of class \code{"chandwich"}, returned by
-\code{\link{alogLik}} or \code{\link{adjust_object}}.}
+\code{\link{alogLik}} or \code{\link{adj_object}}.}
 
 \item{...}{Further objects of class \code{"lax"} and/or arguments
 to be passed to \code{\link[chandwich]{anova.chandwich}}.}
