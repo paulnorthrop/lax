@@ -3,9 +3,9 @@
 #' Calculates point estimates and confidence intervals for \code{m}-year
 #' return levels for stationary extreme value fitted model objects returned
 #' from \code{\link{alogLik}}.  Two types of interval may be returned:
-#' (a) intervals based on approximate large-sample normality of the ML
-#' estimator for return level, which is symmetric about the MLE,
-#' and (b) profile likelihood-based intervals based on an (adjusted)
+#' (a) intervals based on approximate large-sample normality of the maximum
+#' likelihood estimator for return level, which are symmetric about the
+#' estimate, and (b) profile likelihood-based intervals based on an (adjusted)
 #' loglikelihood.
 #'
 #' @param x An object inheriting from class \code{"lax"} returned from
@@ -25,7 +25,17 @@
 #'   returned by \code{\link[chandwich]{adjust_loglik}}, that is, the type of
 #'   adjustment made to the independence loglikelihood function in creating
 #'   an adjusted loglikelihood function.
-#' @details Add details
+#' @details The profile likelihood-based intervals are calculated by
+#'   reparameterising in terms of the \code{m}-year return level and estimating
+#'   the values at which the (adjusted) profile log-likelihood reaches
+#'   the critical value \code{logLik(x) - 0.5 * stats::qchisq(level, 1)}.
+#'   This is achieved by calculating the profile loglikelihood for a sequence
+#'   of values of this return level as governed by \code{inc}. Once the profile
+#'   loglikelhood drops below the critical value the lower and upper limits are
+#'   estimated by interpolating linearly between the cases lying either side of
+#'   the critical value. The smaller \code{inc} the more accurate (but slower)
+#'   the calculation will be.
+#' @return Describe
 #' @examples
 #' got_evd <- requireNamespace("evd", quietly = TRUE)
 #'
@@ -36,7 +46,8 @@
 #'   uvdata <- evd::rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
 #'   M1 <- evd::fgev(uvdata)
 #'   adj_fgev <- alogLik(M1)
-#'   summary(adj_fgev)
+#'   rl <- return_level(adj_fgev)
+#'   plot(rl)
 #' }
 #'
 #' got_ismev <- requireNamespace("ismev", quietly = TRUE)
@@ -46,7 +57,8 @@
 #'   # An example from the ismev::gev.fit documentation
 #'   gev_fit <- gev.fit(revdbayes::portpirie, show = FALSE)
 #'   adj_gev_fit <- alogLik(gev_fit)
-#'   return_level(adj_gev_fit)
+#'   rl <- return_level(adj_gev_fit)
+#'   plot(rl)
 #'   ismev::gev.prof(gev_fit, m = 100, xlow = 4.45, xup = 5.5)
 #' }
 #' @export
@@ -71,7 +83,7 @@ return_level_gev <- function(x, m, level, npy, prof, inc, type) {
   # MLE and symmetric conf% CI for the return level
   rl_sym <- gev_rl_CI(x, m, level, npy, type)
   if (!prof) {
-    return(list(rl_sym = rl_sym, rl_prof = NA))
+    return(list(rl_sym = rl_sym, rl_prof = NULL))
   }
   rl_prof <- gev_rl_prof(x, m, level, npy, inc, type, rl_sym)
   return(list(rl_sym = rl_sym, rl_prof = rl_prof))
@@ -187,3 +199,33 @@ gev_rl_CI <- function (x, m, level, npy, type){
   rl_upper <- rl_mle + z_val * rl_se
   list(mle = rl_mle, lower = rl_lower, upper = rl_upper)
 }
+
+# ------------------------------- plot.retlev ------------------------------- #
+
+#' Plot diagnostics for a ret_lev object
+#'
+#' \code{plot} method for an objects of class \code{c("ret_lev", "lax")}.
+#'
+#' @param x an object of class \code{c("ret_lev", "lax")}, a result of
+#'   a call to \code{\link{return_level}}.
+#' @param y Not used.
+#' @param ... Further arguments to be passed to \code{\link[graphics]{plot}}.
+#' @return Nothing is returned.
+#' @seealso \code{\link{return_level}}.
+#' @section Examples:
+#' See the examples in \code{\link{return_level}}.
+#' @export
+plot.retlev <- function(x, y = NULL, ...) {
+  if (!inherits(x, "retlev")) {
+    stop("use only with \"retlev\" objects")
+  }
+  if (!inherits(x, "lax")) {
+    stop("use only with \"lax\" objects")
+  }
+  if (is.null(x$rl_prof)) {
+    stop("No prof loglik info: call return_level() using prof = TRUE")
+  }
+  graphics::plot(x$rl_prof$ret_levs, x$rl_prof$prof_lik, type = "l", ...)
+  return(invisible())
+}
+

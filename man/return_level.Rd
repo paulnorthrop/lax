@@ -32,17 +32,29 @@ returned by \code{\link[chandwich]{adjust_loglik}}, that is, the type of
 adjustment made to the independence loglikelihood function in creating
 an adjusted loglikelihood function.}
 }
+\value{
+Describe
+}
 \description{
 Calculates point estimates and confidence intervals for \code{m}-year
 return levels for stationary extreme value fitted model objects returned
 from \code{\link{alogLik}}.  Two types of interval may be returned:
-(a) intervals based on approximate large-sample normality of the ML
-estimator for return level, which is symmetric about the MLE,
-and (b) profile likelihood-based intervals based on an (adjusted)
+(a) intervals based on approximate large-sample normality of the maximum
+likelihood estimator for return level, which are symmetric about the
+estimate, and (b) profile likelihood-based intervals based on an (adjusted)
 loglikelihood.
 }
 \details{
-Add details
+The profile likelihood-based intervals are calculated by
+  reparameterising in terms of the \code{m}-year return level and estimating
+  the values at which the (adjusted) profile log-likelihood reaches
+  the critical value \code{logLik(x) - 0.5 * stats::qchisq(level, 1)}.
+  This is achieved by calculating the profile loglikelihood for a sequence
+  of values of this return level as governed by \code{inc}. Once the profile
+  loglikelhood drops below the critical value the lower and upper limits are
+  estimated by interpolating linearly between the cases lying either side of
+  the critical value. The smaller \code{inc} the more accurate (but slower)
+  the calculation will be.
 }
 \examples{
 got_evd <- requireNamespace("evd", quietly = TRUE)
@@ -54,7 +66,8 @@ if (got_evd) {
   uvdata <- evd::rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
   M1 <- evd::fgev(uvdata)
   adj_fgev <- alogLik(M1)
-  summary(adj_fgev)
+  rl <- return_level(adj_fgev)
+  plot(rl)
 }
 
 got_ismev <- requireNamespace("ismev", quietly = TRUE)
@@ -64,7 +77,8 @@ if (got_ismev) {
   # An example from the ismev::gev.fit documentation
   gev_fit <- gev.fit(revdbayes::portpirie, show = FALSE)
   adj_gev_fit <- alogLik(gev_fit)
-  return_level(adj_gev_fit)
+  rl <- return_level(adj_gev_fit)
+  plot(rl)
   ismev::gev.prof(gev_fit, m = 100, xlow = 4.45, xup = 5.5)
 }
 }
