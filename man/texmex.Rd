@@ -94,8 +94,9 @@ Object \code{x} \emph{must} have the following S3
   \code{\link[sandwich]{meat}} present in \dots will be ignored.
 }
 \examples{
-# We need the texmex package
+# We need the texmex package, and ismev for the fremantle and rain datasets
 got_texmex <- requireNamespace("texmex", quietly = TRUE)
+got_ismev <- requireNamespace("ismev", quietly = TRUE)
 if (got_texmex) {
   library(texmex)
   # Examples from the texmex::evm documentation
@@ -121,28 +122,31 @@ if (got_texmex) {
 
   # GEV regression
   # An example from page 113 of Coles (2001)
-  data(fremantle)
-  new_fremantle <- fremantle
-  # Set year 1897 to 1 for consistency with page 113 of Coles (2001)
-  new_fremantle[, "Year"] <- new_fremantle[, "Year"] - 1896
-  evm_fit <- evm(y = SeaLevel, data = new_fremantle, family = gev,
-                 mu = ~ Year + SOI)
-  adj_evm_fit <- alogLik(evm_fit)
-  summary(adj_evm_fit)
+  if (got_ismev) {
+    library(ismev)
+    data(fremantle)
+    new_fremantle <- fremantle
+    # Set year 1897 to 1 for consistency with page 113 of Coles (2001)
+    new_fremantle[, "Year"] <- new_fremantle[, "Year"] - 1896
+    evm_fit <- evm(y = SeaLevel, data = new_fremantle, family = gev,
+                   mu = ~ Year + SOI)
+    adj_evm_fit <- alogLik(evm_fit)
+    summary(adj_evm_fit)
 
-  # GP regression
-  # An example from page 119 of Coles (2001)
-  n_rain <- length(rain)
-  rain_df <- data.frame(rain = rain, time = 1:n_rain / n_rain)
-  evm_fit <- evm(y = rain, data = rain_df, family = gpd, th = 30,
-                 phi = ~ time)
-  adj_evm_fit <- alogLik(evm_fit)
-  summary(adj_evm_fit)
-  evm_fit <- evm(y = rain, data = rain_df, family = gpd, th = 30,
-                 phi = ~ time, cov = "sandwich")
-  evm_fit$se
-  vcov(adj_evm_fit)
-  vcov(evm_fit)
+    # GP regression
+    # An example from page 119 of Coles (2001)
+    n_rain <- length(rain)
+    rain_df <- data.frame(rain = rain, time = 1:n_rain / n_rain)
+    evm_fit <- evm(y = rain, data = rain_df, family = gpd, th = 30,
+                   phi = ~ time)
+    adj_evm_fit <- alogLik(evm_fit)
+    summary(adj_evm_fit)
+    evm_fit <- evm(y = rain, data = rain_df, family = gpd, th = 30,
+                   phi = ~ time, cov = "sandwich")
+    evm_fit$se
+    vcov(adj_evm_fit)
+    vcov(evm_fit)
+  }
 }
 }
 \references{
