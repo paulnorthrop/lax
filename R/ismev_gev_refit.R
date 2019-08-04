@@ -17,11 +17,11 @@
 #' if (got_ismev) {
 #'   fit1 <- gev.fit(revdbayes::portpirie, show = FALSE)
 #'   ls(fit1)
-#'   fit2 <- oogev.fit(revdbayes::portpirie, show = FALSE)
+#'   fit2 <- ismevgev.refit(revdbayes::portpirie, show = FALSE)
 #'   ls(fit2)
 #' }
 #' @export
-oogev.fit <- function (xdat, ydat = NULL, mul = NULL, sigl = NULL, shl = NULL,
+gev_refit <- function (xdat, ydat = NULL, mul = NULL, sigl = NULL, shl = NULL,
                        mulink = identity, siglink = identity,
                        shlink = identity, muinit = NULL, siginit = NULL,
                        shinit = NULL, show = TRUE, method = "Nelder-Mead",

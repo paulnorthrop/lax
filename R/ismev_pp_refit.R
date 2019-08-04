@@ -20,11 +20,11 @@
 #'   data(rain)
 #'   fit1 <- pp.fit(rain, 100, show = FALSE)
 #'   ls(fit1)
-#'   fit2 <- oopp.fit(rain, 10, show = FALSE)
+#'   fit2 <- pp_refit(rain, 10, show = FALSE)
 #'   ls(fit2)
 #' }
 #' @export
-oopp.fit <- function (xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
+pp_refit <- function (xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
                       sigl = NULL, shl = NULL, mulink = identity,
                       siglink = identity, shlink = identity, muinit = NULL,
                       siginit = NULL, shinit = NULL, show = TRUE,

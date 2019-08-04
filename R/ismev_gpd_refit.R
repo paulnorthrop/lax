@@ -18,11 +18,11 @@
 #'   data(rain)
 #'   fit1 <- gpd.fit(rain, 10)
 #'   ls(fit1)
-#'   fit2 <- oogpd.fit(rain, 10)
+#'   fit2 <- gpd_refit(rain, 10)
 #'   ls(fit2)
 #' }
 #' @export
-oogpd.fit <- function (xdat, threshold, npy = 365, ydat = NULL, sigl = NULL,
+gpd_refit <- function (xdat, threshold, npy = 365, ydat = NULL, sigl = NULL,
                        shl = NULL, siglink = identity, shlink = identity,
                        siginit = NULL, shinit = NULL, show = TRUE,
                        method = "Nelder-Mead", maxit = 10000, ...) {

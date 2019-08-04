@@ -15,12 +15,14 @@
 #' got_evir <- requireNamespace("evir", quietly = TRUE)
 #' if (got_evir) {
 #'   data(danish)
-#'   out <- oopot(danish, 10)
+#'   out <- pot(danish, 10)
+#'   ls(out)
+#'   out <- re_pot(danish, 10)
 #'   ls(out)
 #' }
 #' @export
-oopot <- function (data, threshold = NA, nextremes = NA, run = NA,
-                   picture = TRUE, ...) {
+re_pot <- function (data, threshold = NA, nextremes = NA, run = NA,
+                    picture = TRUE, ...) {
   # Save the input data so that we can return them later
   input_data <- data
   n <- length(as.numeric(data))

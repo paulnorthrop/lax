@@ -5,7 +5,7 @@
 #' @export
 logLikVec.evir_pot <- function(object, pars = NULL, ...) {
   if (is.null(object$input_data)) {
-    stop("Please refit the model using lax::oopot")
+    stop("Input data are needed.  Please refit the model using lax::re_pot")
   }
   if (!missing(...)) {
     warning("extra arguments discarded")
