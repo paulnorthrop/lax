@@ -14,22 +14,20 @@ Description: Performs adjusted inferences using fitted model objects
     'extRemes' <https://cran.r-project.org/package=extRemes>, 
     'fExtremes' <https://cran.r-project.org/package=fExtremes>, 
     'ismev' <https://cran.r-project.org/package=ismev>, 
-    'POT' <https://cran.r-project.org/package=POT>, 
-    'texmex' <https://cran.r-project.org/package=texmex>, 
-    ...
+    'POT' <https://cran.r-project.org/package=POT> and
+    'texmex' <https://cran.r-project.org/package=texmex>. 
     Adjusted standard errors and an adjusted loglikelihood are provided, using    
     the 'chandwich' package <https://cran.r-project.org/package=chandwich>
-    and the object-oriented features of the  
-    'sandwich' package <https://cran.r-project.org/package=sandwich>.
-    The adjustment is based on a robust sandwich estimator of the parameter 
-    covariance matrix, based on the methodology in Chandler and Bate (2007) 
-    <doi:10.1093/biomet/asm015>. This can be used for cluster correlated data 
-    when interest lies in the parameters of the marginal distributions or for 
-    performing inferences that are robust to certain types of model 
-    misspecification.  
-    Currently only univariate extreme value models are supported.
-    As a byproduct, generic S3 logLik, coef, vcov and nobs methods are 
-    provided, where these are not already provided in the original package.
+    and the object-oriented features of the 'sandwich' package 
+    <https://cran.r-project.org/package=sandwich>. The adjustment is based on a 
+    robust sandwich estimator of the parameter covariance matrix, based on the 
+    methodology in Chandler and Bate (2007) <doi:10.1093/biomet/asm015>. This 
+    can be used for cluster correlated data when interest lies in the 
+    parameters of the marginal distributions or for performing inferences that 
+    are robust to certain types of model misspecification.  Univariate extreme 
+    value models, including regression model, are supported.  As a byproduct, 
+    generic S3 logLik, coef, vcov and nobs methods are provided, where these 
+    are not already provided in the original package.
 Imports: chandwich,
     graphics,
     methods,
