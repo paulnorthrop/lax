@@ -45,7 +45,7 @@ re_pot <- function (data, threshold = NA, nextremes = NA, run = NA,
   if (!is.na(nextremes) && !is.na(threshold))
     stop("Enter EITHER a threshold or the number of upper extremes")
   if (!is.na(nextremes))
-    threshold <- findthresh(as.numeric(data), nextremes)
+    threshold <- evir::findthresh(as.numeric(data), nextremes)
   if (threshold > 10) {
     factor <- 10^(floor(log10(threshold)))
     cat(paste("If singularity problems occur divide data",
@@ -56,7 +56,7 @@ re_pot <- function (data, threshold = NA, nextremes = NA, run = NA,
   n.exceed <- length(as.numeric(exceedances.its))
   p.less.thresh <- 1 - n.exceed/n
   if (!is.na(run)) {
-    exceedances.its <- decluster(exceedances.its, run, picture)
+    exceedances.its <- evir::decluster(exceedances.its, run, picture)
     n.exceed <- length(exceedances.its)
   }
   intensity <- n.exceed/span
