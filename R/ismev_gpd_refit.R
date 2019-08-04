@@ -85,8 +85,8 @@ gpd_refit <- function (xdat, threshold, npy = 365, ydat = NULL, sigl = NULL,
     }
     l
   }
-  x <- optim(init, gpd.lik, hessian = TRUE, method = method,
-             control = list(maxit = maxit, ...))
+  x <- stats::optim(init, gpd.lik, hessian = TRUE, method = method,
+                    control = list(maxit = maxit, ...))
   sc <- siglink(sigmat %*% (x$par[seq(1, length = npsc)]))
   xi <- shlink(shmat %*% (x$par[seq(npsc + 1, length = npsh)]))
   z$conv <- x$convergence

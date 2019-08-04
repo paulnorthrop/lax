@@ -108,7 +108,7 @@ gev_rl_prof <- function(x, m, level, npy, inc, type, rl_sym) {
   sol <- attr(x, "MLE")[2:3]
   while (my_val > conf_line){
     xp <- xp + inc
-    opt <- optim(sol, gev_neg_prof_loglik, method = "BFGS", xp = xp)
+    opt <- stats::optim(sol, gev_neg_prof_loglik, method = "BFGS", xp = xp)
     sol <- opt$par
     ii <- ii + 1
     x2[ii] <- xp
@@ -123,7 +123,7 @@ gev_rl_prof <- function(x, m, level, npy, inc, type, rl_sym) {
   sol <- attr(x, "MLE")[2:3]
   while (my_val > conf_line){
     xp <- xp - inc
-    opt <- optim(sol, gev_neg_prof_loglik, method = "BFGS",xp = xp)
+    opt <- stats::optim(sol, gev_neg_prof_loglik, method = "BFGS",xp = xp)
     sol <- opt$par
     ii <- ii + 1
     x1[ii] <- xp

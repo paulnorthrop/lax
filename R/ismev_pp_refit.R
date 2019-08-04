@@ -114,8 +114,8 @@ pp_refit <- function (xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
     }
     l
   }
-  x <- optim(init, pp.lik, hessian = TRUE, method = method,
-             control = list(maxit = maxit, ...))
+  x <- stats::optim(init, pp.lik, hessian = TRUE, method = method,
+                    control = list(maxit = maxit, ...))
   mu <- mulink(mumat %*% (x$par[1:npmu]))
   sc <- siglink(sigmat %*% (x$par[seq(npmu + 1, length = npsc)]))
   xi <- shlink(shmat %*% (x$par[seq(npmu + npsc + 1, length = npsh)]))

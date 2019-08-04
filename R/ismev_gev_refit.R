@@ -79,8 +79,8 @@ gev_refit <- function (xdat, ydat = NULL, mul = NULL, sigl = NULL, shl = NULL,
       return(10^6)
     sum(log(sc)) + sum(y^(-1/xi)) + sum(log(y) * (1/xi + 1))
   }
-  x <- optim(init, gev.lik, hessian = TRUE, method = method,
-             control = list(maxit = maxit, ...))
+  x <- stats::optim(init, gev.lik, hessian = TRUE, method = method,
+                    control = list(maxit = maxit, ...))
   z$conv <- x$convergence
   mu <- mulink(mumat %*% (x$par[1:npmu]))
   sc <- siglink(sigmat %*% (x$par[seq(npmu + 1, length = npsc)]))

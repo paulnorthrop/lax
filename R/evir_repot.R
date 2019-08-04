@@ -82,8 +82,9 @@ re_pot <- function (data, threshold = NA, nextremes = NA, run = NA,
     }
     f
   }
-  fit <- optim(theta, negloglik, hessian = TRUE, ..., exceedances = exceedances,
-               threshold = threshold, span = span)
+  fit <- stats::optim(theta, negloglik, hessian = TRUE, ...,
+                      exceedances = exceedances, threshold = threshold,
+                      span = span)
   if (fit$convergence)
     warning("optimization may not have succeeded")
   par.ests <- fit$par
