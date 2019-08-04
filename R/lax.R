@@ -67,4 +67,5 @@
 #' @name lax
 #' @import methods
 #' @import sandwich
+#' @importFrom stats nobs
 NULL
