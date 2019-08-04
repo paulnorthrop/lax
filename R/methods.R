@@ -3,10 +3,10 @@
 #' Generic function for calculating loglikelihood contributions from
 #' individual observations for a fitted model.
 #'
-#' @param x A fitted model object.
+#' @param object A fitted model object.
 #' @param ... Further arguments.
 #' @export
-logLikVec <- function(x, ...) {
+logLikVec <- function(object, ...) {
   UseMethod("logLikVec")
 }
 

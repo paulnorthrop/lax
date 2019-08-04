@@ -4,10 +4,10 @@
 \alias{logLikVec}
 \title{Evaluate loglikelihood contributions from specific observations}
 \usage{
-logLikVec(x, ...)
+logLikVec(object, ...)
 }
 \arguments{
-\item{x}{A fitted model object.}
+\item{object}{A fitted model object.}
 
 \item{...}{Further arguments.}
 }
