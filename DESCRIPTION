@@ -1,5 +1,5 @@
 Package: lax
-Title: Objected-oriented Loglikelihood Adjustment for Extreme Value Models
+Title: Loglikelihood Adjustment for Extreme Value Models
 Version: 1.0.0.9000
 Date: 2019-08-04
 Authors@R: c(
