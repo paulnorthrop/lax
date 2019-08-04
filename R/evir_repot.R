@@ -6,7 +6,6 @@
 #' The main modification is to add to the returned object the argument
 #' \code{data} supplied by the user.  This is added to the returned
 #' (list) object with the name \code{input_data}.
-#' @inheritParams evir::pot
 #' @param data numeric vector of data, which may have a times attribute
 #'   containing (in an object of class \code{"POSIXct"}, or an object that can
 #'   be converted to that class; see \code{\link{as.POSIXct}}) the times/dates
