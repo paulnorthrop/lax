@@ -28,6 +28,7 @@
 #' # We need the evir package
 #' got_evir <- requireNamespace("evir", quietly = TRUE)
 #' if (got_evir) {
+#'   library(evir)
 #'   data(danish)
 #'   out <- pot(danish, 10)
 #'   ls(out)

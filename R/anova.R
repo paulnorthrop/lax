@@ -37,6 +37,7 @@
 #' got_evd <- requireNamespace("evd", quietly = TRUE)
 #'
 #' if (got_evd) {
+#'   library(evd)
 #'   y <- c(chandwich::owtemps[, "Oxford"], chandwich::owtemps[, "Worthing"])
 #'   x <- rep(c(1, -1), each = length(y) / 2)
 #'   owfit <- evd::fgev(y, nsloc = x)
