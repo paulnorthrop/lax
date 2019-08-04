@@ -84,7 +84,7 @@ bug in the code that sets initial estimates has been corrected: the bug
 meant that if \code{threshold} is a vector then the optimization hangs.
 }
 \examples{
-# We need the evd package
+# We need the ismev package
 got_ismev <- requireNamespace("ismev", quietly = TRUE)
 if (got_ismev) {
   data(rain)

@@ -100,7 +100,7 @@ Object \code{x} \emph{must} have the following S3
   \code{\link[sandwich]{meat}} present in \dots will be ignored.
 }
 \examples{
-# We need the evd package
+# We need the ismev package
 got_ismev <- requireNamespace("ismev", quietly = TRUE)
 
 if (got_ismev) {

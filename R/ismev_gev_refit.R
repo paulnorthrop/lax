@@ -12,7 +12,7 @@
 #'   R package version 1.42.
 #'   \url{https://CRAN.R-project.org/package=ismev}.
 #' @examples
-#' # We need the evd package
+#' # We need the ismev package
 #' got_ismev <- requireNamespace("ismev", quietly = TRUE)
 #' if (got_ismev) {
 #'   fit1 <- gev.fit(revdbayes::portpirie, show = FALSE)

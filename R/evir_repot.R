@@ -25,7 +25,7 @@
 #'   Values in R. R package version 1.7-4.
 #'   \url{https://CRAN.R-project.org/package=evir}.
 #' @examples
-#' # We need the evd package
+#' # We need the evir package
 #' got_evir <- requireNamespace("evir", quietly = TRUE)
 #' if (got_evir) {
 #'   data(danish)

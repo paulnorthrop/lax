@@ -80,7 +80,7 @@ The modification is to add to the returned object the arguments
 for the location, scale and shape parameters of the model.
 }
 \examples{
-# We need the evd package
+# We need the ismev package
 got_ismev <- requireNamespace("ismev", quietly = TRUE)
 if (got_ismev) {
   fit1 <- gev.fit(revdbayes::portpirie, show = FALSE)

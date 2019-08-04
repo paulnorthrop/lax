@@ -8,7 +8,7 @@
 #'
 #' @inherit alogLik params details return references seealso
 #' @examples
-#' # We need the evd package
+#' # We need the ismev package
 #' got_ismev <- requireNamespace("ismev", quietly = TRUE)
 #'
 #' if (got_ismev) {

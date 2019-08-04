@@ -38,7 +38,7 @@ The main modification is to add to the returned object the argument
 (list) object with the name \code{input_data}.
 }
 \examples{
-# We need the evd package
+# We need the evir package
 got_evir <- requireNamespace("evir", quietly = TRUE)
 if (got_evir) {
   data(danish)

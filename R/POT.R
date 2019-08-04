@@ -7,7 +7,7 @@
 #'
 #' @inherit alogLik params details return references seealso
 #' @examples
-#' # We need the evd package
+#' # We need the POT package
 #' got_POT <- requireNamespace("POT", quietly = TRUE)
 #'
 #' if (got_POT) {
