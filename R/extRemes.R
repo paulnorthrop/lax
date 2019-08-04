@@ -114,9 +114,9 @@ alogLik.fevd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   if (x$type == "GEV" || x$type == "Gumbel") {
     class(x) <- "extRemes_gev"
   } else if (x$type == "GP" || x$type == "Exponential") {
-    class(x) <- "extRemes__gp"
+    class(x) <- "extRemes_gp"
   } else if (x$type == "PP") {
-    class(x) <- "extRemes__pp"
+    class(x) <- "extRemes_pp"
   }
   # Call adj()_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
