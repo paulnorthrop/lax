@@ -1,7 +1,7 @@
 Package: lax
 Title: Objected-oriented Loglikelihood Adjustment for Extreme Value Models
 Version: 1.0.0.9000
-Date: 2018-11-29
+Date: 2019-08-04
 Authors@R: c(
     person(c("Paul", "J."), "Northrop", email = "p.northrop@ucl.ac.uk",
       role = c("aut", "cre", "cph")),
@@ -30,7 +30,8 @@ Description: Performs adjusted inferences using fitted model objects
     Currently only univariate extreme value models are supported.
     As a byproduct, generic S3 logLik, coef, vcov and nobs methods are 
     provided, where these are not already provided in the original package.
-Imports: graphics,
+Imports: chandwich,
+    graphics,
     methods,
     numDeriv,
     revdbayes,
