@@ -9,7 +9,7 @@ vignette: >
   %\VignetteIndexEntry{Example analyses from the evd package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-bibliography: oolax.bib
+bibliography: lax.bib
 ---
 
 ```{r, include = FALSE}
@@ -19,7 +19,7 @@ knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
 @evd
 
 ```{r}
-library(oolax)
+library(lax)
 library(evd)
 # An example from the evd::fgev documentation
 uvdata <- evd::rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
@@ -30,7 +30,7 @@ adj1 <- alogLik(M1)
 summary(adj1)
 ```
 
-Objects returned by `alogLik` can be used to produce confidence intervals for individual parameters, confidence regions for pair of parameters and to perform adjusted likelihood ratio tests to compare nested models. See the [An overview of oolax](an-overview-of-oolax-vignette.html) vignette for examples.
+Objects returned by `alogLik` can be used to produce confidence intervals for individual parameters, confidence regions for pair of parameters and to perform adjusted likelihood ratio tests to compare nested models. See the [An overview of lax](an-overview-of-lax-vignette.html) vignette for examples.
 
 ## References
 

@@ -27,8 +27,8 @@
 #' @export
 return_level <- function(x, m = 100, conf = 95, npy = 1, inc = NULL,
                          type = c("vertical", "cholesky", "spectral", "none")) {
-  if (!inherits(x, "oolax")) {
-    stop("use only with \"oolax\" objects")
+  if (!inherits(x, "lax")) {
+    stop("use only with \"lax\" objects")
   }
   if (!inherits(x, "stat")) {
     stop("use only with stationary extreme value models")

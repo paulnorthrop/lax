@@ -69,39 +69,39 @@ NULL
 #' @export
 alogLik.evmOpt <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # List of texmex objects supported
-  supported_by_oolax <- list(texmex_evmOpt = c("evmOpt"))
+  supported_by_lax <- list(texmex_evmOpt = c("evmOpt"))
   # Does x have a supported class?
   is_supported <- NULL
-  for (i in 1:length(supported_by_oolax)) {
-    is_supported[i] <- identical(class(x), unlist(supported_by_oolax[i],
+  for (i in 1:length(supported_by_lax)) {
+    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
                                                   use.names = FALSE))
   }
   if (!any(is_supported)) {
     stop(paste("x's class", deparse(class(x)), "is not supported"))
   }
   # Set the class
-  name_of_class <- names(supported_by_oolax)[which(is_supported)]
+  name_of_class <- names(supported_by_lax)[which(is_supported)]
   class(x) <- name_of_class
   # Call oola::adjust_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
   n_pars <- length(coef(x))
   if (x$family$name == "GEV") {
     if (n_pars == 3) {
-      class(res) <- c("oolax", "chandwich", "texmex", "gev", "stat")
+      class(res) <- c("lax", "chandwich", "texmex", "gev", "stat")
     } else {
-      class(res) <- c("oolax", "chandwich", "texmex", "gev", "nonstat")
+      class(res) <- c("lax", "chandwich", "texmex", "gev", "nonstat")
     }
   } else if (x$family$name == "GPD") {
     if (n_pars == 2) {
-      class(res) <- c("oolax", "chandwich", "texmex", "gpd", "stat")
+      class(res) <- c("lax", "chandwich", "texmex", "gpd", "stat")
     } else {
-      class(res) <- c("oolax", "chandwich", "texmex", "gpd", "nonstat")
+      class(res) <- c("lax", "chandwich", "texmex", "gpd", "nonstat")
     }
   } else if (x$family$name == "GPD") {
     if (n_pars == 3) {
-      class(res) <- c("oolax", "chandwich", "texmex", "egp3", "stat")
+      class(res) <- c("lax", "chandwich", "texmex", "egp3", "stat")
     } else {
-      class(res) <- c("oolax", "chandwich", "texmex", "egp3", "nonstat")
+      class(res) <- c("lax", "chandwich", "texmex", "egp3", "nonstat")
     }
   }
   return(res)

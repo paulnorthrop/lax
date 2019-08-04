@@ -1,4 +1,4 @@
-#' oolax: Objected-oriented Loglikelihood Adjustment for Extreme Value Models
+#' lax: Objected-oriented Loglikelihood Adjustment for Extreme Value Models
 #'
 #' Performs adjusted inferences using fitted model objects returned from the
 #' extreme value analysis packages
@@ -24,13 +24,13 @@
 #' supported.  As a byproduct, generic S3 logLik, coef, vcov and nobs methods
 #' are provided, where these are not already provided in the original package.
 #' @details
-#' \code{\link[oolax]{evd}},
-#' \code{\link[oolax]{evir}},
-#' \code{\link[oolax]{extRemes}},
-#' \code{\link[oolax]{fExtremes}},
-#' \code{\link[oolax]{ismev}},
-#' \code{\link[oolax]{POT}},
-#' \code{\link[oolax]{texmex}}.
+#' \code{\link[lax]{evd}},
+#' \code{\link[lax]{evir}},
+#' \code{\link[lax]{extRemes}},
+#' \code{\link[lax]{fExtremes}},
+#' \code{\link[lax]{ismev}},
+#' \code{\link[lax]{POT}},
+#' \code{\link[lax]{texmex}}.
 #'
 #' See Chandler and Bate (2007) for full details and
 #' \code{vignette("oola-vignette", package = "oola")} for an
@@ -64,7 +64,7 @@
 #'   Estimators. \emph{Journal of Statistical Software}, \strong{16}(9),
 #'   1-16. \url{http://doi.org/10.18637/jss.v016.i09}.
 #' @docType package
-#' @name oolax
+#' @name lax
 #' @import methods
 #' @import sandwich
 NULL

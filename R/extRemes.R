@@ -100,11 +100,11 @@ alogLik.fevd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
     stop("Loglikelihood adjustment is only relevant when method = ''mle''")
   }
   # List of extRemes objects supported
-  supported_by_oolax <- list(fevd = c("fevd"))
+  supported_by_lax <- list(fevd = c("fevd"))
   # Does x have a supported class?
   is_supported <- NULL
-  for (i in 1:length(supported_by_oolax)) {
-    is_supported[i] <- identical(class(x), unlist(supported_by_oolax[i],
+  for (i in 1:length(supported_by_lax)) {
+    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
                                                   use.names = FALSE))
   }
   if (!any(is_supported)) {
@@ -122,21 +122,21 @@ alogLik.fevd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
   if (x$type == "GEV" || x$type == "Gumbel") {
     if (extRemes::is.fixedfevd(x)) {
-      class(res) <- c("oolax", "chandwich", "extRemes", "gev", "stat")
+      class(res) <- c("lax", "chandwich", "extRemes", "gev", "stat")
     } else {
-      class(res) <- c("oolax", "chandwich", "extRemes", "gev", "nonstat")
+      class(res) <- c("lax", "chandwich", "extRemes", "gev", "nonstat")
     }
   } else if (x$type == "GP" || x$type == "Exponential") {
     if (extRemes::is.fixedfevd(x)) {
-      class(res) <- c("oolax", "chandwich", "extRemes", "gp", "stat")
+      class(res) <- c("lax", "chandwich", "extRemes", "gp", "stat")
     } else {
-      class(res) <- c("oolax", "chandwich", "extRemes", "gp", "nonstat")
+      class(res) <- c("lax", "chandwich", "extRemes", "gp", "nonstat")
     }
   } else if (x$type == "PP") {
     if (extRemes::is.fixedfevd(x)) {
-      class(res) <- c("oolax", "chandwich", "extRemes", "pp", "stat")
+      class(res) <- c("lax", "chandwich", "extRemes", "pp", "stat")
     } else {
-      class(res) <- c("oolax", "chandwich", "extRemes", "pp", "nonstat")
+      class(res) <- c("lax", "chandwich", "extRemes", "pp", "nonstat")
     }
   }
   return(res)

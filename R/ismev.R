@@ -96,25 +96,25 @@ NULL
 #' @export
 alogLik.gev.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # List of ismev objects supported
-  supported_by_oolax <- list(ismev_gev = "gev.fit")
+  supported_by_lax <- list(ismev_gev = "gev.fit")
   # Does x have a supported class?
   is_supported <- NULL
-  for (i in 1:length(supported_by_oolax)) {
-    is_supported[i] <- identical(class(x), unlist(supported_by_oolax[i],
+  for (i in 1:length(supported_by_lax)) {
+    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
                                                   use.names = FALSE))
   }
   if (!any(is_supported)) {
     stop(paste("x's class", deparse(class(x)), "is not supported"))
   }
   # Set the class
-  name_of_class <- names(supported_by_oolax)[which(is_supported)]
+  name_of_class <- names(supported_by_lax)[which(is_supported)]
   class(x) <- name_of_class
   # Call oola::adjust_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
   if (x$trans) {
-    class(res) <- c("oolax", "chandwich", "ismev", "gev", "nonstat")
+    class(res) <- c("lax", "chandwich", "ismev", "gev", "nonstat")
   } else {
-    class(res) <- c("oolax", "chandwich", "ismev", "gev", "stat")
+    class(res) <- c("lax", "chandwich", "ismev", "gev", "stat")
   }
   return(res)
 }
@@ -123,25 +123,25 @@ alogLik.gev.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
 #' @export
 alogLik.pp.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # List of ismev objects supported
-  supported_by_oolax <- list(ismev_pp = "pp.fit")
+  supported_by_lax <- list(ismev_pp = "pp.fit")
   # Does x have a supported class?
   is_supported <- NULL
-  for (i in 1:length(supported_by_oolax)) {
-    is_supported[i] <- identical(class(x), unlist(supported_by_oolax[i],
+  for (i in 1:length(supported_by_lax)) {
+    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
                                                   use.names = FALSE))
   }
   if (!any(is_supported)) {
     stop(paste("x's class", deparse(class(x)), "is not supported"))
   }
   # Set the class
-  name_of_class <- names(supported_by_oolax)[which(is_supported)]
+  name_of_class <- names(supported_by_lax)[which(is_supported)]
   class(x) <- name_of_class
   # Call oola::adjust_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
   if (x$trans) {
-    class(res) <- c("oolax", "chandwich", "ismev", "pp", "nonstat")
+    class(res) <- c("lax", "chandwich", "ismev", "pp", "nonstat")
   } else {
-    class(res) <- c("oolax", "chandwich", "ismev", "pp", "stat")
+    class(res) <- c("lax", "chandwich", "ismev", "pp", "stat")
   }
   return(res)
 }
@@ -150,25 +150,25 @@ alogLik.pp.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
 #' @export
 alogLik.gpd.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # List of ismev objects supported
-  supported_by_oolax <- list(ismev_gpd = "gpd.fit")
+  supported_by_lax <- list(ismev_gpd = "gpd.fit")
   # Does x have a supported class?
   is_supported <- NULL
-  for (i in 1:length(supported_by_oolax)) {
-    is_supported[i] <- identical(class(x), unlist(supported_by_oolax[i],
+  for (i in 1:length(supported_by_lax)) {
+    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
                                                   use.names = FALSE))
   }
   if (!any(is_supported)) {
     stop(paste("x's class", deparse(class(x)), "is not supported"))
   }
   # Set the class
-  name_of_class <- names(supported_by_oolax)[which(is_supported)]
+  name_of_class <- names(supported_by_lax)[which(is_supported)]
   class(x) <- name_of_class
   # Call oola::adjust_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
   if (x$trans) {
-    class(res) <- c("oolax", "chandwich", "ismev", "gpd", "nonstat")
+    class(res) <- c("lax", "chandwich", "ismev", "gpd", "nonstat")
   } else {
-    class(res) <- c("oolax", "chandwich", "ismev", "gpd", "stat")
+    class(res) <- c("lax", "chandwich", "ismev", "gpd", "stat")
   }
   return(res)
 }

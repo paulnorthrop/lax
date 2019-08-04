@@ -48,27 +48,27 @@ alogLik.evd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
     class(x) <- rev(class(x))
   }
   # List of evd objects supported
-  supported_by_oolax <- list(evd_fgev = c("gev", "uvevd", "evd"),
+  supported_by_lax <- list(evd_fgev = c("gev", "uvevd", "evd"),
                              evd_fpot = c("pot", "uvevd", "evd"))
   # Does x have a supported class?
   is_supported <- NULL
-  for (i in 1:length(supported_by_oolax)) {
-    is_supported[i] <- identical(class(x), unlist(supported_by_oolax[i],
+  for (i in 1:length(supported_by_lax)) {
+    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
                                                   use.names = FALSE))
   }
   if (!any(is_supported)) {
     stop(paste("x's class", deparse(class(x)), "is not supported"))
   }
   # Set the class
-  name_of_class <- names(supported_by_oolax)[which(is_supported)]
+  name_of_class <- names(supported_by_lax)[which(is_supported)]
   class(x) <- name_of_class
   # Call oola::adjust_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
   if (name_of_class == "evd_fgev") {
     if (is.null(x$nsloc)) {
-      class(res) <- c("oolax", "chandwich", "evd", "gev", "stat")
+      class(res) <- c("lax", "chandwich", "evd", "gev", "stat")
     } else {
-      class(res) <- c("oolax", "chandwich", "evd", "gev", "nonstat")
+      class(res) <- c("lax", "chandwich", "evd", "gev", "nonstat")
     }
   } else {
     all_pars <- coef(x, complete = TRUE)
@@ -79,9 +79,9 @@ alogLik.evd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
     # If n_all_pars = 2 then model = "gp".
     # If n_all_pars = 3 then model = "pp".
     if (n_all_pars == 2) {
-      class(res) <- c("oolax", "chandwich", "evd", "pot", "gpd")
+      class(res) <- c("lax", "chandwich", "evd", "pot", "gpd")
     } else {
-      class(res) <- c("oolax", "chandwich", "evd", "pot", "pp")
+      class(res) <- c("lax", "chandwich", "evd", "pot", "pp")
     }
   }
   return(res)

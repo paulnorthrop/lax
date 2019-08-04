@@ -1,4 +1,4 @@
 library(testthat)
-library(oolax)
+library(lax)
 
-test_check("oolax")
+test_check("lax")

@@ -9,7 +9,7 @@ vignette: >
   %\VignetteIndexEntry{The texmex package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-bibliography: oolax.bib
+bibliography: lax.bib
 ---
 
 ```{r, include = FALSE}

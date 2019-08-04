@@ -28,21 +28,21 @@ alogLik.uvpot <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
     stop("Loglikelihood adjustment is only relevant when est = ''mle''")
   }
   # List of evd objects supported
-  supported_by_oolax <- list(POT_fitgpd = c("uvpot", "pot"))
+  supported_by_lax <- list(POT_fitgpd = c("uvpot", "pot"))
   # Does x have a supported class?
   is_supported <- NULL
-  for (i in 1:length(supported_by_oolax)) {
-    is_supported[i] <- identical(class(x), unlist(supported_by_oolax[i],
+  for (i in 1:length(supported_by_lax)) {
+    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
                                                   use.names = FALSE))
   }
   if (!any(is_supported)) {
     stop(paste("x's class", deparse(class(x)), "is not supported"))
   }
   # Set the class
-  name_of_class <- names(supported_by_oolax)[which(is_supported)]
+  name_of_class <- names(supported_by_lax)[which(is_supported)]
   class(x) <- name_of_class
   # Call oola::adjust_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
-  class(res) <- c("oolax", "chandwich", "POT", "pot", "gpd")
+  class(res) <- c("lax", "chandwich", "POT", "pot", "gpd")
   return(res)
 }

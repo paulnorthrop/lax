@@ -15,7 +15,7 @@ logLikVec.ismev_gpd <- function(object, pars = NULL, ...) {
   n_pars <- length(pars)
   #
   if (object$trans & is.null(object$sigmat)) {
-    stop("Covariate data are needed.  Refit the model using oolax::oogpd.fit")
+    stop("Covariate data are needed.  Refit the model using lax::oogpd.fit")
   }
   if (!object$trans) {
     # Threshold exceedances (values that lie above the threshold)

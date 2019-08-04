@@ -17,13 +17,13 @@ logLikVec <- function(x, ...) {
 #' \href{http://dx.doi.org/10.1093/biomet/asm015}{Chandler and Bate (2007)}.
 #' Certain classes of extreme value model objects are supported automatically.
 #' For details see the \code{alogLik} help pages for the packages:
-#' \code{\link[oolax]{evd}},
-#' \code{\link[oolax]{evir}},
-#' \code{\link[oolax]{extRemes}},
-#' \code{\link[oolax]{fExtremes}},
-#' \code{\link[oolax]{ismev}},
-#' \code{\link[oolax]{POT}},
-#' \code{\link[oolax]{texmex}}.
+#' \code{\link[lax]{evd}},
+#' \code{\link[lax]{evir}},
+#' \code{\link[lax]{extRemes}},
+#' \code{\link[lax]{fExtremes}},
+#' \code{\link[lax]{ismev}},
+#' \code{\link[lax]{POT}},
+#' \code{\link[lax]{texmex}}.
 #' User-supplied objects can also be supported: the requirements for these
 #' objects are explained in \strong{Details}.
 #'

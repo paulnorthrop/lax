@@ -1,23 +1,23 @@
-# =============================== anova.oolax =============================== #
+# =============================== anova.lax =============================== #
 
 #' Comparison of nested models
 #'
-#' \code{anova} method for objects of class \code{"oolax"}.
+#' \code{anova} method for objects of class \code{"lax"}.
 #' Compares two or more nested models using the adjusted likelihood ratio
 #' test statistic (ALRTS) described in Section 3.5 of
 #' \href{http://dx.doi.org/10.1093/biomet/asm015}{Chandler and Bate (2007)}.
 #' The nesting must result from the simple constraint that a subset of the
 #' parameters of the larger model is held fixed.
 #'
-#' @param object An object of class \code{"oolax"}, returned by
+#' @param object An object of class \code{"lax"}, returned by
 #'   \code{\link{alogLik}} or \code{\link{adjust_object}}.
 #' @param object2 An object of class \code{"chandwich"}, returned by
 #'   \code{\link{alogLik}} or \code{\link{adjust_object}}.
-#' @param ... Further objects of class \code{"oolax"} and/or arguments
+#' @param ... Further objects of class \code{"lax"} and/or arguments
 #'   to be passed to \code{\link[chandwich]{anova.chandwich}}.
 #'
-#' @details The objects of class \code{"oolax"} need not be provided in nested
-#'   order: they will be ordered inside \code{anova.oolax} based on the
+#' @details The objects of class \code{"lax"} need not be provided in nested
+#'   order: they will be ordered inside \code{anova.lax} based on the
 #'   values of \code{attr(., "p_current")}.
 #' @return An object of class \code{"anova"} inheriting from class
 #'  \code{"data.frame"}, with four columns:
@@ -50,7 +50,7 @@
 #'   anova(oola_small, oola_tiny)
 #' }
 #' @export
-anova.oolax <- function (object, object2, ...) {
+anova.lax <- function (object, object2, ...) {
   if (missing(object)) {
     stop("model one must be supplied, using object")
   }
@@ -72,9 +72,9 @@ anova.oolax <- function (object, object2, ...) {
   # Create list of model objects:  unnamed arguments may be model objects
   model_list <- c(list(object, object2), dotargs[!named])
   # Check for objects that do not have class "oola"
-  is_chand <- vapply(model_list, function(x) inherits(x, "oolax"), NA)
+  is_chand <- vapply(model_list, function(x) inherits(x, "lax"), NA)
   if (any(!is_chand)) {
-    stop("The following are not 'oolax' objects: ",
+    stop("The following are not 'lax' objects: ",
          paste(names(model_list)[!is_chand], collapse = ", "))
   }
   extra_names <- as.list(substitute(list(...)))[-1][which_not_named]

@@ -24,7 +24,7 @@
 #'   summary(adj_out)
 #'
 #'   # An example from the evir::pot documentation
-#'   # We use oolax::oopot() to return the input data
+#'   # We use lax::oopot() to return the input data
 #'   out <- oopot(danish, 10)
 #'   adj_out <- alogLik(out)
 #'   summary(adj_out)
@@ -42,22 +42,22 @@ alogLik.gev <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
     return(alogLik(x, cluster = cluster, use_vcov = use_vcov, ...))
   }
   # List of evir objects supported
-  supported_by_oolax <- list(evir_gev = c("gev"))
+  supported_by_lax <- list(evir_gev = c("gev"))
   # Does x have a supported class?
   is_supported <- NULL
-  for (i in 1:length(supported_by_oolax)) {
-    is_supported[i] <- identical(class(x), unlist(supported_by_oolax[i],
+  for (i in 1:length(supported_by_lax)) {
+    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
                                                   use.names = FALSE))
   }
   if (!any(is_supported)) {
     stop(paste("x's class", deparse(class(x)), "is not supported"))
   }
   # Set the class
-  name_of_class <- names(supported_by_oolax)[which(is_supported)]
+  name_of_class <- names(supported_by_lax)[which(is_supported)]
   class(x) <- name_of_class
   # Call oola::adjust_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
-  class(res) <- c("oolax", "chandwich", "evir", "gev", "stat")
+  class(res) <- c("lax", "chandwich", "evir", "gev", "stat")
   return(res)
 }
 
@@ -68,22 +68,22 @@ alogLik.gpd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
     stop("Loglikelihood adjustment is only relevant when method = ''ml''")
   }
   # List of evir objects supported
-  supported_by_oolax <- list(evir_gpd = c("gpd"))
+  supported_by_lax <- list(evir_gpd = c("gpd"))
   # Does x have a supported class?
   is_supported <- NULL
-  for (i in 1:length(supported_by_oolax)) {
-    is_supported[i] <- identical(class(x), unlist(supported_by_oolax[i],
+  for (i in 1:length(supported_by_lax)) {
+    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
                                                   use.names = FALSE))
   }
   if (!any(is_supported)) {
     stop(paste("x's class", deparse(class(x)), "is not supported"))
   }
   # Set the class
-  name_of_class <- names(supported_by_oolax)[which(is_supported)]
+  name_of_class <- names(supported_by_lax)[which(is_supported)]
   class(x) <- name_of_class
   # Call oola::adjust_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
-  class(res) <- c("oolax", "chandwich", "evir", "gpd", "stat")
+  class(res) <- c("lax", "chandwich", "evir", "gpd", "stat")
   return(res)
 }
 
@@ -91,21 +91,21 @@ alogLik.gpd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
 #' @export
 alogLik.potd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # List of evir objects supported
-  supported_by_oolax <- list(evir_pot = c("potd"))
+  supported_by_lax <- list(evir_pot = c("potd"))
   # Does x have a supported class?
   is_supported <- NULL
-  for (i in 1:length(supported_by_oolax)) {
-    is_supported[i] <- identical(class(x), unlist(supported_by_oolax[i],
+  for (i in 1:length(supported_by_lax)) {
+    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
                                                   use.names = FALSE))
   }
   if (!any(is_supported)) {
     stop(paste("x's class", deparse(class(x)), "is not supported"))
   }
   # Set the class
-  name_of_class <- names(supported_by_oolax)[which(is_supported)]
+  name_of_class <- names(supported_by_lax)[which(is_supported)]
   class(x) <- name_of_class
   # Call oola::adjust_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
-  class(res) <- c("oolax", "chandwich", "evir", "potd", "stat")
+  class(res) <- c("lax", "chandwich", "evir", "potd", "stat")
   return(res)
 }

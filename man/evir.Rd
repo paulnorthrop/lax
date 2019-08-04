@@ -116,7 +116,7 @@ if (got_evir) {
   summary(adj_out)
 
   # An example from the evir::pot documentation
-  # We use oolax::oopot() to return the input data
+  # We use lax::oopot() to return the input data
   out <- oopot(danish, 10)
   adj_out <- alogLik(out)
   summary(adj_out)

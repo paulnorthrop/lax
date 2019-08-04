@@ -8,7 +8,7 @@ logLikVec.ismev_pp <- function(object, pars = NULL, ...) {
   # We could pack it with -Inf for non-exceedances but if cluster is not NULL
   # then we need the dat to be in the correct order.
   if (is.null(object$xdat)) {
-    stop("Please refit the model using oolax::oopp.fit")
+    stop("Please refit the model using lax::pp.fit")
   }
   if (!missing(...)) {
     warning("extra arguments discarded")
