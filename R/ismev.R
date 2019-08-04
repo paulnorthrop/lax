@@ -23,7 +23,7 @@
 #'   xdat <- fremantle[, "SeaLevel"]
 #'   # Set year 1897 to 1 for consistency with page 113 of Coles (2001)
 #'   ydat <- cbind(fremantle[, "Year"] - 1896, fremantle[, "SOI"])
-#'   gev_fit <- oogev.fit(xdat, ydat, mul = 1:2, show = FALSE)
+#'   gev_fit <- gev_refit(xdat, ydat, mul = 1:2, show = FALSE)
 #'   adj_gev_fit <- alogLik(gev_fit)
 #'   summary(adj_gev_fit)
 #'
@@ -34,7 +34,7 @@
 #'   summary(adj_rain_fit)
 #'   # Continuing to the regression example on page 119 of Coles (2001)
 #'   ydat <- as.matrix((1:length(rain)) / length(rain))
-#'   reg_rain_fit <- oogpd.fit(rain, 30, ydat = ydat, sigl = 1, siglink = exp,
+#'   reg_rain_fit <- gpd_refit(rain, 30, ydat = ydat, sigl = 1, siglink = exp,
 #'                             show = FALSE)
 #'   adj_reg_rain_fit <- alogLik(reg_rain_fit)
 #'   summary(adj_reg_rain_fit)
@@ -46,7 +46,7 @@
 #'   muinit <- init[1]
 #'   siginit <- init[2]
 #'   shinit <- init[3]
-#'   rain_fit <- oopp.fit(rain, 10, muinit = muinit, siginit = siginit,
+#'   rain_fit <- pp_refit(rain, 10, muinit = muinit, siginit = siginit,
 #'                        shinit = shinit, show = FALSE)
 #'   adj_rain_fit <- alogLik(rain_fit)
 #'   summary(adj_rain_fit)
@@ -66,7 +66,7 @@
 #'   muinit <- init[1:3]
 #'   siginit <- init[4:6]
 #'   shinit <- init[7]
-#'   wooster.pp <- oopp.fit(-wooster, threshold = wu, ydat = ydat, mul = 1:2,
+#'   wooster.pp <- pp_refit(-wooster, threshold = wu, ydat = ydat, mul = 1:2,
 #'                          sigl = 1:2, siglink = exp, method = "BFGS",
 #'                          muinit = muinit, siginit = siginit, shinit = shinit,
 #'                          show = FALSE)
@@ -76,12 +76,12 @@
 #'   # An example from Chandler and Bate (2007)
 #'   y <- c(chandwich::owtemps[, "Oxford"], chandwich::owtemps[, "Worthing"])
 #'   x <- as.matrix(rep(c(1, -1), each = length(y) / 2))
-#'   gev_fit <- oogev.fit(y, x, mul = 1, sigl = 1, shl = 1, show = FALSE)
+#'   gev_fit <- gev_refit(y, x, mul = 1, sigl = 1, shl = 1, show = FALSE)
 #'   year <- rep(rownames(chandwich::owtemps), 2)
 #'   adj_gev_fit <- alogLik(gev_fit, cluster = year)
 #'   summary(adj_gev_fit)
 #'   # Get closer to the values reported in Table 2 of Chandler and Bate (2007)
-#'   gev_fit <- oogev.fit(y, x, mul = 1, sigl = 1, shl = 1, show = FALSE,
+#'   gev_fit <- gev_refit(y, x, mul = 1, sigl = 1, shl = 1, show = FALSE,
 #'                        method = "BFGS")
 #'   year <- rep(rownames(chandwich::owtemps), 2)
 #'   # Call sandwich::meatCL() with cadjust = FALSE

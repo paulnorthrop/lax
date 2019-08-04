@@ -24,7 +24,7 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   xdat <- fremantle[, "SeaLevel"]
   # Set year 1897 to 1 for consistency with page 113 of Coles (2001)
   ydat <- cbind(fremantle[, 1] - 1896, fremantle[, 3])
-  gev_fit <- oogev.fit(xdat, ydat, mul = 1:2, show = FALSE)
+  gev_fit <- gev_refit(xdat, ydat, mul = 1:2, show = FALSE)
   temp <- gev_fit
   class(temp) <- "ismev_gev"
   test_that("ismev::gev.fit, reg: logLik() vs. logLik(logLikVec)", {
@@ -51,7 +51,7 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   })
   # Continuing to the regression example on page 119 of Coles (2001)
   ydat <- as.matrix((1:length(rain)) / length(rain))
-  reg_rain_fit <- oogpd.fit(rain, 30, ydat = ydat, sigl = 1, siglink = exp,
+  reg_rain_fit <- gpd_refit(rain, 30, ydat = ydat, sigl = 1, siglink = exp,
                             show = FALSE)
   temp <- reg_rain_fit
   class(temp) <- "ismev_gpd"
@@ -71,7 +71,7 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   muinit <- init[1]
   siginit <- init[2]
   shinit <- init[3]
-  rain_fit <- oopp.fit(rain, 10, muinit = muinit, siginit = siginit,
+  rain_fit <- pp_refit(rain, 10, muinit = muinit, siginit = siginit,
                        shinit = shinit, show = FALSE)
   temp <- rain_fit
   class(temp) <- "ismev_pp"
@@ -96,7 +96,7 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   muinit <- init[1:3]
   siginit <- init[4:6]
   shinit <- init[7]
-  wooster.pp <- oopp.fit(-wooster, threshold = wu, ydat = ydat, mul = 1:2,
+  wooster.pp <- pp_refit(-wooster, threshold = wu, ydat = ydat, mul = 1:2,
                          sigl = 1:2, siglink = exp, method = "BFGS",
                          muinit = muinit, siginit = siginit, shinit = shinit,
                          show = FALSE)
