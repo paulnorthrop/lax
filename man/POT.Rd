@@ -21,6 +21,7 @@ got_POT <- requireNamespace("POT", quietly = TRUE)
 if (got_POT) {
   library(POT)
   # An example from the POT::fitgpd documentation.
+  set.seed(4082019)
   x <- POT::rgpd(200, 1, 2, 0.25)
   fit <- POT::fitgpd(x, 1, "mle")
   adj_fit <- alogLik(fit)

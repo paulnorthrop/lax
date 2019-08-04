@@ -24,6 +24,7 @@ We illustrate the features available from using examples from the [Example analy
 library(lax)
 library(evd)
 # An example from the evd::fgev documentation
+set.seed(4082019)
 uvdata <- evd::rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
 M0 <- evd::fgev(uvdata)
 M1 <- evd::fgev(uvdata, nsloc = (-49:50)/100)

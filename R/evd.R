@@ -13,6 +13,7 @@
 #' if (got_evd) {
 #'   library(evd)
 #'   # An example from the evd::fgev documentation
+#'   set.seed(4082019)
 #'   uvdata <- evd::rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
 #'   M1 <- evd::fgev(uvdata, nsloc = (-49:50)/100)
 #'   adj_fgev <- alogLik(M1)
@@ -27,6 +28,7 @@
 #'   summary(adj_owfit)
 #'
 #'   # An example from the evd::fpot documentation
+#'   set.seed(4082019)
 #'   uvdata <- evd::rgpd(100, loc = 0, scale = 1.1, shape = 0.2)
 #'   M1 <- evd::fpot(uvdata, 1)
 #'   adj_fpot <- alogLik(M1)
