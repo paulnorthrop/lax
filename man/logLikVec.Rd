@@ -7,9 +7,9 @@
 logLikVec(x, ...)
 }
 \arguments{
-\item{...}{Further arguments.}
+\item{x}{A fitted model object.}
 
-\item{object}{A fitted model object.}
+\item{...}{Further arguments.}
 }
 \description{
 Generic function for calculating loglikelihood contributions from
