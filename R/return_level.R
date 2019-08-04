@@ -182,7 +182,7 @@ gev_rl_CI <- function (x, m, level, npy, type){
   delta[3,] <- sigma * box_cox_deriv(yp, lambda = -xi)
   rl_var <- t(delta) %*% mat %*% delta
   rl_se <- sqrt(rl_var)
-  z_val <- qnorm(1 - (1 - level) / 2)
+  z_val <- stats::qnorm(1 - (1 - level) / 2)
   rl_lower <- rl_mle - z_val * rl_se
   rl_upper <- rl_mle + z_val * rl_se
   list(mle = rl_mle, lower = rl_lower, upper = rl_upper)

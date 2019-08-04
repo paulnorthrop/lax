@@ -43,7 +43,7 @@ pp_refit <- function (xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
   uInd <- xdat > u
   lrate <- sum(uInd)/n
   xdatu <- xdat[uInd]
-  in2 <- sqrt(6 * var(xdatu))/pi
+  in2 <- sqrt(6 * stats::var(xdatu))/pi
   in1 <- mean(xdatu) - 0.57722 * in2
   if (is.null(shinit))
     in3 <- 1e-08

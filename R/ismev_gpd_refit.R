@@ -39,7 +39,7 @@ gpd_refit <- function (xdat, threshold, npy = 365, ydat = NULL, sigl = NULL,
   xdatu <- xdat[xdat > u]
   xind <- (1:n)[xdat > u]
   u <- u[xind]
-  in2 <- sqrt(6 * var(xdatu))/pi
+  in2 <- sqrt(6 * stats::var(xdatu))/pi
   in1 <- mean(xdatu, na.rm = TRUE) - 0.57722 * in2
   if (is.null(sigl)) {
     sigmat <- as.matrix(rep(1, length(xdatu)))

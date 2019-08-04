@@ -62,7 +62,7 @@ re_pot <- function (data, threshold = NA, nextremes = NA, run = NA,
   intensity <- n.exceed/span
   exceedances <- as.numeric(exceedances.its)
   xbar <- mean(exceedances) - threshold
-  s2 <- var(exceedances)
+  s2 <- stats::var(exceedances)
   shape0 <- -0.5 * (((xbar * xbar)/s2) - 1)
   extra <- ((length(exceedances)/span)^(-shape0) - 1)/shape0
   betahat <- 0.5 * xbar * (((xbar * xbar)/s2) + 1)

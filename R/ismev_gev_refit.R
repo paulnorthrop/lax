@@ -31,7 +31,7 @@ gev_refit <- function (xdat, ydat = NULL, mul = NULL, sigl = NULL, shl = NULL,
   npsc <- length(sigl) + 1
   npsh <- length(shl) + 1
   z$trans <- FALSE
-  in2 <- sqrt(6 * var(xdat))/pi
+  in2 <- sqrt(6 * stats::var(xdat))/pi
   in1 <- mean(xdat) - 0.57722 * in2
   if (is.null(mul)) {
     mumat <- as.matrix(rep(1, length(xdat)))

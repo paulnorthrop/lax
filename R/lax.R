@@ -67,5 +67,5 @@
 #' @name lax
 #' @import methods
 #' @import sandwich
-#' @importFrom stats nobs
+#' @importFrom stats nobs vcov coef logLik
 NULL
