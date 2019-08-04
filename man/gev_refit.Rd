@@ -86,7 +86,7 @@ if (got_ismev) {
   library(ismev)
   fit1 <- gev.fit(revdbayes::portpirie, show = FALSE)
   ls(fit1)
-  fit2 <- ismevgev.refit(revdbayes::portpirie, show = FALSE)
+  fit2 <- gev_refit(revdbayes::portpirie, show = FALSE)
   ls(fit2)
 }
 }
