@@ -122,7 +122,7 @@ pp_refit <- function (xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
   z$conv <- x$convergence
   z$nllh <- x$value
   z$vals <- cbind(mu, sc, xi, u)
-  z$gpd <- apply(z$vals, 1, ppp, npy)
+  z$gpd <- apply(z$vals, 1, ismev_ppp, npy)
   if (z$trans) {
     z$data <- as.vector((1 + (xi[uInd] * (xdatu - u[uInd])) /
                            z$gpd[2,uInd])^(-1/xi[uInd]))

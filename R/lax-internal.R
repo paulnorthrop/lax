@@ -63,3 +63,14 @@ adj_object <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   class(res) <- c("lax", "chandwich")
   return(res)
 }
+
+
+#' @keywords internal
+#' @rdname lax-internal
+ismev_ppp <- function (a, npy) {
+  u <- a[4]
+  la <- 1 - exp(-(1 + (a[3] * (u - a[1]))/a[2])^(-1/a[3])/npy)
+  sc <- a[2] + a[3] * (u - a[1])
+  xi <- a[3]
+  c(la, sc, xi)
+}

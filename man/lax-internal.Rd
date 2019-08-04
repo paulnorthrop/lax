@@ -3,9 +3,12 @@
 \name{lax-internal}
 \alias{lax-internal}
 \alias{adj_object}
+\alias{ismev_ppp}
 \title{Internal lax functions}
 \usage{
 adj_object(x, cluster = NULL, use_vcov = TRUE, ...)
+
+ismev_ppp(a, npy)
 }
 \description{
 Internal lax functions
