@@ -6,7 +6,7 @@
 #' extreme value model objects produced by the
 #' \code{\link[fExtremes:00Extremes-package]{fExtremes}} package.
 #'
-#' @inherit adj_object params details return references seealso
+#' @inherit alogLik params details return references seealso
 #' @examples
 #' # We need the fExtremes package
 #' got_fExtremes <- requireNamespace("fExtremes", quietly = TRUE)

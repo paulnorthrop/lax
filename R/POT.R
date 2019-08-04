@@ -5,7 +5,7 @@
 #' S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
 #' extreme value model objects produced by the POT package.
 #'
-#' @inherit adj_object params details return references seealso
+#' @inherit alogLik params details return references seealso
 #' @examples
 #' # We need the evd package
 #' got_POT <- requireNamespace("POT", quietly = TRUE)

@@ -8,10 +8,10 @@
 }
 \arguments{
 \item{object}{An object of class \code{"lax"}, returned by
-\code{\link{alogLik}} or \code{\link{adj_object}}.}
+\code{\link{alogLik}}.}
 
 \item{object2}{An object of class \code{"chandwich"}, returned by
-\code{\link{alogLik}} or \code{\link{adj_object}}.}
+\code{\link{alogLik}}.}
 
 \item{...}{Further objects of class \code{"lax"} and/or arguments
 to be passed to \code{\link[chandwich]{anova.chandwich}}.}
@@ -65,5 +65,5 @@ Chandler, R. E. and Bate, S. (2007). Inference for clustered
 \seealso{
 \code{\link[chandwich]{anova.chandwich}}.
 
-\code{\link{adj_object}}.
+\code{\link{alogLik}}.
 }

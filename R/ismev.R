@@ -6,7 +6,7 @@
 #' extreme value model objects produced by the \code{\link[ismev]{ismev}}
 #' package.
 #'
-#' @inherit adj_object params details return references seealso
+#' @inherit alogLik params details return references seealso
 #' @examples
 #' # We need the evd package
 #' got_ismev <- requireNamespace("ismev", quietly = TRUE)

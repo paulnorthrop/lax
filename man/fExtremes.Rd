@@ -10,13 +10,91 @@
 
 \method{alogLik}{fGPDFIT}(x, cluster = NULL, use_vcov = TRUE, ...)
 }
+\arguments{
+\item{x}{A fitted model object with certain associated S3 methods.
+See \strong{Details}.}
+
+\item{cluster}{A vector or factor indicating from which cluster the
+  respective loglikelihood contributions from \code{loglik} originate.
+  This must have the same length as the vector returned by the
+  \code{logLikVec} method for object like \code{x}.
+  If \code{cluster} is not supplied then it is assumed that
+  each observation forms its own cluster.
+
+  If the sandwich package
+  is used to estimate the quantities required to adjust the loglikelihood
+  (i.e. \code{use_sanswich = TRUE}) then \code{cluster} determines whether
+  the variance matrix \code{V} of the score vector is estimated using
+  \code{\link[sandwich]{meat}} (\code{cluster} is \code{NULL}) or
+  \code{\link[sandwich:vcovCL]{meatCL}} (\code{cluster} is not \code{NULL}).
+  See \code{use_sandwich} and \strong{Details}.}
+
+\item{use_vcov}{A logical scalar.  Should we use the \code{vcov} S3 method
+for \code{x} (if this exists) to estimate the Hessian of the independence
+loglikelihood to be passed as the argument \code{H} to
+\code{\link[chandwich]{adjust_loglik}}?
+Otherwise, \code{H} is estimated inside
+\code{\link[chandwich]{adjust_loglik}} using
+\code{\link[stats:optim]{optimHess}}.}
+
+\item{...}{Further arguments to be passed to the functions in the
+sandwich package \code{\link[sandwich]{meat}}, if \code{cluster = NULL},
+or \code{\link[sandwich:vcovCL]{meatCL}}, otherwise.}
+}
+\value{
+An object of class inheriting from \code{"lax"}, which inherits
+  from the class \code{"chandwich"}.  See
+  \code{\link[chandwich]{adjust_loglik}}.
+  The attribute \code{"name"} of the returned object is the elements of
+  \code{class(x)} concatenated into a character scalar and separated
+  by \code{_}.
+}
 \description{
 S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
 extreme value model objects produced by the
 \code{\link[fExtremes:00Extremes-package]{fExtremes}} package.
 }
 \details{
-These functions are not intended to be called by the user.
+Object \code{x} \emph{must} have the following S3
+  methods:
+  \itemize{
+    \item{\code{logLikVec: }}{returns a vector of the contributions to the
+      independence loglikelihood from individual observations;}
+    \item{\code{coef: }}{returns a vector of model coefficients, see
+      \code{\link[stats]{coef}};}
+    \item{\code{nobs: }}{returns the number of (non-missing) observations
+      used in a model fit, see \code{\link[stats]{nobs}}};
+  }
+  and \emph{may} have the following S3 methods
+  \itemize{
+    \item{\code{vcov: }}{returns the estimated variance-covariance matrix of
+      the (main) parameters of a fitted model, see
+      \code{\link[stats]{vcov}};}
+    \item{\code{estfun: }}{returns an \eqn{n x k} matrix, in which each
+      column gives the derivative of the loglikelihood at each of \eqn{n}
+      observation with respect to the \eqn{k} parameters of the model, see
+      \code{\link[sandwich]{estfun}}.}
+  }
+  If a \code{vcov} method is not available then the variance-covariance
+  matrix is estimated inside \code{\link[chandwich]{adjust_loglik}}.
+  If an \code{estfun} method is not available then the matrix is estimated
+  using \code{\link[numDeriv]{jacobian}}.
+
+  Loglikelihood adjustment is performed using the
+  \code{\link[chandwich]{adjust_loglik}} function in the
+  \code{\link[chandwich]{chandwich}} package.
+  The relevant arguments to \code{\link[chandwich]{adjust_loglik}}, namely
+  \code{loglik, mle, H} and \code{V}, are created based on the class of
+  the object \code{x}. If \code{use_sandwich = TRUE} then
+  \code{H} is inferred using \code{\link[sandwich]{bread}} in the
+  sandwich package and, similarly, \code{V} is inferred using
+  either \code{\link[sandwich]{meat}}, if \code{cluster = NULL}
+  and \code{\link[sandwich:vcovCL]{meatCL}}, otherwise.
+
+  If \code{cluster} is \code{NULL} then arguments of
+  \code{\link[sandwich:vcovCL]{meatCL}} present in \dots will be ignored.
+  Similarly, if \code{cluster} is not \code{NULL} then arguments of
+  \code{\link[sandwich]{meat}} present in \dots will be ignored.
 }
 \examples{
 # We need the fExtremes package
@@ -41,4 +119,30 @@ if (got_fExtremes) {
   adj_fit <- alogLik(fit)
   summary(adj_fit)
 }
+}
+\references{
+Chandler, R. E. and Bate, S. (2007). Inference for clustered
+  data using the independence loglikelihood. \emph{Biometrika},
+  \strong{94}(1), 167-183. \url{http://dx.doi.org/10.1093/biomet/asm015}
+
+Zeleis (2006) Object-Oriented Computation and Sandwich
+  Estimators.  \emph{Journal of Statistical Software}, \strong{16}, 1-16.
+  \url{http://dx.doi.org/10.18637/jss.v016.i09}
+}
+\seealso{
+\code{\link[chandwich]{summary.chandwich}},
+  \code{\link[chandwich]{plot.chandwich}},
+  \code{\link[chandwich]{confint.chandwich}},
+  \code{\link[chandwich]{anova.chandwich}},
+  \code{\link[chandwich]{coef.chandwich}},
+  \code{\link[chandwich]{vcov.chandwich}}
+  and \code{\link[chandwich]{logLik.chandwich}}
+  for S3 methods for objects of class \code{"chandwich"}.
+
+\code{\link[chandwich]{adjust_loglik}} to adjust a user-supplied
+  loglikelihood.
+
+\code{\link[sandwich]{bread}}, \code{\link[sandwich]{meat}},
+  \code{\link[sandwich:vcovCL]{meatCL}} and
+  \code{\link[sandwich]{sandwich}} in the sandwich package.
 }

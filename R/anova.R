@@ -10,9 +10,9 @@
 #' parameters of the larger model is held fixed.
 #'
 #' @param object An object of class \code{"lax"}, returned by
-#'   \code{\link{alogLik}} or \code{\link{adj_object}}.
+#'   \code{\link{alogLik}}.
 #' @param object2 An object of class \code{"chandwich"}, returned by
-#'   \code{\link{alogLik}} or \code{\link{adj_object}}.
+#'   \code{\link{alogLik}}.
 #' @param ... Further objects of class \code{"lax"} and/or arguments
 #'   to be passed to \code{\link[chandwich]{anova.chandwich}}.
 #'
@@ -29,7 +29,7 @@
 #'       model is a valid simplification of the model in the previous row.}
 #'  The row names are the names of the model objects.
 #' @seealso \code{\link[chandwich]{anova.chandwich}}.
-#' @seealso \code{\link{adj_object}}.
+#' @seealso \code{\link{alogLik}}.
 #' @references Chandler, R. E. and Bate, S. (2007). Inference for clustered
 #'   data using the independence loglikelihood. \emph{Biometrika},
 #'   \strong{94}(1), 167-183. \url{http://dx.doi.org/10.1093/biomet/asm015}

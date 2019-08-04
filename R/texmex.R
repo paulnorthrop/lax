@@ -6,7 +6,7 @@
 #' extreme value model objects produced by the
 #' \code{\link[texmex:texmex-package]{texmex}} package.
 #'
-#' @inherit adj_object params details return references seealso
+#' @inherit alogLik params details return references seealso
 #' @examples
 #' # We need the texmex package
 #' got_texmex <- requireNamespace("texmex", quietly = TRUE)

@@ -6,7 +6,7 @@
 #' extreme value model objects produced by the
 #' \code{\link[extRemes:extRemes-package]{extRemes}} package.
 #'
-#' @inherit adj_object params details return references seealso
+#' @inherit alogLik params details return references seealso
 #' @examples
 #' # We need the extRemes and distillery packages
 #' got_extRemes <- requireNamespace("extRemes", quietly = TRUE)
