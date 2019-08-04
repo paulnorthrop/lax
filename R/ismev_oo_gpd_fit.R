@@ -6,6 +6,7 @@
 #' \code{xdat, ydat, siglink, shlink} and matrices
 #' \code{sigmat, shmat} giving the respective regression design matrices
 #' for the scale and shape parameters of the model.
+#' @inheritParams ismev::gpd.fit
 #' @references Heffernan, J. E. and Stephenson, A. G. (2018). ismev: An
 #'   Introduction to Statistical Modeling of Extreme Values.
 #'   R package version 1.42.

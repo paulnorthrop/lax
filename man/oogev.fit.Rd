@@ -9,6 +9,68 @@ oogev.fit(xdat, ydat = NULL, mul = NULL, sigl = NULL, shl = NULL,
   muinit = NULL, siginit = NULL, shinit = NULL, show = TRUE,
   method = "Nelder-Mead", maxit = 10000, ...)
 }
+\arguments{
+\item{xdat}{A numeric vector of data to be fitted.}
+
+\item{ydat}{A matrix of covariates for generalized linear modelling
+    of the parameters (or \code{NULL} (the default) for stationary
+    fitting). The number of rows should be the same as the length
+    of \code{xdat}.}
+
+\item{mul}{Numeric vectors of integers, giving the columns
+    of \code{ydat} that contain covariates for generalized linear
+    modelling of the location, scale and shape parameters repectively
+    (or \code{NULL} (the default) if the corresponding parameter is
+    stationary).}
+
+\item{sigl}{Numeric vectors of integers, giving the columns
+    of \code{ydat} that contain covariates for generalized linear
+    modelling of the location, scale and shape parameters repectively
+    (or \code{NULL} (the default) if the corresponding parameter is
+    stationary).}
+
+\item{shl}{Numeric vectors of integers, giving the columns
+    of \code{ydat} that contain covariates for generalized linear
+    modelling of the location, scale and shape parameters repectively
+    (or \code{NULL} (the default) if the corresponding parameter is
+    stationary).}
+
+\item{mulink}{Inverse link functions for generalized
+    linear modelling of the location, scale and shape parameters
+    repectively.}
+
+\item{siglink}{Inverse link functions for generalized
+    linear modelling of the location, scale and shape parameters
+    repectively.}
+
+\item{shlink}{Inverse link functions for generalized
+    linear modelling of the location, scale and shape parameters
+    repectively.}
+
+\item{muinit}{numeric of length equal to total number
+    of parameters used to model the location, scale or shape parameter(s),
+    resp.  See Details section for default (NULL) initial values.}
+
+\item{siginit}{numeric of length equal to total number
+    of parameters used to model the location, scale or shape parameter(s),
+    resp.  See Details section for default (NULL) initial values.}
+
+\item{shinit}{numeric of length equal to total number
+    of parameters used to model the location, scale or shape parameter(s),
+    resp.  See Details section for default (NULL) initial values.}
+
+\item{show}{Logical; if \code{TRUE} (the default), print details of
+    the fit.}
+
+\item{method}{The optimization method (see \code{\link{optim}} for
+    details).}
+
+\item{maxit}{The maximum number of iterations.}
+
+\item{...}{Other control parameters for the optimization. These
+    are passed to components of the \code{control} argument of
+    \code{optim}.}
+}
 \description{
 This is a slightly modified version of the \code{\link[ismev]{gev.fit}}
 function in the \code{\link[ismev]{ismev}} package.

@@ -8,6 +8,29 @@ peaks over thresholds (POT), and returns an object of class "potd".}
 oopot(data, threshold = NA, nextremes = NA, run = NA,
   picture = TRUE, ...)
 }
+\arguments{
+\item{data}{numeric vector of data, which may have a \code{times}
+    attribute containing (in an object of class \code{"POSIXct"}, or
+    an object that can be converted to that class; see
+    \code{\link{as.POSIXct}}) the times/dates of each observation.
+    If no \code{times} attribute exists, the data are assumed to
+    be equally spaced.}
+
+\item{threshold}{a threshold value (either this or \code{nextremes}
+    must be given but not both)}
+
+\item{nextremes}{the number of upper extremes to be used (either
+    this or \code{threshold} must be given but not both)}
+
+\item{run}{if the data are to be declustered the run length
+    parameter for the runs method (see \code{\link{decluster}})
+    should be entered here}
+
+\item{picture}{whether or not a picture should be drawn if
+    declustering is performed}
+
+\item{...}{arguments passed to \code{optim}}
+}
 \description{
 This is a slightly modified versions of the \code{\link[evir]{pot}}
 function in the \code{evir} package.

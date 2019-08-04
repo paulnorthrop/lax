@@ -8,6 +8,7 @@
 #' for the location, scale and shape parameters of the model.  In addition, a
 #' bug in the code that sets initial estimates has been corrected: the bug
 #' meant that if \code{threshold} is a vector then the optimization hangs.
+#' @inheritParams ismev::pp.fit
 #' @references Heffernan, J. E. and Stephenson, A. G. (2018). ismev: An
 #'   Introduction to Statistical Modeling of Extreme Values.
 #'   R package version 1.42.

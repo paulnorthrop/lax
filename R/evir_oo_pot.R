@@ -6,6 +6,7 @@
 #' The main modification is to add to the returned object the argument
 #' \code{data} supplied by the user.  This is added to the returned
 #' (list) object with the name \code{input_data}.
+#' @inheritParams evir::pot
 #' @references Bernhard Pfaff and Alexander McNeil (2018). evir: Extreme
 #'   Values in R. R package version 1.7-4.
 #'   \url{https://CRAN.R-project.org/package=evir}.
