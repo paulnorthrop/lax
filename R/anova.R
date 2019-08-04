@@ -10,9 +10,9 @@
 #' parameters of the larger model is held fixed.
 #'
 #' @param object An object of class \code{"lax"}, returned by
-#'   \code{\link{alogLik}} or \code{\link{adjust_object}}.
+#'   \code{\link{alogLik}} or \code{\link{adj_object}}.
 #' @param object2 An object of class \code{"chandwich"}, returned by
-#'   \code{\link{alogLik}} or \code{\link{adjust_object}}.
+#'   \code{\link{alogLik}} or \code{\link{adj_object}}.
 #' @param ... Further objects of class \code{"lax"} and/or arguments
 #'   to be passed to \code{\link[chandwich]{anova.chandwich}}.
 #'
