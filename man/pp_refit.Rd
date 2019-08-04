@@ -89,7 +89,7 @@ got_ismev <- requireNamespace("ismev", quietly = TRUE)
 if (got_ismev) {
   library(ismev)
   data(rain)
-  fit1 <- pp.fit(rain, 100, show = FALSE)
+  fit1 <- pp.fit(rain, 10, show = FALSE)
   ls(fit1)
   fit2 <- pp_refit(rain, 10, show = FALSE)
   ls(fit2)

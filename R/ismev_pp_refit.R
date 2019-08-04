@@ -19,7 +19,7 @@
 #' if (got_ismev) {
 #'   library(ismev)
 #'   data(rain)
-#'   fit1 <- pp.fit(rain, 100, show = FALSE)
+#'   fit1 <- pp.fit(rain, 10, show = FALSE)
 #'   ls(fit1)
 #'   fit2 <- pp_refit(rain, 10, show = FALSE)
 #'   ls(fit2)
@@ -46,6 +46,10 @@ pp_refit <- function (xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
   xdatu <- xdat[uInd]
   in2 <- sqrt(6 * stats::var(xdatu))/pi
   in1 <- mean(xdatu) - 0.57722 * in2
+
+#  in2 <- sqrt(6 * var(xdat))/pi
+#  in1 <- mean(xdat) - in2 * (0.57722 - log(npy))          # initial estimates of (intercepts) mu_0 and sigma_0 relevant to AM
+
   if (is.null(shinit))
     in3 <- 1e-08
   else in3 <- shinit
