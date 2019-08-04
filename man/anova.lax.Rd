@@ -48,13 +48,13 @@ if (got_evd) {
   x <- rep(c(1, -1), each = length(y) / 2)
   owfit <- evd::fgev(y, nsloc = x)
   year <- rep(1:(length(y) / 2), 2)
-  oola_small <- alogLik(owfit, cluster = year)
+  small <- alogLik(owfit, cluster = year)
 
   owfit <- evd::fgev(y)
   year <- rep(1:(length(y) / 2), 2)
-  oola_tiny <- alogLik(owfit, cluster = year)
+  tiny <- alogLik(owfit, cluster = year)
 
-  anova(oola_small, oola_tiny)
+  anova(small, tiny)
 }
 }
 \references{

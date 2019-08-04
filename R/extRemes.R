@@ -118,7 +118,7 @@ alogLik.fevd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   } else if (x$type == "PP") {
     class(x) <- "extRemes__pp"
   }
-  # Call oola::adjust_object to adjust the loglikelihood
+  # Call adj()_object to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
   if (x$type == "GEV" || x$type == "Gumbel") {
     if (extRemes::is.fixedfevd(x)) {

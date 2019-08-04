@@ -41,13 +41,13 @@
 #'   x <- rep(c(1, -1), each = length(y) / 2)
 #'   owfit <- evd::fgev(y, nsloc = x)
 #'   year <- rep(1:(length(y) / 2), 2)
-#'   oola_small <- alogLik(owfit, cluster = year)
+#'   small <- alogLik(owfit, cluster = year)
 #'
 #'   owfit <- evd::fgev(y)
 #'   year <- rep(1:(length(y) / 2), 2)
-#'   oola_tiny <- alogLik(owfit, cluster = year)
+#'   tiny <- alogLik(owfit, cluster = year)
 #'
-#'   anova(oola_small, oola_tiny)
+#'   anova(small, tiny)
 #' }
 #' @export
 anova.lax <- function (object, object2, ...) {
@@ -71,7 +71,7 @@ anova.lax <- function (object, object2, ...) {
   for_compare_models <- dotargs[named]
   # Create list of model objects:  unnamed arguments may be model objects
   model_list <- c(list(object, object2), dotargs[!named])
-  # Check for objects that do not have class "oola"
+  # Check for objects that do not have class "lax"
   is_chand <- vapply(model_list, function(x) inherits(x, "lax"), NA)
   if (any(!is_chand)) {
     stop("The following are not 'lax' objects: ",

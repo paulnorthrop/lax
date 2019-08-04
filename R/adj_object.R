@@ -87,7 +87,7 @@
 #'   \code{\link[sandwich:vcovCL]{meatCL}} present in \dots will be ignored.
 #'   Similarly, if \code{cluster} is not \code{NULL} then arguments of
 #'   \code{\link[sandwich]{meat}} present in \dots will be ignored.
-#' @return An object of class inheriting from \code{"oola"}, which inherits
+#' @return An object of class inheriting from \code{"lax"}, which inherits
 #'   from the class \code{"chandwich"}.  See
 #'   \code{\link[chandwich]{adjust_loglik}}.
 #'   The attribute \code{"name"} of the returned object is the elements of
@@ -169,6 +169,6 @@ adj_object <- function(x, cluster = NULL, use_sandwich = TRUE,
                                   par_names = names(mle),
                                   name = paste(class(x), collapse = "_"),
                                   mle = mle, H = H, V = V)
-  class(res) <- c("oola", "chandwich")
+  class(res) <- c("lax", "chandwich")
   return(res)
 }

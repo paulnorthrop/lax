@@ -109,7 +109,7 @@ alogLik.gev.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # Set the class
   name_of_class <- names(supported_by_lax)[which(is_supported)]
   class(x) <- name_of_class
-  # Call oola::adjust_object to adjust the loglikelihood
+  # Call adj_object() to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
   if (x$trans) {
     class(res) <- c("lax", "chandwich", "ismev", "gev", "nonstat")
@@ -136,7 +136,7 @@ alogLik.pp.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # Set the class
   name_of_class <- names(supported_by_lax)[which(is_supported)]
   class(x) <- name_of_class
-  # Call oola::adjust_object to adjust the loglikelihood
+  # Call adj_object() to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
   if (x$trans) {
     class(res) <- c("lax", "chandwich", "ismev", "pp", "nonstat")
@@ -163,7 +163,7 @@ alogLik.gpd.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # Set the class
   name_of_class <- names(supported_by_lax)[which(is_supported)]
   class(x) <- name_of_class
-  # Call oola::adjust_object to adjust the loglikelihood
+  # Call adj_object() to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
   if (x$trans) {
     class(res) <- c("lax", "chandwich", "ismev", "gpd", "nonstat")

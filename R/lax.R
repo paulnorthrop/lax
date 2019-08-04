@@ -33,7 +33,7 @@
 #' \code{\link[lax]{texmex}}.
 #'
 #' See Chandler and Bate (2007) for full details and
-#' \code{vignette("oola-vignette", package = "oola")} for an
+#' \code{vignette("lax-vignette", package = "lax")} for an
 #' overview of the package.
 #' @references Berger S., Graham N., Zeileis A. (2017). Various Versatile
 #'   Variances: An Object-Oriented Implementation of Clustered Covariances in R.

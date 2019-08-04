@@ -38,7 +38,7 @@ sandwich package \code{\link[sandwich]{meat}}, if \code{cluster = NULL},
 or \code{\link[sandwich:vcovCL]{meatCL}}, otherwise.}
 }
 \value{
-An object of class inheriting from \code{"oola"}, which inherits
+An object of class inheriting from \code{"lax"}, which inherits
   from the class \code{"chandwich"}.  See
   \code{\link[chandwich]{adjust_loglik}}.
   The attribute \code{"name"} of the returned object is the elements of
