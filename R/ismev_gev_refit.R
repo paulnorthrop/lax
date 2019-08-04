@@ -15,6 +15,7 @@
 #' # We need the ismev package
 #' got_ismev <- requireNamespace("ismev", quietly = TRUE)
 #' if (got_ismev) {
+#'   library(ismev)
 #'   fit1 <- gev.fit(revdbayes::portpirie, show = FALSE)
 #'   ls(fit1)
 #'   fit2 <- ismevgev.refit(revdbayes::portpirie, show = FALSE)

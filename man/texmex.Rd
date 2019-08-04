@@ -119,8 +119,9 @@ if (got_texmex) {
   adj_mod <- alogLik(mod)
   summary(adj_mod)
 
-  got_ismev <- requireNamespace("ismev", quietly = TRUE)
-  if (got_ismev) {
+  got_texmex <- requireNamespace("texmex", quietly = TRUE)
+  if (got_texmex) {
+    library(texmex)
     # GEV regression
     # An example from page 113 of Coles (2001)
     data(fremantle)

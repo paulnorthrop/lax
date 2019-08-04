@@ -87,6 +87,7 @@ meant that if \code{threshold} is a vector then the optimization hangs.
 # We need the ismev package
 got_ismev <- requireNamespace("ismev", quietly = TRUE)
 if (got_ismev) {
+  library(ismev)
   data(rain)
   fit1 <- pp.fit(rain, 100, show = FALSE)
   ls(fit1)

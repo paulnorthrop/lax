@@ -15,6 +15,7 @@
 #' # We need the ismev package
 #' got_ismev <- requireNamespace("ismev", quietly = TRUE)
 #' if (got_ismev) {
+#'   library(ismev)
 #'   data(rain)
 #'   fit1 <- gpd.fit(rain, 10)
 #'   ls(fit1)
