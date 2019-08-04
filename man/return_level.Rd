@@ -4,7 +4,7 @@
 \alias{return_level}
 \title{Return levels}
 \usage{
-return_level(x, m = 100, conf = 95, npy = 1, inc = NULL,
+return_level(x, m = 100, level = 0.95, npy = 1, inc = NULL,
   type = c("vertical", "cholesky", "spectral", "none"))
 }
 \description{

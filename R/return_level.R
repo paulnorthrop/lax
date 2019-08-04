@@ -1,3 +1,11 @@
+# Can I just reparameterise a chandwich object?
+# ... or use the plot.chandwich emthod
+
+# GEV, GP, PP
+# npy
+# plot.retlevs()
+# lax-internal.R
+
 #' Return levels
 #'
 #' Add description
@@ -25,7 +33,7 @@
 #'   ismev::gev.prof(gev_fit, m = 100, xlow = 4.45, xup = 5.5)
 #' }
 #' @export
-return_level <- function(x, m = 100, conf = 95, npy = 1, inc = NULL,
+return_level <- function(x, m = 100, level = 0.95, npy = 1, inc = NULL,
                          type = c("vertical", "cholesky", "spectral", "none")) {
   if (!inherits(x, "lax")) {
     stop("use only with \"lax\" objects")
@@ -35,39 +43,42 @@ return_level <- function(x, m = 100, conf = 95, npy = 1, inc = NULL,
   }
   type <- match.arg(type)
   if (inherits(x, "gev")) {
-    temp <- return_level_gev(x, m, conf, npy, inc, type)
+    temp <- return_level_gev(x, m, level, npy, inc, type)
   }
   return(temp)
 }
 
-return_level_gev <- function(x, m, conf, npy, inc, type) {
+return_level_gev <- function(x, m, level, npy, inc, type) {
   # MLE and symmetric conf% CI for the return level
-  rl_sym <- gev_rl_CI(x, m, conf, npy, type)
+  rl_sym <- gev_rl_CI(x, m, level, npy, type)
   # Set inc (if it hasn't been supplied)
-  rl_prof <- gev_rl_prof(x, m, conf, npy, inc, type, rl_sym)
-  return(rl_sym)
+  rl_prof <- gev_rl_prof(x, m, level, npy, inc, type, rl_sym)
+  return(list(rl_sym = rl_sym, rl_prof = rl_prof))
 }
 
-gev_rl_prof <- function(x, m, conf, npy, inc, type, rl_sym) {
+gev_rl_prof <- function(x, m, level, npy, inc, type, rl_sym) {
   if (is.null(inc)) {
-    inc <- (rl_sym$upper - rl_sym$lower) / 10
+    inc <- (rl_sym$upper - rl_sym$lower) / 100
   }
   p <- 1 / (m * npy)
   # Calculates the negated profile log-likelihood of the m-year return level
   gev_neg_prof_loglik <- function(a, xp) {
-    if (a[2] <= 0) {
+    if (a[1] <= 0) {
       return(10 ^ 10)
     }
-    mu <- xp - revdbayes::qgev(1 - p, loc = 0, scale = a[2], shape = a[3])
-    gev_pars <- c(mu, sigma, xi)
-    return(x(gev_pars))
+    mu <- xp - revdbayes::qgev(1 - p, loc = 0, scale = a[1], shape = a[2])
+    gev_pars <- c(mu, a[1:2])
+    return(-x(gev_pars))
   }
   rl_mle <- rl_sym$mle
   max_loglik <- attr(x, "max_loglik")
-  conf_line <- max_loglik - 0.5 * stats::qchisq(conf / 100, 1)
+  conf_line <- max_loglik - 0.5 * stats::qchisq(level, 1)
   v1 <- v2 <- x1 <- x2 <- NULL
   x2[1] <- x1[1] <- rl_mle
   v2[1] <- v1[1] <- max_loglik
+  #
+  # Starting from the MLE, we search upwards and downwards until we pass the
+  # cutoff for the 100level% confidence interval
   #
   ### Upper tail ...
   xp <- rl_mle
@@ -99,17 +110,14 @@ gev_rl_prof <- function(x, m, conf, npy, inc, type, rl_sym) {
     my_val <- v1[ii]
   }
   sol_low <- sol
-  #
-  x <- c(rev(x1), x2)
-  v <- c(rev(v1), v2)
-  plot(x, -v, type = "l", xlab = paste(round(m, 0), "year return level"),
-       ylab = "profile Log-likelihood")
-  abline(h = max_loglik, col = 4)
-  abline(h = conf_line, col = 4)
-  return()
+#  plot(x, v, type = "l", xlab = paste(round(m, 0), "year return level"),
+#       ylab = "profile Log-likelihood")
+#  abline(h = max_loglik, col = 4)
+#  abline(h = conf_line, col = 4)
+  return(list(ret_levs = c(rev(x1), x2), prof_lik = c(rev(v1), v2)))
 }
 
-gev_rl_CI <- function (x, m, conf, npy, type){
+gev_rl_CI <- function (x, m, level, npy, type){
   mle <- attr(x, "MLE")
   mu <- mle[1]
   sigma <- mle[2]
@@ -130,7 +138,7 @@ gev_rl_CI <- function (x, m, conf, npy, type){
   delta[3,] <- sigma * box_cox_deriv(yp, lambda = -xi)
   rl_var <- t(delta) %*% mat %*% delta
   rl_se <- sqrt(rl_var)
-  z_val <- qnorm(1 - (1 - conf / 100) / 2)
+  z_val <- qnorm(1 - (1 - level) / 2)
   rl_lower <- rl_mle - z_val * rl_se
   rl_upper <- rl_mle + z_val * rl_se
   list(mle = rl_mle, lower = rl_lower, upper = rl_upper)
