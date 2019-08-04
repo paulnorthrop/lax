@@ -34,6 +34,20 @@
 #'   adj_mod <- alogLik(mod)
 #'   summary(adj_mod)
 #'
+#'   # GP regression
+#'   # An example from page 119 of Coles (2001)
+#'   n_rain <- length(rain)
+#'   rain_df <- data.frame(rain = rain, time = 1:n_rain / n_rain)
+#'   evm_fit <- evm(y = rain, data = rain_df, family = gpd, th = 30,
+#'                  phi = ~ time)
+#'   adj_evm_fit <- alogLik(evm_fit)
+#'   summary(adj_evm_fit)
+#'   evm_fit <- evm(y = rain, data = rain_df, family = gpd, th = 30,
+#'                  phi = ~ time, cov = "sandwich")
+#'   evm_fit$se
+#'   vcov(adj_evm_fit)
+#'   vcov(evm_fit)
+#'
 #'   # GEV regression
 #'   # An example from page 113 of Coles (2001)
 #'   if (got_ismev) {
@@ -46,20 +60,6 @@
 #'                    mu = ~ Year + SOI)
 #'     adj_evm_fit <- alogLik(evm_fit)
 #'     summary(adj_evm_fit)
-#'
-#'     # GP regression
-#'     # An example from page 119 of Coles (2001)
-#'     n_rain <- length(rain)
-#'     rain_df <- data.frame(rain = rain, time = 1:n_rain / n_rain)
-#'     evm_fit <- evm(y = rain, data = rain_df, family = gpd, th = 30,
-#'                    phi = ~ time)
-#'     adj_evm_fit <- alogLik(evm_fit)
-#'     summary(adj_evm_fit)
-#'     evm_fit <- evm(y = rain, data = rain_df, family = gpd, th = 30,
-#'                    phi = ~ time, cov = "sandwich")
-#'     evm_fit$se
-#'     vcov(adj_evm_fit)
-#'     vcov(evm_fit)
 #'   }
 #' }
 #' @name texmex
