@@ -118,6 +118,10 @@ logLikVec <- function(object, ...) {
 #' @seealso \code{\link[sandwich]{bread}}, \code{\link[sandwich]{meat}},
 #'   \code{\link[sandwich:vcovCL]{meatCL}} and
 #'   \code{\link[sandwich]{sandwich}} in the sandwich package.
+#' @section Examples:
+#' See the (package-specific) examples in \code{\link{evd}},
+#'   \code{\link{evir}}, \code{\link{extRemes}},\code{\link{fExtremes}},
+#'   \code{\link{ismev}}, \code{\link{POT}} and \code{\link{texmex}}.
 #' @export
 alogLik <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   UseMethod("alogLik")
