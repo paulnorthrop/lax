@@ -12,11 +12,16 @@ if (requireNamespace("evd", quietly = TRUE)) {
   uvdata <- evd::rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
   M1 <- evd::fgev(uvdata, nsloc = (-49:50)/100)
   temp <- M1
+  adj_fgev <- alogLik(M1)
   class(temp) <- "evd_fgev"
   # Note: evd::logLik.evd returns non-standard attributes (no nobs)
   # Therefore, use expect_equivalent(), rather than expect_equal()
   test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(M1), logLik(logLikVec(temp)))
+  })
+  # Check that alogLik also returnd the correct maximised log-likelihood
+  test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equalivalent(logLik(M1), logLik(adj_fgev))
   })
   # Check logLik.evd_fgev: trivially correct
   test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
@@ -40,6 +45,7 @@ if (requireNamespace("evd", quietly = TRUE)) {
 
   # model = "gpd"
   M1 <- evd::fpot(uvdata, 1)
+  adj_fpot <- alogLik(M1)
   temp <- M1
   class(temp) <- "evd_fpot"
   if (pot_to_evd) {
@@ -49,6 +55,10 @@ if (requireNamespace("evd", quietly = TRUE)) {
   # Therefore, use expect_equivalent(), rather than expect_equal()
   test_that("evd::fpot, gpd: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(M1), logLik(logLikVec(temp)))
+  })
+  # Check that alogLik also returnd the correct maximised log-likelihood
+  test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equalivalent(logLik(M1), logLik(adj_fpot))
   })
   # Check logLik.evd_fgev: trivially correct
   test_that("evd::fpot, gpd: logLik() vs. logLik(logLikVec)", {
@@ -58,6 +68,7 @@ if (requireNamespace("evd", quietly = TRUE)) {
   # model = "pp"
   M1 <- evd::fpot(uvdata, 1, model = "pp")
   temp <- M1
+  adj_fpot <- alogLik(M1)
   class(temp) <- "evd_fpot"
   if (pot_to_evd) {
     class(M1) <- rev(class(M1))
@@ -66,6 +77,10 @@ if (requireNamespace("evd", quietly = TRUE)) {
   # Therefore, use expect_equivalent(), rather than expect_equal()
   test_that("evd::fpot, pp: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(M1), logLik(logLikVec(temp)))
+  })
+  # Check that alogLik also returnd the correct maximised log-likelihood
+  test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equalivalent(logLik(M1), logLik(adj_fpot))
   })
   # Check logLik.evd_fgev: trivially correct
   test_that("evd::fpot, pp: logLik() vs. logLik(logLikVec)", {
