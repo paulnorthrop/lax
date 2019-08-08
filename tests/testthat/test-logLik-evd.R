@@ -21,7 +21,7 @@ if (requireNamespace("evd", quietly = TRUE)) {
   })
   # Check that alogLik also returnd the correct maximised log-likelihood
   test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equalivalent(logLik(M1), logLik(adj_fgev))
+    testthat::expect_equivalent(logLik(M1), logLik(adj_fgev))
   })
   # Check logLik.evd_fgev: trivially correct
   test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
@@ -58,7 +58,7 @@ if (requireNamespace("evd", quietly = TRUE)) {
   })
   # Check that alogLik also returnd the correct maximised log-likelihood
   test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equalivalent(logLik(M1), logLik(adj_fpot))
+    testthat::expect_equivalent(logLik(M1), logLik(adj_fpot))
   })
   # Check logLik.evd_fgev: trivially correct
   test_that("evd::fpot, gpd: logLik() vs. logLik(logLikVec)", {
@@ -80,7 +80,7 @@ if (requireNamespace("evd", quietly = TRUE)) {
   })
   # Check that alogLik also returnd the correct maximised log-likelihood
   test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equalivalent(logLik(M1), logLik(adj_fpot))
+    testthat::expect_equivalent(logLik(M1), logLik(adj_fpot))
   })
   # Check logLik.evd_fgev: trivially correct
   test_that("evd::fpot, pp: logLik() vs. logLik(logLikVec)", {
