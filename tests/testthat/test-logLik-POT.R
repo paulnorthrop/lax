@@ -1,4 +1,4 @@
-context("logLik, evd package")
+context("logLik, POT package")
 
 # Check that logLik(object) and logLik(logLikVec(object)) agree
 
