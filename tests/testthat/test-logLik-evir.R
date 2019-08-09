@@ -14,11 +14,11 @@ if (requireNamespace("evir", quietly = TRUE)) {
   adj_out <- alogLik(out)
   class(temp) <- "evir_gev"
   test_that("evir::gev: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(out), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(out), logLik(logLikVec(temp)))
   })
   # Check that alogLik also returnd the correct maximised log-likelihood
   test_that("evd::gev: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(out), logLik(adj_out))
+    testthat::expect_equal(logLik(out), logLik(adj_out))
   })
   # Check logLik.evir_gev: trivially correct
   test_that("evir::gev: logLik() vs. logLik(logLikVec)", {
@@ -32,11 +32,11 @@ if (requireNamespace("evir", quietly = TRUE)) {
   adj_out <- alogLik(out)
   class(temp) <- "evir_gpd"
   test_that("evir::gpd: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(out), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(out), logLik(logLikVec(temp)))
   })
   # Check that alogLik also returnd the correct maximised log-likelihood
   test_that("evd::gpd: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(out), logLik(adj_out))
+    testthat::expect_equal(logLik(out), logLik(adj_out))
   })
   # Check logLik.evir_gpd: trivially correct
   test_that("evir::gpd: logLik() vs. logLik(logLikVec)", {
@@ -50,11 +50,11 @@ if (requireNamespace("evir", quietly = TRUE)) {
   adj_out <- alogLik(out)
   class(temp) <- "evir_pot"
   test_that("evir::pot logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(out), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(out), logLik(logLikVec(temp)))
   })
   # Check that alogLik also returnd the correct maximised log-likelihood
   test_that("evd::pot: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(out), logLik(adj_out))
+    testthat::expect_equal(logLik(out), logLik(adj_out))
   })
   # Check logLik.evir_gpd: trivially correct
   test_that("evir::pot: logLik() vs. logLik(logLikVec)", {
