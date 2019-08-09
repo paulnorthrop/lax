@@ -229,6 +229,10 @@ logLikVec.extRemes_gp <- function(object, pars = NULL, ...) {
     val <- revdbayes::dgp(response_data, loc = the_threshold, scale = sig,
                           shape = xi, log = TRUE) * object$weights
   }
+  # Return the usual attributes for a "logLik" object
+  attr(val, "nobs") <- nobs(object)
+  attr(val, "df") <- length(pars)
+  class(val) <- "logLikVec"
   return(val)
 }
 
@@ -366,6 +370,10 @@ logLikVec.extRemes_pp <- function(object, pars = NULL, ...) {
     val <- pp_loglik_vec(x = response_data, u = object$threshold, mu = mu,
                          sigma = sig, xi = xi)
   }
+  # Return the usual attributes for a "logLik" object
+  attr(val, "nobs") <- nobs(object)
+  attr(val, "df") <- length(pars)
+  class(val) <- "logLikVec"
   return(val)
 }
 
