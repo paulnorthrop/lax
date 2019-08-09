@@ -48,7 +48,8 @@ vcov.fGPDFIT <- function(object, ...) {
 
 #' @export
 logLik.fGPDFIT <- function(object, ...) {
-  val <- object@fit$fit$value
+  # Note: value is the *negated* loglikelihood at the MLE
+  val <- -object@fit$fit$value
   attr(val, "nobs") <- nobs(object)
   attr(val, "df") <- length(coef(object))
   class(val) <- "logLik"
