@@ -28,6 +28,17 @@ if (requireNamespace("evd", quietly = TRUE)) {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
 
+  # No covariates
+
+  M2 <- evd::fgev(uvdata, nsloc = (-49:50)/100)
+  temp <- M2
+  adj_fgev <- alogLik(M2)
+  class(temp) <- "evd_fgev"
+  # Check that alogLik also returnd the correct maximised log-likelihood
+  test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(M2), logLik(adj_fgev))
+  })
+
   # evd::fpot
 
   # Check whether logLik.pot exists (from package POT)
