@@ -18,7 +18,7 @@ if (requireNamespace("POT", quietly = TRUE)) {
   test_that("POT::fitgpd: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(fit), logLik(logLikVec(temp)))
   })
-  # Check that alogLik also returnd the correct maximised log-likelihood
+  # Check that alogLik also returned the correct maximised log-likelihood
   test_that("POT::fitgpd: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(fit), logLik(adj_fit))
   })

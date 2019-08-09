@@ -15,7 +15,7 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   test_that("ismev::gev.fit: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(gev_fit), logLik(logLikVec(temp)))
   })
-  # Check that alogLik also returnd the correct maximised log-likelihood
+  # Check that alogLik also returned the correct maximised log-likelihood
   test_that("ismev::gev_fit: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(gev_fit), logLik(adj_gev_fit))
   })
@@ -36,7 +36,7 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   test_that("ismev::gev.fit, reg: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equal(logLik(gev_fit), logLik(logLikVec(temp)))
   })
-  # Check that alogLik also returnd the correct maximised log-likelihood
+  # Check that alogLik also returned the correct maximised log-likelihood
   test_that("ismev::gev_fit, reg: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(gev_fit), logLik(adj_gev_fit))
   })
@@ -56,7 +56,7 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   test_that("ismev::gpd.fit: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(rain_fit), logLik(logLikVec(temp)))
   })
-  # Check that alogLik also returnd the correct maximised log-likelihood
+  # Check that alogLik also returned the correct maximised log-likelihood
   test_that("ismev::gpd.fit: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(rain_fit), logLik(adj_rain_fit))
   })
@@ -74,7 +74,7 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   test_that("ismev::gpd.fit, reg: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(reg_rain_fit), logLik(logLikVec(temp)))
   })
-  # Check that alogLik also returnd the correct maximised log-likelihood
+  # Check that alogLik also returned the correct maximised log-likelihood
   test_that("ismev::gpd.fit, reg: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(reg_rain_fit), logLik(adj_reg_rain_fit))
   })
@@ -99,7 +99,7 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   test_that("ismev::pp.fit: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(rain_fit), logLik(logLikVec(temp)))
   })
-  # Check that alogLik also returnd the correct maximised log-likelihood
+  # Check that alogLik also returned the correct maximised log-likelihood
   test_that("ismev::pp.fit, reg: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(reg_rain_fit), logLik(adj_reg_rain_fit))
   })
@@ -131,7 +131,7 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   test_that("ismev::pp.fit, reg: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(wooster.pp), logLik(logLikVec(temp)))
   })
-  # Check that alogLik also returnd the correct maximised log-likelihood
+  # Check that alogLik also returned the correct maximised log-likelihood
   test_that("ismev::pp.fit, reg: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(wooster.pp), logLik(adj_wooster.pp))
   })

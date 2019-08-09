@@ -20,7 +20,7 @@ if (requireNamespace("fExtremes", quietly = TRUE)) {
   test_that("fExtremes::gevFit: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(fit), logLik(logLikVec(temp)))
   })
-  # Check that alogLik also returnd the correct maximised log-likelihood
+  # Check that alogLik also returned the correct maximised log-likelihood
   test_that("fExtremes::gevFit: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(fit), logLik(adj_fit))
   })
@@ -46,7 +46,7 @@ if (requireNamespace("fExtremes", quietly = TRUE)) {
     testthat::expect_equivalent(logLik(fit), logLik(logLikVec(temp)),
                                 tol = my_tol)
   })
-  # Check that alogLik also returnd the correct maximised log-likelihood
+  # Check that alogLik also returned the correct maximised log-likelihood
   test_that("fExtremes::gpdFit: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(fit), logLik(adj_fit),
                                 tol = my_tol)
