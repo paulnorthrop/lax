@@ -104,7 +104,8 @@ if (got_fExtremes) {
 
   # GEV
   # An example from the fExtremes::gevFit documentation
-  x <- fExtremes::gevSim(model = list(xi=0.25, mu=0, beta=1), n = 1000)
+  set.seed(4082019)
+  x <- gevSim(model = list(xi=0.25, mu=0, beta=1), n = 1000)
   # Fit GEV distribution by maximum likelihood estimation
   fit <- gevFit(x)
   adj_fit <- alogLik(fit)
