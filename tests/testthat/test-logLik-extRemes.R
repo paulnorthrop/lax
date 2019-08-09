@@ -13,7 +13,7 @@ if (got_extRemes & got_distillery) {
   library(distillery)
   data(PORTw)
 
-  # extRemes::fevd, GEV
+  ##### extRemes::fevd, GEV
 
   # An example from the extRemes::fgev documentation
   fit0 <- fevd(TMX1, PORTw, units = "deg C", use.phi = TRUE)
@@ -39,15 +39,78 @@ if (got_extRemes & got_distillery) {
   adj_fit1 <- alogLik(fit1)
   class(temp) <- "extRemes_gev"
 
-  test_that("extRemes::fgev, reg: logLik() vs. logLik(logLikVec)", {
+  test_that("extRemes::fgev, reg, phi: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(fit1), logLik(logLikVec(temp)))
   })
   # Check that alogLik also returned the correct maximised log-likelihood
-  test_that("extRemes::fgev, reg: logLik() vs. logLik(logLikVec)", {
+  test_that("extRemes::fgev, reg, phi: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(fit1), logLik(adj_fit1))
   })
   # Check logLik.extRemes_gev, GEV: trivially correct
-  test_that("extRemes::fevd, reg: logLik() vs. logLik(logLikVec)", {
+  test_that("extRemes::fevd, reg, phi: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
+  })
+
+  # Repeat for use.phi = FALSE
+
+  fit1 <- fevd(TMX1, PORTw, scale.fun = ~STDTMAX, use.phi = FALSE)
+  temp <- fit1
+  adj_fit1 <- alogLik(fit1)
+  class(temp) <- "extRemes_gev"
+
+  test_that("extRemes::fgev, reg, sigma: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(fit1), logLik(logLikVec(temp)))
+  })
+  # Check that alogLik also returned the correct maximised log-likelihood
+  test_that("extRemes::fgev, reg, sigma: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(fit1), logLik(adj_fit1))
+  })
+  # Check logLik.extRemes_gev, reg: trivially correct
+  test_that("extRemes::fevd, reg, sigma: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
+  })
+
+  ##### extRemes::fevd, GP
+
+  # An example from the extRemes::fgev documentation
+  data(damage)
+  fit1 <- fevd(Dam, damage, threshold = 6, type = "GP",
+               time.units = "2.05/year")
+  temp <- fit1
+  adj_fit1 <- alogLik(fit1)
+  class(temp) <- "extRemes_gp"
+
+  test_that("extRemes::fgev, GP: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(fit1), logLik(logLikVec(temp)))
+  })
+  # Check that alogLik also returned the correct maximised log-likelihood
+  test_that("extRemes::fgev, GP: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(fit1), logLik(adj_fit1))
+  })
+  # Check logLik.extRemes_gev, GEV: trivially correct
+  test_that("extRemes::fevd, GP: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
+  })
+
+  # extRemes::fevd, GP regression, non-constant threshold
+
+  data(Fort)
+  fit <- fevd(Prec, Fort, threshold=0.475,
+              threshold.fun=~I(-0.15 * cos(2 * pi * month / 12)),
+              type = "GP")
+  temp <- fit
+  adj_fit <- alogLik(fit)
+  class(temp) <- "extRemes_gp"
+
+  test_that("extRemes::fgev, GP reg: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(fit), logLik(logLikVec(temp)))
+  })
+  # Check that alogLik also returned the correct maximised log-likelihood
+  test_that("extRemes::fgev, GP reg: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(fit), logLik(adj_fit))
+  })
+  # Check logLik.extRemes_gev, GP reg: trivially correct
+  test_that("extRemes::fevd, reg, phi: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
 
