@@ -51,7 +51,7 @@ alogLik.evd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   }
   # List of evd objects supported
   supported_by_lax <- list(evd_fgev = c("gev", "uvevd", "evd"),
-                             evd_fpot = c("pot", "uvevd", "evd"))
+                           evd_fpot = c("pot", "uvevd", "evd"))
   # Does x have a supported class?
   is_supported <- NULL
   for (i in 1:length(supported_by_lax)) {
