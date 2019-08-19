@@ -3,10 +3,22 @@
 #' Loglikelihood adjustment of extRemes fits
 #'
 #' S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
-#' extreme value model objects produced by the
+#' extreme value model objects returned from the function
+#' \code{\link[extRemes]{fevd}} in the
 #' \code{\link[extRemes:extRemes-package]{extRemes}} package.
 #'
-#' @inherit alogLik params details return references seealso
+#' @inherit alogLik params details references seealso
+#' @return An object inheriting from class \code{"chandwich"}.  See
+#'   \code{\link[chandwich]{adjust_loglik}}.
+#'   \code{class(x)} is a vector of length 5. The first 3 components are
+#'   \code{c("lax", "chandwich", "extRemes")}.
+#'   The remaining 2 components depend on the model that was fitted.
+#'   The 4th component is: \code{"gev"} if \code{x$type == "GEV"} or
+#'   \code{x$type == "Gumbel"}; \code{"gp"} if \code{x$type == "GP"} or
+#'   \code{x$type == "Exponential"}; \code{"pp"} if \code{x$type == "PP"}.
+#'   The 5th component is
+#'   \code{"stat"} if \code{\link[extRemes]{is.fixedfevd} = TRUE} and
+#'   \code{"nonstat"} if \code{\link[extRemes]{is.fixedfevd} = FALSE}.
 #' @examples
 #' # We need the extRemes and distillery packages
 #' got_extRemes <- requireNamespace("extRemes", quietly = TRUE)
