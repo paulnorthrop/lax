@@ -35,7 +35,7 @@ or \code{\link[sandwich:vcovCL]{meatCL}} (if \code{cluster} is not
 An object inheriting from class \code{"chandwich"}.  See
   \code{\link[chandwich]{adjust_loglik}}.
 
-  If \code{x} is one of the supported model  then \code{class(x)} is a
+  If \code{x} is one of the supported models then \code{class(x)} is a
   vector of length 5. The first 3 components are
   \code{c("lax", "chandwich", "name_of_package")}, where
   \code{"name_of_package"} is the name of the package from which the input
