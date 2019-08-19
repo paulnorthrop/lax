@@ -41,27 +41,25 @@ or \code{\link[sandwich:vcovCL]{meatCL}} (if \code{cluster} is not
 \value{
 An object inheriting from class \code{"chandwich"}.  See
   \code{\link[chandwich]{adjust_loglik}}.
-
-  If \code{x} is one of the supported models then \code{class(x)} is a
-  vector of length 5. The first 3 components are
-  \code{c("lax", "chandwich", "name_of_package")}, where
-  \code{"name_of_package"} is the name of the package from which the input
-  object \code{x} originated.  The remaining 2 components depend on the
-  model that was fitted.  See the documentation of the relevant package
-  for details:
-  \code{\link[lax]{evd}},
-  \code{\link[lax]{evir}},
-  \code{\link[lax]{extRemes}},
-  \code{\link[lax]{fExtremes}},
-  \code{\link[lax]{ismev}},
-  \code{\link[lax]{POT}},
-  \code{\link[lax]{texmex}}.
-
-  Otherwise, \code{class(x)} is \code{c("lax", "chandwich", class(x))}.
+  \code{class(x)} is a vector of length 5. The first 3 components are
+  \code{c("lax", "chandwich", "ismev")}.
+  The remaining 2 components depend on the model that was fitted.
+  The 4th component is:
+  \code{"gev"} if \code{\link[ismev]{gev.fit}}
+  (or \code{\link{gev_refit}} was used;
+  \code{"gpd"} if \code{\link[ismev]{gpd.fit}}
+  (or \code{\link{gpd_refit}} was used;
+  \code{"pp"} \code{\link[ismev]{pp.fit}}
+  (or \code{\link{pp_refit}} was used;
+  The 5th component is
+  \code{"stat"} if \code{x$trans = FALSE} and
+  \code{"nonstat"} if \code{x$trans = TRUE}.
 }
 \description{
 S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
-extreme value model objects produced by the \code{\link[ismev]{ismev}}
+extreme value model objects returned from the functions
+\code{\link[ismev]{gev.fit}}, \code{\link[ismev]{gpd.fit}}, and
+\code{\link[ismev]{pp.fit}} in the \code{\link[ismev]{ismev}}
 package.  If regression modelling is used then the model will need
 to be re-fitted, see \code{\link{ismev_refits}}.
 }
