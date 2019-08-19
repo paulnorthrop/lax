@@ -62,7 +62,8 @@ An object inheriting from class \code{"chandwich"}.  See
 \description{
 S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
 extreme value model objects produced by the \code{\link[ismev]{ismev}}
-package.
+package.  If regression modelling is used then the model will need
+to be re-fitted, see \code{\link{ismev_refits}}.
 }
 \details{
 Object \code{x} \emph{must} have the following S3

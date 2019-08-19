@@ -4,7 +4,8 @@
 #'
 #' S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
 #' extreme value model objects produced by the \code{\link[ismev]{ismev}}
-#' package.
+#' package.  If regression modelling is used then the model will need
+#' to be re-fitted, see \code{\link{ismev_refits}}.
 #'
 #' @inherit alogLik params details return references seealso
 #' @examples
