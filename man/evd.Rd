@@ -35,23 +35,15 @@ or \code{\link[sandwich:vcovCL]{meatCL}} (if \code{cluster} is not
 \value{
 An object inheriting from class \code{"chandwich"}.  See
   \code{\link[chandwich]{adjust_loglik}}.
-
-  If \code{x} is one of the supported model  then \code{class(x)} is a
-  vector of length 5. The first 3 components are
-  \code{c("lax", "chandwich", "name_of_package")}, where
-  \code{"name_of_package"} is the name of the package from which the input
-  object \code{x} originated.  The remaining 2 components depend on the
-  model that was fitted.  See the documentation of the relevant package
-  for details:
-  \code{\link[lax]{evd}},
-  \code{\link[lax]{evir}},
-  \code{\link[lax]{extRemes}},
-  \code{\link[lax]{fExtremes}},
-  \code{\link[lax]{ismev}},
-  \code{\link[lax]{POT}},
-  \code{\link[lax]{texmex}}.
-
-  Otherwise, \code{class(x)} is \code{c("lax", "chandwich", class(x))}.
+  \code{class(x)} is a vector of length 5. The first 3 components are
+  \code{c("lax", "chandwich", "evd")}.
+  The remaining 2 components depend on the model that was fitted.
+  If \code{\link[evd]{fgev}} was used then these components are
+  \code{c("gev", "stat")} if \code{nsloc} was \code{NULL} and
+  \code{c("gev", "nonstat")} if \code{nsloc} was not \code{NULL}.
+  If \code{\link[evd]{fpot}} was used then these components are
+  \code{c("pot", "gpd")} if \code{model} was \code{"gpd"} and
+  \code{c("pot", "pp")} if \code{model} was \code{"pp"}.
 }
 \description{
 S3 \code{alogLik} method to perform loglikelihood adjustment of fitted

@@ -5,7 +5,18 @@
 #' S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
 #' extreme value model objects produced by the evd package.
 #'
-#' @inherit alogLik params details return references seealso
+#' @inherit alogLik params details references seealso
+#' @return An object inheriting from class \code{"chandwich"}.  See
+#'   \code{\link[chandwich]{adjust_loglik}}.
+#'   \code{class(x)} is a vector of length 5. The first 3 components are
+#'   \code{c("lax", "chandwich", "evd")}.
+#'   The remaining 2 components depend on the model that was fitted.
+#'   If \code{\link[evd]{fgev}} was used then these components are
+#'   \code{c("gev", "stat")} if \code{nsloc} was \code{NULL} and
+#'   \code{c("gev", "nonstat")} if \code{nsloc} was not \code{NULL}.
+#'   If \code{\link[evd]{fpot}} was used then these components are
+#'   \code{c("pot", "gpd")} if \code{model} was \code{"gpd"} and
+#'   \code{c("pot", "pp")} if \code{model} was \code{"pp"}.
 #' @examples
 #' # We need the evd package
 #' got_evd <- requireNamespace("evd", quietly = TRUE)
