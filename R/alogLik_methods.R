@@ -92,12 +92,25 @@ logLikVec <- function(object, ...) {
 #'   in the current context, provides matrix of score contributions.
 #'   If a bespoke \code{estfun} method is not provided then this is constructed
 #'   by estimating the score contributions using \code{\link[numDeriv]{jacobian}}.
-#' @return An object of class inheriting from \code{"lax"}, which inherits
-#'   from the class \code{"chandwich"}.  See
+#' @return An object inheriting from class \code{"chandwich"}.  See
 #'   \code{\link[chandwich]{adjust_loglik}}.
-#'   The attribute \code{"name"} of the returned object is the elements of
-#'   \code{class(x)} concatenated into a character scalar and separated
-#'   by \code{_}.
+#'
+#'   If \code{x} is one of the supported model  then \code{class(x)} is a
+#'   vector of length 5. The first 3 components are
+#'   \code{c("lax", "chandwich", "name_of_package")}, where
+#'   \code{"name_of_package"} is the name of the package from which the input
+#'   object \code{x} originated.  The remaining 2 components depend on the
+#'   model that was fitted.  See the documentation of the relevant package
+#'   for details:
+#'   \code{\link[lax]{evd}},
+#'   \code{\link[lax]{evir}},
+#'   \code{\link[lax]{extRemes}},
+#'   \code{\link[lax]{fExtremes}},
+#'   \code{\link[lax]{ismev}},
+#'   \code{\link[lax]{POT}},
+#'   \code{\link[lax]{texmex}}.
+#'
+#'   Otherwise, \code{class(x)} is \code{c("lax", "chandwich", class(x))}.
 #' @references Chandler, R. E. and Bate, S. (2007). Inference for clustered
 #'   data using the independence loglikelihood. \emph{Biometrika},
 #'   \strong{94}(1), 167-183. \url{http://dx.doi.org/10.1093/biomet/asm015}
@@ -123,6 +136,14 @@ logLikVec <- function(object, ...) {
 #' @export
 alogLik <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   UseMethod("alogLik")
+}
+
+#' @export
+alogLik.default <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
+  # Call adj_object() to adjust the loglikelihood
+  res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
+  class(res) <- c("lax", "chandwich", class(x))
+  return(res)
 }
 
 #' Sum loglikelihood contributions from individual observations

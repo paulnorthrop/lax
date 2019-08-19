@@ -33,12 +33,25 @@ or \code{\link[sandwich:vcovCL]{meatCL}} (if \code{cluster} is not
 \code{NULL}).}
 }
 \value{
-An object of class inheriting from \code{"lax"}, which inherits
-  from the class \code{"chandwich"}.  See
+An object inheriting from class \code{"chandwich"}.  See
   \code{\link[chandwich]{adjust_loglik}}.
-  The attribute \code{"name"} of the returned object is the elements of
-  \code{class(x)} concatenated into a character scalar and separated
-  by \code{_}.
+
+  If \code{x} is one of the supported model  then \code{class(x)} is a
+  vector of length 5. The first 3 components are
+  \code{c("lax", "chandwich", "name_of_package")}, where
+  \code{"name_of_package"} is the name of the package from which the input
+  object \code{x} originated.  The remaining 2 components depend on the
+  model that was fitted.  See the documentation of the relevant package
+  for details:
+  \code{\link[lax]{evd}},
+  \code{\link[lax]{evir}},
+  \code{\link[lax]{extRemes}},
+  \code{\link[lax]{fExtremes}},
+  \code{\link[lax]{ismev}},
+  \code{\link[lax]{POT}},
+  \code{\link[lax]{texmex}}.
+
+  Otherwise, \code{class(x)} is \code{c("lax", "chandwich", class(x))}.
 }
 \description{
 S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
