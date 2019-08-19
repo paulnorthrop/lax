@@ -3,10 +3,22 @@
 #' Loglikelihood adjustment of texmex fits
 #'
 #' S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
-#' extreme value model objects produced by the
-#' \code{\link[texmex:texmex-package]{texmex}} package.
+#' extreme value model objects returned from the \code{\link[texmex]{evm}}
+#' function in the \code{\link[texmex:texmex-package]{texmex}} package.
+#' The model must have been fitted using maximum likelihood estimation.
 #'
-#' @inherit alogLik params details return references seealso
+#' @inherit alogLik params details references seealso
+#' @return An object inheriting from class \code{"chandwich"}.  See
+#'   \code{\link[chandwich]{adjust_loglik}}.
+#'   \code{class(x)} is a vector of length 5. The first 3 components are
+#'   \code{c("lax", "chandwich", "texmex")}.
+#'   The remaining 2 components depend on the model that was fitted.
+#'   The 4th component is: \code{"gev"} if \code{x$family$name = "GEV"};
+#'   \code{"gpd"} if \code{x$family$name = "GPD"};
+#'   \code{"egp3"} if \code{x$family$name = "EGP3"}.
+#'   The 5th component is
+#'   \code{"stat"} if there are no covariates in the mode and
+#'   \code{"nonstat"} otherwise.
 #' @examples
 #' # We need the texmex package, and ismev for the fremantle and rain datasets
 #' got_texmex <- requireNamespace("texmex", quietly = TRUE)
@@ -69,6 +81,9 @@ NULL
 #' @rdname texmex
 #' @export
 alogLik.evmOpt <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
+  if (x$penalty != "none") {
+    stop("The model must have been fitted using maximum likelihood estimation")
+  }
   # List of texmex objects supported
   supported_by_lax <- list(texmex_evmOpt = c("evmOpt"))
   # Does x have a supported class?
@@ -98,7 +113,7 @@ alogLik.evmOpt <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
     } else {
       class(res) <- c("lax", "chandwich", "texmex", "gpd", "nonstat")
     }
-  } else if (x$family$name == "GPD") {
+  } else if (x$family$name == "EGP3") {
     if (n_pars == 3) {
       class(res) <- c("lax", "chandwich", "texmex", "egp3", "stat")
     } else {
