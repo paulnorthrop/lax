@@ -7,8 +7,8 @@ Authors@R: c(
       role = c("aut", "cre", "cph")),
     person("An", "Other", role = c("aut", "cph"))
     )
-Description: Performs adjusted inferences using fitted model objects 
-    returned from the extreme value analysis packages 
+Description: Performs adjusted inferences based on model objects fitted, using 
+    maximum likelihood estimation, by the extreme value analysis packages
     'evd' <https://cran.r-project.org/package=evd>, 
     'evir' <https://cran.r-project.org/package=evir>, 
     'extRemes' <https://cran.r-project.org/package=extRemes>, 

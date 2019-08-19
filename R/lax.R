@@ -1,7 +1,7 @@
-#' lax: Objected-oriented Loglikelihood Adjustment for Extreme Value Models
+#' lax: Loglikelihood Adjustment for Extreme Value Models
 #'
-#' Performs adjusted inferences using fitted model objects returned from the
-#' extreme value analysis packages
+#' Performs adjusted inferences based on model objects fitted, using maximum
+#' likelihood estimation, by the extreme value analysis packages
 #' \href{https://cran.r-project.org/package=evd}{evd}
 #' \href{https://cran.r-project.org/package=evir}{evir}
 #' \href{https://cran.r-project.org/package=extRemes}{extRemes}
