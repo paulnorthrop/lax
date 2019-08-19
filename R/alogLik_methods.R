@@ -32,17 +32,10 @@ logLikVec <- function(object, ...) {
 #' @param cluster A vector or factor indicating from which cluster the
 #'   respective loglikelihood contributions from \code{loglik} originate.
 #'   This must have the same length as the vector returned by the
-#'   \code{logLikVec} method for object like \code{x}.
-#'   If \code{cluster} is not supplied then it is assumed that
-#'   each observation forms its own cluster.
-#'
-#'   If the sandwich package
-#'   is used to estimate the quantities required to adjust the loglikelihood
-#'   (i.e. \code{use_sandwich = TRUE}) then \code{cluster} determines whether
-#'   the variance matrix \code{V} of the score vector is estimated using
-#'   \code{\link[sandwich]{meat}} (\code{cluster} is \code{NULL}) or
-#'   \code{\link[sandwich:vcovCL]{meatCL}} (\code{cluster} is not \code{NULL}).
-#'   See \code{use_sandwich} and \strong{Details}.
+#'   \code{logLikVec} method for an object like \code{x}.
+#'   If \code{cluster} is not supplied (i.e. is \code{NULL}) then it is
+#'   assumed that each observation forms its own cluster.
+#'   See \strong{Details}.
 #' @param use_vcov A logical scalar.  Should we use the \code{vcov} S3 method
 #'   for \code{x} (if this exists) to estimate the Hessian of the independence
 #'   loglikelihood to be passed as the argument \code{H} to
@@ -51,8 +44,9 @@ logLikVec <- function(object, ...) {
 #'   \code{\link[chandwich]{adjust_loglik}} using
 #'   \code{\link[stats:optim]{optimHess}}.
 #' @param ... Further arguments to be passed to the functions in the
-#'   sandwich package \code{\link[sandwich]{meat}}, if \code{cluster = NULL},
-#'   or \code{\link[sandwich:vcovCL]{meatCL}}, otherwise.
+#'   sandwich package \code{\link[sandwich]{meat}} (if \code{cluster = NULL}),
+#'   or \code{\link[sandwich:vcovCL]{meatCL}} (if \code{cluster} is not
+#'   \code{NULL}).
 #' @details Object \code{x} \emph{must} have the following S3
 #'   methods:
 #'   \itemize{
@@ -73,26 +67,31 @@ logLikVec <- function(object, ...) {
 #'       observation with respect to the \eqn{k} parameters of the model, see
 #'       \code{\link[sandwich]{estfun}}.}
 #'   }
-#'   If a \code{vcov} method is not available then the variance-covariance
-#'   matrix is estimated inside \code{\link[chandwich]{adjust_loglik}}.
-#'   If an \code{estfun} method is not available then the matrix is estimated
-#'   using \code{\link[numDeriv]{jacobian}}.
-#'
 #'   Loglikelihood adjustment is performed using the
 #'   \code{\link[chandwich]{adjust_loglik}} function in the
 #'   \code{\link[chandwich]{chandwich}} package.
 #'   The relevant arguments to \code{\link[chandwich]{adjust_loglik}}, namely
 #'   \code{loglik, mle, H} and \code{V}, are created based on the class of
-#'   the object \code{x}. If \code{use_sandwich = TRUE} then
-#'   \code{H} is inferred using \code{\link[sandwich]{bread}} in the
-#'   sandwich package and, similarly, \code{V} is inferred using
-#'   either \code{\link[sandwich]{meat}}, if \code{cluster = NULL}
-#'   and \code{\link[sandwich:vcovCL]{meatCL}}, otherwise.
+#'   the object \code{x}.
 #'
-#'   If \code{cluster} is \code{NULL} then arguments of
+#'   If a \code{vcov} method is not available, or if \code{use_vcov = FALSE},
+#'   then the variance-covariance matrix of the MLE (from which \code{H} is
+#'   calculated) is estimated inside \code{\link[chandwich]{adjust_loglik}}
+#'   using \code{\link[stats:optim]{optimHess}}.
+#'
+#'   The \code{sandwich} package is used to estimate the variance matrix
+#'   \code{V} of the score vector: \code{\link[sandwich]{meat}} is used if
+#'   \code{cluster = NULL}; \code{\link[sandwich:vcovCL]{meatCL}} is used if
+#'   \code{cluster} is not \code{NULL}.
+#'   If \code{cluster} is \code{NULL} then any arguments of
 #'   \code{\link[sandwich:vcovCL]{meatCL}} present in \dots will be ignored.
-#'   Similarly, if \code{cluster} is not \code{NULL} then arguments of
+#'   Similarly, if \code{cluster} is not \code{NULL} then any arguments of
 #'   \code{\link[sandwich]{meat}} present in \dots will be ignored.
+#'   \code{\link[sandwich]{meat}} and \code{\link[sandwich:vcovCL]{meatCL}}
+#'   require an \code{\link[sandwich]{estfun}} method to be available, which,
+#'   in the current context, provides matrix of score contributions.
+#'   If a bespoke \code{estfun} method is not provided then this is constructed
+#'   by estimating the score contributions using \code{\link[numDeriv]{jacobian}}.
 #' @return An object of class inheriting from \code{"lax"}, which inherits
 #'   from the class \code{"chandwich"}.  See
 #'   \code{\link[chandwich]{adjust_loglik}}.
@@ -115,9 +114,8 @@ logLikVec <- function(object, ...) {
 #'   for S3 methods for objects of class \code{"chandwich"}.
 #' @seealso \code{\link[chandwich]{adjust_loglik}} to adjust a user-supplied
 #'   loglikelihood.
-#' @seealso \code{\link[sandwich]{bread}}, \code{\link[sandwich]{meat}},
-#'   \code{\link[sandwich:vcovCL]{meatCL}} and
-#'   \code{\link[sandwich]{sandwich}} in the sandwich package.
+#' @seealso \code{\link[sandwich]{meat}} and
+#'   \code{\link[sandwich:vcovCL]{meatCL}} in the sandwich package.
 #' @section Examples:
 #' See the (package-specific) examples in \code{\link{evd}},
 #'   \code{\link{evir}}, \code{\link{extRemes}},\code{\link{fExtremes}},
