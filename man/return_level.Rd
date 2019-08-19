@@ -11,12 +11,13 @@ return_level(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
 \item{x}{An object inheriting from class \code{"lax"} returned from
 \code{\link{alogLik}}.}
 
-\item{m}{A numeric scalar.  The return period.}
+\item{m}{A numeric scalar.  The return period in units of the number
+of observations.  See \strong{Details} for information.}
 
 \item{level}{The (maximum) confidence level required for the confidence
 intervals for the \code{m}-year return level.}
 
-\item{npy}{A numeric scalar.}
+\item{npy}{A numeric scalar.  The}
 
 \item{prof}{A logical scalar.  Should we calculate intervals based on
 profile log-likelihood?}

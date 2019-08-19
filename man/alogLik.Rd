@@ -19,7 +19,7 @@ See \strong{Details}.}
 
   If the sandwich package
   is used to estimate the quantities required to adjust the loglikelihood
-  (i.e. \code{use_sanswich = TRUE}) then \code{cluster} determines whether
+  (i.e. \code{use_sandwich = TRUE}) then \code{cluster} determines whether
   the variance matrix \code{V} of the score vector is estimated using
   \code{\link[sandwich]{meat}} (\code{cluster} is \code{NULL}) or
   \code{\link[sandwich:vcovCL]{meatCL}} (\code{cluster} is not \code{NULL}).
