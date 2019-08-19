@@ -4,7 +4,7 @@
 \alias{plot.retlev}
 \title{Plot diagnostics for a ret_lev object}
 \usage{
-\method{plot}{retlev}(x, y = NULL, ...)
+plot.retlev(x, y = NULL, ...)
 }
 \arguments{
 \item{x}{an object of class \code{c("ret_lev", "lax")}, a result of
