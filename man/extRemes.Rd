@@ -38,9 +38,9 @@ An object inheriting from class \code{"chandwich"}.  See
   \code{class(x)} is a vector of length 5. The first 3 components are
   \code{c("lax", "chandwich", "extRemes")}.
   The remaining 2 components depend on the model that was fitted.
-  The 4th component is: \code{"gev"} if \code{x$type == "GEV"} or
-  \code{x$type == "Gumbel"}; \code{"gp"} if \code{x$type == "GP"} or
-  \code{x$type == "Exponential"}; \code{"pp"} if \code{x$type == "PP"}.
+  The 4th component is: \code{"gev"} if \code{x$type = "GEV"} or
+  \code{x$type = "Gumbel"}; \code{"gp"} if \code{x$type = "GP"} or
+  \code{x$type = "Exponential"}; \code{"pp"} if \code{x$type = "PP"}.
   The 5th component is
   \code{"stat"} if \code{\link[extRemes]{is.fixedfevd} = TRUE} and
   \code{"nonstat"} if \code{\link[extRemes]{is.fixedfevd} = FALSE}.
