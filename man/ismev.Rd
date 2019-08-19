@@ -46,11 +46,11 @@ An object inheriting from class \code{"chandwich"}.  See
   The remaining 2 components depend on the model that was fitted.
   The 4th component is:
   \code{"gev"} if \code{\link[ismev]{gev.fit}}
-  (or \code{\link{gev_refit}} was used;
+  (or \code{\link{gev_refit}}) was used;
   \code{"gpd"} if \code{\link[ismev]{gpd.fit}}
-  (or \code{\link{gpd_refit}} was used;
+  (or \code{\link{gpd_refit}}) was used;
   \code{"pp"} \code{\link[ismev]{pp.fit}}
-  (or \code{\link{pp_refit}} was used;
+  (or \code{\link{pp_refit}}) was used;
   The 5th component is
   \code{"stat"} if \code{x$trans = FALSE} and
   \code{"nonstat"} if \code{x$trans = TRUE}.
