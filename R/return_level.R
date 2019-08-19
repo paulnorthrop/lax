@@ -10,10 +10,11 @@
 #'
 #' @param x An object inheriting from class \code{"lax"} returned from
 #'   \code{\link{alogLik}}.
-#' @param m A numeric scalar.  The return period.
+#' @param m A numeric scalar.  The return period in units of the number
+#'   of observations.  See \strong{Details} for information.
 #' @param level The (maximum) confidence level required for the confidence
 #'   intervals for the \code{m}-year return level.
-#' @param npy A numeric scalar.
+#' @param npy A numeric scalar.  The
 #' @param prof A logical scalar.  Should we calculate intervals based on
 #'   profile log-likelihood?
 #' @param inc A numeric scalar. Only relevant if \code{prof = TRUE}. The
