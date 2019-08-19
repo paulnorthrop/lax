@@ -50,6 +50,7 @@ S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
 extreme value model objects returned from the function
 \code{\link[extRemes]{fevd}} in the
 \code{\link[extRemes:extRemes-package]{extRemes}} package.
+The model must have been fitted using maximum likelihood estimation.
 }
 \details{
 Object \code{x} \emph{must} have the following S3

@@ -6,6 +6,7 @@
 #' extreme value model objects returned from the function
 #' \code{\link[extRemes]{fevd}} in the
 #' \code{\link[extRemes:extRemes-package]{extRemes}} package.
+#' The model must have been fitted using maximum likelihood estimation.
 #'
 #' @inherit alogLik params details references seealso
 #' @return An object inheriting from class \code{"chandwich"}.  See

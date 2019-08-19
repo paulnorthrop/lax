@@ -8,6 +8,7 @@
 #' \code{\link[fExtremes:GevModelling]{gumbelFit}} and
 #' \code{\link[fExtremes:GpdModelling]{gpdFit}}
 #' in the \code{\link[fExtremes:00Extremes-package]{fExtremes}} package.
+#' The model must have been fitted using maximum likelihood estimation.
 #'
 #' @inherit alogLik params details references seealso
 #' @return An object inheriting from class \code{"chandwich"}.  See

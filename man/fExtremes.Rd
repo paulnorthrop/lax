@@ -54,6 +54,7 @@ extreme value model objects returned from the functions
 \code{\link[fExtremes:GevModelling]{gumbelFit}} and
 \code{\link[fExtremes:GpdModelling]{gpdFit}}
 in the \code{\link[fExtremes:00Extremes-package]{fExtremes}} package.
+The model must have been fitted using maximum likelihood estimation.
 }
 \details{
 Object \code{x} \emph{must} have the following S3
