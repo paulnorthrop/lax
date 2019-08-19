@@ -47,7 +47,10 @@ An object inheriting from class \code{"chandwich"}.  See
 }
 \description{
 S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
-extreme value model objects produced by the evd package.
+extreme value model objects returned from the functions
+\code{\link[evd]{fgev}} and \code{\link[evd]{fpot}} in the evd package.
+If \code{x} is returned from \code{\link[evd]{fgev}} then the call to must
+have used \code{prob = NULL}.
 }
 \details{
 Object \code{x} \emph{must} have the following S3

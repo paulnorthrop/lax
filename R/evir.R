@@ -3,11 +3,24 @@
 #' Loglikelihood adjustment of evir fits
 #'
 #' S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
-#' extreme value model objects produced by the evir package.
-#' If \code{\link[evir]{pot}} was used to produce \code{x} then the model will
+#' extreme value model objects returned from the functions
+#' \code{\link[evir]{gev}}, \code{\link[evir]{gpd}} and \code{\link[evir]{pot}}
+#' in the evir package.
+#' If \code{x} was returned from \code{\link[evir]{pot}} then the model will
 #' need to be re-fitted using \code{\link{pot_refit}}.
 #'
-#' @inherit alogLik params details return references seealso
+#' @inherit alogLik params details references seealso
+#' @return An object inheriting from class \code{"chandwich"}.  See
+#'   \code{\link[chandwich]{adjust_loglik}}.
+#'   \code{class(x)} is a vector of length 5. The first 3 components are
+#'   \code{c("lax", "chandwich", "evir")}.
+#'   The remaining 2 components depend on the model that was fitted.
+#'   If \code{\link[evir]{gev}} was used then these components are
+#'   \code{c("gev", "stat")}.
+#'   If \code{\link[evir]{gpd}} was used then these components are
+#'   \code{c("gpd", "stat")}.
+#'   If \code{\link{pot_refit}} was used then these components are
+#'   \code{c("potd", "stat")}.
 #' @examples
 #' # We need the evir package
 #' got_evir <- requireNamespace("evir", quietly = TRUE)

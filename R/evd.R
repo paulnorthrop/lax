@@ -3,7 +3,10 @@
 #' Loglikelihood adjustment of evd fits
 #'
 #' S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
-#' extreme value model objects produced by the evd package.
+#' extreme value model objects returned from the functions
+#' \code{\link[evd]{fgev}} and \code{\link[evd]{fpot}} in the evd package.
+#' If \code{x} is returned from \code{\link[evd]{fgev}} then the call to must
+#' have used \code{prob = NULL}.
 #'
 #' @inherit alogLik params details references seealso
 #' @return An object inheriting from class \code{"chandwich"}.  See
@@ -74,6 +77,9 @@ alogLik.evd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   }
   # Set the class
   name_of_class <- names(supported_by_lax)[which(is_supported)]
+  if (name_of_class == "evd_fgev" && !is.null(x$prob)) {
+    stop("x$prob must be NULL")
+  }
   class(x) <- name_of_class
   # Call adj_object() to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)

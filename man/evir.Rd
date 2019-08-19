@@ -41,28 +41,22 @@ or \code{\link[sandwich:vcovCL]{meatCL}} (if \code{cluster} is not
 \value{
 An object inheriting from class \code{"chandwich"}.  See
   \code{\link[chandwich]{adjust_loglik}}.
-
-  If \code{x} is one of the supported models then \code{class(x)} is a
-  vector of length 5. The first 3 components are
-  \code{c("lax", "chandwich", "name_of_package")}, where
-  \code{"name_of_package"} is the name of the package from which the input
-  object \code{x} originated.  The remaining 2 components depend on the
-  model that was fitted.  See the documentation of the relevant package
-  for details:
-  \code{\link[lax]{evd}},
-  \code{\link[lax]{evir}},
-  \code{\link[lax]{extRemes}},
-  \code{\link[lax]{fExtremes}},
-  \code{\link[lax]{ismev}},
-  \code{\link[lax]{POT}},
-  \code{\link[lax]{texmex}}.
-
-  Otherwise, \code{class(x)} is \code{c("lax", "chandwich", class(x))}.
+  \code{class(x)} is a vector of length 5. The first 3 components are
+  \code{c("lax", "chandwich", "evir")}.
+  The remaining 2 components depend on the model that was fitted.
+  If \code{\link[evir]{gev}} was used then these components are
+  \code{c("gev", "stat")}.
+  If \code{\link[evir]{gpd}} was used then these components are
+  \code{c("gpd", "stat")}.
+  If \code{\link{pot_refit}} was used then these components are
+  \code{c("potd", "stat")}.
 }
 \description{
 S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
-extreme value model objects produced by the evir package.
-If \code{\link[evir]{pot}} was used to produce \code{x} then the model will
+extreme value model objects returned from the functions
+\code{\link[evir]{gev}}, \code{\link[evir]{gpd}} and \code{\link[evir]{pot}}
+in the evir package.
+If \code{x} was returned from \code{\link[evir]{pot}} then the model will
 need to be re-fitted using \code{\link{pot_refit}}.
 }
 \details{
