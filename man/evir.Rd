@@ -62,6 +62,8 @@ An object inheriting from class \code{"chandwich"}.  See
 \description{
 S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
 extreme value model objects produced by the evir package.
+If \code{\link[evir]{pot}} was used to produce \code{x} then the model will
+need to be re-fitted using \code{\link{pot_refit}}.
 }
 \details{
 Object \code{x} \emph{must} have the following S3
@@ -128,8 +130,8 @@ if (got_evir) {
   summary(adj_out)
 
   # An example from the evir::pot documentation
-  # We use lax::re_pot() to return the input data
-  out <- re_pot(danish, 10)
+  # We use lax::pot_refit() to return the input data
+  out <- pot_refit(danish, 10)
   adj_out <- alogLik(out)
   summary(adj_out)
 }
