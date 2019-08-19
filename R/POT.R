@@ -4,7 +4,7 @@
 #'
 #' S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
 #' extreme value model objects returned from
-#' \code{\link[POT]{fitGPD}} in the POT package.
+#' \code{\link[POT]{fitGPD}} function in the POT package.
 #' The model must have been fitted using maximum likelihood estimation.
 #'
 #' @inherit alogLik params details references seealso
