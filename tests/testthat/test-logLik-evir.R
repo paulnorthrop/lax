@@ -44,8 +44,8 @@ if (requireNamespace("evir", quietly = TRUE)) {
   })
 
   # An example from the evir::pot documentation
-  # We use lax::re_pot() to return the input data
-  out <- re_pot(danish, 10)
+  # We use lax::pot_refit() to return the input data
+  out <- pot_refit(danish, 10)
   temp <- out
   adj_out <- alogLik(out)
   class(temp) <- "evir_pot"
