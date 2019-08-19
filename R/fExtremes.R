@@ -3,10 +3,23 @@
 #' Loglikelihood adjustment of fExtremes fits
 #'
 #' S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
-#' extreme value model objects produced by the
-#' \code{\link[fExtremes:00Extremes-package]{fExtremes}} package.
+#' extreme value model objects returned from the functions
+#' \code{\link[fExtremes:GevModelling]{gevFit}},
+#' \code{\link[fExtremes:GevModelling]{gumbelFit}} and
+#' \code{\link[fExtremes:GpdModelling]{gpdFit}}
+#' in the \code{\link[fExtremes:00Extremes-package]{fExtremes}} package.
 #'
-#' @inherit alogLik params details return references seealso
+#' @inherit alogLik params details references seealso
+#' @return An object inheriting from class \code{"chandwich"}.  See
+#'   \code{\link[chandwich]{adjust_loglik}}.
+#'   \code{class(x)} is a vector of length 5. The first 3 components are
+#'   \code{c("lax", "chandwich", "fExtremes")}.
+#'   The remaining 2 components depend on the model that was fitted.
+#'   If \code{\link[fExtremes:GevModelling]{gevFit}} or
+#'   \code{\link[fExtremes:GevModelling]{gumbelFit}} was used then these
+#'   components are \code{c("gev", "stat")}.
+#'   If \code{\link[fExtremes:GpdModelling]{gpdFit}} was used then these
+#'   components are \code{c("gpd", "stat")}.
 #' @examples
 #' # We need the fExtremes package
 #' got_fExtremes <- requireNamespace("fExtremes", quietly = TRUE)
