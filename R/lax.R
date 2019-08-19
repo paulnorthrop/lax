@@ -68,4 +68,5 @@
 #' @import methods
 #' @import sandwich
 #' @importFrom stats nobs vcov coef logLik
+#' @importFrom graphics plot
 NULL
