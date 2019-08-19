@@ -24,7 +24,7 @@ adj_object <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
     return(logLikVec(fitted_object, pars = pars))
   }
   #
-  # Set H, but not if use_cov = FALSE or no vcov method exists ----------
+  # Set H, but not if use_vcov = FALSE or no vcov method exists ----------
   #
   if (!use_vcov) {
     H <- NULL
