@@ -1,6 +1,6 @@
-context("nobs, evd package")
+context("nobs")
 
-# Check that nobs.evd bechaves correctly
+# Check that nobs.evd behaves correctly
 
 if (requireNamespace("evd", quietly = TRUE)) {
   library(evd)
@@ -33,5 +33,17 @@ if (requireNamespace("evd", quietly = TRUE)) {
   M3 <- evd::fextreme(uvdata, list(mean = 0, sd = 1), distn = "norm", mlen = 365)
   test_that("evd::fextreme, nobs.evd() vs. length(response)", {
     testthat::expect_equivalent(nobs(M3), length(uvdata))
+  })
+}
+
+# Check that nobs.evmOpt behaves correctly
+
+if (requireNamespace("texmex", quietly = TRUE)) {
+  library(texmex)
+
+  # texmex::evm, GEV
+  mod <- texmex::evm(SeaLevel, data = portpirie, family = gev)
+  test_that("texmex::evm, nobs.evm_Opt vs. length(response)", {
+    testthat::expect_equal(nobs(mod), length(portpirie$SeaLevel))
   })
 }
