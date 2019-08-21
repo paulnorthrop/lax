@@ -80,12 +80,17 @@ ismev_ppp <- function (a, npy) {
 return_level_gev <- function(x, m, level, npy, prof, inc, type) {
   # MLE and symmetric conf% CI for the return level
   rl_sym <- gev_rl_CI(x, m, level, npy, type)
+  # Extract SE
+  rl_se <- rl_sym["se"]
+  # Remove SE
+  rl_sym <- rl_sym[c("lower", "mle", "upper")]
   if (!prof) {
-    return(list(rl_sym = rl_sym, rl_prof = NULL))
+    return(list(rl_sym = rl_sym, rl_prof = NULL, rl_se = rl_se))
   }
   temp <- gev_rl_prof(x, m, level, npy, inc, type, rl_sym)
-  return(list(rl_sym = rl_sym, rl_prof = temp$rl_prof, max_loglik = logLik(x),
-              crit = temp$crit, for_plot = temp$for_plot))
+  return(list(rl_sym = rl_sym, rl_prof = temp$rl_prof, rl_se = rl_se,
+              max_loglik = logLik(x), crit = temp$crit,
+              for_plot = temp$for_plot))
 }
 
 #' @keywords internal
@@ -196,6 +201,6 @@ gev_rl_CI <- function (x, m, level, npy, type){
   z_val <- stats::qnorm(1 - (1 - level) / 2)
   rl_lower <- rl_mle - z_val * rl_se
   rl_upper <- rl_mle + z_val * rl_se
-  res <- c(lower = rl_lower, mle = rl_mle, upper = rl_upper)
+  res <- c(lower = rl_lower, mle = rl_mle, upper = rl_upper, se = rl_se)
   return(res)
 }
