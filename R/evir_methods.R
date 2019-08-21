@@ -4,7 +4,8 @@
 nobs.gev <- function(object, ...) {
   # If this is an "evd" object then use the "evd" method
   if (inherits(object, "evd")) {
-    class(object) <- "evd"
+    # c("gev", "uvevd", "evd") becomes c("evd", "uvevd", "gev")
+    class(object) <- rev(class(object))
     return(nobs(object, ...))
   }
   return(object$n)
