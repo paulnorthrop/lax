@@ -32,7 +32,26 @@ if (got_extRemes & got_distillery) {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
 
-  # extRemes::fevd, GEV regression
+  # extRemes::fevd, GEV regression in location
+
+  fit1 <- fevd(TMX1, PORTw, location.fun = ~STDTMAX, use.phi = TRUE)
+  temp <- fit1
+  adj_fit1 <- alogLik(fit1)
+  class(temp) <- "extRemes_gev"
+
+  test_that("extRemes::fevd, reg, phi: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(fit1), logLik(logLikVec(temp)))
+  })
+  # Check that alogLik also returned the correct maximised log-likelihood
+  test_that("extRemes::fevd, reg, phi: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(fit1), logLik(adj_fit1))
+  })
+  # Check logLik.extRemes_gev, GEV: trivially correct
+  test_that("extRemes::fevd, reg, phi: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
+  })
+
+  # extRemes::fevd, GEV regression in log(scale)
 
   fit1 <- fevd(TMX1, PORTw, scale.fun = ~STDTMAX, use.phi = TRUE)
   temp <- fit1
@@ -51,7 +70,7 @@ if (got_extRemes & got_distillery) {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
 
-  # Repeat for use.phi = FALSE
+  # Repeat for use.phi = FALSE, regression in scale
 
   fit1 <- fevd(TMX1, PORTw, scale.fun = ~STDTMAX, use.phi = FALSE)
   temp <- fit1
