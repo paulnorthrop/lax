@@ -101,7 +101,6 @@
 #'   # Get closer to the values reported in Table 2 of Chandler and Bate (2007)
 #'   gev_fit <- gev_refit(y, x, mul = 1, sigl = 1, shl = 1, show = FALSE,
 #'                        method = "BFGS")
-#'   year <- rep(rownames(chandwich::owtemps), 2)
 #'   # Call sandwich::meatCL() with cadjust = FALSE
 #'   adj_gev_fit <- alogLik(gev_fit, cluster = year, cadjust = FALSE)
 #'   summary(adj_gev_fit)
