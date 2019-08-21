@@ -42,7 +42,7 @@ Main function is \code{\link{alogLik}}
 \code{\link[lax]{texmex}}.
 
 See Chandler and Bate (2007) for full details and
-\code{vignette("lax-vignette", package = "lax")} for an
+\code{vignette("an-overview-of-lax-vignette", package = "lax")} for an
 overview of the package.
 }
 \references{
