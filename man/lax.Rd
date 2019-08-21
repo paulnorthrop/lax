@@ -24,13 +24,15 @@ Adjusted standard errors and an adjusted loglikelihood are provided.
 The adjustment is based on a robust sandwich estimator of the parameter
 covariance matrix, based on the methodology in Chandler and Bate (2007)
 <doi:10.1093/biomet/asm015>. This can be used for cluster correlated data
-when interest lies in the parameters of the marginal distributions or for
+when interest lies in the parameters of the marginal distributions, or for
 performing inferences that are robust to certain types of model
-misspecification.  Currently only univariate extreme value models are
-supported.  As a byproduct, generic S3 logLik, coef, vcov and nobs methods
-are provided, where these are not already provided in the original package.
+misspecification.  Univariate extreme value models, including regression
+models, are supported.  As a byproduct, generic S3 logLik, coef, vcov and
+nobs methods are provided, where these are not already provided in the
+original package.
 }
 \details{
+Main function is \code{\link{alogLik}}
 \code{\link[lax]{evd}},
 \code{\link[lax]{evir}},
 \code{\link[lax]{extRemes}},
