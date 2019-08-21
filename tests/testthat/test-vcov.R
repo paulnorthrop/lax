@@ -47,6 +47,6 @@ if (requireNamespace("evir", quietly = TRUE)) {
   class(temp) <- "evd_fgev"
   test_that("evd::fgev: vcov.gev vs vcov.evd_gev", {
     # column names differ
-    testthat::expect_equivlent(vcov(M1), vcov(temp))
+    testthat::expect_equivalent(vcov(M1), vcov(temp))
   })
 }
