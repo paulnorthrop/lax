@@ -14,8 +14,8 @@ return_level(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
 \item{m}{A numeric scalar.  The return period in units of the number
 of observations.  See \strong{Details} for information.}
 
-\item{level}{A numeric scalar in (0, 1).  The (maximum) confidence level
-required for the confidence intervals for the \code{m}-year return level.}
+\item{level}{A numeric scalar in (0, 1).  The confidence level required for
+confidence interval for the \code{m}-year return level.}
 
 \item{npy}{A numeric scalar.  The}
 
@@ -95,4 +95,8 @@ if (got_ismev) {
   plot(rl)
   ismev::gev.prof(gev_fit, m = 100, xlow = 4.45, xup = 5.5)
 }
+}
+\seealso{
+\code{\link{plot.retlev}} for plotting the profile log-likelihood
+  for a return level.
 }

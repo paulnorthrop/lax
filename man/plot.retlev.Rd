@@ -9,13 +9,14 @@
 }
 \arguments{
 \item{x}{an object of class \code{c("ret_lev", "lax")}, a result of
-a call to \code{\link{return_level}}.}
+a call to \code{\link{return_level}}, using \code{prof = TRUE}.}
 
 \item{y}{Not used.}
 
-\item{level}{A numeric scalar in (0, 1).  The confidence level
-required for the confidence intervals for the \code{m}-year return level.
-This must be no larger than the value stored in \code{x$level}.}
+\item{level}{A numeric scalar in (0, 1).  The confidence level required for
+the confidence interval for the \code{m}-year return level.
+If \code{level} is not supplied then \code{x$level} is used.
+\code{level} must be no larger than \code{x$level}.}
 
 \item{legend}{A logical scalar.  Should we add a legend (in the top right
 of the plot) that gives the approximate values of the MLE and
@@ -27,10 +28,22 @@ round the values in the legend.}
 \item{...}{Further arguments to be passed to \code{\link[graphics]{plot}}.}
 }
 \value{
-Nothing is returned.
+A numeric vector of length 3 containing the lower
+  100\code{level}\% confidence limit, the MLE and the upper
+  100\code{level}\% confidence limit.
 }
 \description{
 \code{plot} method for an objects of class \code{c("ret_lev", "lax")}.
+}
+\details{
+Plots the profile log-likelihood for a return level, provided that
+  \code{x} returned by a call to \code{\link{return_level}} using
+  \code{prof = TRUE}.  Horizontal lines indicate the values of the
+  maximised log-likelihood and the critical level used to calculate
+  the confidence limits.
+  If \code{level} is smaller than \code{x$level} then approximate
+  100\code{level}\% confidence limits are recalculated based on the
+  information contained in \code{x$for_plot}.
 }
 \section{Examples}{
 

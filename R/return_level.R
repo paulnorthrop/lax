@@ -12,8 +12,8 @@
 #'   \code{\link{alogLik}}.
 #' @param m A numeric scalar.  The return period in units of the number
 #'   of observations.  See \strong{Details} for information.
-#' @param level A numeric scalar in (0, 1).  The (maximum) confidence level
-#'   required for the confidence intervals for the \code{m}-year return level.
+#' @param level A numeric scalar in (0, 1).  The confidence level required for
+#'   confidence interval for the \code{m}-year return level.
 #' @param npy A numeric scalar.  The
 #' @param prof A logical scalar.  Should we calculate intervals based on
 #'   profile log-likelihood?
@@ -50,6 +50,8 @@
 #'     the first column (\code{ret_levs}) and the corresponding values of the
 #'     (adjusted) profile loglikelihood (\code{prof_loglik}).}
 #'   \item{m,level }{The input values of \code{m} and \code{level}.}
+#' @seealso \code{\link{plot.retlev}} for plotting the profile log-likelihood
+#'   for a return level.
 #' @examples
 #' got_evd <- requireNamespace("evd", quietly = TRUE)
 #'
@@ -181,8 +183,8 @@ gev_rl_prof <- function(x, m, level, npy, inc, type, rl_sym) {
   y1 <- prof_lik[loc]
   y2 <- prof_lik[loc+1]
   low_lim <- x1 + (conf_line - y1) * (x2 - x1) / (y2 - y1)
-  rl_prof <- c(lower = low_lim, mle = rl_mle, upper = up_lim)
-  names(rl_prof) <- c("lower", "mle", "upper")
+  rl_prof <- c(lower = low_lim, rl_mle, upper = up_lim)
+#  names(rl_prof) <- c("lower", "mle", "upper")
   return(list(rl_prof = rl_prof, crit = conf_line,
               for_plot = cbind(ret_levs = ret_levs, prof_loglik = prof_lik)))
 }
@@ -222,18 +224,29 @@ gev_rl_CI <- function (x, m, level, npy, type){
 #' \code{plot} method for an objects of class \code{c("ret_lev", "lax")}.
 #'
 #' @param x an object of class \code{c("ret_lev", "lax")}, a result of
-#'   a call to \code{\link{return_level}}.
+#'   a call to \code{\link{return_level}}, using \code{prof = TRUE}.
 #' @param y Not used.
-#' @param level A numeric scalar in (0, 1).  The confidence level
-#'   required for the confidence intervals for the \code{m}-year return level.
-#'   This must be no larger than the value stored in \code{x$level}.
+#' @param level A numeric scalar in (0, 1).  The confidence level required for
+#'   the confidence interval for the \code{m}-year return level.
+#'   If \code{level} is not supplied then \code{x$level} is used.
+#'   \code{level} must be no larger than \code{x$level}.
 #' @param legend A logical scalar.  Should we add a legend (in the top right
 #'   of the plot) that gives the approximate values of the MLE and
 #'   100\code{level}\% confidence limits?
 #' @param digits An integer. Passed to \code{\link[base:Round]{signif}} to
 #'   round the values in the legend.
 #' @param ... Further arguments to be passed to \code{\link[graphics]{plot}}.
-#' @return Nothing is returned.
+#' @details Plots the profile log-likelihood for a return level, provided that
+#'   \code{x} returned by a call to \code{\link{return_level}} using
+#'   \code{prof = TRUE}.  Horizontal lines indicate the values of the
+#'   maximised log-likelihood and the critical level used to calculate
+#'   the confidence limits.
+#'   If \code{level} is smaller than \code{x$level} then approximate
+#'   100\code{level}\% confidence limits are recalculated based on the
+#'   information contained in \code{x$for_plot}.
+#' @return A numeric vector of length 3 containing the lower
+#'   100\code{level}\% confidence limit, the MLE and the upper
+#'   100\code{level}\% confidence limit.
 #' @seealso \code{\link{return_level}}.
 #' @section Examples:
 #' See the examples in \code{\link{return_level}}.
@@ -249,6 +262,36 @@ plot.retlev <- function(x, y = NULL, level = NULL, legend = TRUE, digits = 3,
   if (is.null(x$rl_prof)) {
     stop("No prof loglik info: call return_level() using prof = TRUE")
   }
+  # If level is NULL then we use the intervals stored in x
+  # Otherwise, we recalculate the confidence intervals
+  if (is.null(level)) {
+    level <- x$level
+    crit_value <- x$crit
+    low_lim <- x$rl_prof["lower"]
+    up_lim <- x$rl_prof["upper"]
+  } else if (level > x$level) {
+    stop("level must be no larger than x$level")
+  } else {
+    crit_value <- x$max_loglik - 0.5 * stats::qchisq(level, 1)
+    # Find where the curve crosses conf_line
+    prof_loglik <- x$for_plot[, "prof_loglik"]
+    ret_levs <- x$for_plot[, "ret_levs"]
+    temp <- diff(prof_loglik - crit_value > 0)
+    # Find the upper limit of the confidence interval
+    loc <- which(temp == -1)
+    x1 <- ret_levs[loc]
+    x2 <- ret_levs[loc + 1]
+    y1 <- prof_loglik[loc]
+    y2 <- prof_loglik[loc + 1]
+    up_lim <- x1 + (crit_value - y1) * (x2 - x1) / (y2 - y1)
+    # Find the lower limit of the confidence interval
+    loc <- which(temp == 1)
+    x1 <- ret_levs[loc]
+    x2 <- ret_levs[loc+1]
+    y1 <- prof_loglik[loc]
+    y2 <- prof_loglik[loc+1]
+    low_lim <- x1 + (crit_value - y1) * (x2 - x1) / (y2 - y1)
+  }
   my_xlab <- paste0(x$m, "-observation return level")
   my_ylab <- "profile loglikelihood"
   my_plot <- function(x, y, ..., xlab = my_xlab, ylab = my_ylab, type = "l") {
@@ -259,15 +302,16 @@ plot.retlev <- function(x, y = NULL, level = NULL, legend = TRUE, digits = 3,
     graphics::abline(h = x, ..., col = col, lty = lty)
   }
   hline(x$max_loglik, ...)
-  hline(x$crit, ...)
+  hline(crit_value, ...)
   # Add a legend, if requested
-  if (legend) {
+  if (legend && length(level) == 1) {
     mle_leg <- paste0("     MLE ", signif(x$rl_prof["mle"], digits))
-    conf_leg <- paste0(100 * x$level, "% CI (",
-                       signif(x$rl_prof["lower"], digits), ",",
-                       signif(x$rl_prof["upper"], digits), ")")
+    conf_leg <- paste0(100 * x$level, "% CI (", signif(low_lim, digits), ",",
+                       signif(up_lim, digits), ")")
     graphics::legend("topright", legend = c(mle_leg, conf_leg))
   }
-  return(invisible())
+  res <- c(low_lim, x$rl_prof["mle"], up_lim)
+  names(res) <- c("lower", "mle", "upper")
+  return(res)
 }
 
