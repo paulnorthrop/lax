@@ -29,4 +29,12 @@ if (got_evd) {
     testthat::expect_equal(as.numeric(rl$rl_prof["mle"]),
                            as.numeric(coef(M1_prob)["quantile"]))
   })
+
+  # Check that output from plot.retlev() and print.retlev() agree
+
+  plot_output <- plot(rl)
+  print_output <- print(rl)
+  test_that("return_level() vs evd::fgev", {
+    testthat::expect_equal(plot_output, print_output$rl_prof)
+  })
 }

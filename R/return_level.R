@@ -245,3 +245,38 @@ print.retlev <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
                 quote = FALSE)
   return(invisible(x))
 }
+
+# ----------------------------- summary.retlev ------------------------------ #
+
+#' Summary method for retlev object
+#'
+#' \code{summary method for an objects of class \code{c("retlev", "lax")}.
+#'
+#' @param x an object of class \code{c("retlev", "lax")}, a result of
+#'   a call to \code{\link{return_level}}.
+#' @param digits The argument \code{digits} to \code{\link{print.default}}.
+#' @param ... Additional arguments.  None are used in this function.
+#' @details Prints the call to \code{\link{return_level}} and the estimates
+#'   and 100\code{x$level}\% confidence limits for the \code{x$m}-observation
+#'   return level.
+#' @return The argument \code{x}, invisibly, as for all
+#'   \code{\link[base]{print}} methods.
+#' @seealso \code{\link{return_level}}.
+#' @section Examples:
+#' See the examples in \code{\link{return_level}}.
+#' @export
+summary.retlev <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
+  if (!inherits(x, "retlev")) {
+    stop("use only with \"retlev\" objects")
+  }
+  if (!inherits(x, "lax")) {
+    stop("use only with \"lax\" objects")
+  }
+  cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"),
+      "\n\n", sep = "")
+  cat("MLE and ", 100 * x$level, "% confidence limits for the ", x$m,
+      "-observation return level:\n", sep = "")
+  print.default(format(x$rl_prof, digits = digits), print.gap = 2L,
+                quote = FALSE)
+  return(invisible(x))
+}
