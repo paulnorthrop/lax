@@ -34,3 +34,19 @@ if (requireNamespace("evir", quietly = TRUE)) {
   })
 }
 
+# ---------------------------------- evd ------------------------------------#
+
+if (requireNamespace("evir", quietly = TRUE)) {
+  library(evd)
+
+  # An example from the evd::fgev documentation
+  set.seed(3082019)
+  uvdata <- evd::rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
+  M1 <- evd::fgev(uvdata, nsloc = (-49:50)/100)
+  temp <- M1
+  class(temp) <- "evd_fgev"
+  test_that("evd::fgev: vcov.gev vs vcov.evd_gev", {
+    # column names differ
+    testthat::expect_equivlent(vcov(M1), vcov(temp))
+  })
+}
