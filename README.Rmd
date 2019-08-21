@@ -43,16 +43,17 @@ This example is based on the analysis presented in Section 5.2 of
 The following code fits such a model, allowing only the GEV location parameter to vary.  The model is fitted using the `fgev` function from the [evd](https://cran.r-project.org/package=evd) package.  Then `alogLik` is used to provide adjusted standard errors and an adjusted loglikelihood.  Finally, a `confint` method is used to calculate approximate 95\% confidence intervals for the parameters, based on the adjusted loglikelihood.
 
 ```{r}
-  library(lax)
-  y <- c(chandwich::owtemps[, "Oxford"], chandwich::owtemps[, "Worthing"])
-  x <- rep(c(1, -1), each = length(y) / 2)
-  # Fit a GEV model with separate location parameters for Oxford and Worthing
-  owfit <- evd::fgev(y, nsloc = x)
-  # Create a vector to 
-  year <- rep(rownames(chandwich::owtemps), 2)
-  adj_owfit <- alogLik(owfit, cluster = year)
-  summary(adj_owfit)
-  confint(adj_owfit)
+library(lax)
+y <- c(chandwich::owtemps[, "Oxford"], chandwich::owtemps[, "Worthing"])
+x <- rep(c(1, -1), each = length(y) / 2)
+# Fit a GEV model with separate location parameters for Oxford and Worthing
+owfit <- evd::fgev(y, nsloc = x)
+# Create a vector to define the clusters (years)
+year <- rep(rownames(chandwich::owtemps), 2)
+# Adjust the loglikelihood and standard errors
+adj_owfit <- alogLik(owfit, cluster = year)
+summary(adj_owfit)
+confint(adj_owfit)
 ```
 
 The analysis in Chandler and Bate (2007) allowed all three GEV parameters to vary between Oxford and Worthing.  The `fgev` function cannot fit this model but the function `gev.fit` in the [ismev](https://cran.r-project.org/package=ismev) package can.  However, an object returned from `gev.fit` does not provide all the information about a fitted regression model that `alogLik` needs.  Therefore, *lax* provides the function `gev_refit`, which is a version of `gev.fit` that adds this information.  The following code reproduces the values in rows 1, 3 and 4 in Table 2 of Chandler and Bate (2007).  

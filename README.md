@@ -23,21 +23,22 @@ This example is based on the analysis presented in Section 5.2 of [Chandler and 
 The following code fits such a model, allowing only the GEV location parameter to vary. The model is fitted using the `fgev` function from the [evd](https://cran.r-project.org/package=evd) package. Then `alogLik` is used to provide adjusted standard errors and an adjusted loglikelihood. Finally, a `confint` method is used to calculate approximate 95% confidence intervals for the parameters, based on the adjusted loglikelihood.
 
 ``` r
-  library(lax)
-  y <- c(chandwich::owtemps[, "Oxford"], chandwich::owtemps[, "Worthing"])
-  x <- rep(c(1, -1), each = length(y) / 2)
-  # Fit a GEV model with separate location parameters for Oxford and Worthing
-  owfit <- evd::fgev(y, nsloc = x)
-  # Create a vector to 
-  year <- rep(rownames(chandwich::owtemps), 2)
-  adj_owfit <- alogLik(owfit, cluster = year)
-  summary(adj_owfit)
+library(lax)
+y <- c(chandwich::owtemps[, "Oxford"], chandwich::owtemps[, "Worthing"])
+x <- rep(c(1, -1), each = length(y) / 2)
+# Fit a GEV model with separate location parameters for Oxford and Worthing
+owfit <- evd::fgev(y, nsloc = x)
+# Create a vector to define the clusters (years)
+year <- rep(rownames(chandwich::owtemps), 2)
+# Adjust the loglikelihood and standard errors
+adj_owfit <- alogLik(owfit, cluster = year)
+summary(adj_owfit)
 #>              MLE      SE adj. SE
 #> loc      81.1600 0.32980 0.40830
 #> loctrend  2.5040 0.31080 0.19910
 #> scale     3.7900 0.22810 0.25230
 #> shape    -0.2097 0.04765 0.04063
-  confint(adj_owfit)
+confint(adj_owfit)
 #> Waiting for profiling to be done...
 #>               2.5 %     97.5 %
 #> loc      80.3518858 81.9584587
