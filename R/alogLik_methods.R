@@ -14,7 +14,7 @@ logLikVec <- function(object, ...) {
 #'
 #' This function is generic.  It performs adjustment of the loglikelihood
 #' associated with fitted model objects, following
-#' \href{http://dx.doi.org/10.1093/biomet/asm015}{Chandler and Bate (2007)}.
+#' \href{http://doi.org/10.1093/biomet/asm015}{Chandler and Bate (2007)}.
 #' Certain classes of extreme value model objects are supported automatically.
 #' For details see the \code{alogLik} help pages for the packages:
 #' \code{\link[lax]{evd}},
@@ -113,10 +113,10 @@ logLikVec <- function(object, ...) {
 #'   Otherwise, \code{class(x)} is \code{c("lax", "chandwich", class(x))}.
 #' @references Chandler, R. E. and Bate, S. (2007). Inference for clustered
 #'   data using the independence loglikelihood. \emph{Biometrika},
-#'   \strong{94}(1), 167-183. \url{http://dx.doi.org/10.1093/biomet/asm015}
+#'   \strong{94}(1), 167-183. \url{http://doi.org/10.1093/biomet/asm015}
 #' @references Zeleis (2006) Object-Oriented Computation and Sandwich
 #'   Estimators.  \emph{Journal of Statistical Software}, \strong{16}, 1-16.
-#'   \url{http://dx.doi.org/10.18637/jss.v016.i09}
+#'   \url{http://doi.org/10.18637/jss.v016.i09}
 #' @seealso \code{\link[chandwich]{summary.chandwich}},
 #'   \code{\link[chandwich]{plot.chandwich}},
 #'   \code{\link[chandwich]{confint.chandwich}},
