@@ -4,11 +4,20 @@
 \alias{lax-internal}
 \alias{adj_object}
 \alias{ismev_ppp}
+\alias{return_level_gev}
+\alias{gev_rl_prof}
+\alias{gev_rl_CI}
 \title{Internal lax functions}
 \usage{
 adj_object(x, cluster = NULL, use_vcov = TRUE, ...)
 
 ismev_ppp(a, npy)
+
+return_level_gev(x, m, level, npy, prof, inc, type)
+
+gev_rl_prof(x, m, level, npy, inc, type, rl_sym)
+
+gev_rl_CI(x, m, level, npy, type)
 }
 \description{
 Internal lax functions
