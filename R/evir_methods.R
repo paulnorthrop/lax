@@ -15,7 +15,8 @@ nobs.gev <- function(object, ...) {
 coef.gev <- function(object, ...) {
   # If this is an "evd" object then use the "evd" method
   if (inherits(object, "evd")) {
-    class(object) <- "evd"
+    # c("gev", "uvevd", "evd") becomes c("evd", "uvevd", "gev")
+    class(object) <- rev(class(object))
     return(coef(object, ...))
   }
   return(object$par.ests)
@@ -25,7 +26,8 @@ coef.gev <- function(object, ...) {
 vcov.gev <- function(object, ...) {
   # If this is an "evd" object then use the "evd" method
   if (inherits(object, "evd")) {
-    class(object) <- "evd"
+    # c("gev", "uvevd", "evd") becomes c("evd", "uvevd", "gev")
+    class(object) <- rev(class(object))
     return(vcov(object, ...))
   }
   vc <- object$varcov
@@ -38,7 +40,8 @@ vcov.gev <- function(object, ...) {
 logLik.gev <- function(object, ...) {
   # If this is an "evd" object then use the "evd" method
   if (inherits(object, "evd")) {
-    class(object) <- "evd"
+    # c("gev", "uvevd", "evd") becomes c("evd", "uvevd", "gev")
+    class(object) <- rev(class(object))
     return(logLik(object, ...))
   }
   val <- -object$nllh.final
