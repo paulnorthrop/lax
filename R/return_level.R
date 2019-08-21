@@ -1,4 +1,4 @@
-#' Return level inferences for Stationary Extreme Value Models
+#' Return Level Inferences for Stationary Extreme Value Models
 #'
 #' Calculates point estimates and confidence intervals for \code{m}-observation
 #' return levels for \strong{stationary} extreme value fitted model objects
@@ -52,14 +52,16 @@
 #'   components
 #'   \item{rl_sym,rl_prof }{Named numeric vectors containing the respective
 #'     lower 100\code{level}\% limit, the MLE and the upper
-#'     100\code{level}\% limit.  If \code{prof = FALSE} then \code{rl_prof}
-#'     will be missing.}
+#'     100\code{level}\% limit for the return level.
+#'     If \code{prof = FALSE} then \code{rl_prof} will be missing.}
+#'   \item{rl_se }{Estimated standard error of the return level.}
 #'   \item{max_loglik,crit,for_plot }{If \code{prof = TRUE} then
 #'     these components will be present, containing respectively: the maximised
 #'     loglikelihood; the critical value and a matrix with return levels in
 #'     the first column (\code{ret_levs}) and the corresponding values of the
 #'     (adjusted) profile loglikelihood (\code{prof_loglik}).}
 #'   \item{m,level }{The input values of \code{m} and \code{level}.}
+#'   \item{call }{The call to \code{return_level}.}
 #' @references Coles, S. G. (2001) \emph{An Introduction to Statistical
 #'   Modeling of Extreme Values}, Springer-Verlag, London.
 #'   \url{https://doi.org/10.1007/978-1-4471-3675-0_3}
@@ -76,6 +78,7 @@
 #'   M1 <- evd::fgev(uvdata)
 #'   adj_fgev <- alogLik(M1)
 #'   rl <- return_level(adj_fgev)
+#'   summary(rl)
 #'   plot(rl)
 #' }
 #'
@@ -87,6 +90,7 @@
 #'   gev_fit <- gev.fit(revdbayes::portpirie, show = FALSE)
 #'   adj_gev_fit <- alogLik(gev_fit)
 #'   rl <- return_level(adj_gev_fit)
+#'   summary(rl)
 #'   plot(rl)
 #' }
 #' @export
@@ -143,7 +147,8 @@ return_level <- function(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
 #' @return A numeric vector of length 3 containing the lower
 #'   100\code{level}\% confidence limit, the MLE and the upper
 #'   100\code{level}\% confidence limit.
-#' @seealso \code{\link{return_level}}.
+#' @seealso \code{\link{return_level}} to perform inferences about return
+#'   levels.
 #' @section Examples:
 #' See the examples in \code{\link{return_level}}.
 #' @export
@@ -240,43 +245,81 @@ print.retlev <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
   cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"),
       "\n\n", sep = "")
   cat("MLE and ", 100 * x$level, "% confidence limits for the ", x$m,
-      "-observation return level:\n", sep = "")
-  print.default(format(x$rl_prof, digits = digits), print.gap = 2L,
+      "-observation return level\n\n", sep = "")
+  cat("Normal interval:\n")
+  print.default(format(x$rl_sym, digits = digits), print.gap = 2L,
                 quote = FALSE)
+  if (!is.null(x$rl_prof[1])) {
+    cat("\n Profile likelihood-based interval:\n")
+    print.default(format(x$rl_prof, digits = digits), print.gap = 2L,
+                  quote = FALSE)
+  }
   return(invisible(x))
 }
 
 # ----------------------------- summary.retlev ------------------------------ #
 
-#' Summary method for retlev object
+#' Summary method for a \code{"retlev"} object
 #'
-#' \code{summary method for an objects of class \code{c("retlev", "lax")}.
+#' \code{summary} method for an objects of class \code{c("retlev", "lax")}.
 #'
-#' @param x an object of class \code{c("retlev", "lax")}, a result of
+#' @param object an object of class \code{c("retlev", "lax")}, a result of
 #'   a call to \code{\link{return_level}}.
-#' @param digits The argument \code{digits} to \code{\link{print.default}}.
+#' @param digits An integer. Used for number formatting with
+#'   \code{\link[base:Round]{signif}}.
 #' @param ... Additional arguments.  None are used in this function.
-#' @details Prints the call to \code{\link{return_level}} and the estimates
-#'   and 100\code{x$level}\% confidence limits for the \code{x$m}-observation
-#'   return level.
-#' @return The argument \code{x}, invisibly, as for all
-#'   \code{\link[base]{print}} methods.
+#' @return Returns a list containing the list element \code{object$call}
+#'   and a numeric matrix \code{matrix} containing the MLE and estimated
+#'   SE of the return level.
 #' @seealso \code{\link{return_level}}.
 #' @section Examples:
 #' See the examples in \code{\link{return_level}}.
 #' @export
-summary.retlev <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
-  if (!inherits(x, "retlev")) {
+summary.retlev <- function(object, digits = max(3, getOption("digits") - 3L),
+                           ...) {
+  if (!inherits(object, "retlev")) {
     stop("use only with \"retlev\" objects")
   }
-  if (!inherits(x, "lax")) {
+  if (!inherits(object, "lax")) {
     stop("use only with \"lax\" objects")
+  }
+  res <- object["call"]
+  res$matrix <- cbind(`Estimate` = signif(object$rl_sym["mle"],
+                                          digits = digits),
+                      `Std. Error` = signif(object$rl_se, digits = digits))
+  rownames(res$matrix) <- paste0("m = ", object$m)
+  class(res) <- "summary.retlev"
+  return(res)
+}
+
+# ---------------------------- print.summary.spm ---------------------------- #
+
+#' Print method for objects of class \code{"summary.retlev"}
+#'
+#' \code{print} method for an object \code{x} of class \code{"summary.retlev"}.
+#'
+#' @param x An object of class "summary.retlev", a result of a call to
+#'   \code{\link{summary.retlev}}.
+#' @param ... Additional arguments passed on to \code{\link{print.default}}.
+#' @details Prints the call and the numeric matrix \code{x$matrix} returned from
+#'   \code{\link{summary.retlev}}.
+#' @return The argument \code{x}, invisibly, as for all
+#'   \code{\link[base]{print}} methods.
+#' @seealso \code{\link{return_level}} to perform inferences about return
+#'   levels.
+#' @section Examples:
+#' See the examples in \code{\link{return_level}}.
+#' @export
+print.summary.retlev <- function(x, ...) {
+  if (!inherits(x, "summary.retlev")) {
+    stop("use only with \"summary.retlev\" objects")
   }
   cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"),
       "\n\n", sep = "")
-  cat("MLE and ", 100 * x$level, "% confidence limits for the ", x$m,
-      "-observation return level:\n", sep = "")
-  print.default(format(x$rl_prof, digits = digits), print.gap = 2L,
-                quote = FALSE)
-  return(invisible(x))
+  print(x$matrix, ...)
+  if (!is.null(x$warning)) {
+    cat("\n")
+    cat(x$warning)
+  }
+  invisible(x)
 }

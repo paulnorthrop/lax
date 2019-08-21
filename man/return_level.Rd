@@ -2,7 +2,7 @@
 % Please edit documentation in R/return_level.R
 \name{return_level}
 \alias{return_level}
-\title{Return level inferences for Stationary Extreme Value Models}
+\title{Return Level Inferences for Stationary Extreme Value Models}
 \usage{
 return_level(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
   inc = NULL, type = c("vertical", "cholesky", "spectral", "none"))
@@ -38,14 +38,16 @@ A object (a list) of class \code{"retlev", "lax"} with the
   components
   \item{rl_sym,rl_prof }{Named numeric vectors containing the respective
     lower 100\code{level}\% limit, the MLE and the upper
-    100\code{level}\% limit.  If \code{prof = FALSE} then \code{rl_prof}
-    will be missing.}
+    100\code{level}\% limit for the return level.
+    If \code{prof = FALSE} then \code{rl_prof} will be missing.}
+  \item{rl_se }{Estimated standard error of the return level.}
   \item{max_loglik,crit,for_plot }{If \code{prof = TRUE} then
     these components will be present, containing respectively: the maximised
     loglikelihood; the critical value and a matrix with return levels in
     the first column (\code{ret_levs}) and the corresponding values of the
     (adjusted) profile loglikelihood (\code{prof_loglik}).}
   \item{m,level }{The input values of \code{m} and \code{level}.}
+  \item{call }{The call to \code{return_level}.}
 }
 \description{
 Calculates point estimates and confidence intervals for \code{m}-observation
@@ -91,6 +93,7 @@ if (got_evd) {
   M1 <- evd::fgev(uvdata)
   adj_fgev <- alogLik(M1)
   rl <- return_level(adj_fgev)
+  summary(rl)
   plot(rl)
 }
 
@@ -102,6 +105,7 @@ if (got_ismev) {
   gev_fit <- gev.fit(revdbayes::portpirie, show = FALSE)
   adj_gev_fit <- alogLik(gev_fit)
   rl <- return_level(adj_gev_fit)
+  summary(rl)
   plot(rl)
 }
 }

@@ -51,5 +51,6 @@ See the examples in \code{\link{return_level}}.
 }
 
 \seealso{
-\code{\link{return_level}}.
+\code{\link{return_level}} to perform inferences about return
+  levels.
 }
