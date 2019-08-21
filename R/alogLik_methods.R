@@ -13,7 +13,7 @@ logLikVec <- function(object, ...) {
 #' Loglikelihood adjustment of model fits
 #'
 #' This function is generic.  It performs adjustment of the loglikelihood
-#' associated with fited model objects, following
+#' associated with fitted model objects, following
 #' \href{http://dx.doi.org/10.1093/biomet/asm015}{Chandler and Bate (2007)}.
 #' Certain classes of extreme value model objects are supported automatically.
 #' For details see the \code{alogLik} help pages for the packages:
