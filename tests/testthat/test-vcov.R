@@ -36,7 +36,7 @@ if (requireNamespace("evir", quietly = TRUE)) {
 
 # ---------------------------------- evd ------------------------------------#
 
-if (requireNamespace("evir", quietly = TRUE)) {
+if (requireNamespace("evd", quietly = TRUE)) {
   library(evd)
 
   # An example from the evd::fgev documentation
@@ -53,7 +53,7 @@ if (requireNamespace("evir", quietly = TRUE)) {
 
 # -------------------------------- extRemes --------------------------------- #
 
-if (requireNamespace("evir", quietly = TRUE)) {
+if (requireNamespace("extRemes", quietly = TRUE)) {
   library(extRemes)
 
   fitPORTstdmax <- extRemes::fevd(TMX1, PORTw, scale.fun = ~STDTMAX,
@@ -63,5 +63,35 @@ if (requireNamespace("evir", quietly = TRUE)) {
   test_that("extRemes::fevd: vcov.fevd vs vcov.extRemes_gev", {
     # column names differ
     testthat::expect_equivalent(vcov(fitPORTstdmax), vcov(temp))
+  })
+}
+
+# -------------------------------- fExtremes --------------------------------- #
+
+if (requireNamespace("fExtremes", quietly = TRUE)) {
+  library(fExtremes)
+
+  # An example from the fExtremes::gevFit documentation
+  set.seed(4082019)
+  x <- gevSim(model = list(xi=0.25, mu=0, beta=1), n = 1000)
+  # Fit GEV distribution by maximum likelihood estimation
+  fit <- gevFit(x)
+  temp <- fit
+  class(temp) <- "fExtremes_gev"
+
+  test_that("fEextremes::gevFIT: vcov.fGEVFIT vs vcov.fExtremes_gev", {
+    testthat::expect_equal(vcov(fit), vcov(temp))
+  })
+
+  # An example from the fExtremes::gpdFit documentation
+  # Simulate GP data
+  x <- gpdSim(model = list(xi = 0.25, mu = 0, beta = 1), n = 1000)
+  # Fit GP distribution by maximum likelihood estimation
+  fit <- gpdFit(x, u = min(x))
+  temp <- fit
+  class(temp) <- "fExtremes_gpd"
+
+  test_that("fEextremes::gevFIT: vcov.fGPDFIT vs vcov.fExtremes_gpd", {
+    testthat::expect_equal(vcov(fit), vcov(temp))
   })
 }
