@@ -39,15 +39,15 @@ if (got_extRemes & got_distillery) {
   adj_fit1 <- alogLik(fit1)
   class(temp) <- "extRemes_gev"
 
-  test_that("extRemes::fevd, reg, phi: logLik() vs. logLik(logLikVec)", {
+  test_that("extRemes::fevd, reg, loc: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(fit1), logLik(logLikVec(temp)))
   })
   # Check that alogLik also returned the correct maximised log-likelihood
-  test_that("extRemes::fevd, reg, phi: logLik() vs. logLik(logLikVec)", {
+  test_that("extRemes::fevd, reg, loc: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(fit1), logLik(adj_fit1))
   })
   # Check logLik.extRemes_gev, GEV: trivially correct
-  test_that("extRemes::fevd, reg, phi: logLik() vs. logLik(logLikVec)", {
+  test_that("extRemes::fevd, reg, loc: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
 
