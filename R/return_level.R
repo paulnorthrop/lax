@@ -4,16 +4,16 @@
 #' return levels for \strong{stationary} extreme value fitted model objects
 #' returned from \code{\link{alogLik}}.  Two types of interval may be returned:
 #' (a) intervals based on approximate large-sample normality of the maximum
-#' likelihood estimator for return level, which are symmetric about the
+#' likelihood estimator for return level, which are symmetric about the point
 #' estimate, and (b) profile likelihood-based intervals based on an (adjusted)
 #' loglikelihood.
 #'
 #' @param x An object inheriting from class \code{"lax"} returned from
 #'   \code{\link{alogLik}}.
-#' @param m A numeric scalar.  The return period in units of the number
+#' @param m A numeric scalar.  The return period, in units of the number
 #'   of observations.  See \strong{Details} for information.
 #' @param level A numeric scalar in (0, 1).  The confidence level required for
-#'   confidence interval for the \code{m}-year return level.
+#'   confidence interval for the \code{m}-observation return level.
 #' @param npy A numeric scalar.  The
 #' @param prof A logical scalar.  Should we calculate intervals based on
 #'   profile log-likelihood?
@@ -26,7 +26,17 @@
 #'   returned by \code{\link[chandwich]{adjust_loglik}}, that is, the type of
 #'   adjustment made to the independence loglikelihood function in creating
 #'   an adjusted loglikelihood function.
-#' @details The input value of \code{m} ... GEV, GP, PP
+#' @details At present \code{return_level} only supports GEV models.
+#'
+#'   Care must be taken in specifying the input value of \code{m},
+#'   taking into account the parameterisation of the original fit.
+#'
+#'   For GEV models it is common for each observation to relate to a year.
+#'   In this event the \code{m}-observation return level is an \code{m}-year
+#'   return level.
+#'
+#'   For details about the definition and estimation of return levels see
+#'   Chapter 3 and 4 of Coles (2001).
 #'
 #'   The profile likelihood-based intervals are calculated by
 #'   reparameterising in terms of the \code{m}-year return level and estimating
@@ -50,6 +60,9 @@
 #'     the first column (\code{ret_levs}) and the corresponding values of the
 #'     (adjusted) profile loglikelihood (\code{prof_loglik}).}
 #'   \item{m,level }{The input values of \code{m} and \code{level}.}
+#' @references Coles, S. G. (2001) \emph{An Introduction to Statistical
+#'   Modeling of Extreme Values}, Springer-Verlag, London.
+#'   \url{https://doi.org/10.1007/978-1-4471-3675-0_3}
 #' @seealso \code{\link{plot.retlev}} for plotting the profile log-likelihood
 #'   for a return level.
 #' @examples
@@ -90,6 +103,8 @@ return_level <- function(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
   type <- match.arg(type)
   if (inherits(x, "gev")) {
     temp <- return_level_gev(x, m, level, npy, prof, inc, type)
+  } else {
+    stop("At present, this functionality is only available for GEV models")
   }
   temp$m <- m
   temp$level <- level

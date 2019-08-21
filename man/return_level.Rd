@@ -11,11 +11,11 @@ return_level(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
 \item{x}{An object inheriting from class \code{"lax"} returned from
 \code{\link{alogLik}}.}
 
-\item{m}{A numeric scalar.  The return period in units of the number
+\item{m}{A numeric scalar.  The return period, in units of the number
 of observations.  See \strong{Details} for information.}
 
 \item{level}{A numeric scalar in (0, 1).  The confidence level required for
-confidence interval for the \code{m}-year return level.}
+confidence interval for the \code{m}-observation return level.}
 
 \item{npy}{A numeric scalar.  The}
 
@@ -52,12 +52,22 @@ Calculates point estimates and confidence intervals for \code{m}-observation
 return levels for \strong{stationary} extreme value fitted model objects
 returned from \code{\link{alogLik}}.  Two types of interval may be returned:
 (a) intervals based on approximate large-sample normality of the maximum
-likelihood estimator for return level, which are symmetric about the
+likelihood estimator for return level, which are symmetric about the point
 estimate, and (b) profile likelihood-based intervals based on an (adjusted)
 loglikelihood.
 }
 \details{
-The input value of \code{m} ... GEV, GP, PP
+At present \code{return_level} only supports GEV models.
+
+  Care must be taken in specifying the input value of \code{m},
+  taking into account the parameterisation of the original fit.
+
+  For GEV models it is common for each observation to relate to a year.
+  In this event the \code{m}-observation return level is an \code{m}-year
+  return level.
+
+  For details about the definition and estimation of return levels see
+  Chapter 3 and 4 of Coles (2001).
 
   The profile likelihood-based intervals are calculated by
   reparameterising in terms of the \code{m}-year return level and estimating
@@ -95,6 +105,11 @@ if (got_ismev) {
   plot(rl)
   ismev::gev.prof(gev_fit, m = 100, xlow = 4.45, xup = 5.5)
 }
+}
+\references{
+Coles, S. G. (2001) \emph{An Introduction to Statistical
+  Modeling of Extreme Values}, Springer-Verlag, London.
+  \url{https://doi.org/10.1007/978-1-4471-3675-0_3}
 }
 \seealso{
 \code{\link{plot.retlev}} for plotting the profile log-likelihood
