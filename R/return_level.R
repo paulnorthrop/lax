@@ -16,7 +16,7 @@
 #'   confidence interval for the \code{m}-observation return level.
 #' @param npy A numeric scalar.  The
 #' @param prof A logical scalar.  Should we calculate intervals based on
-#'   profile log-likelihood?
+#'   profile loglikelihood?
 #' @param inc A numeric scalar. Only relevant if \code{prof = TRUE}. The
 #'   increment in return level by which we move upwards and downwards from the
 #'   MLE for the return level in the search for the lower and upper confidence
@@ -40,7 +40,7 @@
 #'
 #'   The profile likelihood-based intervals are calculated by
 #'   reparameterising in terms of the \code{m}-year return level and estimating
-#'   the values at which the (adjusted) profile log-likelihood reaches
+#'   the values at which the (adjusted) profile loglikelihood reaches
 #'   the critical value \code{logLik(x) - 0.5 * stats::qchisq(level, 1)}.
 #'   This is achieved by calculating the profile loglikelihood for a sequence
 #'   of values of this return level as governed by \code{inc}. Once the profile
@@ -63,7 +63,7 @@
 #' @references Coles, S. G. (2001) \emph{An Introduction to Statistical
 #'   Modeling of Extreme Values}, Springer-Verlag, London.
 #'   \url{https://doi.org/10.1007/978-1-4471-3675-0_3}
-#' @seealso \code{\link{plot.retlev}} for plotting the profile log-likelihood
+#' @seealso \code{\link{plot.retlev}} for plotting the profile loglikelihood
 #'   for a return level.
 #' @examples
 #' got_evd <- requireNamespace("evd", quietly = TRUE)
@@ -128,7 +128,7 @@ gev_rl_prof <- function(x, m, level, npy, inc, type, rl_sym) {
     inc <- (rl_sym["upper"] - rl_sym["lower"]) / 100
   }
   p <- 1 / (m * npy)
-  # Calculates the negated profile log-likelihood of the m-year return level
+  # Calculates the negated profile loglikelihood of the m-year return level
   gev_neg_prof_loglik <- function(a, xp) {
     if (a[1] <= 0) {
       return(10 ^ 10)
@@ -251,10 +251,10 @@ gev_rl_CI <- function (x, m, level, npy, type){
 #' @param digits An integer. Passed to \code{\link[base:Round]{signif}} to
 #'   round the values in the legend.
 #' @param ... Further arguments to be passed to \code{\link[graphics]{plot}}.
-#' @details Plots the profile log-likelihood for a return level, provided that
+#' @details Plots the profile loglikelihood for a return level, provided that
 #'   \code{x} returned by a call to \code{\link{return_level}} using
 #'   \code{prof = TRUE}.  Horizontal lines indicate the values of the
-#'   maximised log-likelihood and the critical level used to calculate
+#'   maximised loglikelihood and the critical level used to calculate
 #'   the confidence limits.
 #'   If \code{level} is smaller than \code{x$level} then approximate
 #'   100\code{level}\% confidence limits are recalculated based on the

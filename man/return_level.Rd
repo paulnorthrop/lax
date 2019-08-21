@@ -20,7 +20,7 @@ confidence interval for the \code{m}-observation return level.}
 \item{npy}{A numeric scalar.  The}
 
 \item{prof}{A logical scalar.  Should we calculate intervals based on
-profile log-likelihood?}
+profile loglikelihood?}
 
 \item{inc}{A numeric scalar. Only relevant if \code{prof = TRUE}. The
 increment in return level by which we move upwards and downwards from the
@@ -71,7 +71,7 @@ At present \code{return_level} only supports GEV models.
 
   The profile likelihood-based intervals are calculated by
   reparameterising in terms of the \code{m}-year return level and estimating
-  the values at which the (adjusted) profile log-likelihood reaches
+  the values at which the (adjusted) profile loglikelihood reaches
   the critical value \code{logLik(x) - 0.5 * stats::qchisq(level, 1)}.
   This is achieved by calculating the profile loglikelihood for a sequence
   of values of this return level as governed by \code{inc}. Once the profile
@@ -112,6 +112,6 @@ Coles, S. G. (2001) \emph{An Introduction to Statistical
   \url{https://doi.org/10.1007/978-1-4471-3675-0_3}
 }
 \seealso{
-\code{\link{plot.retlev}} for plotting the profile log-likelihood
+\code{\link{plot.retlev}} for plotting the profile loglikelihood
   for a return level.
 }

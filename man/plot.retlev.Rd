@@ -36,10 +36,10 @@ A numeric vector of length 3 containing the lower
 \code{plot} method for an objects of class \code{c("ret_lev", "lax")}.
 }
 \details{
-Plots the profile log-likelihood for a return level, provided that
+Plots the profile loglikelihood for a return level, provided that
   \code{x} returned by a call to \code{\link{return_level}} using
   \code{prof = TRUE}.  Horizontal lines indicate the values of the
-  maximised log-likelihood and the critical level used to calculate
+  maximised loglikelihood and the critical level used to calculate
   the confidence limits.
   If \code{level} is smaller than \code{x$level} then approximate
   100\code{level}\% confidence limits are recalculated based on the
