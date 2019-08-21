@@ -2,13 +2,13 @@
 % Please edit documentation in R/return_level.R
 \name{plot.retlev}
 \alias{plot.retlev}
-\title{Plot diagnostics for a ret_lev object}
+\title{Plot diagnostics for a retlev object}
 \usage{
 \method{plot}{retlev}(x, y = NULL, level = NULL, legend = TRUE,
   digits = 3, ...)
 }
 \arguments{
-\item{x}{an object of class \code{c("ret_lev", "lax")}, a result of
+\item{x}{an object of class \code{c("retlev", "lax")}, a result of
 a call to \code{\link{return_level}}, using \code{prof = TRUE}.}
 
 \item{y}{Not used.}
@@ -33,7 +33,7 @@ A numeric vector of length 3 containing the lower
   100\code{level}\% confidence limit.
 }
 \description{
-\code{plot} method for an objects of class \code{c("ret_lev", "lax")}.
+\code{plot} method for an objects of class \code{c("retlev", "lax")}.
 }
 \details{
 Plots the profile loglikelihood for a return level, provided that
