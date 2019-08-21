@@ -4,13 +4,25 @@
 \alias{plot.retlev}
 \title{Plot diagnostics for a ret_lev object}
 \usage{
-\method{plot}{retlev}(x, y = NULL, ...)
+\method{plot}{retlev}(x, y = NULL, level = NULL, legend = TRUE,
+  digits = 3, ...)
 }
 \arguments{
 \item{x}{an object of class \code{c("ret_lev", "lax")}, a result of
 a call to \code{\link{return_level}}.}
 
 \item{y}{Not used.}
+
+\item{level}{A numeric scalar in (0, 1).  The confidence level
+required for the confidence intervals for the \code{m}-year return level.
+This must be no larger than the value stored in \code{x$level}.}
+
+\item{legend}{A logical scalar.  Should we add a legend (in the top right
+of the plot) that gives the approximate values of the MLE and
+100\code{level}\% confidence limits?}
+
+\item{digits}{An integer. Passed to \code{\link[base:Round]{signif}} to
+round the values in the legend.}
 
 \item{...}{Further arguments to be passed to \code{\link[graphics]{plot}}.}
 }

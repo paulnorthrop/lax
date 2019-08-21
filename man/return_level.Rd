@@ -14,8 +14,8 @@ return_level(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
 \item{m}{A numeric scalar.  The return period in units of the number
 of observations.  See \strong{Details} for information.}
 
-\item{level}{The (maximum) confidence level required for the confidence
-intervals for the \code{m}-year return level.}
+\item{level}{A numeric scalar in (0, 1).  The (maximum) confidence level
+required for the confidence intervals for the \code{m}-year return level.}
 
 \item{npy}{A numeric scalar.  The}
 
@@ -49,8 +49,8 @@ A object (a list) of class \code{"retlev", "lax"} with the
 }
 \description{
 Calculates point estimates and confidence intervals for \code{m}-observation
-return levels for stationary extreme value fitted model objects returned
-from \code{\link{alogLik}}.  Two types of interval may be returned:
+return levels for \strong{stationary} extreme value fitted model objects
+returned from \code{\link{alogLik}}.  Two types of interval may be returned:
 (a) intervals based on approximate large-sample normality of the maximum
 likelihood estimator for return level, which are symmetric about the
 estimate, and (b) profile likelihood-based intervals based on an (adjusted)

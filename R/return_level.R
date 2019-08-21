@@ -1,8 +1,8 @@
 #' Return level inferences for Stationary Extreme Value Models
 #'
 #' Calculates point estimates and confidence intervals for \code{m}-observation
-#' return levels for stationary extreme value fitted model objects returned
-#' from \code{\link{alogLik}}.  Two types of interval may be returned:
+#' return levels for \strong{stationary} extreme value fitted model objects
+#' returned from \code{\link{alogLik}}.  Two types of interval may be returned:
 #' (a) intervals based on approximate large-sample normality of the maximum
 #' likelihood estimator for return level, which are symmetric about the
 #' estimate, and (b) profile likelihood-based intervals based on an (adjusted)
@@ -12,8 +12,8 @@
 #'   \code{\link{alogLik}}.
 #' @param m A numeric scalar.  The return period in units of the number
 #'   of observations.  See \strong{Details} for information.
-#' @param level The (maximum) confidence level required for the confidence
-#'   intervals for the \code{m}-year return level.
+#' @param level A numeric scalar in (0, 1).  The (maximum) confidence level
+#'   required for the confidence intervals for the \code{m}-year return level.
 #' @param npy A numeric scalar.  The
 #' @param prof A logical scalar.  Should we calculate intervals based on
 #'   profile log-likelihood?
@@ -152,7 +152,7 @@ gev_rl_prof <- function(x, m, level, npy, inc, type, rl_sym) {
   sol <- attr(x, "MLE")[2:3]
   while (my_val > conf_line){
     xp <- xp - inc
-    opt <- stats::optim(sol, gev_neg_prof_loglik, method = "BFGS",xp = xp)
+    opt <- stats::optim(sol, gev_neg_prof_loglik, method = "BFGS", xp = xp)
     sol <- opt$par
     ii <- ii + 1
     x1[ii] <- xp
@@ -181,12 +181,8 @@ gev_rl_prof <- function(x, m, level, npy, inc, type, rl_sym) {
   y1 <- prof_lik[loc]
   y2 <- prof_lik[loc+1]
   low_lim <- x1 + (conf_line - y1) * (x2 - x1) / (y2 - y1)
-#  limits <- c(low_lim, up_lim)
-#  plot(x, v, type = "l", xlab = paste(round(m, 0), "year return level"),
-#       ylab = "profile Log-likelihood")
-#  abline(h = max_loglik, col = 4)
-#  abline(h = conf_line, col = 4)
   rl_prof <- c(lower = low_lim, mle = rl_mle, upper = up_lim)
+  names(rl_prof) <- c("lower", "mle", "upper")
   return(list(rl_prof = rl_prof, crit = conf_line,
               for_plot = cbind(ret_levs = ret_levs, prof_loglik = prof_lik)))
 }
@@ -228,13 +224,22 @@ gev_rl_CI <- function (x, m, level, npy, type){
 #' @param x an object of class \code{c("ret_lev", "lax")}, a result of
 #'   a call to \code{\link{return_level}}.
 #' @param y Not used.
+#' @param level A numeric scalar in (0, 1).  The confidence level
+#'   required for the confidence intervals for the \code{m}-year return level.
+#'   This must be no larger than the value stored in \code{x$level}.
+#' @param legend A logical scalar.  Should we add a legend (in the top right
+#'   of the plot) that gives the approximate values of the MLE and
+#'   100\code{level}\% confidence limits?
+#' @param digits An integer. Passed to \code{\link[base:Round]{signif}} to
+#'   round the values in the legend.
 #' @param ... Further arguments to be passed to \code{\link[graphics]{plot}}.
 #' @return Nothing is returned.
 #' @seealso \code{\link{return_level}}.
 #' @section Examples:
 #' See the examples in \code{\link{return_level}}.
 #' @export
-plot.retlev <- function(x, y = NULL, ...) {
+plot.retlev <- function(x, y = NULL, level = NULL, legend = TRUE, digits = 3,
+                        ...) {
   if (!inherits(x, "retlev")) {
     stop("use only with \"retlev\" objects")
   }
@@ -255,6 +260,14 @@ plot.retlev <- function(x, y = NULL, ...) {
   }
   hline(x$max_loglik, ...)
   hline(x$crit, ...)
+  # Add a legend, if requested
+  if (legend) {
+    mle_leg <- paste0("     MLE ", signif(x$rl_prof["mle"], digits))
+    conf_leg <- paste0(100 * x$level, "% CI (",
+                       signif(x$rl_prof["lower"], digits), ",",
+                       signif(x$rl_prof["upper"], digits), ")")
+    graphics::legend("topright", legend = c(mle_leg, conf_leg))
+  }
   return(invisible())
 }
 
