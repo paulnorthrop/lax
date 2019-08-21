@@ -103,7 +103,6 @@ if (got_ismev) {
   adj_gev_fit <- alogLik(gev_fit)
   rl <- return_level(adj_gev_fit)
   plot(rl)
-  ismev::gev.prof(gev_fit, m = 100, xlow = 4.45, xup = 5.5)
 }
 }
 \references{

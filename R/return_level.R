@@ -88,7 +88,6 @@
 #'   adj_gev_fit <- alogLik(gev_fit)
 #'   rl <- return_level(adj_gev_fit)
 #'   plot(rl)
-#'   ismev::gev.prof(gev_fit, m = 100, xlow = 4.45, xup = 5.5)
 #' }
 #' @export
 return_level <- function(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
