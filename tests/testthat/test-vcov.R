@@ -95,3 +95,17 @@ if (requireNamespace("fExtremes", quietly = TRUE)) {
     testthat::expect_equal(vcov(fit), vcov(temp))
   })
 }
+
+# --------------------------------- texmex ---------------------------------- #
+
+if (requireNamespace("texmex", quietly = TRUE)) {
+  library(texmex)
+
+  mod <- evm(rain, th = 30)
+  temp <- mod
+  class(temp) <- "texmex_evmOpt"
+  test_that("texmex::evm: vcov.evmOpt vs vcov.texmex_evmOpt", {
+    # column names differ
+    testthat::expect_equivalent(vcov(mod), vcov(temp))
+  })
+}
