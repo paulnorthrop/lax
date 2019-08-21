@@ -20,7 +20,7 @@
 #'   \code{"stat"} if there are no covariates in the mode and
 #'   \code{"nonstat"} otherwise.
 #' @examples
-#' # We need the texmex package, and ismev for the fremantle and rain datasets
+#' # We need the texmex package, and ismev for the fremantle dataset
 #' got_texmex <- requireNamespace("texmex", quietly = TRUE)
 #' got_ismev <- requireNamespace("ismev", quietly = TRUE)
 #' if (got_texmex) {
