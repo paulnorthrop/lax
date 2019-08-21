@@ -133,11 +133,11 @@ if (got_evir) {
 \references{
 Chandler, R. E. and Bate, S. (2007). Inference for clustered
   data using the independence loglikelihood. \emph{Biometrika},
-  \strong{94}(1), 167-183. \url{http://dx.doi.org/10.1093/biomet/asm015}
+  \strong{94}(1), 167-183. \url{http://doi.org/10.1093/biomet/asm015}
 
 Zeleis (2006) Object-Oriented Computation and Sandwich
   Estimators.  \emph{Journal of Statistical Software}, \strong{16}, 1-16.
-  \url{http://dx.doi.org/10.18637/jss.v016.i09}
+  \url{http://doi.org/10.18637/jss.v016.i09}
 }
 \seealso{
 \code{\link[chandwich]{summary.chandwich}},
