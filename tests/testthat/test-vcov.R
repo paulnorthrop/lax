@@ -50,3 +50,18 @@ if (requireNamespace("evir", quietly = TRUE)) {
     testthat::expect_equivalent(vcov(M1), vcov(temp))
   })
 }
+
+# -------------------------------- extRemes --------------------------------- #
+
+if (requireNamespace("evir", quietly = TRUE)) {
+  library(extRemes)
+
+  fitPORTstdmax <- extRemes::fevd(TMX1, PORTw, scale.fun = ~STDTMAX,
+                                  use.phi = TRUE)
+  temp <- fitPORTstdmax
+  class(temp) <- "extRemes_gev"
+  test_that("extRemes::fevd: vcov.fevd vs vcov.extRemes_gev", {
+    # column names differ
+    testthat::expect_equivalent(vcov(fitPORTstdmax), vcov(temp))
+  })
+}
