@@ -24,10 +24,45 @@ if (got_texmex) {
   test_that("texmex::evm, GEV: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(mod), logLik(adj_mod))
   })
-  # Check logLik.extRemes_gev, GEV: trivially correct
+  # Check logLik.texmex_evmOpt, GEV: trivially correct
   test_that("texmex::evm, GEV: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
 
+  # texmex::evm, EGP3
+  mod <- evm(rain, th = 30, family = egp3)
+  temp <- mod
+  adj_mod <- alogLik(mod)
+  class(temp) <- "texmex_evmOpt"
+
+  test_that("texmex::evm, EGP3: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(mod), logLik(logLikVec(temp)))
+  })
+  # Check that alogLik also returned the correct maximised log-likelihood
+  test_that("texmex::evm, EGP3: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(mod), logLik(adj_mod))
+  })
+  # Check logLik.texmex_evmOpt, EGP3: trivially correct
+  test_that("texmex::evm, EGP3: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
+  })
+
+  # GP
+  mod <- evm(rain, th = 30)
+  temp <- mod
+  adj_mod <- alogLik(mod)
+  class(temp) <- "texmex_evmOpt"
+
+  test_that("texmex::evm, EGP3: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(mod), logLik(logLikVec(temp)))
+  })
+  # Check that alogLik also returned the correct maximised log-likelihood
+  test_that("texmex::evm, EGP3: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(mod), logLik(adj_mod))
+  })
+  # Check logLik.texmex_evmOpt, EGP3: trivially correct
+  test_that("texmex::evm, EGP3: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
+  })
 }
 
