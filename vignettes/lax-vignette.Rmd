@@ -18,7 +18,7 @@ knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
 
 The *lax* package
 
-We illustrate the features available from using examples from the [Example analyses from the evd package](evd-vignette.html) vignette.  We choose the evd package [@evd] because it has its own `confint` and `anova` methods, which is useful for comparative purposes.  Similar examples can be performed using the other extreme value packages supported by *lax*, namely *evir* [@evir], *extRemes* [@extRemes], *fExtremes* [@fExtremes], *ismev* [@ismev] and *texmex* [@texmex].
+evd* [@evd], *evir* [@evir], *extRemes* [@extRemes], *fExtremes* [@fExtremes], *ismev* [@ismev] and *texmex* [@texmex].
 
 ```{r}
 library(lax)
