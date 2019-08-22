@@ -129,9 +129,48 @@ if (got_extRemes & got_distillery) {
     testthat::expect_equivalent(logLik(fit), logLik(adj_fit))
   })
   # Check logLik.extRemes_gp, GP reg: trivially correct
-  test_that("extRemes::fevd, reg, phi: logLik() vs. logLik(logLikVec)", {
+  test_that("extRemes::fevd, reg: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
 
+  # extRemes::fevd, PP model
+
+  fit <- fevd(Prec, Fort, threshold = 0.395, type = "PP", units = "inches")
+  adj_fit <- alogLik(fit)
+  temp <- fit
+  class(temp) <- "extRemes_pp"
+
+  test_that("extRemes::fevd, PP: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(fit), logLik(logLikVec(temp)))
+  })
+  # Check that alogLik also returned the correct maximised log-likelihood
+  test_that("extRemes::fevd, PP: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(fit), logLik(adj_fit))
+  })
+  # Check logLik.extRemes_gp, PP: trivially correct
+  test_that("extRemes::fevd, PP: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
+  })
+
+  # extRemes::fevd, PP model, non-constant threshold
+
+  fit <- fevd(Prec, Fort, threshold=0.475,
+              threshold.fun=~I(-0.15 * cos(2 * pi * month / 12)),
+              type = "PP")
+  adj_fit <- alogLik(fit)
+  temp <- fit
+  class(temp) <- "extRemes_pp"
+
+  test_that("extRemes::fevd, PP, var u: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(fit), logLik(logLikVec(temp)))
+  })
+  # Check that alogLik also returned the correct maximised log-likelihood
+  test_that("extRemes::fevd, PP, , var u: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(fit), logLik(adj_fit))
+  })
+  # Check logLik.extRemes_gp, PP: trivially correct
+  test_that("extRemes::fevd, PP, var u: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
+  })
 }
 
