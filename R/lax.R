@@ -20,10 +20,18 @@
 #' This can be used for cluster correlated data
 #' when interest lies in the parameters of the marginal distributions, or for
 #' performing inferences that are robust to certain types of model
-#' misspecification.  Univariate extreme value models, including regression
+#' miss-pecification.  Univariate extreme value models, including regression
 #' models, are supported.
-#' @details Main function is \code{\link{alogLik}}, which works in an
+#' @details Main function is \code{\link[lax]{alogLik}}, which works in an
 #' object-oriented way, operating on fitted model objects.
+#' See the following package-specific help pages for details and examples:
+#' \href{https://cran.r-project.org/package=evd}{evd},
+#' \href{https://cran.r-project.org/package=evir}{evir},
+#' \href{https://cran.r-project.org/package=extRemes}{extRemes},
+#' \href{https://cran.r-project.org/package=fExtremes}{fExtremes},
+#' \href{https://cran.r-project.org/package=ismev}{ismev},
+#' \href{https://cran.r-project.org/package=POT}{POT},
+#' \href{https://cran.r-project.org/package=texmex}{texmex}.
 #'
 #' See \code{vignette("lax-vignette", package = "lax")} for an overview of the
 #' package.

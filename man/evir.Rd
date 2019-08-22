@@ -149,6 +149,9 @@ Zeleis (2006) Object-Oriented Computation and Sandwich
   and \code{\link[chandwich]{logLik.chandwich}}
   for S3 methods for objects of class \code{"chandwich"}.
 
+  \code{\link[chandwich]{conf_region}} for confidence regions for
+  parirs of parameters.
+
 \code{\link[chandwich]{adjust_loglik}} to adjust a user-supplied
   loglikelihood.
 
