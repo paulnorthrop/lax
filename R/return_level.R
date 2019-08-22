@@ -77,7 +77,8 @@
 #'   uvdata <- evd::rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
 #'   M1 <- evd::fgev(uvdata)
 #'   adj_fgev <- alogLik(M1)
-#'   rl <- return_level(adj_fgev)
+#'   # Large inc set here for speed, sacrificing accuracy
+#'   rl <- return_level(adj_fgev, inc = 0.5)
 #'   summary(rl)
 #'   plot(rl)
 #' }
@@ -89,7 +90,8 @@
 #'   # An example from the ismev::gev.fit documentation
 #'   gev_fit <- gev.fit(revdbayes::portpirie, show = FALSE)
 #'   adj_gev_fit <- alogLik(gev_fit)
-#'   rl <- return_level(adj_gev_fit)
+#'   # Large inc set here for speed, sacrificing accuracy
+#'   rl <- return_level(adj_gev_fit, inc = 0.05)
 #'   summary(rl)
 #'   plot(rl)
 #' }
