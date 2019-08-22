@@ -95,10 +95,14 @@
 #'   summary(adj_fit)
 #'
 #'   # PP regression
+#'   # Set initial values, for speed
+#'   initial <- list(mu0 =  8.307466784, mu1 = -6.950467043,
+#'                   mu2 = 0.331117511 , mu3 = 0.007698413,
+#'                   scale = 0.533015665, shape = 0.213249485)
 #'   fitPP <- fevd(Prec, Fort, threshold = 0.395,
 #'                location.fun = ~cos(day/365.25) + sin(day/365.25) +
 #'                I((year - 1900)/99), type = "PP", use.phi = TRUE,
-#'                units = "inches")
+#'                units = "inches", initial = initial)
 #'   adj_fit <- alogLik(fitPP)
 #'   summary(adj_fit)
 #' }
