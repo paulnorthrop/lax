@@ -373,6 +373,9 @@ logLikVec.extRemes_pp <- function(object, pars = NULL, ...) {
   # Return the usual attributes for a "logLik" object
   attr(val, "nobs") <- nobs(object)
   attr(val, "df") <- length(pars)
+  # Delete the names attribute (I'm not sure from where it came) because its
+  # existence causes a problem in logLik.logLikVec()
+  attr(val, "names") <- NULL
   class(val) <- "logLikVec"
   return(val)
 }
