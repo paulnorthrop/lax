@@ -83,7 +83,7 @@
 #'   summary(adj_fit)
 #'
 #'   # PP model
-#'   fit <- fevd(Prec, Fort, threshold = 0.395, type = "GP", units = "inches")
+#'   fit <- fevd(Prec, Fort, threshold = 0.395, type = "PP", units = "inches")
 #'   adj_fit <- alogLik(fit)
 #'   summary(adj_fit)
 #'
