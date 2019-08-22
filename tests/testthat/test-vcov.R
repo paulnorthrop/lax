@@ -96,6 +96,41 @@ if (requireNamespace("fExtremes", quietly = TRUE)) {
   })
 }
 
+# ---------------------------------- ismev ---------------------------------- #
+
+if (requireNamespace("ismev", quietly = TRUE)) {
+  library(ismev)
+
+  mod <- ismev::gev.fit(revdbayes::portpirie, show = FALSE)
+  temp <- mod
+  class(temp) <- "ismev_gev"
+  test_that("ismev::gev.fit: vcov.gev.fit vs vcov.ismev_gev", {
+    testthat::expect_equal(vcov(mod), vcov(temp))
+  })
+
+  data(rain)
+  mod <- ismev::gpd.fit(rain, 10, show = FALSE)
+  temp <- mod
+  class(temp) <- "ismev_gpd"
+  test_that("ismev::gpd.fit: vcov.gpd.fit vs vcov.ismev_gpd", {
+    testthat::expect_equal(vcov(mod), vcov(temp))
+  })
+
+  # Start from the mle to save time
+  init <- c(40.55755732, 8.99195409, 0.05088103)
+  muinit <- init[1]
+  siginit <- init[2]
+  shinit <- init[3]
+  mod <- pp_refit(rain, 10, muinit = muinit, siginit = siginit,
+                  shinit = shinit, show = FALSE)
+  temp <- mod
+  class(temp) <- "ismev_pp"
+  test_that("ismev::pp.fit: vcov.pp.fit vs vcov.ismev_pp", {
+    testthat::expect_equal(vcov(mod), vcov(temp))
+  })
+
+}
+
 # --------------------------------- texmex ---------------------------------- #
 
 if (requireNamespace("texmex", quietly = TRUE)) {
