@@ -175,6 +175,7 @@ if (got_extRemes & got_distillery) {
 
   # PP regression
   # Set initial values, for speed
+  \donttest{
   initial <- list(mu0 =  8.307466784, mu1 = -6.950467043,
                   mu2 = 0.331117511 , mu3 = 0.007698413,
                   scale = 0.533015665, shape = 0.213249485)
@@ -184,6 +185,7 @@ if (got_extRemes & got_distillery) {
                units = "inches", initial = initial)
   adj_fit <- alogLik(fitPP)
   summary(adj_fit)
+  }
 }
 }
 \references{
