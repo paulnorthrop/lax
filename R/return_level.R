@@ -266,7 +266,9 @@ print.retlev <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
 #' @param object an object of class \code{c("retlev", "lax")}, a result of
 #'   a call to \code{\link{return_level}}.
 #' @param digits An integer. Used for number formatting with
-#'   \code{\link[base:Round]{signif}}.
+#'   \code{\link[base:Round]{signif}}.  If \code{digits} is not specified
+#'   (i.e. \code{\link{missing}}) then \code{signif()} will not be called
+#'   (i.e. no rounding will be performed).
 #' @param ... Additional arguments.  None are used in this function.
 #' @return Returns a list containing the list element \code{object$call}
 #'   and a numeric matrix \code{matrix} containing the MLE and estimated
@@ -275,8 +277,7 @@ print.retlev <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
 #' @section Examples:
 #' See the examples in \code{\link{return_level}}.
 #' @export
-summary.retlev <- function(object, digits = max(3, getOption("digits") - 3L),
-                           ...) {
+summary.retlev <- function(object, digits, ...) {
   if (!inherits(object, "retlev")) {
     stop("use only with \"retlev\" objects")
   }
@@ -284,9 +285,14 @@ summary.retlev <- function(object, digits = max(3, getOption("digits") - 3L),
     stop("use only with \"lax\" objects")
   }
   res <- object["call"]
-  res$matrix <- cbind(`Estimate` = signif(object$rl_sym["mle"],
-                                          digits = digits),
-                      `Std. Error` = signif(object$rl_se, digits = digits))
+  if (missing(digits)) {
+    res$matrix <- cbind(`Estimate` = object$rl_sym["mle"],
+                        `Std. Error` = object$rl_se)
+  } else {
+    res$matrix <- cbind(`Estimate` = signif(object$rl_sym["mle"],
+                                            digits = digits),
+                        `Std. Error` = signif(object$rl_se, digits = digits))
+  }
   rownames(res$matrix) <- paste0("m = ", object$m)
   class(res) <- "summary.retlev"
   return(res)
