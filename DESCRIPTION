@@ -24,10 +24,8 @@ Description: Performs adjusted inferences based on model objects fitted, using
     methodology in Chandler and Bate (2007) <doi:10.1093/biomet/asm015>. This 
     can be used for cluster correlated data when interest lies in the 
     parameters of the marginal distributions, or for performing inferences that 
-    are robust to certain types of model misspecification.  Univariate extreme 
-    value models, including regression models, are supported.  As a byproduct, 
-    generic S3 logLik, coef, vcov and nobs methods are provided, where these 
-    are not already provided in the original package.
+    are robust to certain types of model mis-specification.  Univariate extreme 
+    value models, including regression models, are supported.  
 Imports: chandwich,
     graphics,
     methods,
