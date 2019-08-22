@@ -4,15 +4,16 @@
 \alias{summary.retlev}
 \title{Summary method for a \code{"retlev"} object}
 \usage{
-\method{summary}{retlev}(object, digits = max(3, getOption("digits") -
-  3L), ...)
+\method{summary}{retlev}(object, digits, ...)
 }
 \arguments{
 \item{object}{an object of class \code{c("retlev", "lax")}, a result of
 a call to \code{\link{return_level}}.}
 
 \item{digits}{An integer. Used for number formatting with
-\code{\link[base:Round]{signif}}.}
+\code{\link[base:Round]{signif}}.  If \code{digits} is not specified
+(i.e. \code{\link{missing}}) then \code{signif()} will not be called
+(i.e. no rounding will be performed).}
 
 \item{...}{Additional arguments.  None are used in this function.}
 }
