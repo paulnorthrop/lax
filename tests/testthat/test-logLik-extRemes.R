@@ -165,11 +165,32 @@ if (got_extRemes & got_distillery) {
     testthat::expect_equivalent(logLik(fit), logLik(logLikVec(temp)))
   })
   # Check that alogLik also returned the correct maximised log-likelihood
-  test_that("extRemes::fevd, PP, , var u: logLik() vs. logLik(logLikVec)", {
+  test_that("extRemes::fevd, PP, var u: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(fit), logLik(adj_fit))
   })
   # Check logLik.extRemes_gp, PP: trivially correct
   test_that("extRemes::fevd, PP, var u: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
+  })
+
+  # PP regression
+  fit <- fevd(Prec, Fort, threshold = 0.395,
+              location.fun = ~cos(day/365.25) + sin(day/365.25) +
+                I((year - 1900)/99), type = "PP", use.phi = TRUE,
+              units = "inches")
+  adj_fit <- alogLik(fit)
+  temp <- fit
+  class(temp) <- "extRemes_pp"
+
+  test_that("extRemes::fevd, PP reg: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(fit), logLik(logLikVec(temp)))
+  })
+  # Check that alogLik also returned the correct maximised log-likelihood
+  test_that("extRemes::fevd, PP reg: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(fit), logLik(adj_fit))
+  })
+  # Check logLik.extRemes_gp, PP: trivially correct
+  test_that("extRemes::fevd, PP reg: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
 }
