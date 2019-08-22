@@ -74,4 +74,6 @@ To get the current released version from CRAN:
 install.packages("lax")
 ```
 
-### Vignettes
+### Vignette
+
+See `vignette("lax-vignette", package = "lax")` for an overview of the package.
