@@ -125,6 +125,9 @@ logLikVec <- function(object, ...) {
 #'   \code{\link[chandwich]{vcov.chandwich}}
 #'   and \code{\link[chandwich]{logLik.chandwich}}
 #'   for S3 methods for objects of class \code{"chandwich"}.
+#'
+#'   \code{\link[chandwich]{conf_region}} for confidence regions for
+#'   parirs of parameters.
 #' @seealso \code{\link[chandwich]{adjust_loglik}} to adjust a user-supplied
 #'   loglikelihood.
 #' @seealso \code{\link[sandwich]{meat}} and
