@@ -99,7 +99,7 @@ Object \code{x} \emph{must} have the following S3
   by estimating the score contributions using \code{\link[numDeriv]{jacobian}}.
 }
 \examples{
-# We need the texmex package, and ismev for the fremantle and rain datasets
+# We need the texmex package, and ismev for the fremantle dataset
 got_texmex <- requireNamespace("texmex", quietly = TRUE)
 got_ismev <- requireNamespace("ismev", quietly = TRUE)
 if (got_texmex) {
