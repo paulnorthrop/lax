@@ -46,4 +46,17 @@ if (got_evd) {
     testthat::expect_lt(diff(range(plot_output_new)),
                         diff(range(plot_output)))
   })
+
+  # Check that print.retlev and summary.retlev agree
+  print_rl <- print(rl)
+  summary_rl <- summary(rl)
+  test_that("print.rl vs summary.rl, MLEs", {
+    # Names differ
+    testthat::expect_equivalent(summary_rl$matrix[, 1], print_rl$rl_sym["mle"])
+  })
+  test_that("print.rl vs summary.rl, EEs", {
+    # Names differ
+    testthat::expect_equivalent(summary_rl$matrix[, 2], print_rl$rl_se)
+  })
+
 }
