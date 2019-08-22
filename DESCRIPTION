@@ -1,11 +1,11 @@
 Package: lax
 Title: Loglikelihood Adjustment for Extreme Value Models
 Version: 1.0.0.9000
-Date: 2019-08-04
+Date: 2019-08-21
 Authors@R: c(
     person(c("Paul", "J."), "Northrop", email = "p.northrop@ucl.ac.uk",
       role = c("aut", "cre", "cph")),
-    person("An", "Other", role = c("aut", "cph"))
+    person("Camellia", "Yin", role = c("aut", "cph"))
     )
 Description: Performs adjusted inferences based on model objects fitted, using 
     maximum likelihood estimation, by the extreme value analysis packages
@@ -23,9 +23,9 @@ Description: Performs adjusted inferences based on model objects fitted, using
     robust sandwich estimator of the parameter covariance matrix, based on the 
     methodology in Chandler and Bate (2007) <doi:10.1093/biomet/asm015>. This 
     can be used for cluster correlated data when interest lies in the 
-    parameters of the marginal distributions or for performing inferences that 
+    parameters of the marginal distributions, or for performing inferences that 
     are robust to certain types of model misspecification.  Univariate extreme 
-    value models, including regression model, are supported.  As a byproduct, 
+    value models, including regression models, are supported.  As a byproduct, 
     generic S3 logLik, coef, vcov and nobs methods are provided, where these 
     are not already provided in the original package.
 Imports: chandwich,
