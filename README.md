@@ -36,7 +36,7 @@ summary(adj_evm_fit)
 #> xi: loc          -0.08821 0.04937 0.03624
 ```
 
-An object returned from `aloglik` is a function to evaluate the adjusted loglikelihood. Such objects have `anova`, `coef`, `confint`, `logLik`, `nobs`, `plot`, `print`, `summary` and `vcov` methods.
+An object returned from `aloglik` is a function to evaluate the adjusted loglikelihood, with `anova`, `coef`, `confint`, `logLik`, `nobs`, `plot`, `print`, `summary` and `vcov` methods.
 
 ### Installation
 
