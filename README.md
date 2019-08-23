@@ -26,6 +26,7 @@ library(texmex, quietly = TRUE)
 evm_fit <- texmex::evm(temp, ow, gev, mu = ~ loc, phi = ~ loc, xi = ~loc)
 # Adjust the loglikelihood and standard errors
 adj_evm_fit <- alogLik(evm_fit, cluster = ow$year, cadjust = FALSE)
+# MLEs, SEs and adjusted SEs
 summary(adj_evm_fit)
 #>                       MLE      SE adj. SE
 #> mu: (Intercept)  81.17000 0.32820 0.40360
