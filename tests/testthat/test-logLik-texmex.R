@@ -12,7 +12,7 @@ if (got_texmex) {
   library(texmex)
 
   # texmex::evm, GEV
-  mod <- texmex::evm(SeaLevel, data = portpirie, family = gev)
+  mod <- texmex::evm(SeaLevel, data = texmex::portpirie, family = gev)
   temp <- mod
   adj_mod <- alogLik(mod)
   class(temp) <- "texmex_evmOpt"
