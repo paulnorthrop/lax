@@ -49,6 +49,15 @@
 #'   tiny <- alogLik(owfit, cluster = year)
 #'
 #'   anova(small, tiny)
+#'
+#'
+#'   set.seed(4082019)
+#'   uvdata <- evd::rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
+#'   M0 <- evd::fgev(uvdata)
+#'   M1 <- evd::fgev(uvdata, nsloc = (-49:50)/100)
+#'   adj0 <- alogLik(M0)
+#'   adj1 <- alogLik(M1)
+#'   anova(adj1, adj0)
 #' }
 #' @export
 anova.lax <- function (object, object2, ...) {
