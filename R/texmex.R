@@ -28,7 +28,7 @@
 #'   # Examples from the texmex::evm documentation
 #'
 #'   # GEV
-#'   mod <- evm(SeaLevel, data = portpirie, family = gev)
+#'   mod <- evm(SeaLevel, data = texmex::portpirie, family = gev)
 #'   adj_mod <- alogLik(mod)
 #'   summary(adj_mod)
 #'
