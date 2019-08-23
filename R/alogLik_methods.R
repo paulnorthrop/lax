@@ -111,6 +111,9 @@ logLikVec <- function(object, ...) {
 #'   \code{\link[lax]{texmex}}.
 #'
 #'   Otherwise, \code{class(x)} is \code{c("lax", "chandwich", class(x))}.
+#'
+#'   Objects returned from `aloglik` have `anova`, `coef`, `confint`, `logLik`,
+#'   `nobs`, `plot`, `print`, `summary` and `vcov` methods.
 #' @references Chandler, R. E. and Bate, S. (2007). Inference for clustered
 #'   data using the independence loglikelihood. \emph{Biometrika},
 #'   \strong{94}(1), 167-183. \url{http://doi.org/10.1093/biomet/asm015}

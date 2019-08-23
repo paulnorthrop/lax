@@ -51,6 +51,9 @@ An object inheriting from class \code{"chandwich"}.  See
   \code{\link[lax]{texmex}}.
 
   Otherwise, \code{class(x)} is \code{c("lax", "chandwich", class(x))}.
+
+  Objects returned from `aloglik` have `anova`, `coef`, `confint`, `logLik`,
+  `nobs`, `plot`, `print`, `summary` and `vcov` methods.
 }
 \description{
 This function is generic.  It performs adjustment of the loglikelihood
