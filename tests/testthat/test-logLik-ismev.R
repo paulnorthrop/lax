@@ -29,7 +29,7 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   xdat <- fremantle[, "SeaLevel"]
   # Set year 1897 to 1 for consistency with page 113 of Coles (2001)
   ydat <- cbind(fremantle[, 1] - 1896, fremantle[, 3])
-  gev_fit <- gev_refit(xdat, ydat, mul = 1:2, show = FALSE)
+  gev_fit <- gev_refit(xdat, ydat, mul = 1:2, show = TRUE)
   temp <- gev_fit
   adj_gev_fit <- alogLik(gev_fit)
   class(temp) <- "ismev_gev"
@@ -67,7 +67,7 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   # Continuing to the regression example on page 119 of Coles (2001)
   ydat <- as.matrix((1:length(rain)) / length(rain))
   reg_rain_fit <- gpd_refit(rain, 30, ydat = ydat, sigl = 1, siglink = exp,
-                            show = FALSE)
+                            show = TRUE)
   temp <- reg_rain_fit
   adj_reg_rain_fit <- alogLik(reg_rain_fit)
   class(temp) <- "ismev_gpd"
@@ -92,7 +92,7 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   siginit <- init[2]
   shinit <- init[3]
   rain_fit <- pp_refit(rain, 10, muinit = muinit, siginit = siginit,
-                       shinit = shinit, show = FALSE)
+                       shinit = shinit, show = TRUE)
   temp <- rain_fit
   adj_rain_fit <- alogLik(rain_fit)
   class(temp) <- "ismev_pp"
