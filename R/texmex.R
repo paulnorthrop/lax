@@ -73,6 +73,12 @@
 #'     adj_evm_fit <- alogLik(evm_fit)
 #'     summary(adj_evm_fit)
 #'   }
+#'
+#'   # An example from Chandler and Bate (2007)
+#'   # Note: evm uses phi = log(sigma)
+#'   evm_fit <- evm(temp, ow, gev, mu = ~ loc, phi = ~ loc, xi = ~loc)
+#'   adj_evm_fit <- alogLik(evm_fit, cluster = ow$year, cadjust = FALSE)
+#'   summary(adj_evm_fit)
 #' }
 #' @name texmex
 NULL
