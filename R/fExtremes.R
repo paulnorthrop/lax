@@ -1,8 +1,8 @@
 # ================================ fExtremes ================================ #
 
-#' Loglikelihood adjustment of fExtremes fits
+#' Loglikelihood adjustment for fExtremes fits
 #'
-#' S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
+#' S3 \code{alogLik} method to perform loglikelihood adjustment for fitted
 #' extreme value model objects returned from the functions
 #' \code{\link[fExtremes:GevModelling]{gevFit}},
 #' \code{\link[fExtremes:GevModelling]{gumbelFit}} and

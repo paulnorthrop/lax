@@ -10,7 +10,7 @@ logLikVec <- function(object, ...) {
   UseMethod("logLikVec")
 }
 
-#' Loglikelihood adjustment of model fits
+#' Loglikelihood adjustment for model fits
 #'
 #' This function is generic.  It performs adjustment of the loglikelihood
 #' associated with fitted model objects, following

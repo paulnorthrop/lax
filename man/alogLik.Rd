@@ -2,7 +2,7 @@
 % Please edit documentation in R/alogLik_methods.R
 \name{alogLik}
 \alias{alogLik}
-\title{Loglikelihood adjustment of model fits}
+\title{Loglikelihood adjustment for model fits}
 \usage{
 alogLik(x, cluster = NULL, use_vcov = TRUE, ...)
 }

@@ -1,8 +1,8 @@
 # =================================== evd =================================== #
 
-#' Loglikelihood adjustment of evd fits
+#' Loglikelihood adjustment for evd fits
 #'
-#' S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
+#' S3 \code{alogLik} method to perform loglikelihood adjustment for fitted
 #' extreme value model objects returned from the functions
 #' \code{\link[evd]{fgev}} and \code{\link[evd]{fpot}} in the evd package.
 #' If \code{x} is returned from \code{\link[evd]{fgev}} then the call must

@@ -3,7 +3,7 @@
 \name{evd}
 \alias{evd}
 \alias{alogLik.evd}
-\title{Loglikelihood adjustment of evd fits}
+\title{Loglikelihood adjustment for evd fits}
 \usage{
 \method{alogLik}{evd}(x, cluster = NULL, use_vcov = TRUE, ...)
 }
@@ -46,7 +46,7 @@ An object inheriting from class \code{"chandwich"}.  See
   \code{c("pot", "pp")} if \code{model} was \code{"pp"}.
 }
 \description{
-S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
+S3 \code{alogLik} method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the functions
 \code{\link[evd]{fgev}} and \code{\link[evd]{fpot}} in the evd package.
 If \code{x} is returned from \code{\link[evd]{fgev}} then the call must

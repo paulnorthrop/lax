@@ -3,7 +3,7 @@
 \name{extRemes}
 \alias{extRemes}
 \alias{alogLik.fevd}
-\title{Loglikelihood adjustment of extRemes fits}
+\title{Loglikelihood adjustment for extRemes fits}
 \usage{
 \method{alogLik}{fevd}(x, cluster = NULL, use_vcov = TRUE, ...)
 }
@@ -46,7 +46,7 @@ An object inheriting from class \code{"chandwich"}.  See
   \code{"nonstat"} if \code{\link[extRemes]{is.fixedfevd} = FALSE}.
 }
 \description{
-S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
+S3 \code{alogLik} method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the function
 \code{\link[extRemes]{fevd}} in the
 \code{\link[extRemes:extRemes-package]{extRemes}} package.

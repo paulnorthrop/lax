@@ -1,8 +1,8 @@
 # =================================== POT =================================== #
 
-#' Loglikelihood adjustment of POT fits
+#' Loglikelihood adjustment for POT fits
 #'
-#' S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
+#' S3 \code{alogLik} method to perform loglikelihood adjustment for fitted
 #' extreme value model objects returned from
 #' \code{\link[POT]{fitGPD}} function in the POT package.
 #' The model must have been fitted using maximum likelihood estimation.

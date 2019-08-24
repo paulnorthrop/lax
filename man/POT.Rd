@@ -3,7 +3,7 @@
 \name{POT}
 \alias{POT}
 \alias{alogLik.uvpot}
-\title{Loglikelihood adjustment of POT fits}
+\title{Loglikelihood adjustment for POT fits}
 \usage{
 \method{alogLik}{uvpot}(x, cluster = NULL, use_vcov = TRUE, ...)
 }
@@ -38,7 +38,7 @@ An object inheriting from class \code{"chandwich"}.  See
   \code{class(x)} is \code{c("lax", "chandwich", "POT", "pot", "gpd")}.
 }
 \description{
-S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
+S3 \code{alogLik} method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from
 \code{\link[POT]{fitGPD}} function in the POT package.
 The model must have been fitted using maximum likelihood estimation.

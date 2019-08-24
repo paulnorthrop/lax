@@ -1,8 +1,8 @@
 # ================================= extRemes ================================ #
 
-#' Loglikelihood adjustment of extRemes fits
+#' Loglikelihood adjustment for extRemes fits
 #'
-#' S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
+#' S3 \code{alogLik} method to perform loglikelihood adjustment for fitted
 #' extreme value model objects returned from the function
 #' \code{\link[extRemes]{fevd}} in the
 #' \code{\link[extRemes:extRemes-package]{extRemes}} package.

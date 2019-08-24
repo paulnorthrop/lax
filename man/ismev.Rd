@@ -5,7 +5,7 @@
 \alias{alogLik.gev.fit}
 \alias{alogLik.pp.fit}
 \alias{alogLik.gpd.fit}
-\title{Loglikelihood adjustment of ismev fits}
+\title{Loglikelihood adjustment for ismev fits}
 \usage{
 \method{alogLik}{gev.fit}(x, cluster = NULL, use_vcov = TRUE, ...)
 
@@ -56,7 +56,7 @@ An object inheriting from class \code{"chandwich"}.  See
   \code{"nonstat"} if \code{x$trans = TRUE}.
 }
 \description{
-S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
+S3 \code{alogLik} method to perform loglikelihood adjustment fot fitted
 extreme value model objects returned from the functions
 \code{\link[ismev]{gev.fit}}, \code{\link[ismev]{gpd.fit}}, and
 \code{\link[ismev]{pp.fit}} in the \code{\link[ismev]{ismev}}

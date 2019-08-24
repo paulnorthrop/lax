@@ -1,8 +1,8 @@
 # =================================== evir ================================== #
 
-#' Loglikelihood adjustment of evir fits
+#' Loglikelihood adjustment for evir fits
 #'
-#' S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
+#' S3 \code{alogLik} method to perform loglikelihood adjustment for fitted
 #' extreme value model objects returned from the functions
 #' \code{\link[evir]{gev}}, \code{\link[evir]{gpd}} and \code{\link[evir]{pot}}
 #' in the evir package.

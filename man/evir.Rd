@@ -5,7 +5,7 @@
 \alias{alogLik.gev}
 \alias{alogLik.gpd}
 \alias{alogLik.potd}
-\title{Loglikelihood adjustment of evir fits}
+\title{Loglikelihood adjustment for evir fits}
 \usage{
 \method{alogLik}{gev}(x, cluster = NULL, use_vcov = TRUE, ...)
 
@@ -52,7 +52,7 @@ An object inheriting from class \code{"chandwich"}.  See
   \code{c("potd", "stat")}.
 }
 \description{
-S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
+S3 \code{alogLik} method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the functions
 \code{\link[evir]{gev}}, \code{\link[evir]{gpd}} and \code{\link[evir]{pot}}
 in the evir package.

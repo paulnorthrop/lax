@@ -4,7 +4,7 @@
 \alias{fExtremes}
 \alias{alogLik.fGEVFIT}
 \alias{alogLik.fGPDFIT}
-\title{Loglikelihood adjustment of fExtremes fits}
+\title{Loglikelihood adjustment for fExtremes fits}
 \usage{
 \method{alogLik}{fGEVFIT}(x, cluster = NULL, use_vcov = TRUE, ...)
 
@@ -48,7 +48,7 @@ An object inheriting from class \code{"chandwich"}.  See
   components are \code{c("gpd", "stat")}.
 }
 \description{
-S3 \code{alogLik} method to perform loglikelihood adjustment of fitted
+S3 \code{alogLik} method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the functions
 \code{\link[fExtremes:GevModelling]{gevFit}},
 \code{\link[fExtremes:GevModelling]{gumbelFit}} and
