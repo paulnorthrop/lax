@@ -106,7 +106,7 @@ We see that the adjustment of the loglikelihood for clustering makes enough of a
 ```{r, eval = got_texmex}
 library(texmex, quietly = TRUE)
 # Note: phi = log(scale)
-evm_fit <- texmex::evm(temp, ow, gev, mu = ~ loc, phi = ~ loc, xi = ~loc)
+evm_fit <- evm(temp, ow, gev, mu = ~ loc, phi = ~ loc, xi = ~loc)
 adj_evm_fit <- alogLik(evm_fit, cluster = ow$year)
 summary(adj_evm_fit)
 ```
@@ -182,7 +182,7 @@ Among other things, the `fitgpd()` function in the *POT* package can fit a GP di
 library(POT)
 set.seed(24082019)
 x <- POT::rgpd(200, 1, 2, 0.25)
-fit <- POT::fitgpd(x, 1, "mle")
+fit <- fitgpd(x, 1, "mle")
 adj_fit <- alogLik(fit)
 summary(adj_fit)
 ```
