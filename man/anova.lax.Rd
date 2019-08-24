@@ -44,29 +44,34 @@ The objects of class \code{"lax"} need not be provided in nested
 }
 \examples{
 got_evd <- requireNamespace("evd", quietly = TRUE)
-
 if (got_evd) {
   library(evd)
-  y <- c(chandwich::owtemps[, "Oxford"], chandwich::owtemps[, "Worthing"])
-  x <- rep(c(1, -1), each = length(y) / 2)
-  owfit <- evd::fgev(y, nsloc = x)
-  year <- rep(1:(length(y) / 2), 2)
-  small <- alogLik(owfit, cluster = year)
-
-  owfit <- evd::fgev(y)
-  year <- rep(1:(length(y) / 2), 2)
-  tiny <- alogLik(owfit, cluster = year)
-
-  anova(small, tiny)
-
+  small <- fgev(ow$temp, nsloc = ow[, "loc"])
+  adj_small <- alogLik(small, cluster = ow$year)
+  tiny <- fgev(ow$temp)
+  adj_tiny <- alogLik(tiny, cluster = ow$year)
+  anova(adj_small, adj_tiny)
 
   set.seed(4082019)
   uvdata <- evd::rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
-  M0 <- evd::fgev(uvdata)
-  M1 <- evd::fgev(uvdata, nsloc = (-49:50)/100)
+  M0 <- fgev(uvdata)
+  M1 <- fgev(uvdata, nsloc = (-49:50)/100)
   adj0 <- alogLik(M0)
   adj1 <- alogLik(M1)
   anova(adj1, adj0)
+}
+
+got_texmex <- requireNamespace("texmex", quietly = TRUE)
+if (got_texmex) {
+  large <- evm(temp, ow, gev, mu = ~ loc, phi = ~ loc, xi = ~loc)
+  medium <- evm(temp, ow, gev, mu = ~ loc, phi = ~ loc)
+  small <- evm(temp, ow, gev, mu = ~ loc)
+  tiny <- evm(temp, ow, gev)
+  adj_large<- alogLik(large, cluster = ow$year)
+  adj_medium <- alogLik(medium, cluster = ow$year)
+  adj_small <- alogLik(small, cluster = ow$year)
+  adj_tiny <- alogLik(tiny, cluster = ow$year)
+  anova(adj_large, adj_medium, adj_small, adj_tiny)
 }
 }
 \references{
@@ -75,7 +80,8 @@ Chandler, R. E. and Bate, S. (2007). Inference for clustered
   \strong{94}(1), 167-183. \url{http://doi.org/10.1093/biomet/asm015}
 }
 \seealso{
-\code{\link[chandwich]{anova.chandwich}}.
+\code{\link[chandwich]{anova.chandwich}}: the acode{anova} method
+  on which \code{anova.lax} is based.
 
-\code{\link{alogLik}}.
+\code{\link{alogLik}}: loglikelihood adjustment for model fits.
 }
