@@ -23,7 +23,7 @@ library(lax)
 library(texmex, quietly = TRUE)
 # Fit a GEV model with separate location, scale and shape for Oxford and Worthing
 # Note: phi = log(scale)
-evm_fit <- texmex::evm(temp, ow, gev, mu = ~ loc, phi = ~ loc, xi = ~loc)
+evm_fit <- evm(temp, ow, gev, mu = ~ loc, phi = ~ loc, xi = ~loc)
 # Adjust the loglikelihood and standard errors
 adj_evm_fit <- alogLik(evm_fit, cluster = ow$year, cadjust = FALSE)
 # MLEs, SEs and adjusted SEs
