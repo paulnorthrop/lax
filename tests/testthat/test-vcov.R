@@ -131,6 +131,22 @@ if (requireNamespace("ismev", quietly = TRUE)) {
 
 }
 
+# --------------------------------- POT ---------------------------------- #
+
+if (requireNamespace("POT", quietly = TRUE)) {
+  library(POT)
+
+  # An example from the POT::fitgpd documentation.
+  set.seed(24082019)
+  x <- POT::rgpd(200, 1, 2, 0.25)
+  fit <- POT::fitgpd(x, 1, "mle")
+  temp <- fit
+  class(temp) <- "POT_fitgpd"
+  test_that("POT::fitgpd: vcov.pot vs vcov.POT_fitgpd", {
+    testthat::expect_equal(vcov(fit), vcov(temp))
+  })
+}
+
 # --------------------------------- texmex ---------------------------------- #
 
 if (requireNamespace("texmex", quietly = TRUE)) {
