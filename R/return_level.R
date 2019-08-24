@@ -138,6 +138,8 @@ return_level <- function(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
 #'   100\code{level}\% confidence limits?
 #' @param digits An integer. Passed to \code{\link[base:Round]{signif}} to
 #'   round the values in the legend.
+#' @param plot A logical scalar.  If \code{TRUE} then the plot is produced.
+#'   Otherwise, it is not, but the MLE and confidence limits are returned.
 #' @param ... Further arguments to be passed to \code{\link[graphics]{plot}}.
 #' @details Plots the profile loglikelihood for a return level, provided that
 #'   \code{x} returned by a call to \code{\link{return_level}} using
@@ -156,7 +158,7 @@ return_level <- function(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
 #' See the examples in \code{\link{return_level}}.
 #' @export
 plot.retlev <- function(x, y = NULL, level = NULL, legend = TRUE, digits = 3,
-                        ...) {
+                        plot= TRUE, ...) {
   if (!inherits(x, "retlev")) {
     stop("use only with \"retlev\" objects")
   }
@@ -201,18 +203,20 @@ plot.retlev <- function(x, y = NULL, level = NULL, legend = TRUE, digits = 3,
   my_plot <- function(x, y, ..., xlab = my_xlab, ylab = my_ylab, type = "l") {
     graphics::plot(x, y, ..., xlab = xlab, ylab = ylab, type = type)
   }
-  my_plot(x$for_plot[, "ret_levs"], x$for_plot[, "prof_loglik"], ...)
   hline <- function(x, ..., col = "blue", lty = 2) {
     graphics::abline(h = x, ..., col = col, lty = lty)
   }
-  hline(x$max_loglik, ...)
-  hline(crit_value, ...)
-  # Add a legend, if requested
-  if (legend && length(level) == 1) {
-    mle_leg <- paste0("     MLE ", signif(x$rl_prof["mle"], digits))
-    conf_leg <- paste0(100 * x$level, "% CI (", signif(low_lim, digits), ",",
-                       signif(up_lim, digits), ")")
-    graphics::legend("topright", legend = c(mle_leg, conf_leg))
+  if (plot) {
+    my_plot(x$for_plot[, "ret_levs"], x$for_plot[, "prof_loglik"], ...)
+    hline(x$max_loglik, ...)
+    hline(crit_value, ...)
+    # Add a legend, if requested
+    if (legend && length(level) == 1) {
+      mle_leg <- paste0("     MLE ", signif(x$rl_prof["mle"], digits))
+      conf_leg <- paste0(100 * x$level, "% CI (", signif(low_lim, digits), ",",
+                         signif(up_lim, digits), ")")
+      graphics::legend("topright", legend = c(mle_leg, conf_leg))
+    }
   }
   res <- c(low_lim, x$rl_prof["mle"], up_lim)
   names(res) <- c("lower", "mle", "upper")

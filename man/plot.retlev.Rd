@@ -5,7 +5,7 @@
 \title{Plot diagnostics for a retlev object}
 \usage{
 \method{plot}{retlev}(x, y = NULL, level = NULL, legend = TRUE,
-  digits = 3, ...)
+  digits = 3, plot = TRUE, ...)
 }
 \arguments{
 \item{x}{an object of class \code{c("retlev", "lax")}, a result of
@@ -24,6 +24,9 @@ of the plot) that gives the approximate values of the MLE and
 
 \item{digits}{An integer. Passed to \code{\link[base:Round]{signif}} to
 round the values in the legend.}
+
+\item{plot}{A logical scalar.  If \code{TRUE} then the plot is produced.
+Otherwise, it is not, but the MLE and confidence limits are returned.}
 
 \item{...}{Further arguments to be passed to \code{\link[graphics]{plot}}.}
 }
