@@ -177,15 +177,13 @@ if (got_ismev) {
   summary(adj_pp_fit)
 
   # An example from Chandler and Bate (2007)
-  y <- c(chandwich::owtemps[, "Oxford"], chandwich::owtemps[, "Worthing"])
-  x <- as.matrix(rep(c(1, -1), each = length(y) / 2))
-  gev_fit <- gev_refit(y, x, mul = 1, sigl = 1, shl = 1, show = FALSE)
-  year <- rep(rownames(chandwich::owtemps), 2)
-  adj_gev_fit <- alogLik(gev_fit, cluster = year)
+  gev_fit <- gev_refit(ow$temp, ow, mul = 4, sigl = 4, shl = 4,
+                       show = FALSE)
+  adj_gev_fit <- alogLik(gev_fit, cluster = ow$year)
   summary(adj_gev_fit)
   # Get closer to the values reported in Table 2 of Chandler and Bate (2007)
-  gev_fit <- gev_refit(y, x, mul = 1, sigl = 1, shl = 1, show = FALSE,
-                       method = "BFGS")
+  gev_fit <- gev_refit(ow$temp, ow, mul = 4, sigl = 4, shl = 4,
+                       show = FALSE, method = "BFGS")
   # Call sandwich::meatCL() with cadjust = FALSE
   adj_gev_fit <- alogLik(gev_fit, cluster = year, cadjust = FALSE)
   summary(adj_gev_fit)

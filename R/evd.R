@@ -35,21 +35,18 @@
 #'   summary(adj_fgev)
 #'
 #'   # An example from Chandler and Bate (2007)
-#'   y <- c(chandwich::owtemps[, "Oxford"], chandwich::owtemps[, "Worthing"])
-#'   x <- rep(c(1, -1), each = length(y) / 2)
-#'   owfit <- evd::fgev(y, nsloc = x)
-#'   year <- rep(rownames(chandwich::owtemps), 2)
-#'   adj_owfit <- alogLik(owfit, cluster = year)
+#'   owfit <- fgev(ow$temp, nsloc = ow$loc)
+#'   adj_owfit <- alogLik(owfit, cluster = ow$year)
 #'   summary(adj_owfit)
 #'
 #'   # An example from the evd::fpot documentation
 #'   set.seed(3082019)
 #'   uvdata <- evd::rgpd(100, loc = 0, scale = 1.1, shape = 0.2)
-#'   M1 <- evd::fpot(uvdata, 1)
+#'   M1 <- fpot(uvdata, 1)
 #'   adj_fpot <- alogLik(M1)
 #'   summary(adj_fpot)
 #'   # Fit using the pp model, rather than the gpd
-#'   M1 <- evd::fpot(uvdata, 1, model = "pp", npp = 365)
+#'   M1 <- fpot(uvdata, 1, model = "pp", npp = 365)
 #'   adj_fpot <- alogLik(M1)
 #'   summary(adj_fpot)
 #' }
