@@ -32,7 +32,7 @@ if (got_evd) {
 
   # Check that output from plot.retlev() and print.retlev() agree
 
-  plot_output <- plot(rl, plot = FALSE)
+  plot_output <- plot(rl)
   print_output <- print(rl)
   test_that("plot.retlev vs print.retlev", {
     testthat::expect_equal(plot_output, print_output$rl_prof)
@@ -41,7 +41,7 @@ if (got_evd) {
   # Check that when we reduce the CI level (from 95% to 75%) then
   # interval narrows
 
-  plot_output_new <- plot(rl, level = 0.75, plot = FALSE)
+  plot_output_new <- plot(rl, level = 0.75)
   test_that("Lower CI level gives a narrower interval", {
     testthat::expect_lt(diff(range(plot_output_new)),
                         diff(range(plot_output)))
