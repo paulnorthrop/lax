@@ -166,6 +166,16 @@ detach("package:fExtremes")
 
 ### POT
 
+Among other things, the `fitgpd()` function in the *POT* package can fit a GP distribution to threshold excesses using maximum liklelihood estimation.  We illustrate `alogLik` using an example from the `fitgpd` documentation.  There is no cluster dependence here.  However, there may be interest in using a sandwich estimator of covariance if we are concerned about model misspecification.  In this case, where we simulate from the correct model, we expect the adjustment to make little difference, and so it proves. 
+
+```{r}
+library(POT)
+set.seed(24082019)
+x <- POT::rgpd(200, 1, 2, 0.25)
+fit <- POT::fitgpd(x, 1, "mle")
+adj_fit <- alogLik(fit)
+summary()
+```
 
 ## References
 
