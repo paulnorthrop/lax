@@ -113,13 +113,13 @@ if (got_evir) {
   library(evir)
   # An example from the evir::gev documentation
   data(bmw)
-  out <- evir::gev(bmw, "month")
+  out <- gev(bmw, "month")
   adj_out <- alogLik(out)
   summary(adj_out)
 
   # An example from the evir::gpd documentation
   data(danish)
-  out <- evir::gpd(danish, 10)
+  out <- gpd(danish, 10)
   adj_out <- alogLik(out)
   summary(adj_out)
 
