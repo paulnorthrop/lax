@@ -135,7 +135,7 @@ if (got_extRemes & got_distillery) {
 
   # extRemes::fevd, PP model
 
-  fit <- fevd(Prec, Fort, threshold = 0.395, type = "PP", units = "inches")
+  fit <- fevd(Prec, Fort, threshold = 0.475, type = "PP", units = "inches")
   adj_fit <- alogLik(fit)
   temp <- fit
   class(temp) <- "extRemes_pp"
@@ -154,7 +154,7 @@ if (got_extRemes & got_distillery) {
 
   # extRemes::fevd, PP model, non-constant threshold
 
-  fit <- fevd(Prec, Fort, threshold=0.475,
+  fit <- fevd(Prec, Fort, threshold = 0.475,
               threshold.fun=~I(-0.15 * cos(2 * pi * month / 12)),
               type = "PP")
   adj_fit <- alogLik(fit)
@@ -174,13 +174,10 @@ if (got_extRemes & got_distillery) {
   })
 
   # PP regression
-  initial <- list(mu0 =  8.307466784, mu1 = -6.950467043,
-                  mu2 = 0.331117511 , mu3 = 0.007698413,
-                  scale = 0.533015665, shape = 0.213249485)
-  fitPP <- fevd(Prec, Fort, threshold = 0.395,
+  fitPP <- fevd(Prec, Fort, threshold = 0.475,
                 location.fun = ~cos(day/365.25) + sin(day/365.25) +
                 I((year - 1900)/99), type = "PP", use.phi = TRUE,
-                units = "inches", initial = initial)
+                units = "inches")
   adj_fit <- alogLik(fitPP)
   temp <- fitPP
   class(temp) <- "extRemes_pp"
