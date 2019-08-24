@@ -70,15 +70,15 @@
 #'
 #'   # GP non-constant threshold
 #'   data(Fort)
-#'   fit <- fevd(Prec, Fort, threshold=0.475,
-#'               threshold.fun=~I(-0.15 * cos(2 * pi * month / 12)),
+#'   fit <- fevd(Prec, Fort, threshold = 0.475,
+#'               threshold.fun = ~I(-0.15 * cos(2 * pi * month / 12)),
 #'               type = "GP")
 #'   adj_fit <- alogLik(fit)
 #'   summary(adj_fit)
 #'
 #'   # Exponential non-constant threshold
 #'   fit <- fevd(Prec, Fort, threshold=0.475,
-#'               threshold.fun=~I(-0.15 * cos(2 * pi * month / 12)),
+#'               threshold.fun = ~I(-0.15 * cos(2 * pi * month / 12)),
 #'               type = "Exponential")
 #'   adj_fit <- alogLik(fit)
 #'   summary(adj_fit)
@@ -89,7 +89,7 @@
 #'   summary(adj_fit)
 #'
 #'   # PP non-constant threshold
-#'   fit <- fevd(Prec, Fort, threshold=0.475,
+#'   fit <- fevd(Prec, Fort, threshold = 0.475,
 #'               threshold.fun=~I(-0.15 * cos(2 * pi * month / 12)),
 #'               type = "PP")
 #'   adj_fit <- alogLik(fit)
