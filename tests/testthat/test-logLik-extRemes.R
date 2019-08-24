@@ -174,20 +174,23 @@ if (got_extRemes & got_distillery) {
   })
 
   # PP regression
-  fit <- fevd(Prec, Fort, threshold = 0.395,
-              location.fun = ~cos(day/365.25) + sin(day/365.25) +
+  initial <- list(mu0 =  8.307466784, mu1 = -6.950467043,
+                  mu2 = 0.331117511 , mu3 = 0.007698413,
+                  scale = 0.533015665, shape = 0.213249485)
+  fitPP <- fevd(Prec, Fort, threshold = 0.395,
+                location.fun = ~cos(day/365.25) + sin(day/365.25) +
                 I((year - 1900)/99), type = "PP", use.phi = TRUE,
-              units = "inches")
-  adj_fit <- alogLik(fit)
-  temp <- fit
+                units = "inches", initial = initial)
+  adj_fit <- alogLik(fitPP)
+  temp <- fitPP
   class(temp) <- "extRemes_pp"
 
   test_that("extRemes::fevd, PP reg: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit), logLik(logLikVec(temp)))
+    testthat::expect_equivalent(logLik(fitPP), logLik(logLikVec(temp)))
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("extRemes::fevd, PP reg: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit), logLik(adj_fit))
+    testthat::expect_equivalent(logLik(fitPP), logLik(adj_fit))
   })
   # Check logLik.extRemes_gp, PP: trivially correct
   test_that("extRemes::fevd, PP reg: logLik() vs. logLik(logLikVec)", {
