@@ -1,6 +1,6 @@
-context("BC deriv")
+context("Box-Cox deriv")
 
-# Check that nobs.evd behaves correctly
+# Check that box_cox_deriv is correct for lamnda = 0
 
 x <- 1:10
 for (i in length(x)) {
