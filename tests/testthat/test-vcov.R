@@ -143,7 +143,8 @@ if (requireNamespace("POT", quietly = TRUE)) {
   temp <- fit
   class(temp) <- "POT_fitgpd"
   test_that("POT::fitgpd: vcov.pot vs vcov.POT_fitgpd", {
-    testthat::expect_equal(vcov(fit), vcov(temp))
+    testthat::expect_equal(vcov(fit, complete = TRUE),
+                           vcov(temp, complete = TRUE))
   })
 }
 
