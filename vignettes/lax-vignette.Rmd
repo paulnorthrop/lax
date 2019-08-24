@@ -17,6 +17,16 @@ bibliography: lax.bib
 knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
 ```
 
+```{r, echo = FALSE}
+got_evd <- requireNamespace("evd", quietly = TRUE)
+got_evir <- requireNamespace("evir", quietly = TRUE)
+got_extRemes <- requireNamespace("extRemes", quietly = TRUE)
+got_fExtremes <- requireNamespace("fExtremes", quietly = TRUE)
+got_ismev <- requireNamespace("ismev", quietly = TRUE)
+got_POT <- requireNamespace("POT", quietly = TRUE)
+got_texmex <- requireNamespace("texmex", quietly = TRUE)
+```
+
 The [CRAN Task View on Extreme Value Analysis](https://CRAN.R-project.org/view=ExtremeValue) provides information about R packages that perform various extreme value analyses. The *lax* package supplements the functionality of seven of these packages, namely 
 [evd](https://cran.r-project.org/package=evd) [@evd],
 [evir](https://cran.r-project.org/package=evir) [@evir],
@@ -93,7 +103,7 @@ We see that the adjustment of the loglikelihood for clustering makes enough of a
 
 ## texmex
 
-```{r}
+```{r, eval = got_texmex}
 library(texmex, quietly = TRUE)
 # Note: phi = log(scale)
 evm_fit <- texmex::evm(temp, ow, gev, mu = ~ loc, phi = ~ loc, xi = ~loc)
@@ -101,7 +111,7 @@ adj_evm_fit <- alogLik(evm_fit, cluster = ow$year)
 summary(adj_evm_fit)
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, eval = got_texmex}
 detach("package:texmex")
 ```
 
@@ -109,20 +119,20 @@ detach("package:texmex")
 
 The `fgev()` function in *evd* fits GEV regression models, but it only allows covariate effects in the location parameter.
 
-```{r}
+```{r, eval = got_evd}
 library(evd)
 fgev_fit <- fgev(ow$temp, nsloc = ow[, "loc"])
 adj_fgev_fit <- alogLik(fgev_fit, cluster = ow$year)
 summary(adj_fgev_fit)
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, eval = got_evd}
 detach("package:evd")
 ```
 
 ## extRemes
 
-```{r}
+```{r, eval = got_extRemes}
 library(extRemes)
 fevd_fit <- fevd(temp, ow, location.fun = ~ ow$loc, scale.fun = ~ ow$loc,
                  shape.fun = ~ ow$loc)
@@ -130,7 +140,7 @@ adj_fevd_fit <- alogLik(fevd_fit, cluster = ow$year)
 summary(adj_fevd_fit)
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, eval = got_extRemes}
 detach("package:extRemes")
 ```
 
@@ -138,14 +148,14 @@ detach("package:extRemes")
 
 The `gev()` function in *evir* only fits stationary GEV models.
 
-```{r}
+```{r, eval = got_evir}
 library(evir)
 gev_fit <- gev(ow$temp)
 adj_gev_fit <- alogLik(gev_fit)
 summary(adj_gev_fit)
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, eval = got_evir}
 detach("package:evir")
 ```
 
@@ -153,14 +163,14 @@ detach("package:evir")
 
 The `gevFit()` function in *fExtremes* only fits stationary GEV models.
 
-```{r}
+```{r, eval = got_fExtremes}
 library(fExtremes)
 gevFit_fit <- gevFit(ow$temp)
 adj_gevFit_fit <- alogLik(gevFit_fit)
 summary(adj_gevFit_fit)
 ```
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, eval = got_fExtremes}
 detach("package:fExtremes")
 ```
 
@@ -168,7 +178,7 @@ detach("package:fExtremes")
 
 Among other things, the `fitgpd()` function in the *POT* package can fit a GP distribution to threshold excesses using maximum liklelihood estimation.  We illustrate `alogLik` using an example from the `fitgpd` documentation.  There is no cluster dependence here.  However, there may be interest in using a sandwich estimator of covariance if we are concerned about model misspecification.  In this case, where we simulate from the correct model, we expect the adjustment to make little difference, and so it proves. 
 
-```{r}
+```{r, eval = got_POT}
 library(POT)
 set.seed(24082019)
 x <- POT::rgpd(200, 1, 2, 0.25)
