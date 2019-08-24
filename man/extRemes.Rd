@@ -180,7 +180,8 @@ if (got_extRemes & got_distillery) {
                I((year - 1900)/99), type = "PP", use.phi = TRUE,
                units = "inches")
   adj_fit <- alogLik(fitPP)
-  summary(adj_fit)}
+  summary(adj_fit)
+}
 }
 \references{
 Chandler, R. E. and Bate, S. (2007). Inference for clustered
