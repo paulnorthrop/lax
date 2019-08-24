@@ -101,7 +101,7 @@
 #'   gev_fit <- gev_refit(ow$temp, ow, mul = 4, sigl = 4, shl = 4,
 #'                        show = FALSE, method = "BFGS")
 #'   # Call sandwich::meatCL() with cadjust = FALSE
-#'   adj_gev_fit <- alogLik(gev_fit, cluster = year, cadjust = FALSE)
+#'   adj_gev_fit <- alogLik(gev_fit, cluster = ow$year, cadjust = FALSE)
 #'   summary(adj_gev_fit)
 #' }
 #' @name ismev
