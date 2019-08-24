@@ -184,8 +184,7 @@ if (got_extRemes & got_distillery) {
                I((year - 1900)/99), type = "PP", use.phi = TRUE,
                units = "inches", initial = initial)
   adj_fit <- alogLik(fitPP)
-  summary(adj_fit)
-  }
+  summary(adj_fit)}
 }
 }
 \references{

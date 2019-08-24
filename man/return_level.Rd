@@ -91,7 +91,7 @@ if (got_evd) {
   # An example from the evd::fgev documentation
   set.seed(4082019)
   uvdata <- evd::rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
-  M1 <- evd::fgev(uvdata)
+  M1 <- fgev(uvdata)
   adj_fgev <- alogLik(M1)
   # Large inc set here for speed, sacrificing accuracy
   rl <- return_level(adj_fgev, inc = 0.5)
