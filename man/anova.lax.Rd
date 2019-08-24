@@ -63,6 +63,7 @@ if (got_evd) {
 
 got_texmex <- requireNamespace("texmex", quietly = TRUE)
 if (got_texmex) {
+  library(texmex)
   large <- evm(temp, ow, gev, mu = ~ loc, phi = ~ loc, xi = ~loc)
   medium <- evm(temp, ow, gev, mu = ~ loc, phi = ~ loc)
   small <- evm(temp, ow, gev, mu = ~ loc)
