@@ -8,7 +8,7 @@
 #' \code{\link[extRemes:extRemes-package]{extRemes}} package.
 #' The model must have been fitted using maximum likelihood estimation.
 #'
-#' @inherit alogLik params details references seealso
+#' @inherit alogLik params details references
 #' @return An object inheriting from class \code{"chandwich"}.  See
 #'   \code{\link[chandwich]{adjust_loglik}}.
 #'   \code{class(x)} is a vector of length 5. The first 3 components are
@@ -20,6 +20,7 @@
 #'   The 5th component is
 #'   \code{"stat"} if \code{\link[extRemes]{is.fixedfevd} = TRUE} and
 #'   \code{"nonstat"} if \code{\link[extRemes]{is.fixedfevd} = FALSE}.
+#' @seealso \code{\link{alogLik}}: loglikelihood adjustment for model fits.
 #' @examples
 #' # We need the extRemes and distillery packages
 #' got_extRemes <- requireNamespace("extRemes", quietly = TRUE)

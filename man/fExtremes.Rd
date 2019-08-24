@@ -138,21 +138,5 @@ Zeleis (2006) Object-Oriented Computation and Sandwich
   \url{http://doi.org/10.18637/jss.v016.i09}
 }
 \seealso{
-\code{\link[chandwich]{summary.chandwich}},
-  \code{\link[chandwich]{plot.chandwich}},
-  \code{\link[chandwich]{confint.chandwich}},
-  \code{\link[chandwich]{anova.chandwich}},
-  \code{\link[chandwich]{coef.chandwich}},
-  \code{\link[chandwich]{vcov.chandwich}}
-  and \code{\link[chandwich]{logLik.chandwich}}
-  for S3 methods for objects of class \code{"chandwich"}.
-
-  \code{\link[chandwich]{conf_region}} for confidence regions for
-  pairs of parameters.
-
-\code{\link[chandwich]{adjust_loglik}} to adjust a user-supplied
-  loglikelihood.
-
-\code{\link[sandwich]{meat}} and
-  \code{\link[sandwich:vcovCL]{meatCL}} in the sandwich package.
+\code{\link{alogLik}}: loglikelihood adjustment for model fits.
 }

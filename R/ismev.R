@@ -9,7 +9,7 @@
 #' package.  If regression modelling is used then the model will need
 #' to be re-fitted, see \code{\link{ismev_refits}}.
 #'
-#' @inherit alogLik params details references seealso
+#' @inherit alogLik params details references
 #' @return An object inheriting from class \code{"chandwich"}.  See
 #'   \code{\link[chandwich]{adjust_loglik}}.
 #'   \code{class(x)} is a vector of length 5. The first 3 components are
@@ -25,6 +25,7 @@
 #'   The 5th component is
 #'   \code{"stat"} if \code{x$trans = FALSE} and
 #'   \code{"nonstat"} if \code{x$trans = TRUE}.
+#' @seealso \code{\link{alogLik}}: loglikelihood adjustment for model fits.
 #' @examples
 #' # We need the ismev package
 #' got_ismev <- requireNamespace("ismev", quietly = TRUE)

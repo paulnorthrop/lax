@@ -7,7 +7,7 @@
 #' function in the \code{\link[texmex:texmex-package]{texmex}} package.
 #' The model must have been fitted using maximum likelihood estimation.
 #'
-#' @inherit alogLik params details references seealso
+#' @inherit alogLik params details references
 #' @return An object inheriting from class \code{"chandwich"}.  See
 #'   \code{\link[chandwich]{adjust_loglik}}.
 #'   \code{class(x)} is a vector of length 5. The first 3 components are
@@ -19,6 +19,7 @@
 #'   The 5th component is
 #'   \code{"stat"} if there are no covariates in the mode and
 #'   \code{"nonstat"} otherwise.
+#' @seealso \code{\link{alogLik}}: loglikelihood adjustment for model fits.
 #' @examples
 #' # We need the texmex package, and ismev for the fremantle dataset
 #' got_texmex <- requireNamespace("texmex", quietly = TRUE)

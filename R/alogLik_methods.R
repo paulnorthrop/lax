@@ -131,7 +131,8 @@ logLikVec <- function(object, ...) {
 #'
 #'   \code{\link[chandwich]{conf_region}} for confidence regions for
 #'   pairs of parameters.
-#' @seealso \code{\link[chandwich]{adjust_loglik}} to adjust a user-supplied
+#' @seealso \code{\link[chandwich]{adjust_loglik}} in the
+#'   \code{\link[chandwich]{chandwich}} package to adjust a user-supplied
 #'   loglikelihood.
 #' @seealso \code{\link[sandwich]{meat}} and
 #'   \code{\link[sandwich:vcovCL]{meatCL}} in the sandwich package.

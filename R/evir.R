@@ -9,7 +9,7 @@
 #' If \code{x} was returned from \code{\link[evir]{pot}} then the model will
 #' need to be re-fitted using \code{\link{pot_refit}}.
 #'
-#' @inherit alogLik params details references seealso
+#' @inherit alogLik params details references
 #' @return An object inheriting from class \code{"chandwich"}.  See
 #'   \code{\link[chandwich]{adjust_loglik}}.
 #'   \code{class(x)} is a vector of length 5. The first 3 components are
@@ -21,6 +21,7 @@
 #'   \code{c("gpd", "stat")}.
 #'   If \code{\link{pot_refit}} was used then these components are
 #'   \code{c("potd", "stat")}.
+#' @seealso \code{\link{alogLik}}: loglikelihood adjustment for model fits.
 #' @examples
 #' # We need the evir package
 #' got_evir <- requireNamespace("evir", quietly = TRUE)

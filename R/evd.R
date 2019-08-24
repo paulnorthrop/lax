@@ -8,7 +8,7 @@
 #' If \code{x} is returned from \code{\link[evd]{fgev}} then the call must
 #' have used \code{prob = NULL}.
 #'
-#' @inherit alogLik params details references seealso
+#' @inherit alogLik params details references
 #' @return An object inheriting from class \code{"chandwich"}.  See
 #'   \code{\link[chandwich]{adjust_loglik}}.
 #'   \code{class(x)} is a vector of length 5. The first 3 components are
@@ -20,6 +20,7 @@
 #'   If \code{\link[evd]{fpot}} was used then these components are
 #'   \code{c("pot", "gpd")} if \code{model} was \code{"gpd"} and
 #'   \code{c("pot", "pp")} if \code{model} was \code{"pp"}.
+#' @seealso \code{\link{alogLik}}: loglikelihood adjustment for model fits.
 #' @examples
 #' # We need the evd package
 #' got_evd <- requireNamespace("evd", quietly = TRUE)

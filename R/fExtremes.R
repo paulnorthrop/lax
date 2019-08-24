@@ -10,7 +10,7 @@
 #' in the \code{\link[fExtremes:00Extremes-package]{fExtremes}} package.
 #' The model must have been fitted using maximum likelihood estimation.
 #'
-#' @inherit alogLik params details references seealso
+#' @inherit alogLik params details references
 #' @return An object inheriting from class \code{"chandwich"}.  See
 #'   \code{\link[chandwich]{adjust_loglik}}.
 #'   \code{class(x)} is a vector of length 5. The first 3 components are
@@ -21,6 +21,7 @@
 #'   components are \code{c("gev", "stat")}.
 #'   If \code{\link[fExtremes:GpdModelling]{gpdFit}} was used then these
 #'   components are \code{c("gpd", "stat")}.
+#' @seealso \code{\link{alogLik}}: loglikelihood adjustment for model fits.
 #' @examples
 #' # We need the fExtremes package
 #' got_fExtremes <- requireNamespace("fExtremes", quietly = TRUE)
