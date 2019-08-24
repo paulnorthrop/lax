@@ -26,7 +26,7 @@ covariance matrix, based on the methodology in Chandler and Bate (2007).
 This can be used for cluster correlated data
 when interest lies in the parameters of the marginal distributions, or for
 performing inferences that are robust to certain types of model
-miss-pecification.  Univariate extreme value models, including regression
+misspecification.  Univariate extreme value models, including regression
 models, are supported.
 }
 \details{

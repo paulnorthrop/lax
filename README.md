@@ -14,7 +14,7 @@ The [CRAN Task View on Extreme Value Analysis](https://CRAN.R-project.org/view=E
 
 ### An example
 
-This example is based on the analysis presented in Section 5.2 of [Chandler and Bate (2007)](https://doi.org/10.1093/biomet/asm015). The data, which are available in the data frame `ow`, are a bivariate time series of annual maximum temperatures, recorded in degress Fahrenheit, at Oxford and Worthing in England, for the period 1901 to 1980. If interest is only in the marginal distributions of high temperatures in Oxford and Worthing, then we might fit a GEV regression model in which some or all of the parameters may vary between Oxford and Worthing. However, we should adjust for the cluster dependence between temperatures recorded during the same year.
+This example is based on the analysis presented in Section 5.2 of [Chandler and Bate (2007)](https://doi.org/10.1093/biomet/asm015). The data, which are available in the data frame `ow`, are a bivariate time series of annual maximum temperatures, recorded in degrees Fahrenheit, at Oxford and Worthing in England, for the period 1901 to 1980. If interest is only in the marginal distributions of high temperatures in Oxford and Worthing, then we might fit a GEV regression model in which some or all of the parameters may vary between Oxford and Worthing. However, we should adjust for the cluster dependence between temperatures recorded during the same year.
 
 The following code fits such a model using the `evm` function in the [texmex](https://cran.r-project.org/package=texmex) package and the uses `alogLik` to perform adjusted inferences.
 

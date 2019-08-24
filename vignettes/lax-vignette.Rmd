@@ -39,11 +39,11 @@ Univariate extreme value models, including regression models, are supported.
 
 The [chandwich](https://cran.r-project.org/package=chandwich) package is used to provide robust sandwich estimation of parameter covariance matrix and loglikelihood adjustment for models fitted by maximum likelihood estimation.  This may be useful for cluster correlated data when interest lies in the parameters of the marginal distributions, or for performing inferences that are robust to certain types of model misspecification. 
  
-*lax* works in an object-oriented way, operating on R objects returned from functions in other packages that summarise the fit of an extreme value model. Loglikelihood adjustment and sandwich estimation is performed by an `alogLik` S3 method.  We demonstrate this using the following running example, which involves fitting a Generalised Extreme Value (GEV) regression model.  Firstly, we use the *ismev* package to produce the fitted GEV regression model object on which `alogLik` will operate, and illustrate what can be done with the objects returned from `alogLik`.  We use the *ismev* package because it provides an example of a case where we need to refit the model in order to obtain the information that we need to perform adjusted inferences. Then we repeat the adjustment using five of the other six packages.  The *POT* package specialises in Generalised Pareto (GP) modelling, for whic we use a different example.
+*lax* works in an object-oriented way, operating on R objects returned from functions in other packages that summarise the fit of an extreme value model. Loglikelihood adjustment and sandwich estimation is performed by an `alogLik` S3 method.  We demonstrate this using the following running example, which involves fitting a Generalised Extreme Value (GEV) regression model.  Firstly, we use the *ismev* package to produce the fitted GEV regression model object on which `alogLik` will operate, and illustrate what can be done with the objects returned from `alogLik`.  We use the *ismev* package because it provides an example of a case where we need to refit the model in order to obtain the information that we need to perform adjusted inferences. Then we repeat the adjustment using five of the other six packages.  The *POT* package specialises in Generalised Pareto (GP) modelling, for which we use a different example.
 
 ## GEV regression of annual maximum temperatures
 
-This example is based on the analysis presented in Section 5.2 of @CB2007.  The data, which are available in the data frame `ow`, are a bivariate time series of annual maximum temperatures, recorded in degress Fahrenheit, at Oxford and Worthing in England, for the period 1901 to 1980.  If interest is only in the marginal distributions of high temperatures in Oxford and Worthing, then we might fit a GEV regression model in which some or all of the parameters may vary between Oxford and Worthing.  However, we should adjust for the cluster dependence between temperatures recorded during the same year.
+This example is based on the analysis presented in Section 5.2 of @CB2007.  The data, which are available in the data frame `ow`, are a bivariate time series of annual maximum temperatures, recorded in degrees Fahrenheit, at Oxford and Worthing in England, for the period 1901 to 1980.  If interest is only in the marginal distributions of high temperatures in Oxford and Worthing, then we might fit a GEV regression model in which some or all of the parameters may vary between Oxford and Worthing.  However, we should adjust for the cluster dependence between temperatures recorded during the same year.
 
 ## ismev
 
@@ -99,7 +99,7 @@ anova(adj_large, adj_small)
 anova(adj_large, adj_small, type = "none")
 ```
 
-We see that the adjustment of the loglikelihood for clustering makes enough of a difference to matter: if we perform a test at the 5\% signficance level then we choose the larger model when we adjust but the smaller model if we do not.
+We see that the adjustment of the loglikelihood for clustering makes enough of a difference to matter: if we perform a test at the 5\% significance level then we choose the larger model when we adjust but the smaller model if we do not.
 
 ## texmex
 
@@ -176,7 +176,7 @@ detach("package:fExtremes")
 
 ## POT
 
-Among other things, the `fitgpd()` function in the *POT* package can fit a GP distribution to threshold excesses using maximum liklelihood estimation.  We illustrate `alogLik` using an example from the `fitgpd` documentation.  There is no cluster dependence here.  However, there may be interest in using a sandwich estimator of covariance if we are concerned about model misspecification.  In this case, where we simulate from the correct model, we expect the adjustment to make little difference, and so it proves. 
+Among other things, the `fitgpd()` function in the *POT* package can fit a GP distribution to threshold excesses using maximum likelihood estimation.  We illustrate `alogLik` using an example from the `fitgpd` documentation.  There is no cluster dependence here.  However, there may be interest in using a sandwich estimator of covariance if we are concerned about model misspecification.  In this case, where we simulate from the correct model, we expect the adjustment to make little difference, and so it proves. 
 
 ```{r, eval = got_POT}
 library(POT)

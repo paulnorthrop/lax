@@ -56,7 +56,7 @@ An object inheriting from class \code{"chandwich"}.  See
   \code{"nonstat"} if \code{x$trans = TRUE}.
 }
 \description{
-S3 \code{alogLik} method to perform loglikelihood adjustment fot fitted
+S3 \code{alogLik} method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the functions
 \code{\link[ismev]{gev.fit}}, \code{\link[ismev]{gpd.fit}}, and
 \code{\link[ismev]{pp.fit}} in the \code{\link[ismev]{ismev}}
@@ -211,7 +211,7 @@ Zeleis (2006) Object-Oriented Computation and Sandwich
   for S3 methods for objects of class \code{"chandwich"}.
 
   \code{\link[chandwich]{conf_region}} for confidence regions for
-  parirs of parameters.
+  pairs of parameters.
 
 \code{\link[chandwich]{adjust_loglik}} to adjust a user-supplied
   loglikelihood.

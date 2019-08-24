@@ -2,7 +2,7 @@
 
 #' Loglikelihood adjustment for ismev fits
 #'
-#' S3 \code{alogLik} method to perform loglikelihood adjustment fot fitted
+#' S3 \code{alogLik} method to perform loglikelihood adjustment for fitted
 #' extreme value model objects returned from the functions
 #' \code{\link[ismev]{gev.fit}}, \code{\link[ismev]{gpd.fit}}, and
 #' \code{\link[ismev]{pp.fit}} in the \code{\link[ismev]{ismev}}

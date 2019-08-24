@@ -80,7 +80,7 @@ Chandler, R. E. and Bate, S. (2007). Inference for clustered
   \strong{94}(1), 167-183. \url{http://doi.org/10.1093/biomet/asm015}
 }
 \seealso{
-\code{\link[chandwich]{anova.chandwich}}: the acode{anova} method
+\code{\link[chandwich]{anova.chandwich}}: the \code{anova} method
   on which \code{anova.lax} is based.
 
 \code{\link{alogLik}}: loglikelihood adjustment for model fits.

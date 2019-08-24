@@ -30,7 +30,7 @@
 #'     \item{Pr(>ALRTS)}{The p-value associated with the test that the
 #'       model is a valid simplification of the model in the previous row.}
 #'  The row names are the names of the model objects.
-#' @seealso \code{\link[chandwich]{anova.chandwich}}: the acode{anova} method
+#' @seealso \code{\link[chandwich]{anova.chandwich}}: the \code{anova} method
 #'   on which \code{anova.lax} is based.
 #' @seealso \code{\link{alogLik}}: loglikelihood adjustment for model fits.
 #' @references Chandler, R. E. and Bate, S. (2007). Inference for clustered
