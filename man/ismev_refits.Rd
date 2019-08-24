@@ -98,7 +98,7 @@ for the parameters of the model.  That is,
 \code{xdat, ydat, mulink, siglink, shlink} and matrices
 \code{mumat, sigmat, shmat} for the location, scale and shape parameters
 \code{\link[ismev]{gev.fit}} and \code{\link[ismev]{pp.fit}} and
-\code{xdat, ydat, siglink, shlink} and matrices
+\code{xdat}, \code{ydat, siglink, shlink} and matrices
 \code{sigmat, shmat} for the scale and shape parameters for
 \code{\link[ismev]{gpd.fit}}.
 }

@@ -24,6 +24,8 @@
 #' models, are supported.
 #' @details Main function is \code{\link[lax]{alogLik}}, which works in an
 #' object-oriented way, operating on fitted model objects.
+#' This function performs the loglikelihood adjustments using
+#' \code{\link[chandwich]{adjust_loglik}}.
 #' See the following package-specific help pages for details and examples:
 #' \href{https://cran.r-project.org/package=evd}{evd},
 #' \href{https://cran.r-project.org/package=evir}{evir},

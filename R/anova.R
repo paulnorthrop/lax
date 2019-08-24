@@ -14,7 +14,9 @@
 #' @param object2 An object of class \code{"chandwich"}, returned by
 #'   \code{\link{alogLik}}.
 #' @param ... Further objects of class \code{"lax"} and/or arguments
-#'   to be passed to \code{\link[chandwich]{anova.chandwich}}.
+#'   to be passed to \code{\link[chandwich]{anova.chandwich}}, and then on to
+#'   \code{\link[chandwich]{compare_models}}, in particular \code{type}, which
+#'   chooses the type of adjustment.
 #'
 #' @details The objects of class \code{"lax"} need not be provided in nested
 #'   order: they will be ordered inside \code{anova.lax} based on the

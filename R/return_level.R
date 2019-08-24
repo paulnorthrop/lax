@@ -25,7 +25,8 @@
 #' @param type A character scalar.  The argument \code{type} to the function
 #'   returned by \code{\link[chandwich]{adjust_loglik}}, that is, the type of
 #'   adjustment made to the independence loglikelihood function in creating
-#'   an adjusted loglikelihood function.
+#'   an adjusted loglikelihood function.  See \strong{Details} and
+#'   \strong{Value} in \code{\link[chandwich]{adjust_loglik}}.
 #' @details At present \code{return_level} only supports GEV models.
 #'
 #'   Care must be taken in specifying the input value of \code{m},

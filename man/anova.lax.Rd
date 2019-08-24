@@ -14,7 +14,9 @@
 \code{\link{alogLik}}.}
 
 \item{...}{Further objects of class \code{"lax"} and/or arguments
-to be passed to \code{\link[chandwich]{anova.chandwich}}.}
+to be passed to \code{\link[chandwich]{anova.chandwich}}, and then on to
+\code{\link[chandwich]{compare_models}}, in particular \code{type}, which
+chooses the type of adjustment.}
 }
 \value{
 An object of class \code{"anova"} inheriting from class
