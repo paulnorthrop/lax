@@ -1,6 +1,6 @@
 Package: lax
 Title: Loglikelihood Adjustment for Extreme Value Models
-Version: 1.0.0
+Version: 1.0.0.9000
 Date: 2019-08-24
 Authors@R: c(
     person(c("Paul", "J."), "Northrop", email = "p.northrop@ucl.ac.uk",
