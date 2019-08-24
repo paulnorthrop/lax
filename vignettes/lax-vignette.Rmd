@@ -5,6 +5,7 @@ date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
+    toc_depth: 4
 vignette: >
   %\VignetteIndexEntry{An overview of lax}
   %\VignetteEngine{knitr::rmarkdown}
@@ -16,38 +17,154 @@ bibliography: lax.bib
 knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
 ```
 
-The *lax* package
+The [CRAN Task View on Extreme Value Analysis](https://CRAN.R-project.org/view=ExtremeValue) provides information about R packages that perform various extreme value analyses. The *lax* package supplements the functionality of seven of these packages, namely 
+[evd](https://cran.r-project.org/package=evd) [@evd],
+[evir](https://cran.r-project.org/package=evir) [@evir],
+[extRemes](https://cran.r-project.org/package=extRemes) [@extRemes],
+[fExtremes](https://cran.r-project.org/package=fExtremes) [@fExtremes],
+[ismev](https://cran.r-project.org/package=ismev) [@ismev],
+[POT](https://cran.r-project.org/package=POT) [@POT] and
+[texmex](https://cran.r-project.org/package=texmex) [@texmex].
+Univariate extreme value models, including regression models, are supported.   
 
-evd* [@evd], *evir* [@evir], *extRemes* [@extRemes], *fExtremes* [@fExtremes], *ismev* [@ismev] and *texmex* [@texmex].
+The [chandwich](https://cran.r-project.org/package=chandwich) package is used to provide robust sandwich estimation of parameter covariance matrix and loglikelihood adjustment for models fitted by maximum likelihood estimation.  This may be useful for cluster correlated data when interest lies in the parameters of the marginal distributions, or for performing inferences that are robust to certain types of model misspecification. 
+ 
+*lax* works in an object-oriented way, operating on R objects returned from functions in other packages that summarise the fit of an extreme value model. Loglikelihood adjustment and sandwich estimation is performed by an `alogLik` S3 method.  We demonstrate this using the following running example, which involves fitting a Generalised Extreme Value (GEV) regression model.  Firstly, we use the *ismev* package to produce the fitted GEV regression model object on which `alogLik` will operate, and illustrate what can be done with the objects returned from `alogLik`.  We use the *ismev* package because it provides an example of a case where we need to refit the model in order to obtain the information that we need to perform adjusted inferences. Then we repeat the adjustment using five of the other six packages.  The *POT* package specialises in Generalised Pareto (GP) modelling, for whic we use a different example.
+
+## GEV regression of annual maximum temperatures
+
+This example is based on the analysis presented in Section 5.2 of @CB2007.  The data, which are available in the data frame `ow`, are a bivariate time series of annual maximum temperatures, recorded in degress Fahrenheit, at Oxford and Worthing in England, for the period 1901 to 1980.  If interest is only in the marginal distributions of high temperatures in Oxford and Worthing, then we might fit a GEV regression model in which some or all of the parameters may vary between Oxford and Worthing.  However, we should adjust for the cluster dependence between temperatures recorded during the same year.
+
+### ismev
+
+The `gev.fit()` function in *ismev* fits GEV regression models.  It allows covariate effects in any of the (location, scale and shape) parameters of the GEV distribution.  However, an object returned from `gev.fit()` does not provide all the information about a fitted regression model that `alogLik` needs, in order to calculate loglikelihood contributions from individual observations: the design matrices are missing.  Therefore, *lax* provides the function `gev_refit`, which is a version of `gev.fit` that adds this information.  
+
+The following code fits a GEV regression model in which the location, scale and shape parameters of the GEV distribution vary between Oxford and Worthing.  Then `alogLik` is used to provide adjusted standard errors and an adjusted loglikelihood. 
 
 ```{r}
 library(lax)
+# Column 4 of ow contains 1 for Oxford and -1 for Worthing
+large <- gev_refit(ow$temp, ow, mul = 4, sigl = 4, shl = 4, show = FALSE,
+                   method = "BFGS")
+# Adjust the loglikelihood and standard errors
+adj_large <- alogLik(large, cluster = ow$year, cadjust = FALSE)
+# MLEs, SEs and adjusted SEs
+t(summary(adj_large))
+```
+
+This reproduces the values in rows 1, 3 and 4 in Table 2 of @CB2007.  The estimation of the 'meat' of the sandwich adjustment is performed using the [sandwich](https://cran.r-project.org/package=sandwich) package.  In this example, we need to pass `cadjust = FALSE` to ``sandwich::meatCL`` in order that the adjustment is the same as that used in @CB2007.  Otherwise, `meatCL` makes a finite-cluster bias correction.
+
+#### Confidence intervals
+
+A `confint` method calculates approximate (95\%) confidence intervals for the parameters, based on the adjusted loglikelihood.  @CB2007 consider three types of loglikelihood adjustment: one vertical and two horizontal.  The type of adjustment is selected by the argument `type`.  The default is `type = "vertical"` and there is an option to perform no adjustment.
+
+```{r}
+confint(adj_large)
+confint(adj_large, type = "none")
+```
+
+#### Confidence regions
+
+The `conf_region` function in the *chandwich* package can be used to produce confidence regions for pairs of parameters.  Here, we consider the 'central' (midway between Oxford and Worthing) scale and shape intercept parameters: $\sigma_0$ and $\xi_0$ in @CB2007.
+
+```{r, fig.align='center', fig.width=7, fig.height=7}
+library(chandwich)
+which_pars <- c("scale", "shape")
+gev_none <- conf_region(adj_large, which_pars = which_pars, type = "none")
+gev_vertical <- conf_region(adj_large, which_pars = which_pars)
+plot(gev_none, gev_vertical, lwd = 2, xlim = c(3.1, 4.5), ylim = c(-0.35, -0.05),
+     xlab = expression(sigma[0]), ylab = expression(xi[0]))
+```
+
+#### Comparing nested models
+
+`alogLik` also has an `anova` method, which can be used to perform (adjusted) loglikelihood ratio tests of nested models.  To illustrate this we fit, and adjust, a smaller model, in which Oxford and Worthing have a common GEV shape parameter, and then compare this model to the larger one.
+
+```{r}
+small <- gev_refit(ow$temp, ow, mul = 4, sigl = 4, show = FALSE, 
+                   method = "BFGS")
+adj_small <- alogLik(small, cluster = ow$year, cadjust = FALSE)
+summary(adj_small)
+anova(adj_large, adj_small)
+anova(adj_large, adj_small, type = "none")
+```
+
+We see that the adjustment of the loglikelihood for clustering makes enough of a difference to matter: if we perform a test at the 5\% signficance level then we choose the larger model when we adjust but the smaller model if we do not.
+
+### texmex
+
+```{r}
+library(texmex, quietly = TRUE)
+# Note: phi = log(scale)
+evm_fit <- texmex::evm(temp, ow, gev, mu = ~ loc, phi = ~ loc, xi = ~loc)
+adj_evm_fit <- alogLik(evm_fit, cluster = ow$year)
+summary(adj_evm_fit)
+```
+
+```{r, echo = FALSE}
+detach("package:texmex")
+```
+
+### evd
+
+The `fgev()` function in *evd* fits GEV regression models, but it only allows covariate effects in the location parameter.
+
+```{r}
 library(evd)
-# An example from the evd::fgev documentation
-set.seed(4082019)
-uvdata <- evd::rgev(100, loc = 0.13, scale = 1.1, shape = 0.2)
-M0 <- evd::fgev(uvdata)
-M1 <- evd::fgev(uvdata, nsloc = (-49:50)/100)
-adj0 <- alogLik(M0)
-adj1 <- alogLik(M1)
-summary(adj1)
+fgev_fit <- fgev(ow$temp, nsloc = ow[, "loc"])
+adj_fgev_fit <- alogLik(fgev_fit, cluster = ow$year)
+summary(adj_fgev_fit)
 ```
 
-Features provided by *chandwich*
+```{r, echo = FALSE}
+detach("package:evd")
+```
 
-## Confidence intervals
+### extRemes
 
 ```{r}
-confint(adj1)
+library(extRemes)
+fevd_fit <- fevd(temp, ow, location.fun = ~ ow$loc, scale.fun = ~ ow$loc,
+                 shape.fun = ~ ow$loc)
+adj_fevd_fit <- alogLik(fevd_fit, cluster = ow$year)
+summary(adj_fevd_fit)
 ```
 
-## Confidence regions
+```{r, echo = FALSE}
+detach("package:extRemes")
+```
 
-## Adjusted likelihood ratio tests
+### evir
+
+The `gev()` function in *evir* only fits stationary GEV models.
 
 ```{r}
-anova(adj1, adj0)
+library(evir)
+gev_fit <- gev(ow$temp)
+adj_gev_fit <- alogLik(gev_fit)
+summary(adj_gev_fit)
 ```
+
+```{r, echo = FALSE}
+detach("package:evir")
+```
+
+### fExtremes
+
+The `gevFit()` function in *fExtremes* only fits stationary GEV models.
+
+```{r}
+library(fExtremes)
+gevFit_fit <- gevFit(ow$temp)
+adj_gevFit_fit <- alogLik(gevFit_fit)
+summary(adj_gevFit_fit)
+```
+
+```{r, echo = FALSE}
+detach("package:fExtremes")
+```
+
+### POT
 
 
 ## References
