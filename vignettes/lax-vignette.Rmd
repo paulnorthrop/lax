@@ -174,7 +174,7 @@ set.seed(24082019)
 x <- POT::rgpd(200, 1, 2, 0.25)
 fit <- POT::fitgpd(x, 1, "mle")
 adj_fit <- alogLik(fit)
-summary()
+summary(adj_fit)
 ```
 
 ## References
