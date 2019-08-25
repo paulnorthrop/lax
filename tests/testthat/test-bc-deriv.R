@@ -1,6 +1,6 @@
 context("Box-Cox deriv")
 
-# Check that box_cox_deriv is correct for lamnda = 0
+# Check that box_cox_deriv is correct for lambda = 0
 
 x <- 1:10
 for (i in length(x)) {
