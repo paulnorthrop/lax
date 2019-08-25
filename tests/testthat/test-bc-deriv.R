@@ -36,7 +36,7 @@ for (i in 1:length(x)) {
 lambda <- -lambda_tol + eps
 check_val <- (lambda * x ^ lambda * log(x) - x ^ lambda + 1) / lambda ^ 2
 for (i in 1:length(x)) {
-  test_that(paste("box_cox_deriv, 0 < lambda < lambda_tol, x = ", x = x[i]), {
+  test_that(paste("box_cox_deriv, -lambda_tol < lambda < 0, x = ", x = x[i]), {
     testthat::expect_equal(box_cox_deriv(x = x[i], lambda = lambda,
                                          lambda_tol = lambda_tol,
                                          poly_order = poly_order),
