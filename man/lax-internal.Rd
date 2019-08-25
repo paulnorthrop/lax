@@ -20,7 +20,7 @@ gev_rl_prof(x, m, level, npy, inc, type, rl_sym)
 
 gev_rl_CI(x, m, level, npy, type)
 
-box_cox_deriv(x, lambda = 1, lambda_tol = 1e-06, poly_order = 3)
+box_cox_deriv(x, lambda = 1, lambda_tol = 1/50, poly_order = 3)
 }
 \description{
 Internal lax functions
