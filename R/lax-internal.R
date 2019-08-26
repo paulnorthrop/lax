@@ -222,7 +222,7 @@ box_cox_deriv <- function(x, lambda = 1, lambda_tol = 1 / 50,
   #   lambda_tol : A numeric scalar.  For abs(lambda) < lambda_tol use
   #                a Taylor series expansion.
   #   poly_order : order of Taylor series polynomial in lambda used as
-  #                an approximation if abs(lambda) < lambda.tol
+  #                an approximation if abs(lambda) < lambda_tol
   #
   # Returns:
   #   A numeric vector.  The derivative with respect to lambda of
