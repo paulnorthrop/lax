@@ -3,9 +3,15 @@
 \name{mev}
 \alias{mev}
 \alias{alogLik.mev_gev}
+\alias{alogLik.mev_pp}
+\alias{alogLik.mev_gpd}
 \title{Loglikelihood adjustment for mev fits}
 \usage{
 \method{alogLik}{mev_gev}(x, cluster = NULL, use_vcov = TRUE, ...)
+
+\method{alogLik}{mev_pp}(x, cluster = NULL, use_vcov = TRUE, ...)
+
+\method{alogLik}{mev_gpd}(x, cluster = NULL, use_vcov = TRUE, ...)
 }
 \arguments{
 \item{x}{A fitted model object with certain associated S3 methods.
@@ -104,10 +110,25 @@ got_mev <- requireNamespace("mev", quietly = TRUE)
 
 if (got_mev) {
   library(mev)
-  # An example from the ismev::gev.fit documentation
-  gev_mev <- fit.gev(revdbayes::portpirie, show = FALSE)
+  # An example from the mev::gev.fit documentation
+  gev_mev <- fit.gev(revdbayes::portpirie)
   adj_gev_mev <- alogLik(gev_mev)
   summary(adj_gev_mev)
+
+  got_mev <- requireNamespace("mev", quietly = TRUE)
+  if (got_mev) {
+    # An example from the mev::pp.fit documentation
+    data(rain)
+    pp_mev <- fit.pp(rain, 10, show = FALSE)
+    # adj_pp_mev <- alogLik(pp_mev) # Doesn't work yet: need data
+    # summary(adj_pp_mev)
+  }
+
+  # An example from the mev::fit.gpd documentation
+  data(eskrain)
+  gpd_mev <- fit.gpd(eskrain, threshold = 35, method = 'Grimshaw')
+  adj_gpd_mev <- alogLik(gpd_mev)
+  summary(adj_gpd_mev)
 }
 }
 \references{

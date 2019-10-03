@@ -26,10 +26,25 @@
 #'
 #' if (got_mev) {
 #'   library(mev)
-#'   # An example from the ismev::gev.fit documentation
-#'   gev_mev <- fit.gev(revdbayes::portpirie, show = FALSE)
+#'   # An example from the mev::gev.fit documentation
+#'   gev_mev <- fit.gev(revdbayes::portpirie)
 #'   adj_gev_mev <- alogLik(gev_mev)
 #'   summary(adj_gev_mev)
+#'
+#'   got_mev <- requireNamespace("mev", quietly = TRUE)
+#'   if (got_mev) {
+#'     # An example from the mev::pp.fit documentation
+#'     data(rain)
+#'     pp_mev <- fit.pp(rain, 10, show = FALSE)
+#'     # adj_pp_mev <- alogLik(pp_mev) # Doesn't work yet: need data
+#'     # summary(adj_pp_mev)
+#'   }
+#'
+#'   # An example from the mev::fit.gpd documentation
+#'   data(eskrain)
+#'   gpd_mev <- fit.gpd(eskrain, threshold = 35, method = 'Grimshaw')
+#'   adj_gpd_mev <- alogLik(gpd_mev)
+#'   summary(adj_gpd_mev)
 #' }
 #' @name mev
 NULL
@@ -55,5 +70,51 @@ alogLik.mev_gev <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # Call adj_object() to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
   class(res) <- c("lax", "chandwich", "mev", "gev", "stat")
+  return(res)
+}
+
+#' @rdname mev
+#' @export
+alogLik.mev_pp <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
+  # List of mev objects supported
+  supported_by_lax <- list(mev_pp = "mev_pp")
+  # Does x have a supported class?
+  is_supported <- NULL
+  for (i in 1:length(supported_by_lax)) {
+    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
+                                                  use.names = FALSE))
+  }
+  if (!any(is_supported)) {
+    stop(paste("x's class", deparse(class(x)), "is not supported"))
+  }
+  # Set the class
+  name_of_class <- names(supported_by_lax)[which(is_supported)]
+  class(x) <- name_of_class
+  # Call adj_object() to adjust the loglikelihood
+  res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
+  class(res) <- c("lax", "chandwich", "mev", "pp", "stat")
+  return(res)
+}
+
+#' @rdname mev
+#' @export
+alogLik.mev_gpd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
+  # List of mev objects supported
+  supported_by_lax <- list(mev_gpd = "mev_gpd")
+  # Does x have a supported class?
+  is_supported <- NULL
+  for (i in 1:length(supported_by_lax)) {
+    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
+                                                  use.names = FALSE))
+  }
+  if (!any(is_supported)) {
+    stop(paste("x's class", deparse(class(x)), "is not supported"))
+  }
+  # Set the class
+  name_of_class <- names(supported_by_lax)[which(is_supported)]
+  class(x) <- name_of_class
+  # Call adj_object() to adjust the loglikelihood
+  res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
+  class(res) <- c("lax", "chandwich", "mev", "gpd", "stat")
   return(res)
 }
