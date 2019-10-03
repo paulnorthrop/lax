@@ -116,7 +116,7 @@ if (got_mev) {
   summary(adj_gev_mev)
 
   got_ismev <- requireNamespace("ismev", quietly = TRUE)
-  if (got_mev) {
+  if (got_ismev) {
     # An example from the mev::pp.fit documentation
     data(rain)
     pp_mev <- fit.pp(rain, 10, show = FALSE)
