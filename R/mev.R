@@ -31,17 +31,13 @@
 #'   adj_gev_mev <- alogLik(gev_mev)
 #'   summary(adj_gev_mev)
 #'
-#'   got_ismev <- requireNamespace("ismev", quietly = TRUE)
-#'   if (got_ismev) {
-#'     # An example from the mev::pp.fit documentation
-#'     data(rain)
-#'     pp_mev <- fit.pp(rain, 10, show = FALSE)
-#'     # adj_pp_mev <- alogLik(pp_mev) # Doesn't work yet: need data
-#'     # summary(adj_pp_mev)
-#'   }
+#'   # An example from the mev::fit.pp documentation
+#'   data(eskrain)
+#'   pp_mle <- fit.pp(eskrain, threshold = 30, np = 6201)
+#'   # adj_pp_mle <- alogLik(pp_mle) # Doesn't work yet: need data
+#'   # summary(adj_pp_mle)
 #'
 #'   # An example from the mev::fit.gpd documentation
-#'   data(eskrain)
 #'   gpd_mev <- fit.gpd(eskrain, threshold = 35, method = 'Grimshaw')
 #'   adj_gpd_mev <- alogLik(gpd_mev)
 #'   summary(adj_gpd_mev)
