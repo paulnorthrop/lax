@@ -115,7 +115,7 @@ if (got_mev) {
   adj_gev_mev <- alogLik(gev_mev)
   summary(adj_gev_mev)
 
-  got_mev <- requireNamespace("mev", quietly = TRUE)
+  got_ismev <- requireNamespace("ismev", quietly = TRUE)
   if (got_mev) {
     # An example from the mev::pp.fit documentation
     data(rain)
