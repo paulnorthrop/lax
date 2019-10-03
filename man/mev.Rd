@@ -39,12 +39,9 @@ An object inheriting from class \code{"chandwich"}.  See
   \code{c("lax", "chandwich", "mev")}.
   The remaining 2 components depend on the model that was fitted.
   The 4th component is:
-  \code{"gev"} if \code{\link[mev]{fit.gev}}
-  (or \code{\link{gev_refit}}) was used;
-  \code{"gpd"} if \code{\link[mev]{fit.gpd}}
-  (or \code{\link{gpd_refit}}) was used;
-  \code{"pp"} \code{\link[mev]{fit.pp}}
-  (or \code{\link{pp_refit}}) was used;
+  \code{"gev"} if \code{\link[mev]{fit.gev}} was used;
+  \code{"gpd"} if \code{\link[mev]{fit.gpd}} was used;
+  \code{"pp"} \code{\link[mev]{fit.pp}} was used;
   The 5th component is \code{"stat"}.
 }
 \description{
@@ -52,7 +49,7 @@ S3 \code{alogLik} method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the functions
 \code{\link[mev]{fit.gev}}, \code{\link[mev]{fit.gpd}}, and
 \code{\link[mev]{fit.pp}} and \code{\link[mev]{fit.rlarg}} in the
-\code{\link[mev]{mev}} package.
+mev package.
 }
 \details{
 Object \code{x} \emph{must} have the following S3

@@ -6,7 +6,7 @@
 #' extreme value model objects returned from the functions
 #' \code{\link[mev]{fit.gev}}, \code{\link[mev]{fit.gpd}}, and
 #' \code{\link[mev]{fit.pp}} and \code{\link[mev]{fit.rlarg}} in the
-#' \code{\link[mev]{mev}} package.
+#' mev package.
 #'
 #' @inherit alogLik params details references
 #' @return An object inheriting from class \code{"chandwich"}.  See
