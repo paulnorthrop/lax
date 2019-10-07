@@ -78,3 +78,29 @@ logLik.mev_pp <- function(object, ...) {
   return(val)
 }
 
+# Methods for class "mev_egp", returned by mev::fit.egp()
+
+#' @export
+nobs.mev_egp <- function(object, ...) {
+  return(object$nat)
+}
+
+#' @export
+coef.mev_egp <- function(object, ...) {
+  return(object$estimate)
+}
+
+#' @export
+vcov.mev_egp <- function(object, ...) {
+  return(object$vcov)
+}
+
+#' @export
+logLik.mev_egp <- function(object, ...) {
+  val <- -object$deviance/2
+  attr(val, "nobs") <- nobs(object)
+  attr(val, "df") <- length(coef(object))
+  class(val) <- "logLik"
+  return(val)
+}
+

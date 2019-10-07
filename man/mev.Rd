@@ -5,6 +5,7 @@
 \alias{alogLik.mev_gev}
 \alias{alogLik.mev_pp}
 \alias{alogLik.mev_gpd}
+\alias{alogLik.mev_egp}
 \title{Loglikelihood adjustment for mev fits}
 \usage{
 \method{alogLik}{mev_gev}(x, cluster = NULL, use_vcov = TRUE, ...)
@@ -12,6 +13,8 @@
 \method{alogLik}{mev_pp}(x, cluster = NULL, use_vcov = TRUE, ...)
 
 \method{alogLik}{mev_gpd}(x, cluster = NULL, use_vcov = TRUE, ...)
+
+\method{alogLik}{mev_egp}(x, cluster = NULL, use_vcov = TRUE, ...)
 }
 \arguments{
 \item{x}{A fitted model object with certain associated S3 methods.
@@ -125,6 +128,13 @@ if (got_mev) {
   gpd_mev <- fit.gpd(eskrain, threshold = 35, method = 'Grimshaw')
   adj_gpd_mev <- alogLik(gpd_mev)
   summary(adj_gpd_mev)
+
+  # An example from the mev::fit.egp documentation
+  # (model = "egp1" and model = "egp3" also work)
+  xdat <- evd::rgpd(n = 100, loc = 0, scale = 1, shape = 0.5)
+  fitted <- fit.egp(xdat = xdat, thresh = 1, model = "egp2", show = FALSE)
+  adj_fitted <- alogLik(fitted)
+  summary(adj_fitted)
 }
 }
 \references{

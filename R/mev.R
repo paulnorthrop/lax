@@ -41,6 +41,13 @@
 #'   gpd_mev <- fit.gpd(eskrain, threshold = 35, method = 'Grimshaw')
 #'   adj_gpd_mev <- alogLik(gpd_mev)
 #'   summary(adj_gpd_mev)
+#'
+#'   # An example from the mev::fit.egp documentation
+#'   # (model = "egp1" and model = "egp3" also work)
+#'   xdat <- evd::rgpd(n = 100, loc = 0, scale = 1, shape = 0.5)
+#'   fitted <- fit.egp(xdat = xdat, thresh = 1, model = "egp2", show = FALSE)
+#'   adj_fitted <- alogLik(fitted)
+#'   summary(adj_fitted)
 #' }
 #' @name mev
 NULL
@@ -112,5 +119,28 @@ alogLik.mev_gpd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # Call adj_object() to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
   class(res) <- c("lax", "chandwich", "mev", "gpd", "stat")
+  return(res)
+}
+
+#' @rdname mev
+#' @export
+alogLik.mev_egp <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
+  # List of mev objects supported
+  supported_by_lax <- list(mev_egp = "mev_egp")
+  # Does x have a supported class?
+  is_supported <- NULL
+  for (i in 1:length(supported_by_lax)) {
+    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
+                                                  use.names = FALSE))
+  }
+  if (!any(is_supported)) {
+    stop(paste("x's class", deparse(class(x)), "is not supported"))
+  }
+  # Set the class
+  name_of_class <- names(supported_by_lax)[which(is_supported)]
+  class(x) <- name_of_class
+  # Call adj_object() to adjust the loglikelihood
+  res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
+  class(res) <- c("lax", "chandwich", "mev", "egp", "stat")
   return(res)
 }
