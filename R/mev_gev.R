@@ -18,7 +18,7 @@ logLikVec.mev_gev <- function(object, pars = NULL, ...) {
   sigma <- pars[2]
   xi <- pars[3]
   # Calculate the loglikelihood contributions
-  if (any(sigma <= 0)) {
+  if (sigma <= 0) {
     val <- -Inf
   } else {
     val <- revdbayes::dgev(response_data, loc = mu, scale = sigma,
