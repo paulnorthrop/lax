@@ -43,4 +43,27 @@ if (requireNamespace("mev", quietly = TRUE)) {
   test_that("mev::fit.gpd: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
+
+  # mev::fit.egp
+
+  # An example from the mev::fit.egp documentation
+  if (requireNamespace("evd", quietly = TRUE)) {
+    set.seed(7102019)
+    xdat <- evd::rgpd(n = 100, loc = 0, scale = 1, shape = 0.5)
+    fitted <- fit.egp(xdat = xdat, thresh = 1, model = "egp2", show = FALSE)
+    temp <- fitted
+    adj_fitted <- alogLik(fitted)
+    class(temp) <- "mev_egp"
+    test_that("mev::fit.egp: logLik() vs. logLik(logLikVec)", {
+      testthat::expect_equivalent(logLik(fitted), logLik(logLikVec(temp)))
+    })
+    # Check that alogLik also returned the correct maximised log-likelihood
+    test_that("mev::fit.egp: logLik() vs. logLik(logLikVec)", {
+      testthat::expect_equivalent(logLik(fitted), logLik(adj_fitted))
+    })
+    # Check logLik.evd_fgev: trivially correct (up to naming)
+    test_that("mev::fit.egp: logLik() vs. logLik(logLikVec)", {
+      testthat::expect_equivalent(logLik(temp), logLik(logLikVec(temp)))
+    })
+  }
 }
