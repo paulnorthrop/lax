@@ -97,7 +97,7 @@ vcov.mev_egp <- function(object, ...) {
 
 #' @export
 logLik.mev_egp <- function(object, ...) {
-  val <- -object$deviance/2
+  val <- -object$deviance / 2
   attr(val, "nobs") <- nobs(object)
   attr(val, "df") <- length(coef(object))
   class(val) <- "logLik"
