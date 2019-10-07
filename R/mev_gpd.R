@@ -1,6 +1,6 @@
 # =============================== mev::fit.gpd ============================== #
 
-# Methods for class mev_gev
+# Methods for class mev_gpd
 
 #' @export
 logLikVec.mev_gpd <- function(object, pars = NULL, ...) {
