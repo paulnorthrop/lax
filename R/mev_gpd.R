@@ -19,7 +19,7 @@ logLikVec.mev_gpd <- function(object, pars = NULL, ...) {
   sigma <- pars[1]
   xi <- pars[2]
   # Calculate the loglikelihood contributions
-  if (any(sigma <= 0)) {
+  if (sigma <= 0) {
     val <- -Inf
   } else {
     val <- revdbayes::dgp(response_data, loc = object$threshold, scale = sigma,
