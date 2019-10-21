@@ -1,19 +1,21 @@
 #' Maximum-likelihood (Re-)Fitting using the ismev package
 #'
 #' These are a slightly modified versions of the \code{\link[ismev]{gev.fit}},
-#' \code{\link[ismev]{gpd.fit}} and \code{\link[ismev]{pp.fit}}
-#' functions in the \code{\link[ismev]{ismev}} package.
+#' \code{\link[ismev]{gpd.fit}}, \code{\link[ismev]{pp.fit}} and
+#' \code{\link[ismev]{rlarg.fit}} functions in the \code{\link[ismev]{ismev}}
+#' package.
 #' The modification is to add to the returned object regression design matrices
 #' for the parameters of the model.  That is,
 #' \code{xdat, ydat, mulink, siglink, shlink} and matrices
 #' \code{mumat, sigmat, shmat} for the location, scale and shape parameters
-#' \code{\link[ismev]{gev.fit}} and \code{\link[ismev]{pp.fit}} and
-#' \code{xdat}, \code{ydat, siglink, shlink} and matrices
-#' \code{sigmat, shmat} for the scale and shape parameters for
-#' \code{\link[ismev]{gpd.fit}}.
+#' \code{\link[ismev]{gev.fit}}, \code{\link[ismev]{pp.fit}} and
+#' \code{\link[ismev]{rlarg.fit}}, and \code{xdat},
+#' \code{ydat, siglink, shlink} and matrices \code{sigmat, shmat} for the
+#' scale and shape parameters for \code{\link[ismev]{gpd.fit}}.
 #' @inheritParams ismev::gev.fit
 #' @inheritParams ismev::gpd.fit
 #' @inheritParams ismev::pp.fit
+#' @inheritParams ismev::rlarg.fit
 #' @references Heffernan, J. E. and Stephenson, A. G. (2018). ismev: An
 #'   Introduction to Statistical Modeling of Extreme Values.
 #'   R package version 1.42.
@@ -37,6 +39,14 @@
 #'   fit1 <- pp.fit(rain, 10, show = FALSE)
 #'   ls(fit1)
 #'   fit2 <- pp_refit(rain, 10, show = FALSE)
+#'   ls(fit2)
+#'
+#'   data(venice)
+#'   fit1 <- rlarg.fit(venice[, -1], muinit = 120.54, siginit = 12.78,
+#'                    shinit = -0.1129, show = FALSE)
+#'   ls(fit1)
+#'   fit2 <- rlarg_refit(venice[, -1], muinit = 120.54, siginit = 12.78,
+#'                    shinit = -0.1129, show = FALSE)
 #'   ls(fit2)
 #' }
 #' @name ismev_refits
@@ -364,5 +374,111 @@ pp_refit <- function (xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
   z$siglink <- siglink
   z$shlink <- shlink
   class(z) <- "pp.fit"
+  invisible(z)
+}
+
+#' @rdname ismev_refits
+#' @export
+rlarg_refit <- function (xdat, r = dim(xdat)[2], ydat = NULL, mul = NULL,
+                         sigl = NULL, shl = NULL, mulink = identity,
+                         siglink = identity, shlink = identity, muinit = NULL,
+                         siginit = NULL, shinit = NULL, show = TRUE,
+                         method = "Nelder-Mead", maxit = 10000, ...) {
+  z <- list()
+  npmu <- length(mul) + 1
+  npsc <- length(sigl) + 1
+  npsh <- length(shl) + 1
+  z$trans <- FALSE
+  in2 <- sqrt(6 * var(xdat[, 1]))/pi
+  in1 <- mean(xdat[, 1]) - 0.57722 * in2
+  if (is.null(mul)) {
+    mumat <- as.matrix(rep(1, dim(xdat)[1]))
+    if (is.null(muinit))
+      muinit <- in1
+  }
+  else {
+    z$trans <- TRUE
+    mumat <- cbind(rep(1, dim(xdat)[1]), ydat[, mul])
+    if (is.null(muinit))
+      muinit <- c(in1, rep(0, length(mul)))
+  }
+  if (is.null(sigl)) {
+    sigmat <- as.matrix(rep(1, dim(xdat)[1]))
+    if (is.null(siginit))
+      siginit <- in2
+  }
+  else {
+    z$trans <- TRUE
+    sigmat <- cbind(rep(1, dim(xdat)[1]), ydat[, sigl])
+    if (is.null(siginit))
+      siginit <- c(in2, rep(0, length(sigl)))
+  }
+  if (is.null(shl)) {
+    shmat <- as.matrix(rep(1, dim(xdat)[1]))
+    if (is.null(shinit))
+      shinit <- 0.1
+  }
+  else {
+    z$trans <- TRUE
+    shmat <- cbind(rep(1, dim(xdat)[1]), ydat[, shl])
+    if (is.null(shinit))
+      shinit <- c(0.1, rep(0, length(shl)))
+  }
+  xdatu <- xdat[, 1:r, drop = FALSE]
+  print(head(xdatu))
+  init <- c(muinit, siginit, shinit)
+  z$model <- list(mul, sigl, shl)
+  z$link <- deparse(substitute(c(mulink, siglink, shlink)))
+  u <- apply(xdatu, 1, min, na.rm = TRUE)
+  print(u)
+  rlarg.lik <- function(a) {
+    mu <- mulink(drop(mumat %*% (a[1:npmu])))
+    sc <- siglink(drop(sigmat %*% (a[seq(npmu + 1, length = npsc)])))
+    xi <- shlink(drop(shmat %*% (a[seq(npmu + npsc + 1, length = npsh)])))
+    if (any(sc <= 0))
+      return(10^6)
+    y <- 1 + xi * (xdatu - mu)/sc
+    if (min(y, na.rm = TRUE) <= 0)
+      l <- 10^6
+    else {
+      y <- (1/xi + 1) * log(y) + log(sc)
+      y <- rowSums(y, na.rm = TRUE)
+      l <- sum((1 + xi * (u - mu)/sc)^(-1/xi) + y)
+    }
+    l
+  }
+  x <- optim(init, rlarg.lik, hessian = TRUE, method = method,
+             control = list(maxit = maxit, ...))
+  mu <- mulink(drop(mumat %*% (x$par[1:npmu])))
+  sc <- siglink(drop(sigmat %*% (x$par[seq(npmu + 1, length = npsc)])))
+  xi <- shlink(drop(shmat %*% (x$par[seq(npmu + npsc + 1, length = npsh)])))
+  z$conv <- x$convergence
+  z$nllh <- x$value
+  z$data <- xdat
+  if (z$trans) {
+    for (i in 1:r) z$data[, i] <- -log((1 + (as.vector(xi) *
+                                               (xdat[, i] - as.vector(mu)))/as.vector(sc))^(-1/as.vector(xi)))
+  }
+  z$mle <- x$par
+  z$cov <- solve(x$hessian)
+  z$se <- sqrt(diag(z$cov))
+  z$vals <- cbind(mu, sc, xi)
+  z$r <- r
+  if (show) {
+    if (z$trans)
+      print(z[c(2, 3)])
+    print(z[4])
+    if (!z$conv)
+      print(z[c(5, 7, 9)])
+  }
+  z$xdat <- xdat
+  z$ydat <- ydat
+  z$mumat <- mumat
+  z$sigmat <- sigmat
+  z$shmat <- shmat
+  z$mulink <- mulink
+  z$siglink <- siglink
+  z$shlink <- shlink
+  class(z) <- "rlarg.fit"
   invisible(z)
 }

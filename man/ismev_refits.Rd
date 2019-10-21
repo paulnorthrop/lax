@@ -5,6 +5,7 @@
 \alias{gev_refit}
 \alias{gpd_refit}
 \alias{pp_refit}
+\alias{rlarg_refit}
 \title{Maximum-likelihood (Re-)Fitting using the ismev package}
 \usage{
 gev_refit(xdat, ydat = NULL, mul = NULL, sigl = NULL, shl = NULL,
@@ -18,6 +19,11 @@ gpd_refit(xdat, threshold, npy = 365, ydat = NULL, sigl = NULL,
   method = "Nelder-Mead", maxit = 10000, ...)
 
 pp_refit(xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
+  sigl = NULL, shl = NULL, mulink = identity, siglink = identity,
+  shlink = identity, muinit = NULL, siginit = NULL, shinit = NULL,
+  show = TRUE, method = "Nelder-Mead", maxit = 10000, ...)
+
+rlarg_refit(xdat, r = dim(xdat)[2], ydat = NULL, mul = NULL,
   sigl = NULL, shl = NULL, mulink = identity, siglink = identity,
   shlink = identity, muinit = NULL, siginit = NULL, shinit = NULL,
   show = TRUE, method = "Nelder-Mead", maxit = 10000, ...)
@@ -88,19 +94,23 @@ pp_refit(xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
     vector of the same length as \code{xdat}.}
 
 \item{npy}{The number of observations per year/block.}
+
+\item{r}{The largest \code{r} order statistics are used for
+    the fitted model.}
 }
 \description{
 These are a slightly modified versions of the \code{\link[ismev]{gev.fit}},
-\code{\link[ismev]{gpd.fit}} and \code{\link[ismev]{pp.fit}}
-functions in the \code{\link[ismev]{ismev}} package.
+\code{\link[ismev]{gpd.fit}}, \code{\link[ismev]{pp.fit}} and
+\code{\link[ismev]{rlarg.fit}} functions in the \code{\link[ismev]{ismev}}
+package.
 The modification is to add to the returned object regression design matrices
 for the parameters of the model.  That is,
 \code{xdat, ydat, mulink, siglink, shlink} and matrices
 \code{mumat, sigmat, shmat} for the location, scale and shape parameters
-\code{\link[ismev]{gev.fit}} and \code{\link[ismev]{pp.fit}} and
-\code{xdat}, \code{ydat, siglink, shlink} and matrices
-\code{sigmat, shmat} for the scale and shape parameters for
-\code{\link[ismev]{gpd.fit}}.
+\code{\link[ismev]{gev.fit}}, \code{\link[ismev]{pp.fit}} and
+\code{\link[ismev]{rlarg.fit}}, and \code{xdat},
+\code{ydat, siglink, shlink} and matrices \code{sigmat, shmat} for the
+scale and shape parameters for \code{\link[ismev]{gpd.fit}}.
 }
 \examples{
 # We need the ismev package
@@ -121,6 +131,14 @@ if (got_ismev) {
   fit1 <- pp.fit(rain, 10, show = FALSE)
   ls(fit1)
   fit2 <- pp_refit(rain, 10, show = FALSE)
+  ls(fit2)
+
+  data(venice)
+  fit1 <- rlarg.fit(venice[, -1], muinit = 120.54, siginit = 12.78,
+                   shinit = -0.1129, show = FALSE)
+  ls(fit1)
+  fit2 <- rlarg_refit(venice[, -1], muinit = 120.54, siginit = 12.78,
+                   shinit = -0.1129, show = FALSE)
   ls(fit2)
 }
 }
