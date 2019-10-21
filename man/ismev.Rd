@@ -5,6 +5,7 @@
 \alias{alogLik.gev.fit}
 \alias{alogLik.pp.fit}
 \alias{alogLik.gpd.fit}
+\alias{alogLik.rlarg.fit}
 \title{Loglikelihood adjustment for ismev fits}
 \usage{
 \method{alogLik}{gev.fit}(x, cluster = NULL, use_vcov = TRUE, ...)
@@ -12,6 +13,8 @@
 \method{alogLik}{pp.fit}(x, cluster = NULL, use_vcov = TRUE, ...)
 
 \method{alogLik}{gpd.fit}(x, cluster = NULL, use_vcov = TRUE, ...)
+
+\method{alogLik}{rlarg.fit}(x, cluster = NULL, use_vcov = TRUE, ...)
 }
 \arguments{
 \item{x}{A fitted model object with certain associated S3 methods.
@@ -51,6 +54,8 @@ An object inheriting from class \code{"chandwich"}.  See
   (or \code{\link{gpd_refit}}) was used;
   \code{"pp"} \code{\link[ismev]{pp.fit}}
   (or \code{\link{pp_refit}}) was used;
+  \code{"rlarg"} \code{\link[ismev]{rlarg.fit}}
+  (or \code{\link{rlarg_refit}}) was used.
   The 5th component is
   \code{"stat"} if \code{x$trans = FALSE} and
   \code{"nonstat"} if \code{x$trans = TRUE}.
@@ -153,6 +158,14 @@ if (got_ismev) {
                        shinit = shinit, show = FALSE)
   adj_rain_fit <- alogLik(rain_fit)
   summary(adj_rain_fit)
+
+
+  # An example from the ismev::rlarg.fit() documentation
+  data(venice)
+  rfit <- rlarg.fit(venice[, -1], muinit = 120.54, siginit = 12.78,
+                   shinit = -0.1129, show = FALSE)
+  adj_rfit <- alogLik(rfit)
+  summary(adj_rfit)
 
   # An example from chapter 7 of Coles (2001).
   # Code from demo ismev::wooster.temps

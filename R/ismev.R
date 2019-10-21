@@ -22,6 +22,8 @@
 #'   (or \code{\link{gpd_refit}}) was used;
 #'   \code{"pp"} \code{\link[ismev]{pp.fit}}
 #'   (or \code{\link{pp_refit}}) was used;
+#'   \code{"rlarg"} \code{\link[ismev]{rlarg.fit}}
+#'   (or \code{\link{rlarg_refit}}) was used.
 #'   The 5th component is
 #'   \code{"stat"} if \code{x$trans = FALSE} and
 #'   \code{"nonstat"} if \code{x$trans = TRUE}.
@@ -69,6 +71,14 @@
 #'                        shinit = shinit, show = FALSE)
 #'   adj_rain_fit <- alogLik(rain_fit)
 #'   summary(adj_rain_fit)
+#'
+#'
+#'   # An example from the ismev::rlarg.fit() documentation
+#'   data(venice)
+#'   rfit <- rlarg.fit(venice[, -1], muinit = 120.54, siginit = 12.78,
+#'                    shinit = -0.1129, show = FALSE)
+#'   adj_rfit <- alogLik(rfit)
+#'   summary(adj_rfit)
 #'
 #'   # An example from chapter 7 of Coles (2001).
 #'   # Code from demo ismev::wooster.temps
@@ -185,6 +195,33 @@ alogLik.gpd.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
     class(res) <- c("lax", "chandwich", "ismev", "gpd", "nonstat")
   } else {
     class(res) <- c("lax", "chandwich", "ismev", "gpd", "stat")
+  }
+  return(res)
+}
+
+#' @rdname ismev
+#' @export
+alogLik.rlarg.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
+  # List of ismev objects supported
+  supported_by_lax <- list(ismev_rlarg = "rlarg.fit")
+  # Does x have a supported class?
+  is_supported <- NULL
+  for (i in 1:length(supported_by_lax)) {
+    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
+                                                  use.names = FALSE))
+  }
+  if (!any(is_supported)) {
+    stop(paste("x's class", deparse(class(x)), "is not supported"))
+  }
+  # Set the class
+  name_of_class <- names(supported_by_lax)[which(is_supported)]
+  class(x) <- name_of_class
+  # Call adj_object() to adjust the loglikelihood
+  res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
+  if (x$trans) {
+    class(res) <- c("lax", "chandwich", "ismev", "rlarg", "nonstat")
+  } else {
+    class(res) <- c("lax", "chandwich", "ismev", "rlarg", "stat")
   }
   return(res)
 }
