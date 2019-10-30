@@ -425,12 +425,10 @@ rlarg_refit <- function (xdat, r = dim(xdat)[2], ydat = NULL, mul = NULL,
       shinit <- c(0.1, rep(0, length(shl)))
   }
   xdatu <- xdat[, 1:r, drop = FALSE]
-  print(head(xdatu))
   init <- c(muinit, siginit, shinit)
   z$model <- list(mul, sigl, shl)
   z$link <- deparse(substitute(c(mulink, siglink, shlink)))
   u <- apply(xdatu, 1, min, na.rm = TRUE)
-  print(u)
   rlarg.lik <- function(a) {
     mu <- mulink(drop(mumat %*% (a[1:npmu])))
     sc <- siglink(drop(sigmat %*% (a[seq(npmu + 1, length = npsc)])))

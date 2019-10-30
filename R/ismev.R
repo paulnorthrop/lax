@@ -34,6 +34,9 @@
 #'
 #' if (got_ismev) {
 #'   library(ismev)
+#'
+#'   # GEV model -----
+#'
 #'   # An example from the ismev::gev.fit documentation
 #'   gev_fit <- gev.fit(revdbayes::portpirie, show = FALSE)
 #'   adj_gev_fit <- alogLik(gev_fit)
@@ -48,6 +51,20 @@
 #'   adj_gev_fit <- alogLik(gev_fit)
 #'   summary(adj_gev_fit)
 #'
+#'   # An example from Chandler and Bate (2007)
+#'   gev_fit <- gev_refit(ow$temp, ow, mul = 4, sigl = 4, shl = 4,
+#'                        show = FALSE)
+#'   adj_gev_fit <- alogLik(gev_fit, cluster = ow$year)
+#'   summary(adj_gev_fit)
+#'   # Get closer to the values reported in Table 2 of Chandler and Bate (2007)
+#'   gev_fit <- gev_refit(ow$temp, ow, mul = 4, sigl = 4, shl = 4,
+#'                        show = FALSE, method = "BFGS")
+#'   # Call sandwich::meatCL() with cadjust = FALSE
+#'   adj_gev_fit <- alogLik(gev_fit, cluster = ow$year, cadjust = FALSE)
+#'   summary(adj_gev_fit)
+#'
+#'   # GP model -----
+#'
 #'   # An example from the ismev::gpd.fit documentation
 #'   data(rain)
 #'   rain_fit <- gpd.fit(rain, 10, show = FALSE)
@@ -60,6 +77,8 @@
 #'   adj_reg_rain_fit <- alogLik(reg_rain_fit)
 #'   summary(adj_reg_rain_fit)
 #'
+#'   # PP model -----
+#'
 #'   # An example from the ismev::pp.fit documentation
 #'   data(rain)
 #'   # Start from the mle to save time
@@ -71,14 +90,6 @@
 #'                        shinit = shinit, show = FALSE)
 #'   adj_rain_fit <- alogLik(rain_fit)
 #'   summary(adj_rain_fit)
-#'
-#'
-#'   # An example from the ismev::rlarg.fit() documentation
-#'   data(venice)
-#'   rfit <- rlarg.fit(venice[, -1], muinit = 120.54, siginit = 12.78,
-#'                    shinit = -0.1129, show = FALSE)
-#'   adj_rfit <- alogLik(rfit)
-#'   summary(adj_rfit)
 #'
 #'   # An example from chapter 7 of Coles (2001).
 #'   # Code from demo ismev::wooster.temps
@@ -102,17 +113,23 @@
 #'   adj_pp_fit <- alogLik(wooster.pp)
 #'   summary(adj_pp_fit)
 #'
-#'   # An example from Chandler and Bate (2007)
-#'   gev_fit <- gev_refit(ow$temp, ow, mul = 4, sigl = 4, shl = 4,
-#'                        show = FALSE)
-#'   adj_gev_fit <- alogLik(gev_fit, cluster = ow$year)
-#'   summary(adj_gev_fit)
-#'   # Get closer to the values reported in Table 2 of Chandler and Bate (2007)
-#'   gev_fit <- gev_refit(ow$temp, ow, mul = 4, sigl = 4, shl = 4,
-#'                        show = FALSE, method = "BFGS")
-#'   # Call sandwich::meatCL() with cadjust = FALSE
-#'   adj_gev_fit <- alogLik(gev_fit, cluster = ow$year, cadjust = FALSE)
-#'   summary(adj_gev_fit)
+#'   # r-largest order statistics model -----
+#'
+#'   # An example based on the ismev::rlarg.fit() documentation
+#'   vdata <- revdbayes::venice
+#'   rfit <- rlarg.fit(vdata, muinit = 120.54, siginit = 12.78,
+#'                    shinit = -0.1129, show = FALSE)
+#'   adj_rfit <- alogLik(rfit)
+#'   summary(adj_rfit)
+#'
+#'   # Adapt this example to add a covariate
+#'   set.seed(30102019)
+#'   ydat <- matrix(runif(nrow(vdata)), nrow(vdata), 1)
+#'   rfit2 <- rlarg_refit(vdata, ydat = ydat, mul = 1,
+#'                        muinit = c(120.54, 0), siginit = 12.78,
+#'                        shinit = -0.1129, show = FALSE)
+#'   adj_rfit2 <- alogLik(rfit2)
+#'   summary(adj_rfit2)
 #' }
 #' @name ismev
 NULL

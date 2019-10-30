@@ -15,7 +15,7 @@ logLikVec.ismev_rlarg <- function(object, pars = NULL, ...) {
   n_pars <- length(pars)
   #
   if (object$trans & is.null(object$xdat)) {
-    stop("Covariate data needed.  Refit the model using laxx::rlarg_refit")
+    stop("Covariate data needed.  Refit the model using lax::rlarg_refit")
   }
   if (!object$trans) {
     response_data <- object$data
@@ -44,14 +44,13 @@ logLikVec.ismev_rlarg <- function(object, pars = NULL, ...) {
   if (any(sigma <= 0)) {
     val <- -Inf
   } else {
-    # Need to get the mu, sigma and xi correct for the regression case!
     rlarg_loglik_vec <- function(x, mu, sigma, xi) {
-      logg <- apply(x, 1:2, revdbayes::dgev, loc = mu, scale = sigma,
+      logg <- apply(x, 2, revdbayes::dgev, loc = mu, scale = sigma,
                     shape = xi, log = TRUE)
-      logG <- apply(x, 1:2, revdbayes::pgev, loc = mu, scale = sigma,
+      logG <- apply(x, 2, revdbayes::pgev, loc = mu, scale = sigma,
                     shape = xi, log.p = TRUE)
       logGmin <- revdbayes::pgev(min_response, loc = mu, scale = sigma,
-                    shape = xi, log.p = TRUE)
+                                 shape = xi, log.p = TRUE)
       loglik <- logGmin + rowSums(logg - logG, na.rm = TRUE)
       return(loglik)
     }
@@ -59,6 +58,7 @@ logLikVec.ismev_rlarg <- function(object, pars = NULL, ...) {
     val <- rlarg_loglik_vec(x = response_data, mu = mu, sigma = sigma, xi = xi)
   }
   # Return the usual attributes for a "logLik" object
+  attr(val, "names") <- NULL
   attr(val, "nobs") <- nobs(object)
   attr(val, "df") <- n_pars
   class(val) <- "logLikVec"
