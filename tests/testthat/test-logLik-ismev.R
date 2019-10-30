@@ -139,4 +139,47 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   test_that("ismev::pp.fit, reg: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
+
+  # ismev::rlarg.fit
+
+  # The example from the ismev::rlarg.fit documentation
+  # Use revdbayes::venice to avoid ambiguity
+  # It's the same as ismev::venice but years are in row names not column 1
+  rfit <- rlarg.fit(revdbayes::venice, muinit = 120.54, siginit = 12.78,
+                    shinit = -0.1129, show = FALSE)
+  temp <- rfit
+  adj_rfit <- alogLik(rfit)
+  class(temp) <- "ismev_rlarg"
+  test_that("ismev::rlarg.fit: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(rfit), logLik(logLikVec(temp)))
+  })
+  # Check that alogLik also returned the correct maximised log-likelihood
+  test_that("ismev::rlarg.fit: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(rfit), logLik(adj_rfit))
+  })
+  # Check logLik.rlarg.fit: trivially correct
+  test_that("ismev::rlarg.fit: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
+  })
+
+  # Adapt this example to add a covariate
+  set.seed(30102019)
+  ydat <- matrix(runif(nrow(vdata)), nrow(vdata), 1)
+  rfit2 <- rlarg_refit(vdata, ydat = ydat, mul = 1,
+                       muinit = c(120.54, 0), siginit = 12.78,
+                       shinit = -0.1129, show = FALSE)
+  temp <- rfit2
+  adj_rfit2 <- alogLik(rfit2)
+  class(temp) <- "ismev_rlarg"
+  test_that("lax::rlarg_refit, reg: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(rfit2), logLik(logLikVec(temp)))
+  })
+  # Check that alogLik also returned the correct maximised log-likelihood
+  test_that("lax::rlarg_refit, reg: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(rfit2), logLik(adj_rfit2))
+  })
+  # Check logLik.rlarg.fit: trivially correct
+  test_that("lax::rlarg_refit, reg: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
+  })
 }
