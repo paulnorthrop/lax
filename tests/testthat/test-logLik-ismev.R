@@ -164,6 +164,7 @@ if (requireNamespace("ismev", quietly = TRUE)) {
 
   # Adapt this example to add a covariate
   set.seed(30102019)
+  vdata <- revdbayes::venice
   ydat <- matrix(runif(nrow(vdata)), nrow(vdata), 1)
   rfit2 <- rlarg_refit(vdata, ydat = ydat, mul = 1,
                        muinit = c(120.54, 0), siginit = 12.78,
