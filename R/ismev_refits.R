@@ -389,7 +389,7 @@ rlarg_refit <- function (xdat, r = dim(xdat)[2], ydat = NULL, mul = NULL,
   npsc <- length(sigl) + 1
   npsh <- length(shl) + 1
   z$trans <- FALSE
-  in2 <- sqrt(6 * var(xdat[, 1]))/pi
+  in2 <- sqrt(6 * stats::var(xdat[, 1]))/pi
   in1 <- mean(xdat[, 1]) - 0.57722 * in2
   if (is.null(mul)) {
     mumat <- as.matrix(rep(1, dim(xdat)[1]))
@@ -445,8 +445,8 @@ rlarg_refit <- function (xdat, r = dim(xdat)[2], ydat = NULL, mul = NULL,
     }
     l
   }
-  x <- optim(init, rlarg.lik, hessian = TRUE, method = method,
-             control = list(maxit = maxit, ...))
+  x <- stats::optim(init, rlarg.lik, hessian = TRUE, method = method,
+                    control = list(maxit = maxit, ...))
   mu <- mulink(drop(mumat %*% (x$par[1:npmu])))
   sc <- siglink(drop(sigmat %*% (x$par[seq(npmu + 1, length = npsc)])))
   xi <- shlink(drop(shmat %*% (x$par[seq(npmu + npsc + 1, length = npsh)])))
