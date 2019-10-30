@@ -15,7 +15,7 @@ logLikVec.ismev_gev <- function(object, pars = NULL, ...) {
   n_pars <- length(pars)
   #
   if (object$trans & is.null(object$xdat)) {
-    stop("Covariate data needed.  Refit the model using laxx::gev_refit")
+    stop("Covariate data needed.  Refit the model using lax::gev_refit")
   }
   if (!object$trans) {
     response_data <- object$data
