@@ -126,6 +126,7 @@ vcov.mev_rlarg <- function(object, ...) {
 #' @export
 logLik.mev_rlarg <- function(object, ...) {
   val <- -object$nllh
+  attr(val, "names") <- NULL
   attr(val, "nobs") <- nobs(object)
   attr(val, "df") <- length(coef(object))
   class(val) <- "logLik"
