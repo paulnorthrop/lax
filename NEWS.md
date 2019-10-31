@@ -2,7 +2,9 @@
 
 ## New features
 
-The functions `fit.gev`, `fit.gpd()` and `fit.pp()` from the mev package are now supported.
+* The mev package is now supported: functions `fit.gev`, `fit.gpd()`, `fit.egp`, `fit.pp()` and `fit.rlarg()`.
+
+* The function `rlarg.fit()` in the ismev package is now supported.
 
 ## Bug fixes and minor improvements
 
