@@ -6,6 +6,7 @@
 \alias{alogLik.mev_pp}
 \alias{alogLik.mev_gpd}
 \alias{alogLik.mev_egp}
+\alias{alogLik.mev_rlarg}
 \title{Loglikelihood adjustment for mev fits}
 \usage{
 \method{alogLik}{mev_gev}(x, cluster = NULL, use_vcov = TRUE, ...)
@@ -15,6 +16,8 @@
 \method{alogLik}{mev_gpd}(x, cluster = NULL, use_vcov = TRUE, ...)
 
 \method{alogLik}{mev_egp}(x, cluster = NULL, use_vcov = TRUE, ...)
+
+\method{alogLik}{mev_rlarg}(x, cluster = NULL, use_vcov = TRUE, ...)
 }
 \arguments{
 \item{x}{A fitted model object with certain associated S3 methods.
@@ -46,12 +49,13 @@ An object inheriting from class \code{"chandwich"}.  See
   \code{\link[chandwich]{adjust_loglik}}.
   \code{class(x)} is a vector of length 5. The first 3 components are
   \code{c("lax", "chandwich", "mev")}.
-  The remaining 2 components depend on the model that was fitted.
-  The 4th component is:
+  The 4th component depends on which model was fitted.
   \code{"gev"} if \code{\link[mev]{fit.gev}} was used;
   \code{"gpd"} if \code{\link[mev]{fit.gpd}} was used;
   \code{"pp"} \code{\link[mev]{fit.pp}} was used;
-  The 5th component is \code{"stat"}.
+  \code{"egp"} \code{\link[mev]{fit.egp}} was used;
+  \code{"rlarg"} \code{\link[mev]{fit.rlarg}} was used;
+  The 5th component is \code{"stat"} (for stationary).
 }
 \description{
 S3 \code{alogLik} method to perform loglikelihood adjustment for fitted
@@ -135,6 +139,13 @@ if (got_mev) {
   fitted <- fit.egp(xdat = xdat, thresh = 1, model = "egp2", show = FALSE)
   adj_fitted <- alogLik(fitted)
   summary(adj_fitted)
+
+  # An example from the mev::fit.rlarg documentation
+  set.seed(31102019)
+  xdat <- rrlarg(n = 10, loc = 0, scale = 1, shape = 0.1, r = 4)
+  fitr <- fit.rlarg(xdat)
+  adj_fitr <- alogLik(fitr)
+  summary(adj_fitr)
 }
 }
 \references{
