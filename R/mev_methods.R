@@ -104,3 +104,30 @@ logLik.mev_egp <- function(object, ...) {
   return(val)
 }
 
+# Methods for class "mev_rlarg", returned by mev::fit.rlarg()
+
+#' @export
+nobs.mev_rlarg <- function(object, ...) {
+  return(nrow(object$xdat))
+}
+
+#' @export
+coef.mev_rlarg <- function(object, ...) {
+  return(object$estimate)
+}
+
+#' @export
+vcov.mev_rlarg <- function(object, ...) {
+  vc <- object$vcov
+  dimnames(vc) <- list(names(coef(object)), names(coef(object)))
+  return(vc)
+}
+
+#' @export
+logLik.mev_rlarg <- function(object, ...) {
+  val <- -object$nllh
+  attr(val, "nobs") <- nobs(object)
+  attr(val, "df") <- length(coef(object))
+  class(val) <- "logLik"
+  return(val)
+}
