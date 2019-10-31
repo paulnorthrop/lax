@@ -5,7 +5,7 @@ context("logLik, mev package")
 if (requireNamespace("mev", quietly = TRUE)) {
   library(mev)
 
-  # mev::gev.fit
+  # mev::fit.gev
 
   # The example from the mev::gev.fit documentation
   gev_fit <- mev::fit.gev(revdbayes::portpirie, show = FALSE)
@@ -24,7 +24,7 @@ if (requireNamespace("mev", quietly = TRUE)) {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
 
-  # mev::gpd.fit
+  # mev::fit.gpd
 
   # An example from the mev::fit.gpd documentation
   data(eskrain)
@@ -44,13 +44,34 @@ if (requireNamespace("mev", quietly = TRUE)) {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
 
+  # ismev::fit.rlarg
+
+  # An example from the mev::fit.rlarg documentation
+  set.seed(31102019)
+  xdat <- rrlarg(n = 10, loc = 0, scale = 1, shape = 0.1, r = 4)
+  rfit <- fit.rlarg(xdat)
+  temp <- rfit
+  adj_rfit <- alogLik(rfit)
+  class(temp) <- "mev_rlarg"
+  test_that("mev::fit.rlarg: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(rfit), logLik(logLikVec(temp)))
+  })
+  # Check that alogLik also returned the correct maximised log-likelihood
+  test_that("mev::fit.rlarg: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equivalent(logLik(rfit), logLik(adj_rfit))
+  })
+  # Check logLik.rlarg.fit: trivially correct
+  test_that("mev::fit.rlarg: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
+  })
+
   # mev::fit.egp
 
   # An example from the mev::fit.egp documentation
   if (requireNamespace("evd", quietly = TRUE)) {
     models <- c("egp1", "egp2", "egp3")
     set.seed(7102019)
-    xdat <- evd::rgpd(n = 100, loc = 0, scale = 1, shape = 0.5)
+    xdat <- revdbayes::rgp(n = 100, loc = 0, scale = 1, shape = 0.5)
     for (i in 1:3) {
       fitted <- fit.egp(xdat = xdat, thresh = 1, model = models[i],
                         show = FALSE)
@@ -71,3 +92,6 @@ if (requireNamespace("mev", quietly = TRUE)) {
     }
   }
 }
+
+# pp
+# rlarg vs gev
