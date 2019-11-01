@@ -57,51 +57,7 @@ in the \code{\link[fExtremes:00Extremes-package]{fExtremes}} package.
 The model must have been fitted using maximum likelihood estimation.
 }
 \details{
-Object \code{x} \emph{must} have the following S3
-  methods:
-  \itemize{
-    \item{\code{logLikVec: }}{returns a vector of the contributions to the
-      independence loglikelihood from individual observations;}
-    \item{\code{coef: }}{returns a vector of model coefficients, see
-      \code{\link[stats]{coef}};}
-    \item{\code{nobs: }}{returns the number of (non-missing) observations
-      used in a model fit, see \code{\link[stats]{nobs}}};
-  }
-  and \emph{may} have the following S3 methods
-  \itemize{
-    \item{\code{vcov: }}{returns the estimated variance-covariance matrix of
-      the (main) parameters of a fitted model, see
-      \code{\link[stats]{vcov}};}
-    \item{\code{estfun: }}{returns an \eqn{n x k} matrix, in which each
-      column gives the derivative of the loglikelihood at each of \eqn{n}
-      observation with respect to the \eqn{k} parameters of the model, see
-      \code{\link[sandwich]{estfun}}.}
-  }
-  Loglikelihood adjustment is performed using the
-  \code{\link[chandwich]{adjust_loglik}} function in the
-  \code{\link[chandwich]{chandwich}} package.
-  The relevant arguments to \code{\link[chandwich]{adjust_loglik}}, namely
-  \code{loglik, mle, H} and \code{V}, are created based on the class of
-  the object \code{x}.
-
-  If a \code{vcov} method is not available, or if \code{use_vcov = FALSE},
-  then the variance-covariance matrix of the MLE (from which \code{H} is
-  calculated) is estimated inside \code{\link[chandwich]{adjust_loglik}}
-  using \code{\link[stats:optim]{optimHess}}.
-
-  The \code{sandwich} package is used to estimate the variance matrix
-  \code{V} of the score vector: \code{\link[sandwich]{meat}} is used if
-  \code{cluster = NULL}; \code{\link[sandwich:vcovCL]{meatCL}} is used if
-  \code{cluster} is not \code{NULL}.
-  If \code{cluster} is \code{NULL} then any arguments of
-  \code{\link[sandwich:vcovCL]{meatCL}} present in \dots will be ignored.
-  Similarly, if \code{cluster} is not \code{NULL} then any arguments of
-  \code{\link[sandwich]{meat}} present in \dots will be ignored.
-  \code{\link[sandwich]{meat}} and \code{\link[sandwich:vcovCL]{meatCL}}
-  require an \code{\link[sandwich]{estfun}} method to be available, which,
-  in the current context, provides matrix of score contributions.
-  If a bespoke \code{estfun} method is not provided then this is constructed
-  by estimating the score contributions using \code{\link[numDeriv]{jacobian}}.
+See \code{\link{alogLik}} for details.
 }
 \examples{
 # We need the fExtremes package
