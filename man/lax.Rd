@@ -13,6 +13,7 @@ likelihood estimation, by the extreme value analysis packages
 \href{https://cran.r-project.org/package=extRemes}{extRemes},
 \href{https://cran.r-project.org/package=fExtremes}{fExtremes},
 \href{https://cran.r-project.org/package=ismev}{ismev},
+\href{https://cran.r-project.org/package=mev}{mev},
 \href{https://cran.r-project.org/package=POT}{POT} and
 \href{https://cran.r-project.org/package=texmex}{texmex}.
 Univariate extreme value models, including regression models, are supported.
@@ -40,6 +41,7 @@ See the following package-specific help pages for details and examples:
 \href{https://cran.r-project.org/package=extRemes}{extRemes},
 \href{https://cran.r-project.org/package=fExtremes}{fExtremes},
 \href{https://cran.r-project.org/package=ismev}{ismev},
+\href{https://cran.r-project.org/package=mev}{mev},
 \href{https://cran.r-project.org/package=POT}{POT},
 \href{https://cran.r-project.org/package=texmex}{texmex}.
 
@@ -47,6 +49,10 @@ See \code{vignette("lax-vignette", package = "lax")} for an overview of the
 package.
 }
 \references{
+Belzile, L., Wadsworth, J. L., Northrop, P. J., Grimshaw, S. D.
+  and Huser, R. (2019). mev: Multivariate Extreme Value Distributions.
+  R package version 1.12.2. \url{https://github.com/lbelzile/mev/}
+
 Berger S., Graham N., Zeileis A. (2017). Various Versatile
   Variances: An Object-Oriented Implementation of Clustered Covariances in R.
   Technical Report 2017-12, Working Papers in Economics and Statistics,
