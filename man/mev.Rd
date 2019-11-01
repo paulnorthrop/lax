@@ -125,10 +125,10 @@ if (got_mev) {
   # Use simulated data
   set.seed(1112019)
   x <- revdbayes::rgp(365 * 10, loc = 0, scale = 1, shape = 0.1)
-  pp_mle <- fit.pp(x, threshold = 1, npp = 365)
-  pp_mle$xdat <- x       # DELETE AFTER new mev hits CRAN !!!!!!!!!!!!!!!!!!
-  adj_pp_mle <- alogLik(pp_mle)
-  summary(adj_pp_mle)
+  pfit <- fit.pp(x, threshold = 1, npp = 365)
+  pfit$xdat <- x       # DELETE AFTER new mev hits CRAN !!!!!!!!!!!!!!!!!!
+  adj_pfit <- alogLik(pfit)
+  summary(adj_pfit)
 
   # An example from the mev::fit.gpd documentation
   gpd_mev <- fit.gpd(eskrain, threshold = 35, method = 'Grimshaw')
