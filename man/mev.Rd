@@ -122,11 +122,13 @@ if (got_mev) {
   adj_gev_mev <- alogLik(gev_mev)
   summary(adj_gev_mev)
 
-  # An example from the mev::fit.pp documentation
-  data(eskrain)
-  pp_mle <- fit.pp(eskrain, threshold = 30, np = 6201)
-  # adj_pp_mle <- alogLik(pp_mle) # Doesn't work yet: need data
-  # summary(adj_pp_mle)
+  # Use simulated data
+  set.seed(1112019)
+  x <- revdbayes::rgp(365 * 10, loc = 0, scale = 1, shape = 0.1)
+  pp_mle <- fit.pp(x, threshold = 1, npp = 365)
+  pp_mle$xdat <- x       # DELETE AFTER new mev hits CRAN !!!!!!!!!!!!!!!!!!
+  adj_pp_mle <- alogLik(pp_mle)
+  summary(adj_pp_mle)
 
   # An example from the mev::fit.gpd documentation
   gpd_mev <- fit.gpd(eskrain, threshold = 35, method = 'Grimshaw')
