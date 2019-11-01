@@ -92,6 +92,3 @@ if (requireNamespace("mev", quietly = TRUE)) {
     }
   }
 }
-
-# pp
-# rlarg vs gev
