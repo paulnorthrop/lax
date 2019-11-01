@@ -66,6 +66,10 @@ mev package.
 }
 \details{
 See \code{\link{alogLik}} for details.
+
+If \code{x} was returned from \code{\link[mev]{fit.pp}} then the data
+\code{xdat} supplied to \code{\link[mev]{fit.pp}} must contain \emph{all}
+the data, both threshold exceedances and non-exceedances.
 }
 \examples{
 # We need the mev package
