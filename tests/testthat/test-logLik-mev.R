@@ -44,6 +44,28 @@ if (requireNamespace("mev", quietly = TRUE)) {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
 
+  # mev::fit.pp
+
+  # Use simulated data
+  set.seed(1112019)
+  x <- revdbayes::rgp(365 * 10, loc = 0, scale = 1, shape = 0.1)
+  pfit <- mev::fit.pp(x, threshold = 1, npp = 365)
+  pfit$xdat <- x       # DELETE AFTER new mev hits CRAN !!!!!!!!!!!!!!!!!!
+  temp <- pfit
+  adj_pfit <- alogLik(pfit)
+  class(temp) <- "laxmev_pp"
+  test_that("mev::fit.pp: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equal(logLik(pfit), logLik(logLikVec(temp)))
+  })
+  # Check that alogLik also returned the correct maximised log-likelihood
+  test_that("mev::fit.pp: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equal(logLik(pfit), logLik(adj_pfit))
+  })
+  # Check logLik.gev.fit: trivially correct
+  test_that("mev::fit.pp: logLik() vs. logLik(logLikVec)", {
+    testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
+  })
+
   # ismev::fit.rlarg
 
   # An example from the mev::fit.rlarg documentation
