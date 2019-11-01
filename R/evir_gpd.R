@@ -56,21 +56,4 @@ logLik.evir_gpd <- function(object, ...) {
   return(logLik(logLikVec(object)))
 }
 
-ismev_gpd_names <- function(x) {
-  if (x$trans) {
-    if (is.null(colnames(x$ydat))) {
-      scale_names <- paste0("scale", c("", x$model[[1]]))
-      shape_names <- paste0("shape", c("", x$model[[2]]))
-    } else {
-      cov_names <- colnames(x$ydat)
-      scale_names <- paste0("scale", c("", cov_names[x$model[[1]]]))
-      shape_names <- paste0("shape", c("", cov_names[x$model[[2]]]))
-    }
-    val <- c(scale_names, shape_names)
-  } else {
-    val <- c("scale", "shape")
-  }
-  return(val)
-}
-
 # See evir_methods.R for nobs, coef, vcov, logLik methods for class "gpd"
