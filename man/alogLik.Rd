@@ -47,6 +47,7 @@ An object inheriting from class \code{"chandwich"}.  See
   \code{\link[lax]{extRemes}},
   \code{\link[lax]{fExtremes}},
   \code{\link[lax]{ismev}},
+  \code{\link[lax]{mev}},
   \code{\link[lax]{POT}},
   \code{\link[lax]{texmex}}.
 
@@ -66,6 +67,7 @@ For details see the \code{alogLik} help pages for the packages:
 \code{\link[lax]{extRemes}},
 \code{\link[lax]{fExtremes}},
 \code{\link[lax]{ismev}},
+\code{\link[lax]{mev}},
 \code{\link[lax]{POT}},
 \code{\link[lax]{texmex}}.
 User-supplied objects can also be supported: the requirements for these
@@ -122,7 +124,8 @@ Object \code{x} \emph{must} have the following S3
 
 See the (package-specific) examples in \code{\link{evd}},
   \code{\link{evir}}, \code{\link{extRemes}},\code{\link{fExtremes}},
-  \code{\link{ismev}}, \code{\link{POT}} and \code{\link{texmex}}.
+  \code{\link{ismev}}, \code{\link{mev}}, \code{\link{POT}} and
+  \code{\link{texmex}}.
 }
 
 \references{
