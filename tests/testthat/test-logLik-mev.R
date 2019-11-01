@@ -66,6 +66,16 @@ if (requireNamespace("mev", quietly = TRUE)) {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
 
+  # Check that if only threshold exceedances are supplied to mev::fit.pp()
+  # then an error is thrown
+  data(eskrain)
+  pp_mle <- fit.pp(eskrain, threshold = 30, np = 6201)
+  adj_pp_mle <- try(alogLik(pp_mle), silent = TRUE)
+  test_that("mev::fit.pp: only exceedances throws an error", {
+    testthat::expect_identical(class(adj_pp_mle), "try-error")
+  })
+
+
   # ismev::fit.rlarg
 
   # An example from the mev::fit.rlarg documentation
