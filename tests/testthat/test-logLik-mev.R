@@ -51,6 +51,7 @@ if (requireNamespace("mev", quietly = TRUE)) {
   x <- revdbayes::rgp(365 * 10, loc = 0, scale = 1, shape = 0.1)
   pfit <- mev::fit.pp(x, threshold = 1, npp = 365)
   pfit$xdat <- x       # DELETE AFTER new mev hits CRAN !!!!!!!!!!!!!!!!!!
+  pfit$npp <- 365      # DELETE AFTER new mev hits CRAN !!!!!!!!!!!!!!!!!!
   temp <- pfit
   adj_pfit <- alogLik(pfit)
   class(temp) <- "laxmev_pp"

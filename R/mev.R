@@ -42,6 +42,7 @@
 #'   x <- revdbayes::rgp(365 * 10, loc = 0, scale = 1, shape = 0.1)
 #'   pfit <- fit.pp(x, threshold = 1, npp = 365)
 #'   pfit$xdat <- x       # DELETE AFTER new mev hits CRAN !!!!!!!!!!!!!!!!!!
+#'   pfit$npp <- 365      # DELETE AFTER new mev hits CRAN !!!!!!!!!!!!!!!!!!
 #'   adj_pfit <- alogLik(pfit)
 #'   summary(adj_pfit)
 #'
