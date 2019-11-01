@@ -184,6 +184,25 @@ summary(adj_gevFit_fit)
 detach("package:fExtremes")
 ```
 
+## mev
+
+```{r, echo = FALSE, message = FALSE}
+got_mev <- requireNamespace("mev", quietly = TRUE)
+```
+
+The `fit.gev()` function in *mev* only fits stationary GEV models.
+
+```{r, eval = got_mev}
+library(mev, quietly = TRUE)
+gfit <- fit.gev(ow$temp)
+adj_gfit <- alogLik(gfit)
+summary(adj_gfit)
+```
+
+```{r, echo = FALSE, eval = got_mev}
+detach("package:mev")
+```
+
 ## POT
 
 ```{r, echo = FALSE, message = FALSE}
