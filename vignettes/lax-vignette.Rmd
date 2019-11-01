@@ -23,6 +23,7 @@ The [CRAN Task View on Extreme Value Analysis](https://CRAN.R-project.org/view=E
 [extRemes](https://cran.r-project.org/package=extRemes) [@extRemes],
 [fExtremes](https://cran.r-project.org/package=fExtremes) [@fExtremes],
 [ismev](https://cran.r-project.org/package=ismev) [@ismev],
+[mev](https://cran.r-project.org/package=mev) [@mev],
 [POT](https://cran.r-project.org/package=POT) [@POT] and
 [texmex](https://cran.r-project.org/package=texmex) [@texmex].
 Univariate extreme value models, including regression models, are supported.   
