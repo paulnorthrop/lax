@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 
 ### What does lax do?
 
-The [CRAN Task View on Extreme Value Analysis](https://CRAN.R-project.org/view=ExtremeValue) provides information about R packages that perform various extreme value analyses. The *lax* package supplements the univariate extreme value modelling, including regression modelling, provided by 7 of these packages, namely 
+The [CRAN Task View on Extreme Value Analysis](https://CRAN.R-project.org/view=ExtremeValue) provides information about R packages that perform various extreme value analyses. The *lax* package supplements the univariate extreme value modelling, including regression modelling, provided by 8 of these packages, namely 
 [evd](https://cran.r-project.org/package=evd),
 [evir](https://cran.r-project.org/package=evir),
 [extRemes](https://cran.r-project.org/package=extRemes),
