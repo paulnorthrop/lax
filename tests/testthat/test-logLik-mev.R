@@ -11,13 +11,13 @@ if (requireNamespace("mev", quietly = TRUE)) {
   gev_fit <- mev::fit.gev(revdbayes::portpirie, show = FALSE)
   temp <- gev_fit
   adj_gev_fit <- alogLik(gev_fit)
-  class(temp) <- "mev_gev"
+  class(temp) <- "laxmev_gev"
   test_that("mev::fit.gev: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(gev_fit), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(gev_fit), logLik(logLikVec(temp)))
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("mev::fit.gev: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(gev_fit), logLik(adj_gev_fit))
+    testthat::expect_equal(logLik(gev_fit), logLik(adj_gev_fit))
   })
   # Check logLik.gev.fit: trivially correct
   test_that("mev::fit.gev: logLik() vs. logLik(logLikVec)", {
@@ -31,13 +31,13 @@ if (requireNamespace("mev", quietly = TRUE)) {
   gpd_mev <- fit.gpd(eskrain, threshold = 35, method = 'Grimshaw')
   temp <- gpd_mev
   adj_gpd_mev <- alogLik(gpd_mev)
-  class(temp) <- "mev_gpd"
+  class(temp) <- "laxmev_gpd"
   test_that("mev::fit.gpd: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(gpd_mev), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(gpd_mev), logLik(logLikVec(temp)))
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("mev::fit.gpd: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(gpd_mev), logLik(adj_gpd_mev))
+    testthat::expect_equal(logLik(gpd_mev), logLik(adj_gpd_mev))
   })
   # Check logLik.evd_fgev: trivially correct
   test_that("mev::fit.gpd: logLik() vs. logLik(logLikVec)", {
@@ -52,7 +52,10 @@ if (requireNamespace("mev", quietly = TRUE)) {
   rfit <- fit.rlarg(xdat)
   temp <- rfit
   adj_rfit <- alogLik(rfit)
-  class(temp) <- "mev_rlarg"
+  class(temp) <- "laxmev_rlarg"
+  # logLik.mev_rlarg() produces an object with an extra attribute names
+  # equal to "scale".  logLik.mev_rlarg() and logLik.laxmev_rlarg() also
+  # disagree on nobs. Therefore, use equivalent in the first two tests
   test_that("mev::fit.rlarg: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(rfit), logLik(logLikVec(temp)))
   })
@@ -77,7 +80,9 @@ if (requireNamespace("mev", quietly = TRUE)) {
                         show = FALSE)
       temp <- fitted
       adj_fitted <- alogLik(fitted)
-      class(temp) <- "mev_egp"
+      class(temp) <- "laxmev_egp"
+      # logLik.mev_egp() produces an object with an extra attribute names
+      # equal to "scale".  Therefore, use equivalent in the first two tests
       test_that("mev::fit.egp: logLik() vs. logLik(logLikVec)", {
         testthat::expect_equivalent(logLik(fitted), logLik(logLikVec(temp)))
       })
@@ -87,7 +92,7 @@ if (requireNamespace("mev", quietly = TRUE)) {
       })
       # Check logLik.evd_fgev: trivially correct (up to naming)
       test_that("mev::fit.egp: logLik() vs. logLik(logLikVec)", {
-        testthat::expect_equivalent(logLik(temp), logLik(logLikVec(temp)))
+        testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
       })
     }
   }
