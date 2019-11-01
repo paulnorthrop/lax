@@ -1,9 +1,9 @@
 # =============================== mev::fit.egp ============================== #
 
-# Method for class mev_egp
+# Method for class laxmev_egp
 
 #' @export
-logLikVec.mev_egp <- function(object, pars = NULL, ...) {
+logLikVec.laxmev_egp <- function(object, pars = NULL, ...) {
   if (!missing(...)) {
     warning("extra arguments discarded")
   }
@@ -31,5 +31,30 @@ logLikVec.mev_egp <- function(object, pars = NULL, ...) {
   attr(val, "nobs") <- nobs(object)
   attr(val, "df") <- n_pars
   class(val) <- "logLikVec"
+  return(val)
+}
+
+#' @export
+nobs.laxmev_egp <- function(object, ...) {
+  return(object$nat)
+}
+
+#' @export
+coef.laxmev_egp <- function(object, ...) {
+  return(object$estimate)
+}
+
+#' @export
+vcov.laxmev_egp <- function(object, ...) {
+  return(object$vcov)
+}
+
+#' @export
+logLik.laxmev_egp <- function(object, ...) {
+  val <- -object$deviance / 2
+  attr(val, "names") <- NULL
+  attr(val, "nobs") <- nobs(object)
+  attr(val, "df") <- length(coef(object))
+  class(val) <- "logLik"
   return(val)
 }

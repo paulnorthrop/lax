@@ -1,9 +1,9 @@
 # =============================== mev::mev_gev ============================= #
 
-# Methods for class mev_gev
+# Methods for class laxmev_gev
 
 #' @export
-logLikVec.mev_gev <- function(object, pars = NULL, ...) {
+logLikVec.laxmev_gev <- function(object, pars = NULL, ...) {
   if (!missing(...)) {
     warning("extra arguments discarded")
   }
@@ -28,5 +28,29 @@ logLikVec.mev_gev <- function(object, pars = NULL, ...) {
   attr(val, "nobs") <- nobs(object)
   attr(val, "df") <- n_pars
   class(val) <- "logLikVec"
+  return(val)
+}
+
+#' @export
+nobs.laxmev_gev <- function(object, ...) {
+  return(length(object$xdat))
+}
+
+#' @export
+coef.laxmev_gev <- function(object, ...) {
+  return(object$estimate)
+}
+
+#' @export
+vcov.laxmev_gev <- function(object, ...) {
+  return(object$vcov)
+}
+
+#' @export
+logLik.laxmev_gev <- function(object, ...) {
+  val <- -object$nllh
+  attr(val, "nobs") <- nobs(object)
+  attr(val, "df") <- length(coef(object))
+  class(val) <- "logLik"
   return(val)
 }

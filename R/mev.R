@@ -32,11 +32,13 @@
 #'   adj_gev_mev <- alogLik(gev_mev)
 #'   summary(adj_gev_mev)
 #'
-#'   # An example from the mev::fit.pp documentation
-#'   data(eskrain)
-#'   pp_mle <- fit.pp(eskrain, threshold = 30, np = 6201)
-#'   # adj_pp_mle <- alogLik(pp_mle) # Doesn't work yet: need data
-#'   # summary(adj_pp_mle)
+#'   # Use simulated data
+#'   set.seed(1112019)
+#'   x <- revdbayes::rgp(365 * 10, loc = 0, scale = 1, shape = 0.1)
+#'   pp_mle <- fit.pp(x, threshold = 1, npp = 365)
+#'   pp_mle$xdat <- x       # DELETE AFTER new mev hits CRAN !!!!!!!!!!!!!!!!!!
+#'   adj_pp_mle <- alogLik(pp_mle)
+#'   summary(adj_pp_mle)
 #'
 #'   # An example from the mev::fit.gpd documentation
 #'   gpd_mev <- fit.gpd(eskrain, threshold = 35, method = 'Grimshaw')
@@ -65,7 +67,7 @@ NULL
 #' @export
 alogLik.mev_gev <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # List of mev objects supported
-  supported_by_lax <- list(mev_gev = "mev_gev")
+  supported_by_lax <- list(laxmev_gev = "mev_gev")
   # Does x have a supported class?
   is_supported <- NULL
   for (i in 1:length(supported_by_lax)) {
@@ -87,8 +89,11 @@ alogLik.mev_gev <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
 #' @rdname mev
 #' @export
 alogLik.mev_pp <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
+  if (all(x$xdat > x$threshold)) {
+    stop("xdat must contain all the data: exceedances and non-exceedances.")
+  }
   # List of mev objects supported
-  supported_by_lax <- list(mev_pp = "mev_pp")
+  supported_by_lax <- list(laxmev_pp = "mev_pp")
   # Does x have a supported class?
   is_supported <- NULL
   for (i in 1:length(supported_by_lax)) {
@@ -111,7 +116,7 @@ alogLik.mev_pp <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
 #' @export
 alogLik.mev_gpd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # List of mev objects supported
-  supported_by_lax <- list(mev_gpd = "mev_gpd")
+  supported_by_lax <- list(laxmev_gpd = "mev_gpd")
   # Does x have a supported class?
   is_supported <- NULL
   for (i in 1:length(supported_by_lax)) {
@@ -134,7 +139,7 @@ alogLik.mev_gpd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
 #' @export
 alogLik.mev_egp <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # List of mev objects supported
-  supported_by_lax <- list(mev_egp = "mev_egp")
+  supported_by_lax <- list(laxmev_egp = "mev_egp")
   # Does x have a supported class?
   is_supported <- NULL
   for (i in 1:length(supported_by_lax)) {
@@ -157,7 +162,7 @@ alogLik.mev_egp <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
 #' @export
 alogLik.mev_rlarg <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # List of mev objects supported
-  supported_by_lax <- list(mev_rlarg = c("mev_rlarg", "mev_gev"))
+  supported_by_lax <- list(laxmev_rlarg = c("mev_rlarg", "mev_gev"))
   # Does x have a supported class?
   is_supported <- NULL
   for (i in 1:length(supported_by_lax)) {

@@ -1,15 +1,9 @@
 # ================================= mev::fit.pp ============================= #
 
-# Methods for class mev_pp
+# Methods for class laxmev_pp
 
 #' @export
-logLikVec.mev_pp <- function(object, pars = NULL, ...) {
-  # object$exceedances only contains the exceedances.  We need all the data.
-  # We could pack it with -Inf for non-exceedances but if cluster is not NULL
-  # then we need the dat to be in the correct order.
-  if (is.null(object$xdat)) {
-    stop("Please refit the model using lax::pp_refit")
-  }
+logLikVec.laxmev_pp <- function(object, pars = NULL, ...) {
   if (!missing(...)) {
     warning("extra arguments discarded")
   }
@@ -20,27 +14,11 @@ logLikVec.mev_pp <- function(object, pars = NULL, ...) {
   }
   n_pars <- length(pars)
   response_data <- object$xdat
-  if (!object$trans) {
-    # If trans = FALSE then there are no covariates and object$data contains
-    # the response data
-    mu <- pars[1]
-    sigma <- pars[2]
-    xi <- pars[3]
-  } else {
-    # If trans = TRUE then there are covariates
-    # The numbers of parameters for mu, sigma, xi
-    reg_pars <- sapply(object$model, length)
-    npmu <- reg_pars[1] + 1
-    npsc <- reg_pars[2] + 1
-    npsh <- reg_pars[3] + 1
-    # object$mumat, object$sigmat, object$shmat contain design matrices
-    # Values of mu, sigma, xi for each observation
-    mu <- object$mulink(object$mumat %*% (pars[1:npmu]))
-    sigma <- object$siglink(object$sigmat %*%
-                              (pars[seq(npmu + 1, length = npsc)]))
-    xi <- object$shlink(object$shmat %*%
-                          (pars[seq(npmu + npsc + 1, length = npsh)]))
-  }
+  # If trans = FALSE then there are no covariates and object$data contains
+  # the response data
+  mu <- pars[1]
+  sigma <- pars[2]
+  xi <- pars[3]
   # Calculate the loglikelihood contributions
   if (any(sigma <= 0)) {
     val <- -Inf
@@ -52,7 +30,7 @@ logLikVec.mev_pp <- function(object, pars = NULL, ...) {
                                log.p = TRUE)
       logfx <- revdbayes::dgev(x = x, loc = mu, scale = sigma,
                                shape = xi, log = TRUE)
-      rate_term <-  logFu / object$npy
+      rate_term <-  logFu / object$npp
       exc_term <- ifelse(x > u, logfx - logFx, 0)
       return(rate_term + exc_term)
     }
@@ -63,5 +41,29 @@ logLikVec.mev_pp <- function(object, pars = NULL, ...) {
   attr(val, "nobs") <- nobs(object)
   attr(val, "df") <- n_pars
   class(val) <- "logLikVec"
+  return(val)
+}
+
+#' @export
+nobs.laxmev_pp <- function(object, ...) {
+  return(object$nat / object$pat)
+}
+
+#' @export
+coef.laxmev_pp <- function(object, ...) {
+  return(object$estimate)
+}
+
+#' @export
+vcov.laxmev_pp <- function(object, ...) {
+  return(object$vc)
+}
+
+#' @export
+logLik.laxmev_pp <- function(object, ...) {
+  val <- -object$nllh
+  attr(val, "nobs") <- nobs(object)
+  attr(val, "df") <- length(coef(object))
+  class(val) <- "logLik"
   return(val)
 }

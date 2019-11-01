@@ -1,9 +1,9 @@
 # ============================= mev::rlarg.fit ============================ #
 
-# logLikVec method for class mev_rlarg
+# logLikVec method for class laxmev_rlarg
 
 #' @export
-logLikVec.mev_rlarg <- function(object, pars = NULL, ...) {
+logLikVec.laxmev_rlarg <- function(object, pars = NULL, ...) {
   if (!missing(...)) {
     warning("extra arguments discarded")
   }
@@ -42,5 +42,32 @@ logLikVec.mev_rlarg <- function(object, pars = NULL, ...) {
   attr(val, "nobs") <- nobs(object)
   attr(val, "df") <- n_pars
   class(val) <- "logLikVec"
+  return(val)
+}
+
+#' @export
+nobs.laxmev_rlarg <- function(object, ...) {
+  return(nrow(object$xdat))
+}
+
+#' @export
+coef.laxmev_rlarg <- function(object, ...) {
+  return(object$estimate)
+}
+
+#' @export
+vcov.laxmev_rlarg <- function(object, ...) {
+  vc <- object$vcov
+  dimnames(vc) <- list(names(coef(object)), names(coef(object)))
+  return(vc)
+}
+
+#' @export
+logLik.laxmev_rlarg <- function(object, ...) {
+  val <- -object$nllh
+  attr(val, "names") <- NULL
+  attr(val, "nobs") <- nobs(object)
+  attr(val, "df") <- length(coef(object))
+  class(val) <- "logLik"
   return(val)
 }

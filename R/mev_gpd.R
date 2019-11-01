@@ -1,9 +1,9 @@
 # =============================== mev::fit.gpd ============================== #
 
-# Methods for class mev_gpd
+# Methods for class laxmev_gpd
 
 #' @export
-logLikVec.mev_gpd <- function(object, pars = NULL, ...) {
+logLikVec.laxmev_gpd <- function(object, pars = NULL, ...) {
   if (!missing(...)) {
     warning("extra arguments discarded")
   }
@@ -29,5 +29,31 @@ logLikVec.mev_gpd <- function(object, pars = NULL, ...) {
   attr(val, "nobs") <- nobs(object)
   attr(val, "df") <- n_pars
   class(val) <- "logLikVec"
+  return(val)
+}
+
+#' @export
+nobs.laxmev_gpd <- function(object, ...) {
+  return(object$nat)
+}
+
+#' @export
+coef.laxmev_gpd <- function(object, ...) {
+  return(object$estimate)
+}
+
+#' @export
+vcov.laxmev_gpd <- function(object, ...) {
+  vc <- object$vcov
+  dimnames(vc) <- list(names(coef(object)), names(coef(object)))
+  return(vc)
+}
+
+#' @export
+logLik.laxmev_gpd <- function(object, ...) {
+  val <- -object$nllh
+  attr(val, "nobs") <- nobs(object)
+  attr(val, "df") <- length(coef(object))
+  class(val) <- "logLik"
   return(val)
 }
