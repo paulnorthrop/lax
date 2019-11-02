@@ -11,6 +11,11 @@
 #'
 #' @inherit alogLik params references
 #' @details See \code{\link{alogLik}} for details.
+#'
+#' If \code{\link[evir]{pot}} was used then \code{x} does not contain the
+#' raw data that \code{alogLik} needs.  The model will need to be
+#' re-fitted using \code{\link{pot_refit}} and the user will be prompted to
+#' do this by an error message produced by \code{\link{alogLik}}.
 #' @return An object inheriting from class \code{"chandwich"}.  See
 #'   \code{\link[chandwich]{adjust_loglik}}.
 #'   \code{class(x)} is a vector of length 5. The first 3 components are

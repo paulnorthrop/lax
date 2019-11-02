@@ -63,13 +63,21 @@ An object inheriting from class \code{"chandwich"}.  See
 \description{
 S3 \code{alogLik} method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the functions
-\code{\link[ismev]{gev.fit}}, \code{\link[ismev]{gpd.fit}}, and
-\code{\link[ismev]{pp.fit}} in the \code{\link[ismev]{ismev}}
-package.  If regression modelling is used then the model will need
-to be re-fitted, see \code{\link{ismev_refits}}.
+\code{\link[ismev]{gev.fit}}, \code{\link[ismev]{gpd.fit}},
+\code{\link[ismev]{pp.fit}} and \code{\link[ismev]{rlarg.fit}} in the
+\code{\link[ismev]{ismev}} package.  If regression modelling is used then
+the model will need to be re-fitted, see \code{\link{ismev_refits}}.
 }
 \details{
 See \code{\link{alogLik}} for details.
+
+If regression modelling is used then the ismev functions
+\code{\link[ismev]{gev.fit}}, \code{\link[ismev]{gpd.fit}},
+\code{\link[ismev]{pp.fit}} and \code{\link[ismev]{rlarg.fit}}
+return residuals but \code{\link{alogLik}} needs the raw data.
+The model will need to be re-fitted, using one of the functions in
+\code{\link{ismev_refits}}, and the user will be prompted to do this
+by an error message produced by \code{\link{alogLik}}.
 }
 \examples{
 # We need the ismev package

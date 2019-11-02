@@ -61,6 +61,11 @@ need to be re-fitted using \code{\link{pot_refit}}.
 }
 \details{
 See \code{\link{alogLik}} for details.
+
+If \code{\link[evir]{pot}} was used then \code{x} does not contain the
+raw data that \code{alogLik} needs.  The model will need to be
+re-fitted using \code{\link{pot_refit}} and the user will be prompted to
+do this by an error message produced by \code{\link{alogLik}}.
 }
 \examples{
 # We need the evir package
