@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lax</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.0.0.9000</span>
       </span>
     </div>
 
@@ -129,7 +129,21 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
+          <h2 id="section-package" class="hasAnchor"><a href="#section-package" class="anchor"></a>Package</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="lax.html">lax</a></code> </p>
+        </td>
+        <td><p>lax: Loglikelihood Adjustment for Extreme Value Models</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-loglikelihood-adjustment" class="hasAnchor"><a href="#section-loglikelihood-adjustment" class="anchor"></a>Loglikelihood adjustment</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -139,12 +153,6 @@
           <p><code><a href="alogLik.html">alogLik()</a></code> </p>
         </td>
         <td><p>Loglikelihood adjustment for model fits</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="anova.lax.html">anova(<i>&lt;lax&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Comparison of nested models</p></td>
       </tr><tr>
         
         <td>
@@ -178,45 +186,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="ismev_refits.html">gev_refit()</a></code> <code><a href="ismev_refits.html">gpd_refit()</a></code> <code><a href="ismev_refits.html">pp_refit()</a></code> <code><a href="ismev_refits.html">rlarg_refit()</a></code> </p>
-        </td>
-        <td><p>Maximum-likelihood (Re-)Fitting using the ismev package</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="lax.html">lax</a></code> </p>
-        </td>
-        <td><p>lax: Loglikelihood Adjustment for Extreme Value Models</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="logLik.logLikVec.html">logLik(<i>&lt;logLikVec&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Sum loglikelihood contributions from individual observations</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="logLikVec.html">logLikVec()</a></code> </p>
-        </td>
-        <td><p>Evaluate loglikelihood contributions from specific observations</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="mev.html">alogLik(<i>&lt;mev_gev&gt;</i>)</a></code> <code><a href="mev.html">alogLik(<i>&lt;mev_pp&gt;</i>)</a></code> <code><a href="mev.html">alogLik(<i>&lt;mev_gpd&gt;</i>)</a></code> <code><a href="mev.html">alogLik(<i>&lt;mev_egp&gt;</i>)</a></code> <code><a href="mev.html">alogLik(<i>&lt;mev_rlarg&gt;</i>)</a></code> </p>
         </td>
         <td><p>Loglikelihood adjustment for mev fits</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ow.html">ow</a></code> </p>
-        </td>
-        <td><p>Oxford and Worthing annual maximum temperatures</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.retlev.html">plot(<i>&lt;retlev&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot diagnostics for a retlev object</p></td>
       </tr><tr>
         
         <td>
@@ -226,22 +198,44 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="texmex.html">alogLik(<i>&lt;evmOpt&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Loglikelihood adjustment of texmex fits</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-refitting-models" class="hasAnchor"><a href="#section-refitting-models" class="anchor"></a>Refitting models</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="ismev_refits.html">gev_refit()</a></code> <code><a href="ismev_refits.html">gpd_refit()</a></code> <code><a href="ismev_refits.html">pp_refit()</a></code> <code><a href="ismev_refits.html">rlarg_refit()</a></code> </p>
+        </td>
+        <td><p>Maximum-likelihood (Re-)Fitting using the ismev package</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="pot_refit.html">pot_refit()</a></code> </p>
         </td>
         <td><p>Fits a Poisson point process to the data, an approach sometimes known as
 peaks over thresholds (POT), and returns an object of class "potd".</p></td>
-      </tr><tr>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-statistical-inference" class="hasAnchor"><a href="#section-statistical-inference" class="anchor"></a>Statistical inference</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
-          <p><code><a href="print.retlev.html">print(<i>&lt;retlev&gt;</i>)</a></code> </p>
+          <p><code><a href="anova.lax.html">anova(<i>&lt;lax&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Print method for retlev object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="print.summary.retlev.html">print(<i>&lt;summary.retlev&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Print method for objects of class <code>"summary.retlev"</code></p></td>
+        <td><p>Comparison of nested models</p></td>
       </tr><tr>
         
         <td>
@@ -251,15 +245,61 @@ peaks over thresholds (POT), and returns an object of class "potd".</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="plot.retlev.html">plot(<i>&lt;retlev&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Plot diagnostics for a retlev object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="print.retlev.html">print(<i>&lt;retlev&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Print method for retlev object</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="summary.retlev.html">summary(<i>&lt;retlev&gt;</i>)</a></code> </p>
         </td>
         <td><p>Summary method for a <code>"retlev"</code> object</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="texmex.html">alogLik(<i>&lt;evmOpt&gt;</i>)</a></code> </p>
+          <p><code><a href="print.summary.retlev.html">print(<i>&lt;summary.retlev&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Loglikelihood adjustment of texmex fits</p></td>
+        <td><p>Print method for objects of class <code>"summary.retlev"</code></p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-example-data" class="hasAnchor"><a href="#section-example-data" class="anchor"></a>Example data</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="ow.html">ow</a></code> </p>
+        </td>
+        <td><p>Oxford and Worthing annual maximum temperatures</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-generics" class="hasAnchor"><a href="#section-generics" class="anchor"></a>Generics</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="logLikVec.html">logLikVec()</a></code> </p>
+        </td>
+        <td><p>Evaluate loglikelihood contributions from specific observations</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="logLik.logLikVec.html">logLik(<i>&lt;logLikVec&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Sum loglikelihood contributions from individual observations</p></td>
       </tr>
     </tbody>
     </table>
@@ -268,7 +308,12 @@ peaks over thresholds (POT), and returns an object of class "potd".</p></td>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#section-package">Package</a></li>
+      <li><a href="#section-loglikelihood-adjustment">Loglikelihood adjustment</a></li>
+      <li><a href="#section-refitting-models">Refitting models</a></li>
+      <li><a href="#section-statistical-inference">Statistical inference</a></li>
+      <li><a href="#section-example-data">Example data</a></li>
+      <li><a href="#section-generics">Generics</a></li>
     </ul>
   </div>
 </div>
