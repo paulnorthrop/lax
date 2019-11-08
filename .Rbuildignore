@@ -3,8 +3,6 @@
 ^README\.Rmd$
 ^\.travis\.yml$
 ^appveyor\.yml$
-^_pkgdown\.yml$
-^docs$
 ^doc$
 ^Meta$
 ^cran-comments\.md$
