@@ -1,0 +1,49 @@
+destination: docs
+
+development:
+  mode: auto
+
+template:
+  params:
+    bootswatch: paper
+
+reference:
+  - title: Package
+    desc: ~
+    contents:
+      - "lax"
+  - title: Loglikelihood adjustment
+    desc: ~
+    contents:
+      - "alogLik"
+      - "alogLik.evd"
+      - "alogLik.gev"
+      - "alogLik.fevd"
+      - "alogLik.fGEVFIT"
+      - "alogLik.gev.fit"
+      - "alogLik.mev_gev"
+      - "alogLik.uvpot"
+      - "alogLik.evmOpt"
+  - title: Refitting models
+    desc: ~
+    contents:
+      - "gev_refit"
+      - "pot_refit"
+  - title: Statistical inference
+    desc: ~
+    contents:
+      - "anova.lax"
+      - "return_level"
+      - "plot.retlev"
+      - "print.retlev"
+      - "summary.retlev"
+      - "print.summary.retlev"
+  - title: Example data
+    desc: ~
+    contents:
+      - "ow"
+  - title: Generics
+    desc: ~
+    contents:
+      - "logLikVec"
+      - "logLik.logLikVec"
