@@ -81,7 +81,6 @@
 #'   1-16. \url{http://doi.org/10.18637/jss.v016.i09}.
 #' @docType package
 #' @name lax
-#' @import methods
 #' @import sandwich
 #' @importFrom stats nobs vcov coef logLik
 #' @importFrom graphics plot

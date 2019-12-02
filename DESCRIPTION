@@ -29,7 +29,6 @@ Description: Performs adjusted inferences based on model objects fitted, using
     value models, including regression models, are supported.  
 Imports: chandwich,
     graphics,
-    methods,
     numDeriv,
     revdbayes,
     sandwich,
