@@ -53,5 +53,5 @@ Suggests: distillery,
     testthat,
     texmex
 VignetteBuilder: knitr
-URL: http://github.com/paulnorthrop/lax, https://paulnorthrop.github.io/lax/
+URL: https://paulnorthrop.github.io/lax/, http://github.com/paulnorthrop/lax
 BugReports: http://github.com/paulnorthrop/lax/issues
