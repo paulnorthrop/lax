@@ -1,4 +1,4 @@
-# lax 1.0.1.9000
+# lax 1.1.0
 
 ## New features
 
