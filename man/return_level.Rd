@@ -4,8 +4,15 @@
 \alias{return_level}
 \title{Return Level Inferences for Stationary Extreme Value Models}
 \usage{
-return_level(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
-  inc = NULL, type = c("vertical", "cholesky", "spectral", "none"))
+return_level(
+  x,
+  m = 100,
+  level = 0.95,
+  npy = 1,
+  prof = TRUE,
+  inc = NULL,
+  type = c("vertical", "cholesky", "spectral", "none")
+)
 }
 \arguments{
 \item{x}{An object inheriting from class \code{"lax"} returned from

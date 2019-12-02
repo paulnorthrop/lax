@@ -5,8 +5,7 @@
 \title{Fits a Poisson point process to the data, an approach sometimes known as
 peaks over thresholds (POT), and returns an object of class "potd".}
 \usage{
-pot_refit(data, threshold = NA, nextremes = NA, run = NA,
-  picture = TRUE, ...)
+pot_refit(data, threshold = NA, nextremes = NA, run = NA, picture = TRUE, ...)
 }
 \arguments{
 \item{data}{numeric vector of data, which may have a times attribute

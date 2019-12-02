@@ -3,7 +3,6 @@
 \docType{package}
 \name{lax}
 \alias{lax}
-\alias{lax-package}
 \title{lax: Loglikelihood Adjustment for Extreme Value Models}
 \description{
 Performs adjusted inferences based on model objects fitted, using maximum

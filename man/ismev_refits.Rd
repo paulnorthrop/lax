@@ -8,25 +8,79 @@
 \alias{rlarg_refit}
 \title{Maximum-likelihood (Re-)Fitting using the ismev package}
 \usage{
-gev_refit(xdat, ydat = NULL, mul = NULL, sigl = NULL, shl = NULL,
-  mulink = identity, siglink = identity, shlink = identity,
-  muinit = NULL, siginit = NULL, shinit = NULL, show = TRUE,
-  method = "Nelder-Mead", maxit = 10000, ...)
+gev_refit(
+  xdat,
+  ydat = NULL,
+  mul = NULL,
+  sigl = NULL,
+  shl = NULL,
+  mulink = identity,
+  siglink = identity,
+  shlink = identity,
+  muinit = NULL,
+  siginit = NULL,
+  shinit = NULL,
+  show = TRUE,
+  method = "Nelder-Mead",
+  maxit = 10000,
+  ...
+)
 
-gpd_refit(xdat, threshold, npy = 365, ydat = NULL, sigl = NULL,
-  shl = NULL, siglink = identity, shlink = identity,
-  siginit = NULL, shinit = NULL, show = TRUE,
-  method = "Nelder-Mead", maxit = 10000, ...)
+gpd_refit(
+  xdat,
+  threshold,
+  npy = 365,
+  ydat = NULL,
+  sigl = NULL,
+  shl = NULL,
+  siglink = identity,
+  shlink = identity,
+  siginit = NULL,
+  shinit = NULL,
+  show = TRUE,
+  method = "Nelder-Mead",
+  maxit = 10000,
+  ...
+)
 
-pp_refit(xdat, threshold, npy = 365, ydat = NULL, mul = NULL,
-  sigl = NULL, shl = NULL, mulink = identity, siglink = identity,
-  shlink = identity, muinit = NULL, siginit = NULL, shinit = NULL,
-  show = TRUE, method = "Nelder-Mead", maxit = 10000, ...)
+pp_refit(
+  xdat,
+  threshold,
+  npy = 365,
+  ydat = NULL,
+  mul = NULL,
+  sigl = NULL,
+  shl = NULL,
+  mulink = identity,
+  siglink = identity,
+  shlink = identity,
+  muinit = NULL,
+  siginit = NULL,
+  shinit = NULL,
+  show = TRUE,
+  method = "Nelder-Mead",
+  maxit = 10000,
+  ...
+)
 
-rlarg_refit(xdat, r = dim(xdat)[2], ydat = NULL, mul = NULL,
-  sigl = NULL, shl = NULL, mulink = identity, siglink = identity,
-  shlink = identity, muinit = NULL, siginit = NULL, shinit = NULL,
-  show = TRUE, method = "Nelder-Mead", maxit = 10000, ...)
+rlarg_refit(
+  xdat,
+  r = dim(xdat)[2],
+  ydat = NULL,
+  mul = NULL,
+  sigl = NULL,
+  shl = NULL,
+  mulink = identity,
+  siglink = identity,
+  shlink = identity,
+  muinit = NULL,
+  siginit = NULL,
+  shinit = NULL,
+  show = TRUE,
+  method = "Nelder-Mead",
+  maxit = 10000,
+  ...
+)
 }
 \arguments{
 \item{xdat}{A numeric vector of data to be fitted.}
