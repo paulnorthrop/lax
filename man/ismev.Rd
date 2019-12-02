@@ -117,6 +117,7 @@ if (got_ismev) {
   # GP model -----
 
   # An example from the ismev::gpd.fit documentation
+  \donttest{
   data(rain)
   rain_fit <- gpd.fit(rain, 10, show = FALSE)
   adj_rain_fit <- alogLik(rain_fit)
@@ -127,7 +128,7 @@ if (got_ismev) {
                             show = FALSE)
   adj_reg_rain_fit <- alogLik(reg_rain_fit)
   summary(adj_reg_rain_fit)
-
+  }
   # PP model -----
 
   # An example from the ismev::pp.fit documentation
@@ -169,10 +170,11 @@ if (got_ismev) {
   # An example based on the ismev::rlarg.fit() documentation
   vdata <- revdbayes::venice
   rfit <- rlarg.fit(vdata, muinit = 120.54, siginit = 12.78,
-                   shinit = -0.1129, show = FALSE)
+                    shinit = -0.1129, show = FALSE)
   adj_rfit <- alogLik(rfit)
   summary(adj_rfit)
 
+  \donttest{
   # Adapt this example to add a covariate
   set.seed(30102019)
   ydat <- matrix(runif(nrow(vdata)), nrow(vdata), 1)
@@ -181,6 +183,7 @@ if (got_ismev) {
                        shinit = -0.1129, show = FALSE)
   adj_rfit2 <- alogLik(rfit2)
   summary(adj_rfit2)
+  }
 }
 }
 \references{
