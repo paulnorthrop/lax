@@ -168,7 +168,7 @@ if (got_extRemes & got_distillery) {
   test_that("extRemes::fevd, PP, var u: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(fit), logLik(adj_fit))
   })
-  # Check logLik.extRemes_gp, PP: trivially correct
+  # Check logLik.extRemes_pp, PP: trivially correct
   test_that("extRemes::fevd, PP, var u: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
