@@ -41,8 +41,9 @@
 #'   set.seed(1112019)
 #'   x <- revdbayes::rgp(365 * 10, loc = 0, scale = 1, shape = 0.1)
 #'   pfit <- fit.pp(x, threshold = 1, npp = 365)
-#'   pfit$xdat <- x       # DELETE AFTER new mev hits CRAN !!!!!!!!!!!!!!!!!!
-#'   pfit$npp <- 365      # DELETE AFTER new mev hits CRAN !!!!!!!!!!!!!!!!!!
+#'   # (To do: delete the next two lines after new mev hits CRAN)
+#'   pfit$xdat <- x
+#'   pfit$npp <- 365
 #'   adj_pfit <- alogLik(pfit)
 #'   summary(adj_pfit)
 #'
