@@ -173,25 +173,37 @@ if (got_extRemes & got_distillery) {
     testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
   })
 
-  # PP regression
-  fitPP <- fevd(Prec, Fort, threshold = 0.475,
-                location.fun = ~cos(day/365.25) + sin(day/365.25) +
-                I((year - 1900)/99), type = "PP", use.phi = TRUE,
-                units = "inches")
-  adj_fit <- alogLik(fitPP)
-  temp <- fitPP
-  class(temp) <- "extRemes_pp"
+  # extRemes::fevd, PP regression
+  # Use example from the ismev package (from chapter 7 of Coles (2001))
+  # Code from demo ismev::wooster.temps
 
-  test_that("extRemes::fevd, PP reg: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fitPP), logLik(logLikVec(temp)))
-  })
-  # Check that alogLik also returned the correct maximised log-likelihood
-  test_that("extRemes::fevd, PP reg: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fitPP), logLik(adj_fit))
-  })
-  # Check logLik.extRemes_gp, PP: trivially correct
-  test_that("extRemes::fevd, PP reg: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
-  })
+  if (requireNamespace("ismev", quietly = TRUE)) {
+    library(ismev)
+    data(wooster)
+    x <- seq(along = wooster)
+    usin <- function(x, a, b, d) {
+      a + b * sin(((x - d) * 2 * pi) / 365.25)
+    }
+    wu <- usin(x, -30, 25, -75)
+    ydat <- cbind(sin(2 * pi * x / 365.25), cos(2 * pi *x / 365.25))
+    df_wooster <- data.frame(y = -wooster, sin = ydat[, 1], cos = ydat[, 2])
+    fitPP <- fevd(y, df_wooster, threshold = wu, location.fun = ~ sin + cos,
+                  scale.fun = ~ sin + cos, type = "PP", use.phi = TRUE)
+    adj_fit <- alogLik(fitPP)
+    temp <- fitPP
+    class(temp) <- "extRemes_pp"
+
+    test_that("extRemes::fevd, PP reg: logLik() vs. logLik(logLikVec)", {
+      testthat::expect_equivalent(logLik(fitPP), logLik(logLikVec(temp)))
+    })
+    # Check that alogLik also returned the correct maximised log-likelihood
+    test_that("extRemes::fevd, PP reg: logLik() vs. logLik(logLikVec)", {
+      testthat::expect_equivalent(logLik(fitPP), logLik(adj_fit))
+    })
+    # Check logLik.extRemes_gp, PP: trivially correct
+    test_that("extRemes::fevd, PP reg: logLik() vs. logLik(logLikVec)", {
+      testthat::expect_equal(logLik(temp), logLik(logLikVec(temp)))
+    })
+  }
 }
 
