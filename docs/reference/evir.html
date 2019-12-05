@@ -8,10 +8,12 @@
 
 <title>Loglikelihood adjustment for evir fits — evir • lax</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -32,8 +34,8 @@
 
 
 
-<meta property="og:title" content="Loglikelihood adjustment for evir fits — evir" />
 
+<meta property="og:title" content="Loglikelihood adjustment for evir fits — evir" />
 <meta property="og:description" content="S3 alogLik method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the functions
 gev, gpd and pot
@@ -41,6 +43,7 @@ in the evir package.
 If x was returned from pot then the model will
 need to be re-fitted using pot_refit." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -71,7 +74,7 @@ need to be re-fitted using pot_refit." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lax</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.0.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.1.0</span>
       </span>
     </div>
 
@@ -102,7 +105,6 @@ need to be re-fitted using pot_refit." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/paulnorthrop/lax">
@@ -129,14 +131,12 @@ need to be re-fitted using pot_refit." />
     </div>
 
     <div class="ref-description">
-    
     <p>S3 <code>alogLik</code> method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the functions
 <code><a href='https://rdrr.io/pkg/evir/man/gev.html'>gev</a></code>, <code><a href='https://rdrr.io/pkg/evir/man/gpd.html'>gpd</a></code> and <code><a href='https://rdrr.io/pkg/evir/man/pot.html'>pot</a></code>
 in the evir package.
 If <code>x</code> was returned from <code><a href='https://rdrr.io/pkg/evir/man/pot.html'>pot</a></code> then the model will
 need to be re-fitted using <code><a href='pot_refit.html'>pot_refit</a></code>.</p>
-    
     </div>
 
     <pre class="usage"><span class='co'># S3 method for gev</span>
@@ -147,7 +147,7 @@ need to be re-fitted using <code><a href='pot_refit.html'>pot_refit</a></code>.<
 
 <span class='co'># S3 method for potd</span>
 <span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>x</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>use_vcov</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -184,7 +184,7 @@ or <code><a href='https://rdrr.io/pkg/sandwich/man/vcovCL.html'>meatCL</a></code
 <code>NULL</code>).</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object inheriting from class <code>"chandwich"</code>.  See
@@ -198,7 +198,6 @@ or <code><a href='https://rdrr.io/pkg/sandwich/man/vcovCL.html'>meatCL</a></code
   <code><a href='https://rdrr.io/r/base/c.html'>c("gpd", "stat")</a></code>.
   If <code><a href='pot_refit.html'>pot_refit</a></code> was used then these components are
   <code><a href='https://rdrr.io/r/base/c.html'>c("potd", "stat")</a></code>.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>See <code><a href='alogLik.html'>alogLik</a></code> for details.</p>
@@ -206,7 +205,6 @@ or <code><a href='https://rdrr.io/pkg/sandwich/man/vcovCL.html'>meatCL</a></code
 raw data that <code>alogLik</code> needs.  The model will need to be
 re-fitted using <code><a href='pot_refit.html'>pot_refit</a></code> and the user will be prompted to
 do this by an error message produced by <code><a href='alogLik.html'>alogLik</a></code>.</p>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Chandler, R. E. and Bate, S. (2007). Inference for clustered
@@ -215,11 +213,9 @@ do this by an error message produced by <code><a href='alogLik.html'>alogLik</a>
 <p>Zeleis (2006) Object-Oriented Computation and Sandwich
   Estimators.  <em>Journal of Statistical Software</em>, <strong>16</strong>, 1-16.
   <a href='http://doi.org/10.18637/jss.v016.i09'>http://doi.org/10.18637/jss.v016.i09</a></p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='alogLik.html'>alogLik</a></code>: loglikelihood adjustment for model fits.</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># We need the evir package</span>
@@ -259,15 +255,10 @@ do this by an error message produced by <code><a href='alogLik.html'>alogLik</a>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#references">References</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

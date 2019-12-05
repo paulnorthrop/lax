@@ -8,10 +8,12 @@
 
 <title>Comparison of nested models — anova.lax • lax</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
@@ -32,8 +34,8 @@
 
 
 
-<meta property="og:title" content="Comparison of nested models — anova.lax" />
 
+<meta property="og:title" content="Comparison of nested models — anova.lax" />
 <meta property="og:description" content="anova method for objects of class &quot;lax&quot;.
 Compares two or more nested models using the adjusted likelihood ratio
 test statistic (ALRTS) described in Section 3.5 of
@@ -41,6 +43,7 @@ Chandler and Bate (2007).
 The nesting must result from the simple constraint that a subset of the
 parameters of the larger model is held fixed." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -71,7 +74,7 @@ parameters of the larger model is held fixed." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lax</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.0.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.1.0</span>
       </span>
     </div>
 
@@ -102,7 +105,6 @@ parameters of the larger model is held fixed." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/paulnorthrop/lax">
@@ -129,19 +131,17 @@ parameters of the larger model is held fixed." />
     </div>
 
     <div class="ref-description">
-    
     <p><code>anova</code> method for objects of class <code>"lax"</code>.
 Compares two or more nested models using the adjusted likelihood ratio
 test statistic (ALRTS) described in Section 3.5 of
 <a href='http://doi.org/10.1093/biomet/asm015'>Chandler and Bate (2007)</a>.
 The nesting must result from the simple constraint that a subset of the
 parameters of the larger model is held fixed.</p>
-    
     </div>
 
     <pre class="usage"><span class='co'># S3 method for lax</span>
 <span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span>(<span class='no'>object</span>, <span class='no'>object2</span>, <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -163,7 +163,7 @@ to be passed to <code><a href='https://rdrr.io/pkg/chandwich/man/anova.chandwich
 chooses the type of adjustment.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An object of class <code>"anova"</code> inheriting from class
@@ -176,25 +176,21 @@ chooses the type of adjustment.</p></td>
       model is a valid simplification of the model in the previous row.</p></dd>
  The row names are the names of the model objects.
 
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The objects of class <code>"lax"</code> need not be provided in nested
   order: they will be ordered inside <code>anova.lax</code> based on the
   values of <code><a href='https://rdrr.io/r/base/attr.html'>attr(., "p_current")</a></code>.</p>
-    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Chandler, R. E. and Bate, S. (2007). Inference for clustered
   data using the independence loglikelihood. <em>Biometrika</em>,
   <strong>94</strong>(1), 167-183. <a href='http://doi.org/10.1093/biomet/asm015'>http://doi.org/10.1093/biomet/asm015</a></p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/chandwich/man/anova.chandwich.html'>anova.chandwich</a></code>: the <code>anova</code> method
   on which <code>anova.lax</code> is based.</p>
 <p><code><a href='alogLik.html'>alogLik</a></code>: loglikelihood adjustment for model fits.</p></div>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>got_evd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"evd"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
@@ -247,15 +243,10 @@ chooses the type of adjustment.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#references">References</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
