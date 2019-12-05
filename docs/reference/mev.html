@@ -222,28 +222,8 @@ the data, both threshold exceedances and non-exceedances.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># We need the mev package</span>
-<span class='no'>got_mev</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"mev"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='message'>Registered S3 methods overwritten by 'mev':</span>
-#&gt; <span class='message'>  method           from</span>
-#&gt; <span class='message'>  coef.mev_egp     lax </span>
-#&gt; <span class='message'>  coef.mev_gev     lax </span>
-#&gt; <span class='message'>  coef.mev_gpd     lax </span>
-#&gt; <span class='message'>  coef.mev_pp      lax </span>
-#&gt; <span class='message'>  coef.mev_rlarg   lax </span>
-#&gt; <span class='message'>  logLik.mev_egp   lax </span>
-#&gt; <span class='message'>  logLik.mev_gev   lax </span>
-#&gt; <span class='message'>  logLik.mev_gpd   lax </span>
-#&gt; <span class='message'>  logLik.mev_pp    lax </span>
-#&gt; <span class='message'>  logLik.mev_rlarg lax </span>
-#&gt; <span class='message'>  nobs.mev_egp     lax </span>
-#&gt; <span class='message'>  nobs.mev_gev     lax </span>
-#&gt; <span class='message'>  nobs.mev_gpd     lax </span>
-#&gt; <span class='message'>  nobs.mev_pp      lax </span>
-#&gt; <span class='message'>  nobs.mev_rlarg   lax </span>
-#&gt; <span class='message'>  vcov.mev_egp     lax </span>
-#&gt; <span class='message'>  vcov.mev_gev     lax </span>
-#&gt; <span class='message'>  vcov.mev_gpd     lax </span>
-#&gt; <span class='message'>  vcov.mev_pp      lax </span>
-#&gt; <span class='message'>  vcov.mev_rlarg   lax </span></div><div class='input'>
+<span class='no'>got_mev</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"mev"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
 <span class='kw'>if</span> (<span class='no'>got_mev</span>) {
   <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mev</span>)
   <span class='co'># An example from the mev::gev.fit documentation</span>
