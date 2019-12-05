@@ -11,6 +11,7 @@
 #' @details See \code{\link{alogLik}} for details.
 #' @return An object inheriting from class \code{"chandwich"}.  See
 #'   \code{\link[chandwich]{adjust_loglik}}.
+#'
 #'   \code{class(x)} is \code{c("lax", "chandwich", "POT", "pot", "gpd")}.
 #' @seealso \code{\link{alogLik}}: loglikelihood adjustment for model fits.
 #' @examples

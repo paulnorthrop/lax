@@ -35,6 +35,7 @@ or \code{\link[sandwich:vcovCL]{meatCL}} (if \code{cluster} is not
 \value{
 An object inheriting from class \code{"chandwich"}.  See
   \code{\link[chandwich]{adjust_loglik}}.
+
   \code{class(x)} is \code{c("lax", "chandwich", "POT", "pot", "gpd")}.
 }
 \description{
