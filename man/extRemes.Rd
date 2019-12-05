@@ -128,15 +128,6 @@ if (got_extRemes & got_distillery) {
               type = "PP")
   adj_fit <- alogLik(fit)
   summary(adj_fit)
-
-  # PP regression
-  \donttest{
-  fitPP <- fevd(Prec, Fort, threshold = 0.475,
-               location.fun = ~cos(day/365.25) + sin(day/365.25) +
-               I((year - 1900)/99), type = "PP", use.phi = TRUE,
-               units = "inches")
-  adj_fit <- alogLik(fitPP)
-  summary(adj_fit)}
 }
 }
 \references{
