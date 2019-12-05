@@ -12,6 +12,8 @@ if (requireNamespace("mev", quietly = TRUE)) {
   temp <- gev_fit
   adj_gev_fit <- alogLik(gev_fit)
   class(temp) <- "laxmev_gev"
+  # Use methods internal to lax, until new mev hits CRAN
+  class(gev_fit) <- "laxmev_gev"
   test_that("mev::fit.gev: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equal(logLik(gev_fit), logLik(logLikVec(temp)))
   })
@@ -32,6 +34,8 @@ if (requireNamespace("mev", quietly = TRUE)) {
   temp <- gpd_mev
   adj_gpd_mev <- alogLik(gpd_mev)
   class(temp) <- "laxmev_gpd"
+  # Use methods internal to lax, until new mev hits CRAN
+  class(gpd_mev) <- "laxmev_gpd"
   test_that("mev::fit.gpd: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equal(logLik(gpd_mev), logLik(logLikVec(temp)))
   })
@@ -56,6 +60,8 @@ if (requireNamespace("mev", quietly = TRUE)) {
   temp <- pfit
   adj_pfit <- alogLik(pfit)
   class(temp) <- "laxmev_pp"
+  # Use methods internal to lax, until new mev hits CRAN
+  class(pfit) <- "laxmev_pp"
   test_that("mev::fit.pp: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equal(logLik(pfit), logLik(logLikVec(temp)))
   })
@@ -90,6 +96,8 @@ if (requireNamespace("mev", quietly = TRUE)) {
   # logLik.mev_rlarg() produces an object with an extra attribute names
   # equal to "scale".  logLik.mev_rlarg() and logLik.laxmev_rlarg() also
   # disagree on nobs. Therefore, use equivalent in the first two tests
+  # Use methods internal to lax, until new mev hits CRAN
+  class(rfit) <- "laxmev_rlarg"
   test_that("mev::fit.rlarg: logLik() vs. logLik(logLikVec)", {
     testthat::expect_equivalent(logLik(rfit), logLik(logLikVec(temp)))
   })
@@ -115,6 +123,8 @@ if (requireNamespace("mev", quietly = TRUE)) {
       temp <- fitted
       adj_fitted <- alogLik(fitted)
       class(temp) <- "laxmev_egp"
+      # Use methods internal to lax, until new mev hits CRAN
+      class(fitted) <- "laxmev_egp"
       # logLik.mev_egp() produces an object with an extra attribute names
       # equal to "scale".  Therefore, use equivalent in the first two tests
       test_that("mev::fit.egp: logLik() vs. logLik(logLikVec)", {
