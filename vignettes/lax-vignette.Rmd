@@ -17,7 +17,7 @@ bibliography: lax.bib
 knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
 ```
 
-The [CRAN Task View on Extreme Value Analysis](https://CRAN.R-project.org/view=ExtremeValue) provides information about R packages that perform various extreme value analyses. The *lax* package supplements the functionality of seven of these packages, namely 
+The [CRAN Task View on Extreme Value Analysis](https://CRAN.R-project.org/view=ExtremeValue) provides information about R packages that perform various extreme value analyses. The *lax* package supplements the functionality of eight of these packages, namely 
 [evd](https://cran.r-project.org/package=evd) [@evd],
 [evir](https://cran.r-project.org/package=evir) [@evir],
 [extRemes](https://cran.r-project.org/package=extRemes) [@extRemes],
