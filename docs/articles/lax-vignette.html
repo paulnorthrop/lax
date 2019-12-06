@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lax</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.1.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.1.0.9000</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@
       <h1>An overview of lax</h1>
                         <h4 class="author">Paul Northrop</h4>
             
-            <h4 class="date">2019-12-05</h4>
+            <h4 class="date">2019-12-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/paulnorthrop/lax/blob/master/vignettes/lax-vignette.Rmd"><code>vignettes/lax-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>lax-vignette.Rmd</code></div>
@@ -94,7 +94,7 @@
 
     
     
-<p>The <a href="https://CRAN.R-project.org/view=ExtremeValue">CRAN Task View on Extreme Value Analysis</a> provides information about R packages that perform various extreme value analyses. The <em>lax</em> package supplements the functionality of seven of these packages, namely <a href="https://cran.r-project.org/package=evd">evd</a> <span class="citation">(Stephenson 2002)</span>, <a href="https://cran.r-project.org/package=evir">evir</a> <span class="citation">(Pfaff and McNeil 2018)</span>, <a href="https://cran.r-project.org/package=extRemes">extRemes</a> <span class="citation">(Gilleland and Katz 2016)</span>, <a href="https://cran.r-project.org/package=fExtremes">fExtremes</a> <span class="citation">(Wuertz, Setz, and Yohan Chalabi 2017)</span>, <a href="https://cran.r-project.org/package=ismev">ismev</a> <span class="citation">(Heffernan and Stephenson 2018)</span>, <a href="https://cran.r-project.org/package=mev">mev</a> <span class="citation">(Belzile et al. 2019)</span>, <a href="https://cran.r-project.org/package=POT">POT</a> <span class="citation">(Ribatet and Dutang 2016)</span> and <a href="https://cran.r-project.org/package=texmex">texmex</a> <span class="citation">(Southworth, Heffernan, and Metcalfe 2017)</span>. Univariate extreme value models, including regression models, are supported.</p>
+<p>The <a href="https://CRAN.R-project.org/view=ExtremeValue">CRAN Task View on Extreme Value Analysis</a> provides information about R packages that perform various extreme value analyses. The <em>lax</em> package supplements the functionality of eight of these packages, namely <a href="https://cran.r-project.org/package=evd">evd</a> <span class="citation">(Stephenson 2002)</span>, <a href="https://cran.r-project.org/package=evir">evir</a> <span class="citation">(Pfaff and McNeil 2018)</span>, <a href="https://cran.r-project.org/package=extRemes">extRemes</a> <span class="citation">(Gilleland and Katz 2016)</span>, <a href="https://cran.r-project.org/package=fExtremes">fExtremes</a> <span class="citation">(Wuertz, Setz, and Yohan Chalabi 2017)</span>, <a href="https://cran.r-project.org/package=ismev">ismev</a> <span class="citation">(Heffernan and Stephenson 2018)</span>, <a href="https://cran.r-project.org/package=mev">mev</a> <span class="citation">(Belzile et al. 2019)</span>, <a href="https://cran.r-project.org/package=POT">POT</a> <span class="citation">(Ribatet and Dutang 2016)</span> and <a href="https://cran.r-project.org/package=texmex">texmex</a> <span class="citation">(Southworth, Heffernan, and Metcalfe 2017)</span>. Univariate extreme value models, including regression models, are supported.</p>
 <p>The <a href="https://cran.r-project.org/package=chandwich">chandwich</a> package is used to provide robust sandwich estimation of parameter covariance matrix and loglikelihood adjustment for models fitted by maximum likelihood estimation. This may be useful for cluster correlated data when interest lies in the parameters of the marginal distributions, or for performing inferences that are robust to certain types of model misspecification.</p>
 <p><em>lax</em> works in an object-oriented way, operating on R objects returned from functions in other packages that summarise the fit of an extreme value model. Loglikelihood adjustment and sandwich estimation is performed by an <code>alogLik</code> S3 method. We demonstrate this using the following running example, which involves fitting a Generalised Extreme Value (GEV) regression model. Firstly, we use the <em>ismev</em> package to produce the fitted GEV regression model object on which <code>alogLik</code> will operate, and illustrate what can be done with the objects returned from <code>alogLik</code>. We use the <em>ismev</em> package because it provides an example of a case where we need to refit the model in order to obtain the information that we need to perform adjusted inferences. Then we repeat the adjustment using five of the other six packages. The <em>POT</em> package specialises in Generalised Pareto (GP) modelling, for which we use a different example.</p>
 <div id="gev-regression-of-annual-maximum-temperatures" class="section level2">
