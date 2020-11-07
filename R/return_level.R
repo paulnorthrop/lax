@@ -140,7 +140,8 @@ return_level <- function(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
 #'   round the values in the legend.
 #' @param plot A logical scalar.  If \code{TRUE} then the plot is produced.
 #'   Otherwise, it is not, but the MLE and confidence limits are returned.
-#' @param ... Further arguments to be passed to \code{\link[graphics]{plot}}.
+#' @param ... Further arguments to be passed to
+#'   \code{\link[graphics:plot.default]{plot}}.
 #' @details Plots the profile loglikelihood for a return level, provided that
 #'   \code{x} returned by a call to \code{\link{return_level}} using
 #'   \code{prof = TRUE}.  Horizontal lines indicate the values of the

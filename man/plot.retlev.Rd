@@ -27,7 +27,8 @@ round the values in the legend.}
 \item{plot}{A logical scalar.  If \code{TRUE} then the plot is produced.
 Otherwise, it is not, but the MLE and confidence limits are returned.}
 
-\item{...}{Further arguments to be passed to \code{\link[graphics]{plot}}.}
+\item{...}{Further arguments to be passed to
+\code{\link[graphics:plot.default]{plot}}.}
 }
 \value{
 A numeric vector of length 3 containing the lower
