@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/paper/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -41,7 +45,6 @@ extreme value model objects returned from the functions
 fit.gev, fit.gpd, and
 fit.pp and fit.rlarg in the
 mev package." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -59,7 +62,7 @@ mev package." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -81,7 +84,7 @@ mev package." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -106,8 +109,8 @@ mev package." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/paulnorthrop/lax">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="http://github.com/paulnorthrop/lax/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -125,32 +128,32 @@ mev package." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Loglikelihood adjustment for mev fits</h1>
-    <small class="dont-index">Source: <a href='https://github.com/paulnorthrop/lax/blob/master/R/mev.R'><code>R/mev.R</code></a></small>
+    <small class="dont-index">Source: <a href='http://github.com/paulnorthrop/lax/blob/master/R/mev.R'><code>R/mev.R</code></a></small>
     <div class="hidden name"><code>mev.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>S3 <code>alogLik</code> method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the functions
-<code><a href='https://rdrr.io/pkg/mev/man/fit.gev.html'>fit.gev</a></code>, <code><a href='https://rdrr.io/pkg/mev/man/fit.gpd.html'>fit.gpd</a></code>, and
-<code><a href='https://rdrr.io/pkg/mev/man/fit.pp.html'>fit.pp</a></code> and <code><a href='https://rdrr.io/pkg/mev/man/fit.rlarg.html'>fit.rlarg</a></code> in the
+<code>fit.gev</code>, <code>fit.gpd</code>, and
+<code>fit.pp</code> and <code>fit.rlarg</code> in the
 mev package.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for mev_gev</span>
-<span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>x</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>use_vcov</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>x</span>, cluster <span class='op'>=</span> <span class='cn'>NULL</span>, use_vcov <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for mev_pp</span>
-<span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>x</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>use_vcov</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>x</span>, cluster <span class='op'>=</span> <span class='cn'>NULL</span>, use_vcov <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for mev_gpd</span>
-<span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>x</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>use_vcov</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>x</span>, cluster <span class='op'>=</span> <span class='cn'>NULL</span>, use_vcov <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for mev_egp</span>
-<span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>x</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>use_vcov</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>x</span>, cluster <span class='op'>=</span> <span class='cn'>NULL</span>, use_vcov <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for mev_rlarg</span>
-<span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>x</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>use_vcov</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>x</span>, cluster <span class='op'>=</span> <span class='cn'>NULL</span>, use_vcov <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -196,17 +199,17 @@ or <code><a href='https://rdrr.io/pkg/sandwich/man/vcovCL.html'>meatCL</a></code
   <code><a href='https://rdrr.io/r/base/class.html'>class(x)</a></code> is a vector of length 5. The first 3 components are
   <code><a href='https://rdrr.io/r/base/c.html'>c("lax", "chandwich", "mev")</a></code>.
   The 4th component depends on which model was fitted.
-  <code>"gev"</code> if <code><a href='https://rdrr.io/pkg/mev/man/fit.gev.html'>fit.gev</a></code> was used;
-  <code>"gpd"</code> if <code><a href='https://rdrr.io/pkg/mev/man/fit.gpd.html'>fit.gpd</a></code> was used;
-  <code>"pp"</code> <code><a href='https://rdrr.io/pkg/mev/man/fit.pp.html'>fit.pp</a></code> was used;
-  <code>"egp"</code> <code><a href='https://rdrr.io/pkg/mev/man/fit.egp.html'>fit.egp</a></code> was used;
-  <code>"rlarg"</code> <code><a href='https://rdrr.io/pkg/mev/man/fit.rlarg.html'>fit.rlarg</a></code> was used;
+  <code>"gev"</code> if <code>fit.gev</code> was used;
+  <code>"gpd"</code> if <code>fit.gpd</code> was used;
+  <code>"pp"</code> <code>fit.pp</code> was used;
+  <code>"egp"</code> <code>fit.egp</code> was used;
+  <code>"rlarg"</code> <code>fit.rlarg</code> was used;
   The 5th component is <code>"stat"</code> (for stationary).</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>See <code><a href='alogLik.html'>alogLik</a></code> for details.</p>
-<p>If <code>x</code> was returned from <code><a href='https://rdrr.io/pkg/mev/man/fit.pp.html'>fit.pp</a></code> then the data
-<code>xdat</code> supplied to <code><a href='https://rdrr.io/pkg/mev/man/fit.pp.html'>fit.pp</a></code> must contain <em>all</em>
+<p>If <code>x</code> was returned from <code>fit.pp</code> then the data
+<code>xdat</code> supplied to <code>fit.pp</code> must contain <em>all</em>
 the data, both threshold exceedances and non-exceedances.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -222,66 +225,50 @@ the data, both threshold exceedances and non-exceedances.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># We need the mev package</span>
-<span class='no'>got_mev</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"mev"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='va'>got_mev</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"mev"</span>, quietly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 
-<span class='kw'>if</span> (<span class='no'>got_mev</span>) {
-  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>mev</span>)
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>got_mev</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>mev</span><span class='op'>)</span>
   <span class='co'># An example from the mev::gev.fit documentation</span>
-  <span class='no'>gev_mev</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/mev/man/fit.gev.html'>fit.gev</a></span>(<span class='kw pkg'>revdbayes</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/revdbayes/man/portpirie.html'>portpirie</a></span>)
-  <span class='no'>adj_gev_mev</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>gev_mev</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>adj_gev_mev</span>)
+  <span class='va'>gev_mev</span> <span class='op'>&lt;-</span> <span class='fu'>fit.gev</span><span class='op'>(</span><span class='fu'>revdbayes</span><span class='fu'>::</span><span class='va'><a href='https://paulnorthrop.github.io/revdbayes/reference/portpirie.html'>portpirie</a></span><span class='op'>)</span>
+  <span class='va'>adj_gev_mev</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>gev_mev</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>adj_gev_mev</span><span class='op'>)</span>
 
   <span class='co'># Use simulated data</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1112019</span>)
-  <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>revdbayes</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/revdbayes/man/gp.html'>rgp</a></span>(<span class='fl'>365</span> * <span class='fl'>10</span>, <span class='kw'>loc</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>shape</span> <span class='kw'>=</span> <span class='fl'>0.1</span>)
-  <span class='no'>pfit</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/mev/man/fit.pp.html'>fit.pp</a></span>(<span class='no'>x</span>, <span class='kw'>threshold</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>npp</span> <span class='kw'>=</span> <span class='fl'>365</span>)
+  <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1112019</span><span class='op'>)</span>
+  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>revdbayes</span><span class='fu'>::</span><span class='fu'><a href='https://paulnorthrop.github.io/revdbayes/reference/gp.html'>rgp</a></span><span class='op'>(</span><span class='fl'>365</span> <span class='op'>*</span> <span class='fl'>10</span>, loc <span class='op'>=</span> <span class='fl'>0</span>, scale <span class='op'>=</span> <span class='fl'>1</span>, shape <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span>
+  <span class='va'>pfit</span> <span class='op'>&lt;-</span> <span class='fu'>fit.pp</span><span class='op'>(</span><span class='va'>x</span>, threshold <span class='op'>=</span> <span class='fl'>1</span>, npp <span class='op'>=</span> <span class='fl'>365</span><span class='op'>)</span>
   <span class='co'># (To do: delete the next two lines after new mev hits CRAN)</span>
-  <span class='no'>pfit</span>$<span class='no'>xdat</span> <span class='kw'>&lt;-</span> <span class='no'>x</span>
-  <span class='no'>pfit</span>$<span class='no'>npp</span> <span class='kw'>&lt;-</span> <span class='fl'>365</span>
-  <span class='no'>adj_pfit</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>pfit</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>adj_pfit</span>)
+  <span class='va'>pfit</span><span class='op'>$</span><span class='va'>xdat</span> <span class='op'>&lt;-</span> <span class='va'>x</span>
+  <span class='va'>pfit</span><span class='op'>$</span><span class='va'>npp</span> <span class='op'>&lt;-</span> <span class='fl'>365</span>
+  <span class='va'>adj_pfit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>pfit</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>adj_pfit</span><span class='op'>)</span>
 
   <span class='co'># An example from the mev::fit.gpd documentation</span>
-  <span class='no'>gpd_mev</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/mev/man/fit.gpd.html'>fit.gpd</a></span>(<span class='no'>eskrain</span>, <span class='kw'>threshold</span> <span class='kw'>=</span> <span class='fl'>35</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>'Grimshaw'</span>)
-  <span class='no'>adj_gpd_mev</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>gpd_mev</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>adj_gpd_mev</span>)
+  <span class='va'>gpd_mev</span> <span class='op'>&lt;-</span> <span class='fu'>fit.gpd</span><span class='op'>(</span><span class='va'>eskrain</span>, threshold <span class='op'>=</span> <span class='fl'>35</span>, method <span class='op'>=</span> <span class='st'>'Grimshaw'</span><span class='op'>)</span>
+  <span class='va'>adj_gpd_mev</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>gpd_mev</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>adj_gpd_mev</span><span class='op'>)</span>
 
   <span class='co'># An example from the mev::fit.egp documentation</span>
   <span class='co'># (model = "egp1" and model = "egp3" also work)</span>
-  <span class='no'>xdat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>evd</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/evd/man/gpd.html'>rgpd</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>loc</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>shape</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)
-  <span class='no'>fitted</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/mev/man/fit.egp.html'>fit.egp</a></span>(<span class='kw'>xdat</span> <span class='kw'>=</span> <span class='no'>xdat</span>, <span class='kw'>thresh</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>model</span> <span class='kw'>=</span> <span class='st'>"egp2"</span>, <span class='kw'>show</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-  <span class='no'>adj_fitted</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>fitted</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>adj_fitted</span>)
+  <span class='va'>xdat</span> <span class='op'>&lt;-</span> <span class='fu'>evd</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/evd/man/gpd.html'>rgpd</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>100</span>, loc <span class='op'>=</span> <span class='fl'>0</span>, scale <span class='op'>=</span> <span class='fl'>1</span>, shape <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span>
+  <span class='va'>fitted</span> <span class='op'>&lt;-</span> <span class='fu'>fit.egp</span><span class='op'>(</span>xdat <span class='op'>=</span> <span class='va'>xdat</span>, thresh <span class='op'>=</span> <span class='fl'>1</span>, model <span class='op'>=</span> <span class='st'>"egp2"</span>, show <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+  <span class='va'>adj_fitted</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>fitted</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>adj_fitted</span><span class='op'>)</span>
 
   <span class='co'># An example from the mev::fit.rlarg documentation</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>31102019</span>)
-  <span class='no'>xdat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/mev/man/rrlarg.html'>rrlarg</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>loc</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>shape</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>r</span> <span class='kw'>=</span> <span class='fl'>4</span>)
-  <span class='no'>fitr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/mev/man/fit.rlarg.html'>fit.rlarg</a></span>(<span class='no'>xdat</span>)
-  <span class='no'>adj_fitr</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>fitr</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>adj_fitr</span>)
-}</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: 'mev'</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked _by_ '.GlobalEnv':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    venice</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from 'package:extRemes':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    taildep</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from 'package:evd':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    venice</span></div><div class='output co'>#&gt;           MLE     SE adj. SE
-#&gt; loc   -0.1223 0.2859 0.29490
-#&gt; scale  1.0750 0.2450 0.20520
-#&gt; shape  0.2490 0.1552 0.07926</div></pre>
+  <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>31102019</span><span class='op'>)</span>
+  <span class='va'>xdat</span> <span class='op'>&lt;-</span> <span class='fu'>rrlarg</span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>10</span>, loc <span class='op'>=</span> <span class='fl'>0</span>, scale <span class='op'>=</span> <span class='fl'>1</span>, shape <span class='op'>=</span> <span class='fl'>0.1</span>, r <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
+  <span class='va'>fitr</span> <span class='op'>&lt;-</span> <span class='fu'>fit.rlarg</span><span class='op'>(</span><span class='va'>xdat</span><span class='op'>)</span>
+  <span class='va'>adj_fitr</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>fitr</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>adj_fitr</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -292,7 +279,7 @@ the data, both threshold exceedances and non-exceedances.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

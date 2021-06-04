@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/paper/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -42,7 +46,6 @@ gev, gpd and pot
 in the evir package.
 If x was returned from pot then the model will
 need to be re-fitted using pot_refit." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -60,7 +63,7 @@ need to be re-fitted using pot_refit." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -82,7 +85,7 @@ need to be re-fitted using pot_refit." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -107,8 +110,8 @@ need to be re-fitted using pot_refit." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/paulnorthrop/lax">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="http://github.com/paulnorthrop/lax/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -126,27 +129,27 @@ need to be re-fitted using pot_refit." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Loglikelihood adjustment for evir fits</h1>
-    <small class="dont-index">Source: <a href='https://github.com/paulnorthrop/lax/blob/master/R/evir.R'><code>R/evir.R</code></a></small>
+    <small class="dont-index">Source: <a href='http://github.com/paulnorthrop/lax/blob/master/R/evir.R'><code>R/evir.R</code></a></small>
     <div class="hidden name"><code>evir.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>S3 <code>alogLik</code> method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the functions
-<code><a href='https://rdrr.io/pkg/evir/man/gev.html'>gev</a></code>, <code><a href='https://rdrr.io/pkg/evir/man/gpd.html'>gpd</a></code> and <code><a href='https://rdrr.io/pkg/evir/man/pot.html'>pot</a></code>
+<code>gev</code>, <code>gpd</code> and <code>pot</code>
 in the evir package.
-If <code>x</code> was returned from <code><a href='https://rdrr.io/pkg/evir/man/pot.html'>pot</a></code> then the model will
+If <code>x</code> was returned from <code>pot</code> then the model will
 need to be re-fitted using <code><a href='pot_refit.html'>pot_refit</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for gev</span>
-<span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>x</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>use_vcov</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>x</span>, cluster <span class='op'>=</span> <span class='cn'>NULL</span>, use_vcov <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for gpd</span>
-<span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>x</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>use_vcov</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>x</span>, cluster <span class='op'>=</span> <span class='cn'>NULL</span>, use_vcov <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for potd</span>
-<span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>x</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>use_vcov</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>x</span>, cluster <span class='op'>=</span> <span class='cn'>NULL</span>, use_vcov <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -192,16 +195,16 @@ or <code><a href='https://rdrr.io/pkg/sandwich/man/vcovCL.html'>meatCL</a></code
   <code><a href='https://rdrr.io/r/base/class.html'>class(x)</a></code> is a vector of length 5. The first 3 components are
   <code><a href='https://rdrr.io/r/base/c.html'>c("lax", "chandwich", "evir")</a></code>.
   The remaining 2 components depend on the model that was fitted.
-  If <code><a href='https://rdrr.io/pkg/evir/man/gev.html'>gev</a></code> was used then these components are
+  If <code>gev</code> was used then these components are
   <code><a href='https://rdrr.io/r/base/c.html'>c("gev", "stat")</a></code>.
-  If <code><a href='https://rdrr.io/pkg/evir/man/gpd.html'>gpd</a></code> was used then these components are
+  If <code>gpd</code> was used then these components are
   <code><a href='https://rdrr.io/r/base/c.html'>c("gpd", "stat")</a></code>.
   If <code><a href='pot_refit.html'>pot_refit</a></code> was used then these components are
   <code><a href='https://rdrr.io/r/base/c.html'>c("potd", "stat")</a></code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>See <code><a href='alogLik.html'>alogLik</a></code> for details.</p>
-<p>If <code><a href='https://rdrr.io/pkg/evir/man/pot.html'>pot</a></code> was used then <code>x</code> does not contain the
+<p>If <code>pot</code> was used then <code>x</code> does not contain the
 raw data that <code>alogLik</code> needs.  The model will need to be
 re-fitted using <code><a href='pot_refit.html'>pot_refit</a></code> and the user will be prompted to
 do this by an error message produced by <code><a href='alogLik.html'>alogLik</a></code>.</p>
@@ -219,49 +222,33 @@ do this by an error message produced by <code><a href='alogLik.html'>alogLik</a>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># We need the evir package</span>
-<span class='no'>got_evir</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"evir"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='kw'>if</span> (<span class='no'>got_evir</span>) {
-  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>evir</span>)
+<span class='va'>got_evir</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"evir"</span>, quietly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>got_evir</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>evir</span><span class='op'>)</span>
   <span class='co'># An example from the evir::gev documentation</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>bmw</span>)
-  <span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/evir/man/gev.html'>gev</a></span>(<span class='no'>bmw</span>, <span class='st'>"month"</span>)
-  <span class='no'>adj_out</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>out</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>adj_out</span>)
+  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>bmw</span><span class='op'>)</span>
+  <span class='va'>out</span> <span class='op'>&lt;-</span> <span class='fu'>gev</span><span class='op'>(</span><span class='va'>bmw</span>, <span class='st'>"month"</span><span class='op'>)</span>
+  <span class='va'>adj_out</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>out</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>adj_out</span><span class='op'>)</span>
 
   <span class='co'># An example from the evir::gpd documentation</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>danish</span>)
-  <span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/evir/man/gpd.html'>gpd</a></span>(<span class='no'>danish</span>, <span class='fl'>10</span>)
-  <span class='no'>adj_out</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>out</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>adj_out</span>)
+  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>danish</span><span class='op'>)</span>
+  <span class='va'>out</span> <span class='op'>&lt;-</span> <span class='fu'>gpd</span><span class='op'>(</span><span class='va'>danish</span>, <span class='fl'>10</span><span class='op'>)</span>
+  <span class='va'>adj_out</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>out</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>adj_out</span><span class='op'>)</span>
 
   <span class='co'># An example from the evir::pot documentation</span>
   <span class='co'># We use lax::pot_refit() to return the input data</span>
-  <span class='no'>out</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='pot_refit.html'>pot_refit</a></span>(<span class='no'>danish</span>, <span class='fl'>10</span>)
-  <span class='no'>adj_out</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>out</span>)
-  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>adj_out</span>)
-}</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: 'evir'</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:texmex':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    dgev, dgpd, pgev, pgpd, qgev, qgpd, rgev, rgpd</span></div><div class='output co'>#&gt; <span class='message'>The following object is masked from 'package:ggplot2':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    qplot</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:evd':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    dgev, dgpd, pgev, pgpd, qgev, qgpd, rgev, rgpd</span></div><div class='output co'>#&gt;           MLE     SE adj. SE
-#&gt; xi     0.4972 0.1359  0.1435
-#&gt; sigma  1.1610 0.6888  0.7086
-#&gt; mu    -1.6960 3.4380  3.4270</div></pre>
+  <span class='va'>out</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pot_refit.html'>pot_refit</a></span><span class='op'>(</span><span class='va'>danish</span>, <span class='fl'>10</span><span class='op'>)</span>
+  <span class='va'>adj_out</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>out</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>adj_out</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -272,7 +259,7 @@ do this by an error message produced by <code><a href='alogLik.html'>alogLik</a>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

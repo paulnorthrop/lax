@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/paper/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -42,7 +46,6 @@ test statistic (ALRTS) described in Section 3.5 of
 Chandler and Bate (2007).
 The nesting must result from the simple constraint that a subset of the
 parameters of the larger model is held fixed." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -60,7 +63,7 @@ parameters of the larger model is held fixed." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -82,7 +85,7 @@ parameters of the larger model is held fixed." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -107,8 +110,8 @@ parameters of the larger model is held fixed." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/paulnorthrop/lax">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="http://github.com/paulnorthrop/lax/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -126,7 +129,7 @@ parameters of the larger model is held fixed." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Comparison of nested models</h1>
-    <small class="dont-index">Source: <a href='https://github.com/paulnorthrop/lax/blob/master/R/anova.R'><code>R/anova.R</code></a></small>
+    <small class="dont-index">Source: <a href='http://github.com/paulnorthrop/lax/blob/master/R/anova.R'><code>R/anova.R</code></a></small>
     <div class="hidden name"><code>anova.lax.Rd</code></div>
     </div>
 
@@ -140,7 +143,7 @@ parameters of the larger model is held fixed.</p>
     </div>
 
     <pre class="usage"><span class='co'># S3 method for lax</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span>(<span class='no'>object</span>, <span class='no'>object2</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>object2</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -193,63 +196,47 @@ chooses the type of adjustment.</p></td>
 <p><code><a href='alogLik.html'>alogLik</a></code>: loglikelihood adjustment for model fits.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>got_evd</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"evd"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='kw'>if</span> (<span class='no'>got_evd</span>) {
-  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>evd</span>)
-  <span class='no'>small</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/evd/man/fgev.html'>fgev</a></span>(<span class='no'>ow</span>$<span class='no'>temp</span>, <span class='kw'>nsloc</span> <span class='kw'>=</span> <span class='no'>ow</span>[, <span class='st'>"loc"</span>])
-  <span class='no'>adj_small</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>small</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='no'>ow</span>$<span class='no'>year</span>)
-  <span class='no'>tiny</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/evd/man/fgev.html'>fgev</a></span>(<span class='no'>ow</span>$<span class='no'>temp</span>)
-  <span class='no'>adj_tiny</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>tiny</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='no'>ow</span>$<span class='no'>year</span>)
-  <span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span>(<span class='no'>adj_small</span>, <span class='no'>adj_tiny</span>)
+    <pre class="examples"><div class='input'><span class='va'>got_evd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"evd"</span>, quietly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>got_evd</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>evd</span><span class='op'>)</span>
+  <span class='va'>small</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/evd/man/fgev.html'>fgev</a></span><span class='op'>(</span><span class='va'>ow</span><span class='op'>$</span><span class='va'>temp</span>, nsloc <span class='op'>=</span> <span class='va'>ow</span><span class='op'>[</span>, <span class='st'>"loc"</span><span class='op'>]</span><span class='op'>)</span>
+  <span class='va'>adj_small</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>small</span>, cluster <span class='op'>=</span> <span class='va'>ow</span><span class='op'>$</span><span class='va'>year</span><span class='op'>)</span>
+  <span class='va'>tiny</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/evd/man/fgev.html'>fgev</a></span><span class='op'>(</span><span class='va'>ow</span><span class='op'>$</span><span class='va'>temp</span><span class='op'>)</span>
+  <span class='va'>adj_tiny</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>tiny</span>, cluster <span class='op'>=</span> <span class='va'>ow</span><span class='op'>$</span><span class='va'>year</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span><span class='op'>(</span><span class='va'>adj_small</span>, <span class='va'>adj_tiny</span><span class='op'>)</span>
 
-  <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>4082019</span>)
-  <span class='no'>uvdata</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>evd</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/evd/man/gev.html'>rgev</a></span>(<span class='fl'>100</span>, <span class='kw'>loc</span> <span class='kw'>=</span> <span class='fl'>0.13</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fl'>1.1</span>, <span class='kw'>shape</span> <span class='kw'>=</span> <span class='fl'>0.2</span>)
-  <span class='no'>M0</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/evd/man/fgev.html'>fgev</a></span>(<span class='no'>uvdata</span>)
-  <span class='no'>M1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/evd/man/fgev.html'>fgev</a></span>(<span class='no'>uvdata</span>, <span class='kw'>nsloc</span> <span class='kw'>=</span> (-<span class='fl'>49</span>:<span class='fl'>50</span>)/<span class='fl'>100</span>)
-  <span class='no'>adj0</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>M0</span>)
-  <span class='no'>adj1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>M1</span>)
-  <span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span>(<span class='no'>adj1</span>, <span class='no'>adj0</span>)
-}</div><div class='output co'>#&gt; Analysis of (Adjusted) Deviance Table
+  <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>4082019</span><span class='op'>)</span>
+  <span class='va'>uvdata</span> <span class='op'>&lt;-</span> <span class='fu'>evd</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/evd/man/gev.html'>rgev</a></span><span class='op'>(</span><span class='fl'>100</span>, loc <span class='op'>=</span> <span class='fl'>0.13</span>, scale <span class='op'>=</span> <span class='fl'>1.1</span>, shape <span class='op'>=</span> <span class='fl'>0.2</span><span class='op'>)</span>
+  <span class='va'>M0</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/evd/man/fgev.html'>fgev</a></span><span class='op'>(</span><span class='va'>uvdata</span><span class='op'>)</span>
+  <span class='va'>M1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/evd/man/fgev.html'>fgev</a></span><span class='op'>(</span><span class='va'>uvdata</span>, nsloc <span class='op'>=</span> <span class='op'>(</span><span class='op'>-</span><span class='fl'>49</span><span class='op'>:</span><span class='fl'>50</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>100</span><span class='op'>)</span>
+  <span class='va'>adj0</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>M0</span><span class='op'>)</span>
+  <span class='va'>adj1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>M1</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span><span class='op'>(</span><span class='va'>adj1</span>, <span class='va'>adj0</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div><div class='output co'>#&gt; Analysis of (Adjusted) Deviance Table
 #&gt; 
 #&gt;      Model.Df Df ALRTS Pr(&gt;ALRTS)
 #&gt; adj1        4                    
 #&gt; adj0        3  1 1.421     0.2332</div><div class='input'>
-<span class='no'>got_texmex</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span>(<span class='st'>"texmex"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='kw'>if</span> (<span class='no'>got_texmex</span>) {
-  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>texmex</span>)
-  <span class='no'>large</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/texmex/man/evm.html'>evm</a></span>(<span class='no'>temp</span>, <span class='no'>ow</span>, <span class='no'>gev</span>, <span class='kw'>mu</span> <span class='kw'>=</span> ~ <span class='no'>loc</span>, <span class='kw'>phi</span> <span class='kw'>=</span> ~ <span class='no'>loc</span>, <span class='kw'>xi</span> <span class='kw'>=</span> ~<span class='no'>loc</span>)
-  <span class='no'>medium</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/texmex/man/evm.html'>evm</a></span>(<span class='no'>temp</span>, <span class='no'>ow</span>, <span class='no'>gev</span>, <span class='kw'>mu</span> <span class='kw'>=</span> ~ <span class='no'>loc</span>, <span class='kw'>phi</span> <span class='kw'>=</span> ~ <span class='no'>loc</span>)
-  <span class='no'>small</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/texmex/man/evm.html'>evm</a></span>(<span class='no'>temp</span>, <span class='no'>ow</span>, <span class='no'>gev</span>, <span class='kw'>mu</span> <span class='kw'>=</span> ~ <span class='no'>loc</span>)
-  <span class='no'>tiny</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/texmex/man/evm.html'>evm</a></span>(<span class='no'>temp</span>, <span class='no'>ow</span>, <span class='no'>gev</span>)
-  <span class='no'>adj_large</span><span class='kw'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>large</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='no'>ow</span>$<span class='no'>year</span>)
-  <span class='no'>adj_medium</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>medium</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='no'>ow</span>$<span class='no'>year</span>)
-  <span class='no'>adj_small</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>small</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='no'>ow</span>$<span class='no'>year</span>)
-  <span class='no'>adj_tiny</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span>(<span class='no'>tiny</span>, <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='no'>ow</span>$<span class='no'>year</span>)
-  <span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span>(<span class='no'>adj_large</span>, <span class='no'>adj_medium</span>, <span class='no'>adj_small</span>, <span class='no'>adj_tiny</span>)
-}</div><div class='output co'>#&gt; <span class='message'>Loading required package: mvtnorm</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: ggplot2</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: 'texmex'</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:evd':</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    dgev, dgpd, pgev, pgpd, portpirie, qgev, qgpd, rgev, rgpd, rl</span></div><div class='output co'>#&gt; Analysis of (Adjusted) Deviance Table
-#&gt; 
-#&gt;            Model.Df Df  ALRTS Pr(&gt;ALRTS)    
-#&gt; adj_large         6                         
-#&gt; adj_medium        5  1  6.315    0.01197 *  
-#&gt; adj_small         4  1  4.241    0.03947 *  
-#&gt; adj_tiny          3  1 88.594    &lt; 2e-16 ***
-#&gt; ---
-#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</div></pre>
+<span class='va'>got_texmex</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"texmex"</span>, quietly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>got_texmex</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>texmex</span><span class='op'>)</span>
+  <span class='va'>large</span> <span class='op'>&lt;-</span> <span class='fu'>evm</span><span class='op'>(</span><span class='va'>temp</span>, <span class='va'>ow</span>, <span class='va'>gev</span>, mu <span class='op'>=</span> <span class='op'>~</span> <span class='va'>loc</span>, phi <span class='op'>=</span> <span class='op'>~</span> <span class='va'>loc</span>, xi <span class='op'>=</span> <span class='op'>~</span><span class='va'>loc</span><span class='op'>)</span>
+  <span class='va'>medium</span> <span class='op'>&lt;-</span> <span class='fu'>evm</span><span class='op'>(</span><span class='va'>temp</span>, <span class='va'>ow</span>, <span class='va'>gev</span>, mu <span class='op'>=</span> <span class='op'>~</span> <span class='va'>loc</span>, phi <span class='op'>=</span> <span class='op'>~</span> <span class='va'>loc</span><span class='op'>)</span>
+  <span class='va'>small</span> <span class='op'>&lt;-</span> <span class='fu'>evm</span><span class='op'>(</span><span class='va'>temp</span>, <span class='va'>ow</span>, <span class='va'>gev</span>, mu <span class='op'>=</span> <span class='op'>~</span> <span class='va'>loc</span><span class='op'>)</span>
+  <span class='va'>tiny</span> <span class='op'>&lt;-</span> <span class='fu'>evm</span><span class='op'>(</span><span class='va'>temp</span>, <span class='va'>ow</span>, <span class='va'>gev</span><span class='op'>)</span>
+  <span class='va'>adj_large</span><span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>large</span>, cluster <span class='op'>=</span> <span class='va'>ow</span><span class='op'>$</span><span class='va'>year</span><span class='op'>)</span>
+  <span class='va'>adj_medium</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>medium</span>, cluster <span class='op'>=</span> <span class='va'>ow</span><span class='op'>$</span><span class='va'>year</span><span class='op'>)</span>
+  <span class='va'>adj_small</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>small</span>, cluster <span class='op'>=</span> <span class='va'>ow</span><span class='op'>$</span><span class='va'>year</span><span class='op'>)</span>
+  <span class='va'>adj_tiny</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>tiny</span>, cluster <span class='op'>=</span> <span class='va'>ow</span><span class='op'>$</span><span class='va'>year</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span><span class='op'>(</span><span class='va'>adj_large</span>, <span class='va'>adj_medium</span>, <span class='va'>adj_small</span>, <span class='va'>adj_tiny</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -260,7 +247,7 @@ chooses the type of adjustment.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

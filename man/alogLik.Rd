@@ -35,8 +35,8 @@ or \code{\link[sandwich:vcovCL]{meatCL}} (if \code{cluster} is not
 An object inheriting from class \code{"chandwich"}.  See
   \code{\link[chandwich]{adjust_loglik}}.
 
-  If \code{x} is one of the supported models then \code{class(x)} is a
-  vector of length 5. The first 3 components are
+  If \code{x} is one of the supported models then the class of the returned
+  object is a vector of length 5. The first 3 components are
   \code{c("lax", "chandwich", "name_of_package")}, where
   \code{"name_of_package"} is the name of the package from which the input
   object \code{x} originated.  The remaining 2 components depend on the
@@ -51,7 +51,8 @@ An object inheriting from class \code{"chandwich"}.  See
   \code{\link[lax]{POT}},
   \code{\link[lax]{texmex}}.
 
-  Otherwise, \code{class(x)} is \code{c("lax", "chandwich", class(x))}.
+  Otherwise, the class of the returned object is
+  \code{c("lax", "chandwich", class(x))}.
 
   Objects returned from `aloglik` have `anova`, `coef`, `confint`, `logLik`,
   `nobs`, `plot`, `print`, `summary` and `vcov` methods.
