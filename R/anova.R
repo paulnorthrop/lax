@@ -91,10 +91,10 @@ anova.lax <- function (object, object2, ...) {
   # Create list of model objects:  unnamed arguments may be model objects
   model_list <- c(list(object, object2), dotargs[!named])
   # Check for objects that do not have class "lax"
-  is_chand <- vapply(model_list, function(x) inherits(x, "lax"), NA)
-  if (any(!is_chand)) {
+  is_lax <- vapply(model_list, function(x) inherits(x, "lax"), NA)
+  if (any(!is_lax)) {
     stop("The following are not 'lax' objects: ",
-         paste(names(model_list)[!is_chand], collapse = ", "))
+         paste(names(model_list)[!is_lax], collapse = ", "))
   }
   extra_names <- as.list(substitute(list(...)))[-1][which_not_named]
   extra_names <- sapply(extra_names, function(x) deparse(x))
