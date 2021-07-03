@@ -9,10 +9,10 @@
 #' The nesting must result from the simple constraint that a subset of the
 #' parameters of the larger model is held fixed.
 #'
-#' @param object An object of class \code{"lax"}, returned by
-#'   \code{\link{alogLik}}.
-#' @param object2 An object of class \code{"chandwich"}, returned by
-#'   \code{\link{alogLik}}.
+#' @param object An object of class \code{"lax"}, inheriting from class
+#'   \code{"chandwich"}, returned by \code{\link{alogLik}}.
+#' @param object2 An object of class \code{"lax"}, inheriting from class
+#'   \code{"chandwich"}, returned by \code{\link{alogLik}}.
 #' @param ... Further objects of class \code{"lax"} and/or arguments
 #'   to be passed to \code{\link[chandwich]{anova.chandwich}}, and then on to
 #'   \code{\link[chandwich]{compare_models}}, in particular \code{type}, which

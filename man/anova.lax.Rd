@@ -7,11 +7,11 @@
 \method{anova}{lax}(object, object2, ...)
 }
 \arguments{
-\item{object}{An object of class \code{"lax"}, returned by
-\code{\link{alogLik}}.}
+\item{object}{An object of class \code{"lax"}, inheriting from class
+\code{"chandwich"}, returned by \code{\link{alogLik}}.}
 
-\item{object2}{An object of class \code{"chandwich"}, returned by
-\code{\link{alogLik}}.}
+\item{object2}{An object of class \code{"lax"}, inheriting from class
+\code{"chandwich"}, returned by \code{\link{alogLik}}.}
 
 \item{...}{Further objects of class \code{"lax"} and/or arguments
 to be passed to \code{\link[chandwich]{anova.chandwich}}, and then on to
