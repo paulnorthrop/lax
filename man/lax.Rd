@@ -21,15 +21,16 @@ using the
 \href{https://cran.r-project.org/package=chandwich}{chandwich package}
  and the object-oriented features of the
  \href{https://cran.r-project.org/package=sandwich}{sandwich package}.
+}
+\details{
 The adjustment is based on a robust sandwich estimator of the parameter
 covariance matrix, based on the methodology in Chandler and Bate (2007).
 This can be used for cluster correlated data
 when interest lies in the parameters of the marginal distributions, or for
 performing inferences that are robust to certain types of model
 misspecification.
-}
-\details{
-Main function is \code{\link[lax]{alogLik}}, which works in an
+
+The main function is \code{\link[lax]{alogLik}}, which works in an
 object-oriented way, operating on fitted model objects.
 This function performs the loglikelihood adjustments using
 \code{\link[chandwich]{adjust_loglik}}.
