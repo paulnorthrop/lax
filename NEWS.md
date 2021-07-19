@@ -1,5 +1,9 @@
 # lax 1.1.0.9000
 
+## Bug fixes and minor improvements
+
+* Some obsolete code has been deleted from the lax help file for mev.
+
 # lax 1.1.0
 
 ## New features
