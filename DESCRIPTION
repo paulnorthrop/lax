@@ -1,7 +1,7 @@
 Package: lax
 Title: Loglikelihood Adjustment for Extreme Value Models
-Version: 1.1.0.9000
-Date: 2021-07-19
+Version: 1.2.0
+Date: 2021-07-20
 Authors@R: c(
     person(c("Paul", "J."), "Northrop", email = "p.northrop@ucl.ac.uk",
       role = c("aut", "cre", "cph")),
@@ -9,6 +9,7 @@ Authors@R: c(
     )
 Description: Performs adjusted inferences based on model objects fitted, using 
     maximum likelihood estimation, by the extreme value analysis packages
+    'eva' <https://cran.r-project.org/package=eva>, 
     'evd' <https://cran.r-project.org/package=evd>, 
     'evir' <https://cran.r-project.org/package=evir>, 
     'extRemes' <https://cran.r-project.org/package=extRemes>, 
@@ -41,6 +42,7 @@ Depends:
     R (>= 3.3.0)
 RoxygenNote: 7.1.1
 Suggests: distillery,
+    eva,
     evd,
     evir,
     extRemes,

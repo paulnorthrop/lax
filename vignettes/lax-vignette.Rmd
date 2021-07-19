@@ -17,7 +17,8 @@ bibliography: lax.bib
 knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
 ```
 
-The [CRAN Task View on Extreme Value Analysis](https://CRAN.R-project.org/view=ExtremeValue) provides information about R packages that perform various extreme value analyses. The *lax* package supplements the functionality of eight of these packages, namely 
+The [CRAN Task View on Extreme Value Analysis](https://CRAN.R-project.org/view=ExtremeValue) provides information about R packages that perform various extreme value analyses. The *lax* package supplements the functionality of nine of these packages, namely 
+[eva](https://cran.r-project.org/package=evd) [@eva],
 [evd](https://cran.r-project.org/package=evd) [@evd],
 [evir](https://cran.r-project.org/package=evir) [@evir],
 [extRemes](https://cran.r-project.org/package=extRemes) [@extRemes],
@@ -30,7 +31,7 @@ Univariate extreme value models, including regression models, are supported.
 
 The [chandwich](https://cran.r-project.org/package=chandwich) package is used to provide robust sandwich estimation of parameter covariance matrix and loglikelihood adjustment for models fitted by maximum likelihood estimation.  This may be useful for cluster correlated data when interest lies in the parameters of the marginal distributions, or for performing inferences that are robust to certain types of model misspecification. 
  
-*lax* works in an object-oriented way, operating on R objects returned from functions in other packages that summarise the fit of an extreme value model. Loglikelihood adjustment and sandwich estimation is performed by an `alogLik` S3 method.  We demonstrate this using the following running example, which involves fitting a Generalised Extreme Value (GEV) regression model.  Firstly, we use the *ismev* package to produce the fitted GEV regression model object on which `alogLik` will operate, and illustrate what can be done with the objects returned from `alogLik`.  We use the *ismev* package because it provides an example of a case where we need to refit the model in order to obtain the information that we need to perform adjusted inferences. Then we repeat the adjustment using five of the other six packages.  The *POT* package specialises in Generalised Pareto (GP) modelling, for which we use a different example.
+*lax* works in an object-oriented way, operating on R objects returned from functions in other packages that summarise the fit of an extreme value model. Loglikelihood adjustment and sandwich estimation is performed by an `alogLik` S3 method.  We demonstrate this using the following running example, which involves fitting a Generalised Extreme Value (GEV) regression model.  Firstly, we use the *ismev* package to produce the fitted GEV regression model object on which `alogLik` will operate, and illustrate what can be done with the objects returned from `alogLik`.  We use the *ismev* package because it provides an example of a case where we need to refit the model in order to obtain the information that we need to perform adjusted inferences. Then we repeat the adjustment using seven of the other eight packages.  The *POT* package specialises in Generalised Pareto (GP) modelling, for which we use a different example.
 
 ## GEV regression of annual maximum temperatures
 
@@ -145,6 +146,26 @@ summary(adj_fevd_fit)
 
 ```{r, echo = FALSE, eval = got_extRemes}
 detach("package:extRemes")
+```
+
+## eva
+
+```{r, echo = FALSE, message = FALSE}
+got_eva <- requireNamespace("eva", quietly = TRUE)
+```
+
+```{r, eval = got_extRemes, message = FALSE, warning = FALSE}
+library(eva, quietly = TRUE)
+gevr_fit <- gevrFit(ow$temp, information = "observed",
+                    locvars = ow, locform = ~ ow$loc, 
+                    scalevars = ow, scaleform = ~ ow$loc,
+                    shapevars = ow, shapeform = ~ ow$loc)
+adj_gevr_fit <- alogLik(gevr_fit, cluster = ow$year)
+summary(adj_gevr_fit)
+```
+
+```{r, echo = FALSE, eval = got_eva}
+detach("package:eva")
 ```
 
 ## evir

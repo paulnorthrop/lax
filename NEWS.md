@@ -1,6 +1,12 @@
 # lax 1.1.0.9000
 
+## New features
+
+* The eva package is now supported: functions `gpdFit` and `gevrFit`.
+
 ## Bug fixes and minor improvements
+
+* The links at the end of the Details section of the main lax package help page have been corrected.
 
 * Depreciated function `testthat::context()` is no longer used.
 

@@ -7,6 +7,7 @@
 \description{
 Performs adjusted inferences based on model objects fitted, using maximum
 likelihood estimation, by the extreme value analysis packages
+\href{https://cran.r-project.org/package=evd}{eva},
 \href{https://cran.r-project.org/package=evd}{evd},
 \href{https://cran.r-project.org/package=evir}{evir},
 \href{https://cran.r-project.org/package=extRemes}{extRemes},
@@ -35,19 +36,24 @@ object-oriented way, operating on fitted model objects.
 This function performs the loglikelihood adjustments using
 \code{\link[chandwich]{adjust_loglik}}.
 See the following package-specific help pages for details and examples:
-\href{https://cran.r-project.org/package=evd}{evd},
-\href{https://cran.r-project.org/package=evir}{evir},
-\href{https://cran.r-project.org/package=extRemes}{extRemes},
-\href{https://cran.r-project.org/package=fExtremes}{fExtremes},
-\href{https://cran.r-project.org/package=ismev}{ismev},
-\href{https://cran.r-project.org/package=mev}{mev},
-\href{https://cran.r-project.org/package=POT}{POT},
-\href{https://cran.r-project.org/package=texmex}{texmex}.
+\code{\link{eva}},
+\code{\link{evd}},
+\code{\link{evir}},
+\code{\link{extRemes}},
+\code{\link{fExtremes}},
+\code{\link{ismev}},
+\code{\link{mev}},
+\code{\link{POT}},
+\code{\link{texmex}}.
 
 See \code{vignette("lax-vignette", package = "lax")} for an overview of the
 package.
 }
 \references{
+Bader, B. and Yan, J. (2020). eva: Extreme Value Analysis with
+  Goodness-of-Fit Testing. R package version 0.2.6.
+  \url{https://CRAN.R-project.org/package=eva}
+
 Belzile, L., Wadsworth, J. L., Northrop, P. J., Grimshaw, S. D.
   and Huser, R. (2019). mev: Multivariate Extreme Value Distributions.
   R package version 1.12.2. \url{https://github.com/lbelzile/mev/}

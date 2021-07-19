@@ -14,6 +14,7 @@
 <script src="pkgdown.js"></script><meta property="og:title" content="Loglikelihood Adjustment for Extreme Value Models">
 <meta property="og:description" content="Performs adjusted inferences based on model objects fitted, using 
     maximum likelihood estimation, by the extreme value analysis packages
+    eva &lt;https://cran.r-project.org/package=eva&gt;, 
     evd &lt;https://cran.r-project.org/package=evd&gt;, 
     evir &lt;https://cran.r-project.org/package=evir&gt;, 
     extRemes &lt;https://cran.r-project.org/package=extRemes&gt;, 
@@ -50,7 +51,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">lax</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.1.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.2.0</span>
       </span>
     </div>
 
@@ -110,7 +111,7 @@
 <div id="what-does-lax-do" class="section level3">
 <h3 class="hasAnchor">
 <a href="#what-does-lax-do" class="anchor"></a>What does lax do?</h3>
-<p>The <a href="https://CRAN.R-project.org/view=ExtremeValue">CRAN Task View on Extreme Value Analysis</a> provides information about R packages that perform various extreme value analyses. The <em>lax</em> package supplements the univariate extreme value modelling, including regression modelling, provided by 8 of these packages, namely <a href="https://cran.r-project.org/package=evd">evd</a>, <a href="https://cran.r-project.org/package=evir">evir</a>, <a href="https://cran.r-project.org/package=extRemes">extRemes</a>, <a href="https://cran.r-project.org/package=fExtremes">fExtremes</a>, <a href="https://cran.r-project.org/package=ismev">ismev</a>, <a href="https://cran.r-project.org/package=mev">mev</a>, <a href="https://cran.r-project.org/package=POT">POT</a> and <a href="https://cran.r-project.org/package=texmex">texmex</a>. <em>lax</em> works in an object-oriented way, operating on R objects returned from functions in other packages that summarise the fit of an extreme value model. It uses the <a href="https://cran.r-project.org/package=chandwich">chandwich</a> package to provide robust sandwich estimation of parameter covariance matrix and loglikelihood adjustment for models fitted by maximum likelihood estimation. This is performed by an <code>alogLik</code> S3 method, illustrated by the following example.</p>
+<p>The <a href="https://CRAN.R-project.org/view=ExtremeValue">CRAN Task View on Extreme Value Analysis</a> provides information about R packages that perform various extreme value analyses. The <em>lax</em> package supplements the univariate extreme value modelling, including regression modelling, provided by 8 of these packages, namely <a href="https://cran.r-project.org/package=eva">eva</a>, <a href="https://cran.r-project.org/package=evd">evd</a>, <a href="https://cran.r-project.org/package=evir">evir</a>, <a href="https://cran.r-project.org/package=extRemes">extRemes</a>, <a href="https://cran.r-project.org/package=fExtremes">fExtremes</a>, <a href="https://cran.r-project.org/package=ismev">ismev</a>, <a href="https://cran.r-project.org/package=mev">mev</a>, <a href="https://cran.r-project.org/package=POT">POT</a> and <a href="https://cran.r-project.org/package=texmex">texmex</a>. <em>lax</em> works in an object-oriented way, operating on R objects returned from functions in other packages that summarise the fit of an extreme value model. It uses the <a href="https://cran.r-project.org/package=chandwich">chandwich</a> package to provide robust sandwich estimation of parameter covariance matrix and loglikelihood adjustment for models fitted by maximum likelihood estimation. This is performed by an <code>alogLik</code> S3 method, illustrated by the following example.</p>
 </div>
 <div id="an-example" class="section level3">
 <h3 class="hasAnchor">

@@ -9,6 +9,22 @@ estfun.default <- function(x, loglik_fn, ...) {
   return(U)
 }
 
+# eva
+
+#' @export
+estfun.laxeva_gpd <- function(x, loglik_fn, ...) {
+  U <- numDeriv::jacobian(loglik_fn, x = coef(x), ...)
+  colnames(U) <- names(coef(x))
+  return(U)
+}
+
+#' @export
+estfun.laxeva_rlarg <- function(x, loglik_fn, ...) {
+  U <- numDeriv::jacobian(loglik_fn, x = coef(x), ...)
+  colnames(U) <- names(coef(x))
+  return(U)
+}
+
 # evd
 
 #' @export

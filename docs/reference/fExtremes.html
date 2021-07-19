@@ -78,7 +78,7 @@ The model must have been fitted using maximum likelihood estimation." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lax</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.1.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.2.0</span>
       </span>
     </div>
 
@@ -223,18 +223,18 @@ or <code><a href='https://sandwich.R-Forge.R-project.org//reference/vcovCL.html'
   <span class='co'># GEV</span>
   <span class='co'># An example from the fExtremes::gevFit documentation</span>
   <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>4082019</span><span class='op'>)</span>
-  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fExtremes/man/GevModelling.html'>gevSim</a></span><span class='op'>(</span>model <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>xi<span class='op'>=</span><span class='fl'>0.25</span>, mu<span class='op'>=</span><span class='fl'>0</span>, beta<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>, n <span class='op'>=</span> <span class='fl'>1000</span><span class='op'>)</span>
+  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>fExtremes</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/fExtremes/man/GevModelling.html'>gevSim</a></span><span class='op'>(</span>model <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>xi<span class='op'>=</span><span class='fl'>0.25</span>, mu<span class='op'>=</span><span class='fl'>0</span>, beta<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>, n <span class='op'>=</span> <span class='fl'>1000</span><span class='op'>)</span>
   <span class='co'># Fit GEV distribution by maximum likelihood estimation</span>
-  <span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fExtremes/man/GevModelling.html'>gevFit</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+  <span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'>fExtremes</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/fExtremes/man/GevModelling.html'>gevFit</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
   <span class='va'>adj_fit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
   <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>adj_fit</span><span class='op'>)</span>
 
   <span class='co'># GP</span>
   <span class='co'># An example from the fExtremes::gpdFit documentation</span>
   <span class='co'># Simulate GP data</span>
-  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fExtremes/man/GpdModelling.html'>gpdSim</a></span><span class='op'>(</span>model <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>xi <span class='op'>=</span> <span class='fl'>0.25</span>, mu <span class='op'>=</span> <span class='fl'>0</span>, beta <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>, n <span class='op'>=</span> <span class='fl'>1000</span><span class='op'>)</span>
+  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>fExtremes</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/fExtremes/man/GpdModelling.html'>gpdSim</a></span><span class='op'>(</span>model <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>xi <span class='op'>=</span> <span class='fl'>0.25</span>, mu <span class='op'>=</span> <span class='fl'>0</span>, beta <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>, n <span class='op'>=</span> <span class='fl'>1000</span><span class='op'>)</span>
   <span class='co'># Fit GP distribution by maximum likelihood estimation</span>
-  <span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fExtremes/man/GpdModelling.html'>gpdFit</a></span><span class='op'>(</span><span class='va'>x</span>, u <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='va'>fit</span> <span class='op'>&lt;-</span> <span class='fu'>fExtremes</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/fExtremes/man/GpdModelling.html'>gpdFit</a></span><span class='op'>(</span><span class='va'>x</span>, u <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
   <span class='va'>adj_fit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>fit</span><span class='op'>)</span>
   <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>adj_fit</span><span class='op'>)</span>
 <span class='op'>}</span>
