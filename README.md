@@ -19,7 +19,7 @@ The [CRAN Task View on Extreme Value
 Analysis](https://CRAN.R-project.org/view=ExtremeValue) provides
 information about R packages that perform various extreme value
 analyses. The *lax* package supplements the univariate extreme value
-modelling, including regression modelling, provided by 8 of these
+modelling, including regression modelling, provided by 9 of these
 packages, namely [eva](https://cran.r-project.org/package=eva),
 [evd](https://cran.r-project.org/package=evd),
 [evir](https://cran.r-project.org/package=evir),
