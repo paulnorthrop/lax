@@ -59,8 +59,7 @@ An object inheriting from class \code{"chandwich"}.  See
 }
 \description{
 This function is generic.  It performs adjustment of the loglikelihood
-associated with fitted model objects, following
-\href{https://doi.org/10.1093/biomet/asm015}{Chandler and Bate (2007)}.
+associated with fitted model objects, following Chandler and Bate (2007).
 Certain classes of extreme value model objects are supported automatically.
 For details see the \code{alogLik} help pages for the packages:
 \code{\link[lax]{evd}},
@@ -132,11 +131,11 @@ See the (package-specific) examples in \code{\link{evd}},
 \references{
 Chandler, R. E. and Bate, S. (2007). Inference for clustered
   data using the independence loglikelihood. \emph{Biometrika},
-  \strong{94}(1), 167-183. \url{https://doi.org/10.1093/biomet/asm015}
+  \strong{94}(1), 167-183. \doi{10.1093/biomet/asm015}
 
 Zeleis (2006) Object-Oriented Computation and Sandwich
   Estimators.  \emph{Journal of Statistical Software}, \strong{16}, 1-16.
-  \url{https://doi.org/10.18637/jss.v016.i09}
+  \doi{10.18637/jss.v016.i09}
 }
 \seealso{
 \code{\link[chandwich]{summary.chandwich}},

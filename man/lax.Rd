@@ -60,11 +60,11 @@ Berger S., Graham N., Zeileis A. (2017). Various Versatile
 
 Chandler, R. E. and Bate, S. (2007). Inference for clustered
   data using the independence loglikelihood. \emph{Biometrika},
-  \strong{94}(1), 167-183. \url{https://doi.org/10.1093/biomet/asm015}
+  \strong{94}(1), 167-183. \doi{10.1093/biomet/asm015}
 
 Gilleland, E. and Katz, R. W. (2016). extRemes 2.0: An Extreme
   Value Analysis Package in R. \emph{Journal of Statistical Software},
-  \strong{72}(8), 1-39. \url{https://doi.org/10.18637/jss.v072.i08}
+  \strong{72}(8), 1-39. \doi{10.18637/jss.v072.i08}
 
 Northrop, P. J. and Chandler, R. E. (2018).
   chandwich: Chandler-Bate Sandwich Loglikelihood Adjustment. R package
@@ -95,9 +95,9 @@ Wuertz, D., Setz, T. and Chalabi, Y. (2017). fExtremes:
 
 Zeileis A. (2004). Econometric Computing with HC and HAC
   Covariance Matrix Estimators. \emph{Journal of Statistical Software},
-  \strong{11}(10), 1-17. \url{https://doi.org/10.18637/jss.v011.i10}.
+  \strong{11}(10), 1-17. \doi{10.18637/jss.v011.i10}.
 
 Zeileis A. (2006). Object-Oriented Computation of Sandwich
   Estimators. \emph{Journal of Statistical Software}, \strong{16}(9),
-  1-16. \url{https://doi.org/10.18637/jss.v016.i09}.
+  1-16. \doi{10.18637/jss.v016.i09}.
 }

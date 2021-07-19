@@ -65,7 +65,7 @@
 #'   \item{call }{The call to \code{return_level}.}
 #' @references Coles, S. G. (2001) \emph{An Introduction to Statistical
 #'   Modeling of Extreme Values}, Springer-Verlag, London.
-#'   \url{https://doi.org/10.1007/978-1-4471-3675-0_3}
+#'   \doi{10.1007/978-1-4471-3675-0_3}
 #' @seealso \code{\link{plot.retlev}} for plotting the profile loglikelihood
 #'   for a return level.
 #' @examples

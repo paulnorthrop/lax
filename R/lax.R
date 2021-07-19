@@ -50,10 +50,10 @@
 #'   Innsbruck. \url{https://EconPapers.RePEc.org/RePEc:inn:wpaper:2017-12}.
 #' @references Chandler, R. E. and Bate, S. (2007). Inference for clustered
 #'   data using the independence loglikelihood. \emph{Biometrika},
-#'   \strong{94}(1), 167-183. \url{https://doi.org/10.1093/biomet/asm015}
+#'   \strong{94}(1), 167-183. \doi{10.1093/biomet/asm015}
 #' @references Gilleland, E. and Katz, R. W. (2016). extRemes 2.0: An Extreme
 #'   Value Analysis Package in R. \emph{Journal of Statistical Software},
-#'   \strong{72}(8), 1-39. \url{https://doi.org/10.18637/jss.v072.i08}
+#'   \strong{72}(8), 1-39. \doi{10.18637/jss.v072.i08}
 #' @references Northrop, P. J. and Chandler, R. E. (2018).
 #'   chandwich: Chandler-Bate Sandwich Loglikelihood Adjustment. R package
 #'   version 1.1. \url{https://CRAN.R-project.org/package=chandwich}.
@@ -76,10 +76,10 @@
 #'   3042.82. \url{https://CRAN.R-project.org/package=fExtremes}
 #' @references Zeileis A. (2004). Econometric Computing with HC and HAC
 #'   Covariance Matrix Estimators. \emph{Journal of Statistical Software},
-#'   \strong{11}(10), 1-17. \url{https://doi.org/10.18637/jss.v011.i10}.
+#'   \strong{11}(10), 1-17. \doi{10.18637/jss.v011.i10}.
 #' @references Zeileis A. (2006). Object-Oriented Computation of Sandwich
 #'   Estimators. \emph{Journal of Statistical Software}, \strong{16}(9),
-#'   1-16. \url{https://doi.org/10.18637/jss.v016.i09}.
+#'   1-16. \doi{10.18637/jss.v016.i09}.
 #' @docType package
 #' @name lax
 #' @import sandwich
@@ -105,5 +105,5 @@ NULL
 #'  \emph{The Meteorological Magazine}, \strong{112}, 77-98.
 #' @references Chandler, R. E. and Bate, S. (2007). Inference for clustered
 #'   data using the independence loglikelihood. \emph{Biometrika},
-#'   \strong{94}(1), 167-183. \url{https://dx.doi.org/10.1093/biomet/asm015}
+#'   \strong{94}(1), 167-183. \doi{10.1093/biomet/asm015}
 "ow"
