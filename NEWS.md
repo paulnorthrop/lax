@@ -2,6 +2,8 @@
 
 ## Bug fixes and minor improvements
 
+* Depreciated function `testthat::context()` is no longer used.
+
 * Some obsolete code has been deleted from the lax help file for mev.
 
 # lax 1.1.0
