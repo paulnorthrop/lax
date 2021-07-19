@@ -50,7 +50,7 @@ An object inheriting from class \code{"chandwich"}.  See
 \description{
 S3 \code{alogLik} method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the functions
-\code{\link[eva]{gevrFit}} and \code{\link[mev]{gpdFit}} in the eva package.
+\code{\link[eva]{gevrFit}} and \code{\link[eva]{gpdFit}} in the eva package.
 }
 \details{
 See \code{\link{alogLik}} for details.
@@ -69,7 +69,7 @@ See \code{\link{alogLik}} for details.
 }
 \examples{
 # We need the eva package
-got_mev <- requireNamespace("eva", quietly = TRUE)
+got_eva <- requireNamespace("eva", quietly = TRUE)
 
 if (got_eva) {
   library(eva)
