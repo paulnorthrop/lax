@@ -5,7 +5,7 @@
 #' \code{anova} method for objects of class \code{"lax"}.
 #' Compares two or more nested models using the adjusted likelihood ratio
 #' test statistic (ALRTS) described in Section 3.5 of
-#' \href{http://doi.org/10.1093/biomet/asm015}{Chandler and Bate (2007)}.
+#' \href{https://doi.org/10.1093/biomet/asm015}{Chandler and Bate (2007)}.
 #' The nesting must result from the simple constraint that a subset of the
 #' parameters of the larger model is held fixed.
 #'
@@ -35,7 +35,7 @@
 #' @seealso \code{\link{alogLik}}: loglikelihood adjustment for model fits.
 #' @references Chandler, R. E. and Bate, S. (2007). Inference for clustered
 #'   data using the independence loglikelihood. \emph{Biometrika},
-#'   \strong{94}(1), 167-183. \url{http://doi.org/10.1093/biomet/asm015}
+#'   \strong{94}(1), 167-183. \url{https://doi.org/10.1093/biomet/asm015}
 #' @examples
 #' got_evd <- requireNamespace("evd", quietly = TRUE)
 #' if (got_evd) {
