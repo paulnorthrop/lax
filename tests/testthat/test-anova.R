@@ -1,5 +1,3 @@
-context("anova")
-
 # Check that when type = "none" (no adjustment) anova.lax and calculation
 # of the LRT by hand give the same answer
 

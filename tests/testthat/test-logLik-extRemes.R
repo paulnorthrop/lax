@@ -1,5 +1,3 @@
-context("logLik, extRemes package")
-
 # Check that logLik(object) and logLik(logLikVec(object)) agree
 
 # We need the extRemes and distillery packages

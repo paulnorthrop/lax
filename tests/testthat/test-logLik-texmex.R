@@ -1,5 +1,3 @@
-context("logLik, texmex package")
-
 # Check that logLik(object) and logLik(logLikVec(object)) agree
 
 # We need the texmex package, and ismev for the fremantle and rain datasets

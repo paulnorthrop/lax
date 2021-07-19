@@ -1,5 +1,3 @@
-context("alogLik")
-
 # Check that a user-supplied class would work
 # Base this on gev_refit
 

@@ -1,5 +1,3 @@
-context("logLik, fExtremes package")
-
 # Check that logLik(object) and logLik(logLikVec(object)) agree
 
 if (requireNamespace("fExtremes", quietly = TRUE)) {

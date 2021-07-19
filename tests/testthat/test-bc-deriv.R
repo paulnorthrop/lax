@@ -1,5 +1,3 @@
-context("Box-Cox deriv")
-
 # Check that box_cox_deriv is correct for lambda = 0
 
 x <- 1:10

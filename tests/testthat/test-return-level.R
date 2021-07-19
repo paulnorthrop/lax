@@ -1,5 +1,3 @@
-context("return levels")
-
 # Check that the MLE of the m-observation return level returned by
 # return_level() agrees with the value returned by evd::fgev() when
 # prob = 1 - 1 / m.

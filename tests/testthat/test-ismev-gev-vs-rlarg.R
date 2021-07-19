@@ -1,5 +1,3 @@
-context("gev vs rlarg, ismev package")
-
 # Check that adjusted fits from ismev::rlarg.fit(), or lax::rlarg_refit()
 # using only the largest observations in a period agree with those from
 # ismev::gev.fit() and lax::gev_refit

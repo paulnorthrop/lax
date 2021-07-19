@@ -1,5 +1,3 @@
-context("logLik, evir package")
-
 # Check that logLik(object) and logLik(logLikVec(object)) agree
 
 # evir::gev

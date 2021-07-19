@@ -1,5 +1,3 @@
-context("nobs")
-
 # Check that nobs.evd behaves correctly
 
 if (requireNamespace("evd", quietly = TRUE)) {
