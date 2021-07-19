@@ -109,7 +109,7 @@ mev package." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="http://github.com/paulnorthrop/lax/">
+  <a href="https://github.com/paulnorthrop/lax/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -128,7 +128,7 @@ mev package." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Loglikelihood adjustment for mev fits</h1>
-    <small class="dont-index">Source: <a href='http://github.com/paulnorthrop/lax/blob/master/R/mev.R'><code>R/mev.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/paulnorthrop/lax/blob/master/R/mev.R'><code>R/mev.R</code></a></small>
     <div class="hidden name"><code>mev.Rd</code></div>
     </div>
 
@@ -215,10 +215,10 @@ the data, both threshold exceedances and non-exceedances.</p>
 
     <p>Chandler, R. E. and Bate, S. (2007). Inference for clustered
   data using the independence loglikelihood. <em>Biometrika</em>,
-  <strong>94</strong>(1), 167-183. <a href='http://doi.org/10.1093/biomet/asm015'>http://doi.org/10.1093/biomet/asm015</a></p>
+  <strong>94</strong>(1), 167-183. <a href='https://doi.org/10.1093/biomet/asm015'>https://doi.org/10.1093/biomet/asm015</a></p>
 <p>Zeleis (2006) Object-Oriented Computation and Sandwich
   Estimators.  <em>Journal of Statistical Software</em>, <strong>16</strong>, 1-16.
-  <a href='http://doi.org/10.18637/jss.v016.i09'>http://doi.org/10.18637/jss.v016.i09</a></p>
+  <a href='https://doi.org/10.18637/jss.v016.i09'>https://doi.org/10.18637/jss.v016.i09</a></p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='alogLik.html'>alogLik</a></code>: loglikelihood adjustment for model fits.</p></div>
@@ -238,9 +238,6 @@ the data, both threshold exceedances and non-exceedances.</p>
   <span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1112019</span><span class='op'>)</span>
   <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>revdbayes</span><span class='fu'>::</span><span class='fu'><a href='https://paulnorthrop.github.io/revdbayes/reference/gp.html'>rgp</a></span><span class='op'>(</span><span class='fl'>365</span> <span class='op'>*</span> <span class='fl'>10</span>, loc <span class='op'>=</span> <span class='fl'>0</span>, scale <span class='op'>=</span> <span class='fl'>1</span>, shape <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span>
   <span class='va'>pfit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/mev/man/fit.pp.html'>fit.pp</a></span><span class='op'>(</span><span class='va'>x</span>, threshold <span class='op'>=</span> <span class='fl'>1</span>, npp <span class='op'>=</span> <span class='fl'>365</span><span class='op'>)</span>
-  <span class='co'># (To do: delete the next two lines after new mev hits CRAN)</span>
-  <span class='va'>pfit</span><span class='op'>$</span><span class='va'>xdat</span> <span class='op'>&lt;-</span> <span class='va'>x</span>
-  <span class='va'>pfit</span><span class='op'>$</span><span class='va'>npp</span> <span class='op'>&lt;-</span> <span class='fl'>365</span>
   <span class='va'>adj_pfit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>pfit</span><span class='op'>)</span>
   <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>adj_pfit</span><span class='op'>)</span>
 
