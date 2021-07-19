@@ -25,12 +25,6 @@ on_failure:
   - 7z a failure.zip *.Rcheck\*
   - appveyor PushArtifact failure.zip
 
-r_packages:
-  - covr
-
-on_success:
-  - Rscript -e "covr::codecov()"
-
 artifacts:
   - path: '*.Rcheck\**\*.log'
     name: Logs
