@@ -1,5 +1,3 @@
-context("vcov")
-
 # Check that vcov methods agree
 
 # ---------------------------------- evir ------------------------------------#
