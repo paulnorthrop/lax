@@ -17,6 +17,7 @@ cache:
 
 build_script:
   - travis-tool.sh install_deps
+  - R -e  "0" --args --bootstrap-covr
 
 test_script:
   - travis-tool.sh run_tests
