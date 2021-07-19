@@ -150,13 +150,13 @@ parameters of the larger model is held fixed.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>object</th>
-      <td><p>An object of class <code>"lax"</code>, returned by
-<code><a href='alogLik.html'>alogLik</a></code>.</p></td>
+      <td><p>An object of class <code>"lax"</code>, inheriting from class
+<code>"chandwich"</code>, returned by <code><a href='alogLik.html'>alogLik</a></code>.</p></td>
     </tr>
     <tr>
       <th>object2</th>
-      <td><p>An object of class <code>"chandwich"</code>, returned by
-<code><a href='alogLik.html'>alogLik</a></code>.</p></td>
+      <td><p>An object of class <code>"lax"</code>, inheriting from class
+<code>"chandwich"</code>, returned by <code><a href='alogLik.html'>alogLik</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -220,18 +220,30 @@ chooses the type of adjustment.</p></td>
 #&gt; adj0        3  1 1.421     0.2332</div><div class='input'>
 <span class='va'>got_texmex</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ns-load.html'>requireNamespace</a></span><span class='op'>(</span><span class='st'>"texmex"</span>, quietly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
 <span class='kw'>if</span> <span class='op'>(</span><span class='va'>got_texmex</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>texmex</span><span class='op'>)</span>
-  <span class='va'>large</span> <span class='op'>&lt;-</span> <span class='fu'>evm</span><span class='op'>(</span><span class='va'>temp</span>, <span class='va'>ow</span>, <span class='va'>gev</span>, mu <span class='op'>=</span> <span class='op'>~</span> <span class='va'>loc</span>, phi <span class='op'>=</span> <span class='op'>~</span> <span class='va'>loc</span>, xi <span class='op'>=</span> <span class='op'>~</span><span class='va'>loc</span><span class='op'>)</span>
-  <span class='va'>medium</span> <span class='op'>&lt;-</span> <span class='fu'>evm</span><span class='op'>(</span><span class='va'>temp</span>, <span class='va'>ow</span>, <span class='va'>gev</span>, mu <span class='op'>=</span> <span class='op'>~</span> <span class='va'>loc</span>, phi <span class='op'>=</span> <span class='op'>~</span> <span class='va'>loc</span><span class='op'>)</span>
-  <span class='va'>small</span> <span class='op'>&lt;-</span> <span class='fu'>evm</span><span class='op'>(</span><span class='va'>temp</span>, <span class='va'>ow</span>, <span class='va'>gev</span>, mu <span class='op'>=</span> <span class='op'>~</span> <span class='va'>loc</span><span class='op'>)</span>
-  <span class='va'>tiny</span> <span class='op'>&lt;-</span> <span class='fu'>evm</span><span class='op'>(</span><span class='va'>temp</span>, <span class='va'>ow</span>, <span class='va'>gev</span><span class='op'>)</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/harrysouthworth/texmex'>texmex</a></span><span class='op'>)</span>
+  <span class='va'>large</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/texmex/man/evm.html'>evm</a></span><span class='op'>(</span><span class='va'>temp</span>, <span class='va'>ow</span>, <span class='va'>gev</span>, mu <span class='op'>=</span> <span class='op'>~</span> <span class='va'>loc</span>, phi <span class='op'>=</span> <span class='op'>~</span> <span class='va'>loc</span>, xi <span class='op'>=</span> <span class='op'>~</span><span class='va'>loc</span><span class='op'>)</span>
+  <span class='va'>medium</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/texmex/man/evm.html'>evm</a></span><span class='op'>(</span><span class='va'>temp</span>, <span class='va'>ow</span>, <span class='va'>gev</span>, mu <span class='op'>=</span> <span class='op'>~</span> <span class='va'>loc</span>, phi <span class='op'>=</span> <span class='op'>~</span> <span class='va'>loc</span><span class='op'>)</span>
+  <span class='va'>small</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/texmex/man/evm.html'>evm</a></span><span class='op'>(</span><span class='va'>temp</span>, <span class='va'>ow</span>, <span class='va'>gev</span>, mu <span class='op'>=</span> <span class='op'>~</span> <span class='va'>loc</span><span class='op'>)</span>
+  <span class='va'>tiny</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/texmex/man/evm.html'>evm</a></span><span class='op'>(</span><span class='va'>temp</span>, <span class='va'>ow</span>, <span class='va'>gev</span><span class='op'>)</span>
   <span class='va'>adj_large</span><span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>large</span>, cluster <span class='op'>=</span> <span class='va'>ow</span><span class='op'>$</span><span class='va'>year</span><span class='op'>)</span>
   <span class='va'>adj_medium</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>medium</span>, cluster <span class='op'>=</span> <span class='va'>ow</span><span class='op'>$</span><span class='va'>year</span><span class='op'>)</span>
   <span class='va'>adj_small</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>small</span>, cluster <span class='op'>=</span> <span class='va'>ow</span><span class='op'>$</span><span class='va'>year</span><span class='op'>)</span>
   <span class='va'>adj_tiny</span> <span class='op'>&lt;-</span> <span class='fu'><a href='alogLik.html'>alogLik</a></span><span class='op'>(</span><span class='va'>tiny</span>, cluster <span class='op'>=</span> <span class='va'>ow</span><span class='op'>$</span><span class='va'>year</span><span class='op'>)</span>
   <span class='fu'><a href='https://rdrr.io/r/stats/anova.html'>anova</a></span><span class='op'>(</span><span class='va'>adj_large</span>, <span class='va'>adj_medium</span>, <span class='va'>adj_small</span>, <span class='va'>adj_tiny</span><span class='op'>)</span>
 <span class='op'>}</span>
-</div></pre>
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: mvtnorm</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: ggplot2</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: 'texmex'</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:evd':</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    dgev, dgpd, dgumbel, pgev, pgpd, pgumbel, portpirie, qgev, qgpd,</span>
+#&gt; <span class='message'>    qgumbel, rgev, rgpd, rgumbel, rl</span></div><div class='output co'>#&gt; Analysis of (Adjusted) Deviance Table
+#&gt; 
+#&gt;            Model.Df Df  ALRTS Pr(&gt;ALRTS)    
+#&gt; adj_large         6                         
+#&gt; adj_medium        5  1  6.315    0.01197 *  
+#&gt; adj_small         4  1  4.241    0.03947 *  
+#&gt; adj_tiny          3  1 88.594    &lt; 2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

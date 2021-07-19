@@ -193,8 +193,8 @@ Otherwise, <code>H</code> is estimated inside
     <tr>
       <th>...</th>
       <td><p>Further arguments to be passed to the functions in the
-sandwich package <code><a href='https://rdrr.io/pkg/sandwich/man/meat.html'>meat</a></code> (if <code>cluster = NULL</code>),
-or <code><a href='https://rdrr.io/pkg/sandwich/man/vcovCL.html'>meatCL</a></code> (if <code>cluster</code> is not
+sandwich package <code><a href='https://sandwich.R-Forge.R-project.org//reference/meat.html'>meat</a></code> (if <code>cluster = NULL</code>),
+or <code><a href='https://sandwich.R-Forge.R-project.org//reference/vcovCL.html'>meatCL</a></code> (if <code>cluster</code> is not
 <code>NULL</code>).</p></td>
     </tr>
     </table>
@@ -239,7 +239,7 @@ or <code><a href='https://rdrr.io/pkg/sandwich/man/vcovCL.html'>meatCL</a></code
 <li><p><code>estfun: </code>returns an \(n x k\) matrix, in which each
       column gives the derivative of the loglikelihood at each of \(n\)
       observation with respect to the \(k\) parameters of the model, see
-      <code><a href='https://rdrr.io/pkg/sandwich/man/estfun.html'>estfun</a></code>.</p></li>
+      <code><a href='https://sandwich.R-Forge.R-project.org//reference/estfun.html'>estfun</a></code>.</p></li>
 </ul><p>Loglikelihood adjustment is performed using the
   <code><a href='https://rdrr.io/pkg/chandwich/man/adjust_loglik.html'>adjust_loglik</a></code> function in the
   <code><a href='https://rdrr.io/pkg/chandwich/man/chandwich.html'>chandwich</a></code> package.
@@ -251,15 +251,15 @@ or <code><a href='https://rdrr.io/pkg/sandwich/man/vcovCL.html'>meatCL</a></code
   calculated) is estimated inside <code><a href='https://rdrr.io/pkg/chandwich/man/adjust_loglik.html'>adjust_loglik</a></code>
   using <code><a href='https://rdrr.io/r/stats/optim.html'>optimHess</a></code>.</p>
 <p>The <code>sandwich</code> package is used to estimate the variance matrix
-  <code>V</code> of the score vector: <code><a href='https://rdrr.io/pkg/sandwich/man/meat.html'>meat</a></code> is used if
-  <code>cluster = NULL</code>; <code><a href='https://rdrr.io/pkg/sandwich/man/vcovCL.html'>meatCL</a></code> is used if
+  <code>V</code> of the score vector: <code><a href='https://sandwich.R-Forge.R-project.org//reference/meat.html'>meat</a></code> is used if
+  <code>cluster = NULL</code>; <code><a href='https://sandwich.R-Forge.R-project.org//reference/vcovCL.html'>meatCL</a></code> is used if
   <code>cluster</code> is not <code>NULL</code>.
   If <code>cluster</code> is <code>NULL</code> then any arguments of
-  <code><a href='https://rdrr.io/pkg/sandwich/man/vcovCL.html'>meatCL</a></code> present in ... will be ignored.
+  <code><a href='https://sandwich.R-Forge.R-project.org//reference/vcovCL.html'>meatCL</a></code> present in ... will be ignored.
   Similarly, if <code>cluster</code> is not <code>NULL</code> then any arguments of
-  <code><a href='https://rdrr.io/pkg/sandwich/man/meat.html'>meat</a></code> present in ... will be ignored.
-  <code><a href='https://rdrr.io/pkg/sandwich/man/meat.html'>meat</a></code> and <code><a href='https://rdrr.io/pkg/sandwich/man/vcovCL.html'>meatCL</a></code>
-  require an <code><a href='https://rdrr.io/pkg/sandwich/man/estfun.html'>estfun</a></code> method to be available, which,
+  <code><a href='https://sandwich.R-Forge.R-project.org//reference/meat.html'>meat</a></code> present in ... will be ignored.
+  <code><a href='https://sandwich.R-Forge.R-project.org//reference/meat.html'>meat</a></code> and <code><a href='https://sandwich.R-Forge.R-project.org//reference/vcovCL.html'>meatCL</a></code>
+  require an <code><a href='https://sandwich.R-Forge.R-project.org//reference/estfun.html'>estfun</a></code> method to be available, which,
   in the current context, provides matrix of score contributions.
   If a bespoke <code>estfun</code> method is not provided then this is constructed
   by estimating the score contributions using <code><a href='https://rdrr.io/pkg/numDeriv/man/jacobian.html'>jacobian</a></code>.</p>
@@ -294,8 +294,8 @@ or <code><a href='https://rdrr.io/pkg/sandwich/man/vcovCL.html'>meatCL</a></code
 <p><code><a href='https://rdrr.io/pkg/chandwich/man/adjust_loglik.html'>adjust_loglik</a></code> in the
   <code><a href='https://rdrr.io/pkg/chandwich/man/chandwich.html'>chandwich</a></code> package to adjust a user-supplied
   loglikelihood.</p>
-<p><code><a href='https://rdrr.io/pkg/sandwich/man/meat.html'>meat</a></code> and
-  <code><a href='https://rdrr.io/pkg/sandwich/man/vcovCL.html'>meatCL</a></code> in the sandwich package.</p></div>
+<p><code><a href='https://sandwich.R-Forge.R-project.org//reference/meat.html'>meat</a></code> and
+  <code><a href='https://sandwich.R-Forge.R-project.org//reference/vcovCL.html'>meatCL</a></code> in the sandwich package.</p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
