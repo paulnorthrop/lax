@@ -71,9 +71,9 @@ if (requireNamespace("fExtremes", quietly = TRUE)) {
 
   # An example from the fExtremes::gevFit documentation
   set.seed(4082019)
-  x <- gevSim(model = list(xi=0.25, mu=0, beta=1), n = 1000)
+  x <- fExtremes::gevSim(model = list(xi=0.25, mu=0, beta=1), n = 1000)
   # Fit GEV distribution by maximum likelihood estimation
-  fit <- gevFit(x)
+  fit <- fExtremes::gevFit(x)
   temp <- fit
   class(temp) <- "fExtremes_gev"
 
@@ -83,9 +83,9 @@ if (requireNamespace("fExtremes", quietly = TRUE)) {
 
   # An example from the fExtremes::gpdFit documentation
   # Simulate GP data
-  x <- gpdSim(model = list(xi = 0.25, mu = 0, beta = 1), n = 1000)
+  x <- fExtremes::gpdSim(model = list(xi = 0.25, mu = 0, beta = 1), n = 1000)
   # Fit GP distribution by maximum likelihood estimation
-  fit <- gpdFit(x, u = min(x))
+  fit <- fExtremes::gpdFit(x, u = min(x))
   temp <- fit
   class(temp) <- "fExtremes_gpd"
 
