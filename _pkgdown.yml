@@ -16,6 +16,7 @@ reference:
     desc: ~
     contents:
       - "alogLik"
+      - "alogLik.gevrFit"
       - "alogLik.evd"
       - "alogLik.gev"
       - "alogLik.fevd"
