@@ -3,8 +3,6 @@
 
 # lax
 
-[![Travis-CI Build
-Status](https://travis-ci.org/paulnorthrop/lax.svg?branch=master)](https://travis-ci.org/paulnorthrop/lax)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/paulnorthrop/lax?branch=master&svg=true)](https://ci.appveyor.com/project/paulnorthrop/lax)
 [![Coverage
