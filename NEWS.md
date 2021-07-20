@@ -22,6 +22,6 @@
 
 ## Bug fixes and minor improvements
 
-* Unecessary generic information concerning the availability of S3 methods has been removed from the Details sections of the package-specific loglikelihood adjustment documentation. 
+* Unnecessary generic information concerning the availability of S3 methods has been removed from the Details sections of the package-specific loglikelihood adjustment documentation. 
 
 * More tests of internal function `box_cox_deriv`.
