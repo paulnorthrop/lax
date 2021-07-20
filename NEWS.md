@@ -1,4 +1,4 @@
-# lax 1.1.0.9000
+# lax 1.2.0
 
 ## New features
 
@@ -8,7 +8,7 @@
 
 * The links at the end of the Details section of the main lax package help page have been corrected.
 
-* Depreciated function `testthat::context()` is no longer used.
+* Depreciated function `testthat::context` is no longer used.
 
 * Some obsolete code has been deleted from the lax help file for mev.
 
@@ -24,4 +24,4 @@
 
 * Unecessary generic information concerning the availability of S3 methods has been removed from the Details sections of the package-specific loglikelihood adjustment documentation. 
 
-* More tests of internal function box_cox_deriv().
+* More tests of internal function `box_cox_deriv`.
