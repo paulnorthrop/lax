@@ -21,8 +21,8 @@ environment:
    USE_RTOOLS: true
 
 build_script:
+  - travis-tool.sh install_r covr
   - travis-tool.sh install_deps
-  - travis-tool.sh install_github r-lib/covr
 
 test_script:
   - travis-tool.sh run_tests
