@@ -10,7 +10,7 @@
 #' @details
 #' \code{fit_bernoulli}: fit a Bernoulli distribution
 #'
-#' \code{bernoulli_loglik}: calculates contributions to a log-likelihood based
+#' \code{logLikVec.bernoulli}: calculates contributions to a log-likelihood based
 #' on the Bernoulli distribution.  The log-likelihood is calculated up to an
 #' additive constant.
 #'
@@ -20,7 +20,7 @@
 #' with components: \code{data, logLik, mle, nobs, vcov}, where \code{data}
 #' are the input data.
 #'
-#' \code{bernoulli_loglik} returns an object of class \code{"logLikVec"}, a
+#' \code{logLikVec.bernoulli} returns an object of class \code{"logLikVec"}, a
 #' vector length \code{length(data)} containing the likelihood contributions
 #' from the individual observations in \code{data}.
 #' @seealso \code{\link[stats]{Binomial}}.  The Bernoulli distribution is the
@@ -35,7 +35,7 @@
 #' fit <- fit_bernoulli(exc)
 #'
 #' # Calculate the log-likelihood at the MLE
-#' res <- bernoulli_loglik(fit$mle, exc)
+#' res <- logLikVec(fit)
 #'
 #' # The logLik method sums the individual log-likelihood contributions.
 #' logLik(res)
@@ -51,17 +51,6 @@ NULL
 
 #' @rdname bernoulli
 #' @export
-bernoulli_loglik <- function(prob, data) {
-  if (prob < 0 || prob > 1) {
-    return(-Inf)
-  }
-  res <- stats::dbinom(data, 1, prob, log = TRUE)
-  class(res) <- "logLikVec"
-  return(res)
-}
-
-#' @rdname bernoulli
-#' @export
 fit_bernoulli <- function(data) {
   res <- list()
   res$mle <- mean(data)
@@ -73,6 +62,31 @@ fit_bernoulli <- function(data) {
   res$data <- data
   class(res) <- "bernoulli"
   return(res)
+}
+
+#' @rdname bernoulli
+#' @export
+logLikVec.bernoulli <- function(object, pars = NULL, ...) {
+  if (!missing(...)) {
+    warning("extra arguments discarded")
+  }
+  # If the parameter estimates have not been provided in pars then extract
+  # them from the fitted object
+  if (is.null(pars)) {
+    pars <- coef(object)
+  }
+  n_pars <- length(pars)
+  prob <- pars[1]
+  if (prob < 0 || prob > 1) {
+    val <- -Inf
+  } else {
+    val <- stats::dbinom(object$data, 1, prob, log = TRUE)
+  }
+  # Return the usual attributes for a "logLik" object
+  attr(val, "nobs") <- nobs(object)
+  attr(val, "df") <- n_pars
+  class(val) <- "logLikVec"
+  return(val)
 }
 
 #' @rdname bernoulli

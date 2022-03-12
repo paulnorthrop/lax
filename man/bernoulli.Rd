@@ -2,17 +2,17 @@
 % Please edit documentation in R/bernoulli.R
 \name{bernoulli}
 \alias{bernoulli}
-\alias{bernoulli_loglik}
 \alias{fit_bernoulli}
+\alias{logLikVec.bernoulli}
 \alias{nobs.bernoulli}
 \alias{coef.bernoulli}
 \alias{vcov.bernoulli}
 \alias{logLik.bernoulli}
 \title{Inference for the Bernoulli distribution}
 \usage{
-bernoulli_loglik(prob, data)
-
 fit_bernoulli(data)
+
+\method{logLikVec}{bernoulli}(object, pars = NULL, ...)
 
 \method{nobs}{bernoulli}(object, ...)
 
@@ -23,18 +23,18 @@ fit_bernoulli(data)
 \method{logLik}{bernoulli}(object, ...)
 }
 \arguments{
-\item{prob}{A numeric scalar. Probability of success on each trial.}
-
 \item{data}{A numeric vector of outcomes from Bernoulli trials: 0 for a
 failure, 1 for a success.  Alternatively, a logical vector with FALSE
 for a failure and TRUE for a success.}
+
+\item{prob}{A numeric scalar. Probability of success on each trial.}
 }
 \value{
 \code{fit_bernoulli} returns an object of class \code{"bernoulli"}, a list
 with components: \code{data, logLik, mle, nobs, vcov}, where \code{data}
 are the input data.
 
-\code{bernoulli_loglik} returns an object of class \code{"logLikVec"}, a
+\code{logLikVec.bernoulli} returns an object of class \code{"logLikVec"}, a
 vector length \code{length(data)} containing the likelihood contributions
 from the individual observations in \code{data}.
 }
@@ -45,7 +45,7 @@ in a Bernoulli distribution.
 \details{
 \code{fit_bernoulli}: fit a Bernoulli distribution
 
-\code{bernoulli_loglik}: calculates contributions to a log-likelihood based
+\code{logLikVec.bernoulli}: calculates contributions to a log-likelihood based
 on the Bernoulli distribution.  The log-likelihood is calculated up to an
 additive constant.
 
@@ -61,7 +61,7 @@ exc <- x > u
 fit <- fit_bernoulli(exc)
 
 # Calculate the log-likelihood at the MLE
-res <- bernoulli_loglik(fit$mle, exc)
+res <- logLikVec(fit)
 
 # The logLik method sums the individual log-likelihood contributions.
 logLik(res)
