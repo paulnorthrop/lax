@@ -17,8 +17,8 @@
 #' \code{nobs, coef, vcov} and \code{logLik} methods are provided.
 #' @return
 #' \code{fit_bernoulli} returns an object of class \code{"bernoulli"}, a list
-#' with components: \code{data, logLik, mle, nobs, vcov}, where \code{data}
-#' are the input data.
+#' with components: \code{logLik, mle, nobs, vcov, data}, where
+#' \code{data} are the input data.
 #'
 #' \code{logLikVec.bernoulli} returns an object of class \code{"logLikVec"}, a
 #' vector length \code{length(data)} containing the likelihood contributions
@@ -45,6 +45,12 @@
 #' coef(fit)
 #' vcov(fit)
 #' logLik(fit)
+#'
+#' # Adjusted log-likelihood
+#' # Create 5 clusters each corresponding approximately to 1 year of data
+#' cluster <- rep(1:5, each = 579)[-1]
+#' afit <- alogLik(fit, cluster = cluster, cadjust = FALSE)
+#' plot(afit, type = c(1, 4), lwd = 2, col = 1:2, legend_pos = "bottom")
 #' @name bernoulli
 NULL
 ## NULL
@@ -60,6 +66,8 @@ fit_bernoulli <- function(data) {
   n0 <- res$nobs - n1
   res$logLik <- n1 * log(res$mle) + n0 * log(1 - res$mle)
   res$data <- data
+  res$nsuccess <- n1
+  res$nfailure <- n0
   class(res) <- "bernoulli"
   return(res)
 }
@@ -120,4 +128,13 @@ logLik.bernoulli <- function(object, ...) {
   attr(val, "df") <- length(coef(object))
   class(val) <- "logLik"
   return(val)
+}
+
+#' @rdname bernoulli
+#' @export
+alogLik.bernoulli <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
+  # Call adj_object() to adjust the loglikelihood
+  res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
+  class(res) <- c("lax", "chandwich", "bernoulli", "stat")
+  return(res)
 }

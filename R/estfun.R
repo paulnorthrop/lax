@@ -5,6 +5,8 @@
 #' @export
 estfun.default <- function(x, loglik_fn, ...) {
   U <- numDeriv::jacobian(loglik_fn, x = coef(x), ...)
+  print(dim(U))
+  print(summary(U))
   colnames(U) <- names(coef(x))
   return(U)
 }
@@ -164,3 +166,16 @@ estfun.texmex_evmOpt <- function(x, loglik_fn, ...) {
   colnames(U) <- names(coef(x))
   return(U)
 }
+
+# Bernoulli
+
+#' @export
+estfun.bernoulli <- function(x, ...) {
+  p <- x$mle
+  data01 <- as.numeric(x$data)
+  U <- data01 / p - (1 - data01) / (1 - p)
+  dim(U) <- c(length(U), 1)
+  colnames(U) <- names(coef(x))
+  return(U)
+}
+

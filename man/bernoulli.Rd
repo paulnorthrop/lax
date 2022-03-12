@@ -8,6 +8,7 @@
 \alias{coef.bernoulli}
 \alias{vcov.bernoulli}
 \alias{logLik.bernoulli}
+\alias{alogLik.bernoulli}
 \title{Inference for the Bernoulli distribution}
 \usage{
 fit_bernoulli(data)
@@ -21,6 +22,8 @@ fit_bernoulli(data)
 \method{vcov}{bernoulli}(object, ...)
 
 \method{logLik}{bernoulli}(object, ...)
+
+\method{alogLik}{bernoulli}(x, cluster = NULL, use_vcov = TRUE, ...)
 }
 \arguments{
 \item{data}{A numeric vector of outcomes from Bernoulli trials: 0 for a
@@ -31,8 +34,8 @@ for a failure and TRUE for a success.}
 }
 \value{
 \code{fit_bernoulli} returns an object of class \code{"bernoulli"}, a list
-with components: \code{data, logLik, mle, nobs, vcov}, where \code{data}
-are the input data.
+with components: \code{logLik, mle, nobs, vcov, data}, where
+\code{data} are the input data.
 
 \code{logLikVec.bernoulli} returns an object of class \code{"logLikVec"}, a
 vector length \code{length(data)} containing the likelihood contributions
@@ -71,6 +74,12 @@ nobs(fit)
 coef(fit)
 vcov(fit)
 logLik(fit)
+
+# Adjusted log-likelihood
+# Create 5 clusters each corresponding approximately to 1 year of data
+cluster <- rep(1:5, each = 579)[-1]
+afit <- alogLik(fit, cluster = cluster, cadjust = FALSE)
+plot(afit, type = c(1, 4), lwd = 2, col = 1:2, legend_pos = "bottom")
 }
 \seealso{
 \code{\link[stats]{Binomial}}.  The Bernoulli distribution is the
