@@ -87,6 +87,17 @@
 #'   adj_reg_rain_fit <- alogLik(reg_rain_fit)
 #'   summary(adj_reg_rain_fit)
 #'   }
+#'
+#'   # Binomial-GP model -----
+#'
+#'   # Use Newlyn seas surges data from the exdex package
+#'   u <- quantile(exdex::newlyn, probs = 0.9)
+#'   newlyn_fit <- gpd.fit(exdex::newlyn, u, show = FALSE)
+#'   # Create 5 clusters each corresponding approximately to 1 year of data
+#'   cluster <- rep(1:5, each = 579)[-1]
+#'   adj_newlyn_fit <- alogLik(newlyn_fit, cluster = cluster, cadjust = FALSE)
+#'   summary(adj_newlyn_fit)
+#'
 #'   # PP model -----
 #'
 #'   # An example from the ismev::pp.fit documentation
@@ -203,7 +214,8 @@ alogLik.pp.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
 
 #' @rdname ismev
 #' @export
-alogLik.gpd.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
+alogLik.gpd.fit <- function(x, cluster = NULL, use_vcov = TRUE, binom = FALSE,
+                            ...) {
   # List of ismev objects supported
   supported_by_lax <- list(ismev_gpd = "gpd.fit")
   # Does x have a supported class?
@@ -218,12 +230,45 @@ alogLik.gpd.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # Set the class
   name_of_class <- names(supported_by_lax)[which(is_supported)]
   class(x) <- name_of_class
+  # If cluster has been supplied then we need to check it's length is correct.
+  # If binom = TRUE then it must have the same length as the raw data x$xdata.
+  # If binom = FALSE then, alternatively, it may have the same length as the
+  # vector of threshold excesses.
+  # We check this and, if necessary, extract the cluster values that correspond
+  # to the threshold excesses.
+  # Save the full cluster vector for use later for the Bernoulli distribution
+  full_cluster <- cluster
+  if (!is.null(cluster)) {
+    clength <- length(cluster)
+    if (binom) {
+      if (clength != x$n) {
+        stop("binom=TRUE: ''cluster'' must be the same length as the raw data")
+      }
+      cluster <- cluster[x$xdata > x$threshold]
+    } else {
+      if (clength == x$n) {
+        cluster <- cluster[x$xdata > x$threshold]
+      } else if (clength == x$nexc) {
+      } else {
+        stop("''cluster'' must have the same length as either the raw or
+             exceedance data")
+      }
+    }
+  }
   # Call adj_object() to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
   if (x$trans) {
     class(res) <- c("lax", "chandwich", "ismev", "gpd", "nonstat")
   } else {
     class(res) <- c("lax", "chandwich", "ismev", "gpd", "stat")
+  }
+  # For a stationary model, add the adjusted binomial log-likelihood for the
+  # exceedance probability p_u if binom = TRUE
+  if (!x$trans && binom) {
+    exc <- x$xdata > x$threshold
+    fitb <- fit_bernoulli(exc)
+    afitb <- alogLik(fitb, cluster = full_cluster, ...)
+    attr(res, "pu_aloglik") <- afitb
   }
   return(res)
 }
