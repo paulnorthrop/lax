@@ -60,6 +60,11 @@ adj_object <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
                                   par_names = names(mle),
                                   name = paste(class(x), collapse = "_"),
                                   mle = mle, H = H, V = V)
+  # If cluster was supplied then overwrite the default (1,2, ...) returned by
+  # chandwich::adjust_loglik()
+  if (!is.null(cluster)) {
+    attr(res, "cluster") <- cluster
+  }
   class(res) <- c("lax", "chandwich")
   return(res)
 }
