@@ -33,6 +33,11 @@ for a failure and TRUE for a success.}
 \item{pars}{A numeric parameter vector of length 1 containing the value of
 the Bernoulli success probability.}
 
+\item{...}{Further arguments to be passed to the functions in the
+sandwich package \code{\link[sandwich]{meat}} (if \code{cluster = NULL}),
+or \code{\link[sandwich:vcovCL]{meatCL}} (if \code{cluster} is not
+\code{NULL}).}
+
 \item{x, object}{A fitted model object returned from \code{fit_bernoulli()}.}
 
 \item{cluster}{A vector or factor indicating from which cluster each

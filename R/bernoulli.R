@@ -18,6 +18,10 @@
 #'   Otherwise, \code{H} is estimated inside
 #'   \code{\link[chandwich]{adjust_loglik}} using
 #'   \code{\link[stats:optim]{optimHess}}.
+#' @param ... Further arguments to be passed to the functions in the
+#'   sandwich package \code{\link[sandwich]{meat}} (if \code{cluster = NULL}),
+#'   or \code{\link[sandwich:vcovCL]{meatCL}} (if \code{cluster} is not
+#'   \code{NULL}).
 #' @details
 #' \code{fit_bernoulli}: fit a Bernoulli distribution
 #'
