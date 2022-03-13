@@ -53,8 +53,10 @@ Otherwise, \code{H} is estimated inside
 }
 \value{
 \code{fit_bernoulli} returns an object of class \code{"bernoulli"}, a list
-with components: \code{logLik, mle, nobs, vcov, data}, where
-\code{data} are the input data.
+with components: \code{logLik, mle, nobs, vcov, data, obs_data}, where
+\code{data} are the input data and \code{obs_data} are the input data after
+any missing values have been removed, using
+\code{\link[stats:na.fail]{na.omit}}.
 
 \code{logLikVec.bernoulli} returns an object of class \code{"logLikVec"}, a
 vector length \code{length(data)} containing the likelihood contributions

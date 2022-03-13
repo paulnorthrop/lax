@@ -32,8 +32,10 @@
 #' \code{nobs, coef, vcov} and \code{logLik} methods are provided.
 #' @return
 #' \code{fit_bernoulli} returns an object of class \code{"bernoulli"}, a list
-#' with components: \code{logLik, mle, nobs, vcov, data}, where
-#' \code{data} are the input data.
+#' with components: \code{logLik, mle, nobs, vcov, data, obs_data}, where
+#' \code{data} are the input data and \code{obs_data} are the input data after
+#' any missing values have been removed, using
+#' \code{\link[stats:na.fail]{na.omit}}.
 #'
 #' \code{logLikVec.bernoulli} returns an object of class \code{"logLikVec"}, a
 #' vector length \code{length(data)} containing the likelihood contributions
@@ -74,13 +76,15 @@ NULL
 #' @export
 fit_bernoulli <- function(data) {
   res <- list()
-  res$mle <- mean(data)
-  res$nobs <- length(data)
+  res$data <- data
+  obs_data <- na.omit(data)
+  res$obs_data <- obs_data
+  res$mle <- mean(obs_data)
+  res$nobs <- length(obs_data)
   res$vcov <- as.matrix(res$mle * (1 - res$mle) / res$nobs)
-  n1 <- sum(data)
+  n1 <- sum(obs_data)
   n0 <- res$nobs - n1
   res$logLik <- n1 * log(res$mle) + n0 * log(1 - res$mle)
-  res$data <- data
   res$nsuccess <- n1
   res$nfailure <- n0
   class(res) <- "bernoulli"
@@ -103,7 +107,7 @@ logLikVec.bernoulli <- function(object, pars = NULL, ...) {
   if (prob < 0 || prob > 1) {
     val <- -Inf
   } else {
-    val <- stats::dbinom(object$data, 1, prob, log = TRUE)
+    val <- stats::dbinom(object$obs_data, 1, prob, log = TRUE)
   }
   # Return the usual attributes for a "logLik" object
   attr(val, "nobs") <- nobs(object)

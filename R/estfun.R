@@ -172,7 +172,7 @@ estfun.texmex_evmOpt <- function(x, loglik_fn, ...) {
 #' @export
 estfun.bernoulli <- function(x, ...) {
   p <- x$mle
-  data01 <- as.numeric(x$data)
+  data01 <- as.numeric(x$obs_data)
   U <- data01 / p - (1 - data01) / (1 - p)
   dim(U) <- c(length(U), 1)
   colnames(U) <- names(coef(x))
