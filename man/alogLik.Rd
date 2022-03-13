@@ -17,9 +17,9 @@ See \strong{Details}.}
   estimator of the covariance matrix of the parameters to be passed to
   \code{\link[chandwich]{adjust_loglik}}.  In most cases, \code{cluster}
   must have length equal to the number of observations in data.  The
-  exception is the GP model, where the \code{cluster} may either contain a
-  value for each observation in the raw data, or for each threshold
-  exceedance in the data.
+  exception is the GP (only) model (\code{binom = FALSE}), where the
+  \code{cluster} may either contain a value for each observation in the raw
+  data, or for each threshold exceedance in the data.
 
   If \code{cluster} is not supplied (is \code{NULL}) then it is
   assumed that each observation forms its own cluster.
@@ -37,6 +37,13 @@ Otherwise, \code{H} is estimated inside
 sandwich package \code{\link[sandwich]{meat}} (if \code{cluster = NULL}),
 or \code{\link[sandwich:vcovCL]{meatCL}} (if \code{cluster} is not
 \code{NULL}).}
+
+\item{binom}{A logical scalar.  This option is only available in the
+\strong{stationary} (no covariates) case. If \code{binom = FALSE} then
+loglikelihood adjustment is only performed using the GP model.
+If \code{binom = TRUE} then loglikelihood adjustment is also performed for
+inferences about the probability of threshold exceedance, using a
+Bernoulli model for the instances of threshold exceedance.}
 }
 \value{
 An object inheriting from class \code{"chandwich"}.  See

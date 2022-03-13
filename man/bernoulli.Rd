@@ -30,7 +30,21 @@ fit_bernoulli(data)
 failure, 1 for a success.  Alternatively, a logical vector with FALSE
 for a failure and TRUE for a success.}
 
-\item{prob}{A numeric scalar. Probability of success on each trial.}
+\item{object}{A fitted model object returned from \code{fit_bernoulli()}.}
+
+\item{pars}{A numeric parameter vector of length 1 containing the value of
+the Bernoulli success probability.}
+
+\item{cluster}{A vector or factor indicating from which cluster each
+observation in \code{data} originates.}
+
+\item{use_vcov}{A logical scalar.  Should we use the \code{vcov} S3 method
+for \code{x} (if this exists) to estimate the Hessian of the independence
+loglikelihood to be passed as the argument \code{H} to
+\code{\link[chandwich]{adjust_loglik}}?
+Otherwise, \code{H} is estimated inside
+\code{\link[chandwich]{adjust_loglik}} using
+\code{\link[stats:optim]{optimHess}}.}
 }
 \value{
 \code{fit_bernoulli} returns an object of class \code{"bernoulli"}, a list
