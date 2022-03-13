@@ -40,7 +40,8 @@
 #'   If \code{binom = TRUE} then the returned object has an exta attribute
 #'   named \code{pu_aloglik} that contains an object inheriting from class
 #'   \code{"chandwich"} relating specifically to inferences about the
-#'   probability of threshold exceedance.
+#'   probability of threshold exceedance. Also, the 4th component of the class
+#'   of the returned object becomes "bin-gpd".
 #' @seealso \code{\link{alogLik}}: loglikelihood adjustment for model fits.
 #' @examples
 #' # We need the ismev package
@@ -275,6 +276,7 @@ alogLik.gpd.fit <- function(x, cluster = NULL, use_vcov = TRUE, binom = FALSE,
     fitb <- fit_bernoulli(exc)
     afitb <- alogLik(fitb, cluster = full_cluster, ...)
     attr(res, "pu_aloglik") <- afitb
+    class(res) <- c("lax", "chandwich", "ismev", "bin-gpd", "stat")
   }
   return(res)
 }
