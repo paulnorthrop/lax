@@ -43,7 +43,7 @@
 #' @examples
 #' # Set up data
 #' x <- exdex::newlyn
-#' u <- quantile(x, probs = 0.6)
+#' u <- quantile(x, probs = 0.9)
 #' exc <- x > u
 #'
 #' # Fit a Bernoulli distribution
@@ -65,7 +65,7 @@
 #' # Create 5 clusters each corresponding approximately to 1 year of data
 #' cluster <- rep(1:5, each = 579)[-1]
 #' afit <- alogLik(fit, cluster = cluster, cadjust = FALSE)
-#' plot(afit, type = c(1, 4), lwd = 2, col = 1:2, legend_pos = "bottom")
+#' summary(afit)
 #' @name bernoulli
 NULL
 ## NULL
