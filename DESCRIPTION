@@ -1,7 +1,7 @@
 Package: lax
 Title: Loglikelihood Adjustment for Extreme Value Models
 Version: 1.2.0.9000
-Date: 2022-03-09
+Date: 2022-03-13
 Authors@R: c(
     person(c("Paul", "J."), "Northrop", email = "p.northrop@ucl.ac.uk",
       role = c("aut", "cre", "cph")),
@@ -29,6 +29,7 @@ Description: Performs adjusted inferences based on model objects fitted, using
     are robust to certain types of model misspecification.  Univariate extreme 
     value models, including regression models, are supported.  
 Imports: chandwich,
+    exdex,
     graphics,
     numDeriv,
     revdbayes,
