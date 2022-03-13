@@ -74,6 +74,11 @@ An object inheriting from class \code{"chandwich"}.  See
   The 5th component is
   \code{"stat"} if \code{x$trans = FALSE} and
   \code{"nonstat"} if \code{x$trans = TRUE}.
+
+  If \code{binom = TRUE} then the returned object has an exta attribute
+  named \code{pu_aloglik} that contains an object inheriting from class
+  \code{"chandwich"} relating specifically to inferences about the
+  probability of threshold exceedance.
 }
 \description{
 S3 \code{alogLik} method to perform loglikelihood adjustment for fitted
@@ -144,7 +149,6 @@ if (got_ismev) {
   adj_reg_rain_fit <- alogLik(reg_rain_fit)
   summary(adj_reg_rain_fit)
   }
-
   # Binomial-GP model -----
 
   # Use Newlyn seas surges data from the exdex package
@@ -152,7 +156,8 @@ if (got_ismev) {
   newlyn_fit <- gpd.fit(exdex::newlyn, u, show = FALSE)
   # Create 5 clusters each corresponding approximately to 1 year of data
   cluster <- rep(1:5, each = 579)[-1]
-  adj_newlyn_fit <- alogLik(newlyn_fit, cluster = cluster, cadjust = FALSE)
+  adj_newlyn_fit <- alogLik(newlyn_fit, cluster = cluster, binom = TRUE,
+                            cadjust = FALSE)
   summary(adj_newlyn_fit)
 
   # PP model -----

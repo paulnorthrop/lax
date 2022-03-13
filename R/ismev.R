@@ -36,6 +36,11 @@
 #'   The 5th component is
 #'   \code{"stat"} if \code{x$trans = FALSE} and
 #'   \code{"nonstat"} if \code{x$trans = TRUE}.
+#'
+#'   If \code{binom = TRUE} then the returned object has an exta attribute
+#'   named \code{pu_aloglik} that contains an object inheriting from class
+#'   \code{"chandwich"} relating specifically to inferences about the
+#'   probability of threshold exceedance.
 #' @seealso \code{\link{alogLik}}: loglikelihood adjustment for model fits.
 #' @examples
 #' # We need the ismev package
@@ -87,7 +92,6 @@
 #'   adj_reg_rain_fit <- alogLik(reg_rain_fit)
 #'   summary(adj_reg_rain_fit)
 #'   }
-#'
 #'   # Binomial-GP model -----
 #'
 #'   # Use Newlyn seas surges data from the exdex package
@@ -95,7 +99,8 @@
 #'   newlyn_fit <- gpd.fit(exdex::newlyn, u, show = FALSE)
 #'   # Create 5 clusters each corresponding approximately to 1 year of data
 #'   cluster <- rep(1:5, each = 579)[-1]
-#'   adj_newlyn_fit <- alogLik(newlyn_fit, cluster = cluster, cadjust = FALSE)
+#'   adj_newlyn_fit <- alogLik(newlyn_fit, cluster = cluster, binom = TRUE,
+#'                             cadjust = FALSE)
 #'   summary(adj_newlyn_fit)
 #'
 #'   # PP model -----
