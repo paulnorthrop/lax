@@ -102,6 +102,7 @@
 #'   adj_newlyn_fit <- alogLik(newlyn_fit, cluster = cluster, binom = TRUE,
 #'                             cadjust = FALSE)
 #'   summary(adj_newlyn_fit)
+#'   summary(attr(adj_newlyn_fit, "pu_aloglik"))
 #'
 #'   # PP model -----
 #'
