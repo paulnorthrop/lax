@@ -48,12 +48,13 @@ sandwich package \code{\link[sandwich]{meat}} (if \code{cluster = NULL}),
 or \code{\link[sandwich:vcovCL]{meatCL}} (if \code{cluster} is not
 \code{NULL}).}
 
-\item{binom}{A logical scalar.  This option is only available in the
-\strong{stationary} (no covariates) case. If \code{binom = FALSE} then
-loglikelihood adjustment is only performed using the GP model.
-If \code{binom = TRUE} then loglikelihood adjustment is also performed for
-inferences about the probability of threshold exceedance, using a
-Bernoulli model for the instances of threshold exceedance.}
+\item{binom}{A logical scalar.  This option is only relevant to
+\strong{GP models} and is only available in the \strong{stationary}
+(no covariates) case. If \code{binom = FALSE} then loglikelihood
+adjustment is only performed using the GP model. If \code{binom = TRUE}
+then loglikelihood adjustment is also performed for inferences about the
+probability of threshold exceedance, using a Bernoulli model for the
+instances of threshold exceedance.}
 }
 \value{
 An object inheriting from class \code{"chandwich"}.  See

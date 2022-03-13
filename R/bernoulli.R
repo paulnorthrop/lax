@@ -6,7 +6,7 @@
 #' @param data A numeric vector of outcomes from Bernoulli trials: 0 for a
 #'    failure, 1 for a success.  Alternatively, a logical vector with FALSE
 #'    for a failure and TRUE for a success.
-#' @param object A fitted model object returned from \code{fit_bernoulli()}.
+#' @param x,object A fitted model object returned from \code{fit_bernoulli()}.
 #' @param pars A numeric parameter vector of length 1 containing the value of
 #'   the Bernoulli success probability.
 #' @param cluster A vector or factor indicating from which cluster each

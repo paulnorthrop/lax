@@ -50,12 +50,13 @@ logLikVec <- function(object, ...) {
 #'   Otherwise, \code{H} is estimated inside
 #'   \code{\link[chandwich]{adjust_loglik}} using
 #'   \code{\link[stats:optim]{optimHess}}.
-#' @param binom A logical scalar.  This option is only available in the
-#'   \strong{stationary} (no covariates) case. If \code{binom = FALSE} then
-#'   loglikelihood adjustment is only performed using the GP model.
-#'   If \code{binom = TRUE} then loglikelihood adjustment is also performed for
-#'   inferences about the probability of threshold exceedance, using a
-#'   Bernoulli model for the instances of threshold exceedance.
+#' @param binom A logical scalar.  This option is only relevant to
+#'   \strong{GP models} and is only available in the \strong{stationary}
+#'   (no covariates) case. If \code{binom = FALSE} then loglikelihood
+#'   adjustment is only performed using the GP model. If \code{binom = TRUE}
+#'   then loglikelihood adjustment is also performed for inferences about the
+#'   probability of threshold exceedance, using a Bernoulli model for the
+#'   instances of threshold exceedance.
 #' @param ... Further arguments to be passed to the functions in the
 #'   sandwich package \code{\link[sandwich]{meat}} (if \code{cluster = NULL}),
 #'   or \code{\link[sandwich:vcovCL]{meatCL}} (if \code{cluster} is not
@@ -157,12 +158,13 @@ logLikVec <- function(object, ...) {
 #'   \code{\link{ismev}}, \code{\link{mev}}, \code{\link{POT}} and
 #'   \code{\link{texmex}}.
 #' @export
-alogLik <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
+alogLik <- function(x, cluster = NULL, use_vcov = TRUE, binom = FALSE, ...) {
   UseMethod("alogLik")
 }
 
 #' @export
-alogLik.default <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
+alogLik.default <- function(x, cluster = NULL, use_vcov = TRUE, binom = FALSE,
+                            ...) {
   # Call adj_object() to adjust the loglikelihood
   res <- adj_object(x, cluster = cluster, use_vcov = use_vcov, ...)
   class(res) <- c("lax", "chandwich", class(x))

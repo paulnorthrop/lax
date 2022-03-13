@@ -30,10 +30,10 @@ fit_bernoulli(data)
 failure, 1 for a success.  Alternatively, a logical vector with FALSE
 for a failure and TRUE for a success.}
 
-\item{object}{A fitted model object returned from \code{fit_bernoulli()}.}
-
 \item{pars}{A numeric parameter vector of length 1 containing the value of
 the Bernoulli success probability.}
+
+\item{x, object}{A fitted model object returned from \code{fit_bernoulli()}.}
 
 \item{cluster}{A vector or factor indicating from which cluster each
 observation in \code{data} originates.}
