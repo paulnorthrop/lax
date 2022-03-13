@@ -11,12 +11,19 @@ alogLik(x, cluster = NULL, use_vcov = TRUE, ...)
 See \strong{Details}.}
 
 \item{cluster}{A vector or factor indicating from which cluster the
-respective loglikelihood contributions from \code{loglik} originate.
-This must have the same length as the vector returned by the
-\code{logLikVec} method for an object like \code{x}.
-If \code{cluster} is not supplied (i.e. is \code{NULL}) then it is
-assumed that each observation forms its own cluster.
-See \strong{Details}.}
+  respective log-likelihood contributions from \code{loglik} originate.
+  The length of \code{cluster} must be consistent with the \code{estfun}
+  method to be used in the estimation of the 'meat' \code{V} of the sandwich
+  estimator of the covariance matrix of the parameters to be passed to
+  \code{\link[chandwich]{adjust_loglik}}.  In most cases, \code{cluster}
+  must have length equal to the number of observations in data.  The
+  exception is the GP model, where the \code{cluster} may either contain a
+  value for each observation in the raw data, or for each threshold
+  exceedance in the data.
+
+  If \code{cluster} is not supplied (is \code{NULL}) then it is
+  assumed that each observation forms its own cluster.
+  See \strong{Details} for further details.}
 
 \item{use_vcov}{A logical scalar.  Should we use the \code{vcov} S3 method
 for \code{x} (if this exists) to estimate the Hessian of the independence
