@@ -10,8 +10,8 @@
 #' @details
 #' \code{fit_bernoulli}: fit a Bernoulli distribution
 #'
-#' \code{logLikVec.bernoulli}: calculates contributions to a log-likelihood based
-#' on the Bernoulli distribution.  The log-likelihood is calculated up to an
+#' \code{logLikVec.bernoulli}: calculates contributions to a loglikelihood based
+#' on the Bernoulli distribution.  The loglikelihood is calculated up to an
 #' additive constant.
 #'
 #' \code{nobs, coef, vcov} and \code{logLik} methods are provided.
@@ -34,10 +34,10 @@
 #' # Fit a Bernoulli distribution
 #' fit <- fit_bernoulli(exc)
 #'
-#' # Calculate the log-likelihood at the MLE
+#' # Calculate the loglikelihood at the MLE
 #' res <- logLikVec(fit)
 #'
-#' # The logLik method sums the individual log-likelihood contributions.
+#' # The logLik method sums the individual loglikelihood contributions.
 #' logLik(res)
 #'
 #' # nobs, coef, vcov, logLik methods for objects returned from fit_bernoulli()
@@ -46,7 +46,7 @@
 #' vcov(fit)
 #' logLik(fit)
 #'
-#' # Adjusted log-likelihood
+#' # Adjusted loglikelihood
 #' # Create 5 clusters each corresponding approximately to 1 year of data
 #' cluster <- rep(1:5, each = 579)[-1]
 #' afit <- alogLik(fit, cluster = cluster, cadjust = FALSE)
