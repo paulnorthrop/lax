@@ -50,6 +50,17 @@ or \code{\link[sandwich:vcovCL]{meatCL}} (if \code{cluster} is not
 An object inheriting from class \code{"chandwich"}.  See
   \code{\link[chandwich]{adjust_loglik}}.
 
+  The original fitted model object is available as an attribute named
+  code{"original_fit"}, accessible using \code{attr(name, "original_fit")},
+  where \code{name} is the name of the object to which the object returned
+  from \code{alogLik} is assigned.
+
+  If \code{binom = TRUE} then the returned object has an extra attribute
+  named \code{pu_aloglik} that contains an object inheriting from class
+  \code{"chandwich"} relating specifically to inferences about the
+  probability of threshold exceedance. Also, the 4th component of the class
+  of the returned object becomes \code{"bin-gpd"}.
+
   If \code{x} is one of the supported models then the class of the returned
   object is a vector of length 5. The first 3 components are
   \code{c("lax", "chandwich", "name_of_package")}, where
