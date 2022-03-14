@@ -104,13 +104,13 @@ gev_rl_prof <- function(x, m, level, npy, inc, type, rl_sym) {
   if (is.null(inc)) {
     inc <- (rl_sym["upper"] - rl_sym["lower"]) / 100
   }
-  p <- 1 / (m * npy)
+  p <- (1 - 1 / m) ^ (1 / npy)
   # Calculates the negated profile loglikelihood of the m-year return level
   gev_neg_prof_loglik <- function(a, xp) {
     if (a[1] <= 0) {
       return(10 ^ 10)
     }
-    mu <- xp - revdbayes::qgev(1 - p, loc = 0, scale = a[1], shape = a[2])
+    mu <- xp - revdbayes::qgev(p, loc = 0, scale = a[1], shape = a[2])
     gev_pars <- c(mu, a[1:2])
     return(-x(gev_pars))
   }
