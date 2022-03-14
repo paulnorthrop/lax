@@ -18,13 +18,13 @@ return_level(
 \item{x}{An object inheriting from class \code{"lax"} returned from
 \code{\link{alogLik}}.}
 
-\item{m}{A numeric scalar.  The return period, in units of the number
-of observations.  See \strong{Details} for information.}
+\item{m}{A numeric scalar.  The return period, in years.}
 
 \item{level}{A numeric scalar in (0, 1).  The confidence level required for
 confidence interval for the \code{m}-observation return level.}
 
-\item{npy}{A numeric scalar.  The}
+\item{npy}{A numeric scalar.  The number of observations per year.  See
+\strong{Details}.}
 
 \item{prof}{A logical scalar.  Should we calculate intervals based on
 profile loglikelihood?}
@@ -69,12 +69,14 @@ loglikelihood.
 \details{
 At present \code{return_level} only supports GEV models.
 
-  Care must be taken in specifying the input value of \code{m},
-  taking into account the parameterisation of the original fit.
+  Care must be taken in specifying the input value of \code{npy}.
 
-  For GEV models it is common for each observation to relate to a year.
-  In this event the \code{m}-observation return level is an \code{m}-year
-  return level.
+  For GEV models it is common to have one observation per year, either
+  because the data are annual maxima or because for each year only the
+  maximum value over a particular season is extracted from the raw data.
+  In this case, \code{npy = 1}, which is the default.  If instead we extract
+  the maximum values over the first and second halves of each year then
+  \code{npy = 2}.
 
   For details about the definition and estimation of return levels see
   Chapter 3 and 4 of Coles (2001).
@@ -85,7 +87,7 @@ At present \code{return_level} only supports GEV models.
   the critical value \code{logLik(x) - 0.5 * stats::qchisq(level, 1)}.
   This is achieved by calculating the profile loglikelihood for a sequence
   of values of this return level as governed by \code{inc}. Once the profile
-  loglikelhood drops below the critical value the lower and upper limits are
+  loglikelihood drops below the critical value the lower and upper limits are
   estimated by interpolating linearly between the cases lying either side of
   the critical value. The smaller \code{inc} the more accurate (but slower)
   the calculation will be.
