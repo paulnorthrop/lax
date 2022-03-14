@@ -93,6 +93,36 @@ return_level_gev <- function(x, m, level, npy, prof, inc, type) {
 
 #' @keywords internal
 #' @rdname lax-internal
+gev_rl_CI <- function (x, m, level, npy, type){
+  mle <- attr(x, "MLE")
+  mu <- mle[1]
+  sigma <- mle[2]
+  xi <- mle[3]
+  if (type == "none") {
+    mat <- attr(x, "VC")
+  } else {
+    mat <- attr(x, "adjVC")
+  }
+  p <- 1 / (m * npy)
+  rl_mle <- revdbayes::qgev(p, loc = mu, scale = sigma, shape = xi,
+                            lower.tail = FALSE)
+  yp <- -log(1 - p)
+  delta <- matrix(0, 3, 1)
+  delta[1,] <- 1
+  delta[2,] <- revdbayes::qgev(p, loc = 0, scale = 1, shape = xi,
+                               lower.tail = FALSE)
+  delta[3,] <- sigma * box_cox_deriv(yp, lambda = -xi)
+  rl_var <- t(delta) %*% mat %*% delta
+  rl_se <- sqrt(rl_var)
+  z_val <- stats::qnorm(1 - (1 - level) / 2)
+  rl_lower <- rl_mle - z_val * rl_se
+  rl_upper <- rl_mle + z_val * rl_se
+  res <- c(lower = rl_lower, mle = rl_mle, upper = rl_upper, se = rl_se)
+  return(res)
+}
+
+#' @keywords internal
+#' @rdname lax-internal
 gev_rl_prof <- function(x, m, level, npy, inc, type, rl_sym) {
   if (is.null(inc)) {
     inc <- (rl_sym["upper"] - rl_sym["lower"]) / 100
@@ -173,37 +203,6 @@ gev_rl_prof <- function(x, m, level, npy, inc, type, rl_sym) {
               for_plot = cbind(ret_levs = ret_levs, prof_loglik = prof_lik)))
 }
 
-#' @keywords internal
-#' @rdname lax-internal
-gev_rl_CI <- function (x, m, level, npy, type){
-  mle <- attr(x, "MLE")
-  mu <- mle[1]
-  sigma <- mle[2]
-  xi <- mle[3]
-  if (type == "none") {
-    mat <- attr(x, "VC")
-  } else {
-    mat <- attr(x, "adjVC")
-  }
-  p <- 1 / (m * npy)
-  rl_mle <- revdbayes::qgev(p, loc = mu, scale = sigma, shape = xi,
-                            lower.tail = FALSE)
-  yp <- -log(1 - p)
-  delta <- matrix(0, 3, 1)
-  delta[1,] <- 1
-  delta[2,] <- revdbayes::qgev(p, loc = 0, scale = 1, shape = xi,
-                               lower.tail = FALSE)
-  delta[3,] <- sigma * box_cox_deriv(yp, lambda = -xi)
-  rl_var <- t(delta) %*% mat %*% delta
-  rl_se <- sqrt(rl_var)
-  z_val <- stats::qnorm(1 - (1 - level) / 2)
-  rl_lower <- rl_mle - z_val * rl_se
-  rl_upper <- rl_mle + z_val * rl_se
-  res <- c(lower = rl_lower, mle = rl_mle, upper = rl_upper, se = rl_se)
-  return(res)
-}
-
-# ==================== Binomial-GP return levels functions ================== #
 
 # ============================== box_cox_deriv ============================== #
 
