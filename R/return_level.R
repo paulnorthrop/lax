@@ -1,6 +1,6 @@
 #' Return Level Inferences for Stationary Extreme Value Models
 #'
-#' Calculates point estimates and confidence intervals for \code{m}-observation
+#' Calculates point estimates and confidence intervals for \code{m}-year
 #' return levels for \strong{stationary} extreme value fitted model objects
 #' returned from \code{\link{alogLik}}.  Two types of interval may be returned:
 #' (a) intervals based on approximate large-sample normality of the maximum
@@ -12,7 +12,7 @@
 #'   \code{\link{alogLik}}.
 #' @param m A numeric scalar.  The return period, in years.
 #' @param level A numeric scalar in (0, 1).  The confidence level required for
-#'   confidence interval for the \code{m}-observation return level.
+#'   confidence interval for the \code{m}-year return level.
 #' @param npy A numeric scalar.  The number of observations per year.  See
 #'   \strong{Details}.
 #' @param prof A logical scalar.  Should we calculate intervals based on
@@ -201,7 +201,7 @@ plot.retlev <- function(x, y = NULL, level = NULL, legend = TRUE, digits = 3,
     y2 <- prof_loglik[loc+1]
     low_lim <- x1 + (crit_value - y1) * (x2 - x1) / (y2 - y1)
   }
-  my_xlab <- paste0(x$m, "-observation return level")
+  my_xlab <- paste0(x$m, "-year return level")
   my_ylab <- "profile loglikelihood"
   my_plot <- function(x, y, ..., xlab = my_xlab, ylab = my_ylab, type = "l") {
     graphics::plot(x, y, ..., xlab = xlab, ylab = ylab, type = type)
@@ -237,7 +237,7 @@ plot.retlev <- function(x, y = NULL, level = NULL, legend = TRUE, digits = 3,
 #' @param digits The argument \code{digits} to \code{\link{print.default}}.
 #' @param ... Additional arguments.  None are used in this function.
 #' @details Prints the call to \code{\link{return_level}} and the estimates
-#'   and 100\code{x$level}\% confidence limits for the \code{x$m}-observation
+#'   and 100\code{x$level}\% confidence limits for the \code{x$m}-year
 #'   return level.
 #' @return The argument \code{x}, invisibly, as for all
 #'   \code{\link[base]{print}} methods.
@@ -255,7 +255,7 @@ print.retlev <- function(x, digits = max(3L, getOption("digits") - 3L), ...) {
   cat("\nCall:\n", paste(deparse(x$call), sep = "\n", collapse = "\n"),
       "\n\n", sep = "")
   cat("MLE and ", 100 * x$level, "% confidence limits for the ", x$m,
-      "-observation return level\n\n", sep = "")
+      "-year return level\n\n", sep = "")
   cat("Normal interval:\n")
   print.default(format(x$rl_sym, digits = digits), print.gap = 2L,
                 quote = FALSE)
