@@ -7,6 +7,8 @@
 #' @keywords internal
 NULL
 
+# ====================== Log-likelihood adjustment function ================= #
+
 #' @keywords internal
 #' @rdname lax-internal
 adj_object <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
@@ -69,16 +71,7 @@ adj_object <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   return(res)
 }
 
-
-#' @keywords internal
-#' @rdname lax-internal
-ismev_ppp <- function (a, npy) {
-  u <- a[4]
-  la <- 1 - exp(-(1 + (a[3] * (u - a[1]))/a[2])^(-1/a[3])/npy)
-  sc <- a[2] + a[3] * (u - a[1])
-  xi <- a[3]
-  c(la, sc, xi)
-}
+# ====================== GEV return levels functions ======================== #
 
 #' @keywords internal
 #' @rdname lax-internal
@@ -210,7 +203,9 @@ gev_rl_CI <- function (x, m, level, npy, type){
   return(res)
 }
 
-# ====================== box_cox_deriv ==========================
+# ==================== Binomial-GP return levels functions ================== #
+
+# ============================== box_cox_deriv ============================== #
 
 #' @keywords internal
 #' @rdname lax-internal
@@ -241,4 +236,16 @@ box_cox_deriv <- function(x, lambda = 1, lambda_tol = 1 / 50,
     retval <- sum(lnx ^ (i + 2) * lambda ^ i / ((i + 2) * factorial(i)))
   }
   return(retval)
+}
+
+# ============== Used in (ismev) pp_refit() for GPD parameters ============== #
+
+#' @keywords internal
+#' @rdname lax-internal
+ismev_ppp <- function (a, npy) {
+  u <- a[4]
+  la <- 1 - exp(-(1 + (a[3] * (u - a[1]))/a[2])^(-1/a[3])/npy)
+  sc <- a[2] + a[3] * (u - a[1])
+  xi <- a[3]
+  c(la, sc, xi)
 }

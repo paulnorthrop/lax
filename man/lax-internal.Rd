@@ -3,16 +3,14 @@
 \name{lax-internal}
 \alias{lax-internal}
 \alias{adj_object}
-\alias{ismev_ppp}
 \alias{return_level_gev}
 \alias{gev_rl_prof}
 \alias{gev_rl_CI}
 \alias{box_cox_deriv}
+\alias{ismev_ppp}
 \title{Internal lax functions}
 \usage{
 adj_object(x, cluster = NULL, use_vcov = TRUE, ...)
-
-ismev_ppp(a, npy)
 
 return_level_gev(x, m, level, npy, prof, inc, type)
 
@@ -21,6 +19,8 @@ gev_rl_prof(x, m, level, npy, inc, type, rl_sym)
 gev_rl_CI(x, m, level, npy, type)
 
 box_cox_deriv(x, lambda = 1, lambda_tol = 1/50, poly_order = 3)
+
+ismev_ppp(a, npy)
 }
 \description{
 Internal lax functions
