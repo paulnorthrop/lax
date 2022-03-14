@@ -74,12 +74,6 @@ An object inheriting from class \code{"chandwich"}.  See
   The 5th component is
   \code{"stat"} if \code{x$trans = FALSE} and
   \code{"nonstat"} if \code{x$trans = TRUE}.
-
-  If \code{binom = TRUE} then the returned object has an extra attribute
-  named \code{pu_aloglik} that contains an object inheriting from class
-  \code{"chandwich"} relating specifically to inferences about the
-  probability of threshold exceedance. Also, the 4th component of the class
-  of the returned object becomes "bin-gpd".
 }
 \description{
 S3 \code{alogLik} method to perform loglikelihood adjustment for fitted
