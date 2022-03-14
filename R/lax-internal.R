@@ -67,6 +67,8 @@ adj_object <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   if (!is.null(cluster)) {
     attr(res, "cluster") <- cluster
   }
+  # Add the original fitted model object as an attribute
+  attr(res, "original_fit") <- x
   class(res) <- c("lax", "chandwich")
   return(res)
 }
