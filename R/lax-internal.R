@@ -93,7 +93,7 @@ return_level_gev <- function(x, m, level, npy, prof, inc, type) {
 
 #' @keywords internal
 #' @rdname lax-internal
-gev_rl_CI <- function (x, m, level, npy, type){
+gev_rl_CI <- function (x, m, level, npy, type) {
   mle <- attr(x, "MLE")
   mu <- mle[1]
   sigma <- mle[2]
@@ -103,7 +103,7 @@ gev_rl_CI <- function (x, m, level, npy, type){
   } else {
     mat <- attr(x, "adjVC")
   }
-  p <- 1 / (m * npy)
+  p <- 1 - (1 - 1 / m) ^ (1 / npy)
   rl_mle <- revdbayes::qgev(p, loc = mu, scale = sigma, shape = xi,
                             lower.tail = FALSE)
   yp <- -log(1 - p)
