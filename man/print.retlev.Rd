@@ -23,7 +23,7 @@ The argument \code{x}, invisibly, as for all
 }
 \details{
 Prints the call to \code{\link{return_level}} and the estimates
-  and 100\code{x$level}\% confidence limits for the \code{x$m}-observation
+  and 100\code{x$level}\% confidence limits for the \code{x$m}-year
   return level.
 }
 \section{Examples}{
