@@ -112,7 +112,7 @@ gev_rl_prof <- function(x, m, level, npy, inc, type, rl_sym) {
     }
     mu <- xp - revdbayes::qgev(p, loc = 0, scale = a[1], shape = a[2])
     gev_pars <- c(mu, a[1:2])
-    return(-x(gev_pars))
+    return(-x(gev_pars, type = type))
   }
   rl_mle <- rl_sym["mle"]
   max_loglik <- attr(x, "max_loglik")
