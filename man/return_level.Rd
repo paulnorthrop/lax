@@ -93,6 +93,8 @@ At present \code{return_level} only supports GEV models.
   the calculation will be.
 }
 \examples{
+# GEV model -----
+
 got_evd <- requireNamespace("evd", quietly = TRUE)
 
 if (got_evd) {
@@ -105,6 +107,7 @@ if (got_evd) {
   # Large inc set here for speed, sacrificing accuracy
   rl <- return_level(adj_fgev, inc = 0.5)
   summary(rl)
+  rl
   plot(rl)
 }
 
@@ -118,7 +121,23 @@ if (got_ismev) {
   # Large inc set here for speed, sacrificing accuracy
   rl <- return_level(adj_gev_fit, inc = 0.05)
   summary(rl)
+  rl
   plot(rl)
+}
+
+# Binomial-GP model -----
+
+if (got_ismev) {
+  library(ismev)
+  data(rain)
+  # An example from the ismev::gpd.fit documentation
+  rain_fit <- gpd.fit(rain, 10, show = FALSE)
+  adj_rain_fit <- alogLik(rain_fit, binom = TRUE)
+  # Large inc set here for speed, sacrificing accuracy
+  rl <- return_level(adj_rain_fit, inc = 0.05)
+  summary(rl)
+  rl
+  #plot(rl)
 }
 }
 \references{

@@ -71,6 +71,8 @@
 #' @seealso \code{\link{plot.retlev}} for plotting the profile loglikelihood
 #'   for a return level.
 #' @examples
+#' # GEV model -----
+#'
 #' got_evd <- requireNamespace("evd", quietly = TRUE)
 #'
 #' if (got_evd) {
@@ -83,6 +85,7 @@
 #'   # Large inc set here for speed, sacrificing accuracy
 #'   rl <- return_level(adj_fgev, inc = 0.5)
 #'   summary(rl)
+#'   rl
 #'   plot(rl)
 #' }
 #'
@@ -96,7 +99,23 @@
 #'   # Large inc set here for speed, sacrificing accuracy
 #'   rl <- return_level(adj_gev_fit, inc = 0.05)
 #'   summary(rl)
+#'   rl
 #'   plot(rl)
+#' }
+#'
+#' # Binomial-GP model -----
+#'
+#' if (got_ismev) {
+#'   library(ismev)
+#'   data(rain)
+#'   # An example from the ismev::gpd.fit documentation
+#'   rain_fit <- gpd.fit(rain, 10, show = FALSE)
+#'   adj_rain_fit <- alogLik(rain_fit, binom = TRUE)
+#'   # Large inc set here for speed, sacrificing accuracy
+#'   rl <- return_level(adj_rain_fit, inc = 0.05)
+#'   summary(rl)
+#'   rl
+#'   #plot(rl)
 #' }
 #' @export
 return_level <- function(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
@@ -110,10 +129,13 @@ return_level <- function(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
   }
   Call <- match.call(expand.dots = TRUE)
   type <- match.arg(type)
+  npy_supplied <- ifelse(missing(npy), FALSE, TRUE)
   if (inherits(x, "gev")) {
     temp <- return_level_gev(x, m, level, npy, prof, inc, type)
+  } else if (inherits(x, "bin-gpd")) {
+    temp <- return_level_bingp(x, m, level, npy, prof, inc, type)
   } else {
-    stop("At present, this functionality is only available for GEV models")
+    stop("This functionality is only available for GEV and bin-GP models")
   }
   temp$m <- m
   temp$level <- level

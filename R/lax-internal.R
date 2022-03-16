@@ -110,10 +110,10 @@ gev_rl_CI <- function (x, m, level, npy, type) {
                             lower.tail = FALSE)
   yp <- -log(1 - p)
   delta <- matrix(0, 3, 1)
-  delta[1,] <- 1
-  delta[2,] <- revdbayes::qgev(p, loc = 0, scale = 1, shape = xi,
+  delta[1, ] <- 1
+  delta[2, ] <- revdbayes::qgev(p, loc = 0, scale = 1, shape = xi,
                                lower.tail = FALSE)
-  delta[3,] <- sigma * box_cox_deriv(yp, lambda = -xi)
+  delta[3, ] <- sigma * box_cox_deriv(yp, lambda = -xi)
   rl_var <- t(delta) %*% mat %*% delta
   rl_se <- sqrt(rl_var)
   z_val <- stats::qnorm(1 - (1 - level) / 2)
@@ -205,6 +205,81 @@ gev_rl_prof <- function(x, m, level, npy, inc, type, rl_sym) {
               for_plot = cbind(ret_levs = ret_levs, prof_loglik = prof_lik)))
 }
 
+# ==================== Binomial-GP return levels functions ================== #
+
+#' @keywords internal
+#' @rdname lax-internal
+return_level_bingp <- function(x, m, level, npy, prof, inc, type) {
+  # MLE and symmetric conf% CI for the return level
+  rl_sym <- bingp_rl_CI(x, m, level, npy, type)
+  # Extract SE
+  rl_se <- rl_sym["se"]
+  # Remove SE
+  rl_sym <- rl_sym[c("lower", "mle", "upper")]
+  if (!prof) {
+    return(list(rl_sym = rl_sym, rl_prof = NULL, rl_se = rl_se))
+  }
+#  temp <- bingp_rl_prof(x, m, level, npy, inc, type, rl_sym)
+#  return(list(rl_sym = rl_sym, rl_prof = temp$rl_prof, rl_se = rl_se,
+#              max_loglik = logLik(x), crit = temp$crit,
+#              for_plot = temp$for_plot))
+  return(list(rl_sym = rl_sym, rl_se = rl_se, max_loglik = logLik(x)))
+}
+
+#' @keywords internal
+#' @rdname lax-internal
+bingp_rl_CI <- function (x, m, level, npy, type) {
+  # Check that binom = TRUE was used in the call to aloglik()
+  bin_object <- attr(x, "pu_aloglik")
+  if (is.null(bin_object)) {
+    stop("The argument ''binom = TRUE'' must be used when calling alogLik()")
+  }
+  # Extract information from the binomial inference
+  pu <- attr(bin_object, "MLE")
+  if (type == "none") {
+    bin_mat <- attr(bin_object, "VC")
+  } else {
+    bin_mat <- attr(bin_object, "adjVC")
+  }
+  # Extract information from the GP inference
+  mle <- attr(x, "MLE")
+  sigmau <- mle[1]
+  xi <- mle[2]
+  if (type == "none") {
+    gp_mat <- attr(x, "VC")
+  } else {
+    gp_mat <- attr(x, "adjVC")
+  }
+  print(c(pu, sigmau, xi))
+  # Create the covaiance matrix for all 3 parameters (pu, sigmau, xi)
+  mat <- matrix(0, 3, 3)
+  mat[1, 1] <- bin_mat
+  mat[2:3, 2:3] <- gp_mat
+  # Extract the threshold and npy from the original fitted model object
+  # The location of the threshold may vary between packages
+  if (inherits(x, "ismev")) {
+    u <- attr(x, "original_fit")$threshold
+    npy <- attr(x, "original_fit")$npy
+  }
+  # pmnpy is approximately equal to 1 / (m * npy)
+  pmnpy <- 1 - (1 - 1 / m) ^ (1 / npy)
+  p <- pmnpy / pu
+  rp <- 1 / p
+  rl_mle <- revdbayes::qgp(p, loc = u, scale = sigmau, shape = xi,
+                           lower.tail = FALSE)
+  delta <- matrix(0, 3, 1)
+  delta[1, ] <- sigmau * pu ^ (xi - 1) / pmnpy ^ xi
+  delta[2, ] <- revdbayes::qgp(p, loc = 0, scale = 1, shape = xi,
+                               lower.tail = FALSE)
+  delta[3, ] <- sigmau * box_cox_deriv(rp, lambda = xi)
+  rl_var <- t(delta) %*% mat %*% delta
+  rl_se <- sqrt(rl_var)
+  z_val <- stats::qnorm(1 - (1 - level) / 2)
+  rl_lower <- rl_mle - z_val * rl_se
+  rl_upper <- rl_mle + z_val * rl_se
+  res <- c(lower = rl_lower, mle = rl_mle, upper = rl_upper, se = rl_se)
+  return(res)
+}
 
 # ============================== box_cox_deriv ============================== #
 
