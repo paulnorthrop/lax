@@ -129,6 +129,7 @@ return_level <- function(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
   }
   Call <- match.call(expand.dots = TRUE)
   type <- match.arg(type)
+  # Check whether npy is supplied in the call to return_level
   npy_supplied <- ifelse(missing(npy), FALSE, TRUE)
   if (inherits(x, "gev")) {
     temp <- return_level_gev(x, m, level, npy, prof, inc, type)
