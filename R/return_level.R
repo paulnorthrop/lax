@@ -128,10 +128,10 @@
 #'   rain_fit <- gpd.fit(rain, 10, show = FALSE)
 #'   adj_rain_fit <- alogLik(rain_fit, binom = TRUE)
 #'   # Large inc set here for speed, sacrificing accuracy
-#'   rl <- return_level(adj_rain_fit, inc = 0.05)
+#'   rl <- return_level(adj_rain_fit, inc = 2.5)
 #'   summary(rl)
 #'   rl
-#'   #plot(rl)
+#'   plot(rl)
 #' }
 #' @export
 return_level <- function(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
