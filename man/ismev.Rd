@@ -147,8 +147,9 @@ if (got_ismev) {
   # Binomial-GP model -----
 
   # Use Newlyn seas surges data from the exdex package
-  u <- quantile(exdex::newlyn, probs = 0.9)
-  newlyn_fit <- gpd.fit(exdex::newlyn, u, show = FALSE)
+  surges <- exdex::newlyn
+  u <- quantile(surges, probs = 0.9)
+  newlyn_fit <- gpd.fit(surges, u, show = FALSE)
   # Create 5 clusters each corresponding approximately to 1 year of data
   cluster <- rep(1:5, each = 579)[-1]
   adj_newlyn_fit <- alogLik(newlyn_fit, cluster = cluster, binom = TRUE,
