@@ -13,8 +13,8 @@
 #' @param m A numeric scalar.  The return period, in years.
 #' @param level A numeric scalar in (0, 1).  The confidence level required for
 #'   confidence interval for the \code{m}-year return level.
-#' @param npy A numeric scalar.  The number of observations per year.  See
-#'   \strong{Details}.
+#' @param npy A numeric scalar.  The (mean) number of observations per year.
+#'   \strong{Setting this appropriately is important}. See \strong{Details}.
 #' @param prof A logical scalar.  Should we calculate intervals based on
 #'   profile loglikelihood?
 #' @param inc A numeric scalar. Only relevant if \code{prof = TRUE}. The
@@ -29,17 +29,33 @@
 #'   \strong{Value} in \code{\link[chandwich]{adjust_loglik}}.
 #' @details At present \code{return_level} only supports GEV models.
 #'
-#'   Care must be taken in specifying the input value of \code{npy}.
+#'   \strong{Care must be taken in specifying the input value of \code{npy}.}
+#'   \itemize{
+#'     \item{\strong{GEV models}: }{it is common to have one observation per year,
+#'      either because the data are annual maxima or because for each year only
+#'      the maximum value over a particular season is extracted from the raw
+#'      data. In this case, \code{npy = 1}, which is the default.  If instead
+#'      we extract the maximum values over the first and second halves of each
+#'      year then \code{npy = 2}.}
+#'     \item{\strong{Binomial-GP models}: }{\code{npy} provides information
+#'      about the (intended) frequency of sampling in time, that is, the number
+#'      of observations that would be observed in a year if there are no
+#'      missing values.  If the number of observations may vary between years
+#'      then \code{npy} should be set equal to the mean number of observations
+#'      per year.}
+#'   }
+#'   \strong{Supplying \code{npy} for binomial-GP models.}
+#'   The value of \code{npy} (or an equivalent, perhaps differently named,
+#'   quantity) may have been set in the call to fit a GP model.
+#'   For example, the \code{gpd.fit()} function in the \code{ismev} package
+#'   has a \code{npy} argument and the value of \code{npy} is stored in the
+#'   fitted model object.  If \code{npy} is supplied by the user in the call to
+#'   \code{return_level} then this will be used in preference to the value
+#'   stored in the fitted model object.  If these two values differ then no
+#'   warning will be given.
 #'
-#'   For GEV models it is common to have one observation per year, either
-#'   because the data are annual maxima or because for each year only the
-#'   maximum value over a particular season is extracted from the raw data.
-#'   In this case, \code{npy = 1}, which is the default.  If instead we extract
-#'   the maximum values over the first and second halves of each year then
-#'   \code{npy = 2}.
-#'
-#'   For details about the definition and estimation of return levels see
-#'   Chapter 3 and 4 of Coles (2001).
+#'   For details of the definition and estimation of return levels see the
+#'   Inference for return levels vignette.
 #'
 #'   The profile likelihood-based intervals are calculated by
 #'   reparameterising in terms of the \code{m}-year return level and estimating
@@ -130,11 +146,11 @@ return_level <- function(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
   Call <- match.call(expand.dots = TRUE)
   type <- match.arg(type)
   # Check whether npy is supplied in the call to return_level
-  npy_supplied <- ifelse(missing(npy), FALSE, TRUE)
+  npy_given <- ifelse(missing(npy), FALSE, TRUE)
   if (inherits(x, "gev")) {
     temp <- return_level_gev(x, m, level, npy, prof, inc, type)
   } else if (inherits(x, "bin-gpd")) {
-    temp <- return_level_bingp(x, m, level, npy, prof, inc, type)
+    temp <- return_level_bingp(x, m, level, npy, prof, inc, type, npy_given)
   } else {
     stop("This functionality is only available for GEV and bin-GP models")
   }

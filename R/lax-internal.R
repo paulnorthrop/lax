@@ -209,9 +209,9 @@ gev_rl_prof <- function(x, m, level, npy, inc, type, rl_sym) {
 
 #' @keywords internal
 #' @rdname lax-internal
-return_level_bingp <- function(x, m, level, npy, prof, inc, type) {
+return_level_bingp <- function(x, m, level, npy, prof, inc, type, npy_given) {
   # MLE and symmetric conf% CI for the return level
-  rl_sym <- bingp_rl_CI(x, m, level, npy, type)
+  rl_sym <- bingp_rl_CI(x, m, level, npy, type, npy_given)
   # Extract SE
   rl_se <- rl_sym["se"]
   # Remove SE
@@ -228,7 +228,7 @@ return_level_bingp <- function(x, m, level, npy, prof, inc, type) {
 
 #' @keywords internal
 #' @rdname lax-internal
-bingp_rl_CI <- function (x, m, level, npy, type) {
+bingp_rl_CI <- function (x, m, level, npy, type, npy_given) {
   # Check that binom = TRUE was used in the call to aloglik()
   bin_object <- attr(x, "pu_aloglik")
   if (is.null(bin_object)) {
@@ -259,7 +259,9 @@ bingp_rl_CI <- function (x, m, level, npy, type) {
   # The location of the threshold may vary between packages
   if (inherits(x, "ismev")) {
     u <- attr(x, "original_fit")$threshold
-    npy <- attr(x, "original_fit")$npy
+    if (!npy_given) {
+      npy <- attr(x, "original_fit")$npy
+    }
   }
   # pmnpy is approximately equal to 1 / (m * npy)
   pmnpy <- 1 - (1 - 1 / m) ^ (1 / npy)
