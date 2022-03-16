@@ -22,7 +22,7 @@ gev_rl_prof(x, m, level, npy, inc, type, rl_sym)
 
 return_level_bingp(x, m, level, npy, prof, inc, type, npy_given)
 
-bingp_rl_CI(x, m, level, npy, type, npy_given)
+bingp_rl_CI(x, m, level, npy, type, u)
 
 box_cox_deriv(x, lambda = 1, lambda_tol = 1/50, poly_order = 3)
 

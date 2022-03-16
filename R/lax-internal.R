@@ -210,8 +210,16 @@ gev_rl_prof <- function(x, m, level, npy, inc, type, rl_sym) {
 #' @keywords internal
 #' @rdname lax-internal
 return_level_bingp <- function(x, m, level, npy, prof, inc, type, npy_given) {
+  # Extract the threshold and npy from the original fitted model object
+  # The names may vary between packages
+  if (inherits(x, "ismev")) {
+    u <- attr(x, "original_fit")$threshold
+    if (!npy_given) {
+      npy <- attr(x, "original_fit")$npy
+    }
+  }
   # MLE and symmetric conf% CI for the return level
-  rl_sym <- bingp_rl_CI(x, m, level, npy, type, npy_given)
+  rl_sym <- bingp_rl_CI(x, m, level, npy, type, u)
   # Extract SE
   rl_se <- rl_sym["se"]
   # Remove SE
@@ -219,7 +227,7 @@ return_level_bingp <- function(x, m, level, npy, prof, inc, type, npy_given) {
   if (!prof) {
     return(list(rl_sym = rl_sym, rl_prof = NULL, rl_se = rl_se))
   }
-#  temp <- bingp_rl_prof(x, m, level, npy, inc, type, rl_sym)
+  #  temp <- bingp_rl_prof(x, m, level, npy, inc, type, rl_sym, u)
 #  return(list(rl_sym = rl_sym, rl_prof = temp$rl_prof, rl_se = rl_se,
 #              max_loglik = logLik(x), crit = temp$crit,
 #              for_plot = temp$for_plot))
@@ -228,7 +236,7 @@ return_level_bingp <- function(x, m, level, npy, prof, inc, type, npy_given) {
 
 #' @keywords internal
 #' @rdname lax-internal
-bingp_rl_CI <- function (x, m, level, npy, type, npy_given) {
+bingp_rl_CI <- function (x, m, level, npy, type, u) {
   # Check that binom = TRUE was used in the call to aloglik()
   bin_object <- attr(x, "pu_aloglik")
   if (is.null(bin_object)) {
@@ -250,19 +258,10 @@ bingp_rl_CI <- function (x, m, level, npy, type, npy_given) {
   } else {
     gp_mat <- attr(x, "adjVC")
   }
-  print(c(pu, sigmau, xi))
-  # Create the covaiance matrix for all 3 parameters (pu, sigmau, xi)
+  # Create the covariance matrix for all 3 parameters (pu, sigmau, xi)
   mat <- matrix(0, 3, 3)
   mat[1, 1] <- bin_mat
   mat[2:3, 2:3] <- gp_mat
-  # Extract the threshold and npy from the original fitted model object
-  # The location of the threshold may vary between packages
-  if (inherits(x, "ismev")) {
-    u <- attr(x, "original_fit")$threshold
-    if (!npy_given) {
-      npy <- attr(x, "original_fit")$npy
-    }
-  }
   # pmnpy is approximately equal to 1 / (m * npy)
   pmnpy <- 1 - (1 - 1 / m) ^ (1 / npy)
   p <- pmnpy / pu
