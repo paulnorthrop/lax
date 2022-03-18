@@ -21,6 +21,7 @@
 #' by an error message produced by \code{\link{alogLik}}.
 #' @return An object inheriting from class \code{"chandwich"}.  See
 #'   \code{\link[chandwich]{adjust_loglik}}.
+#'
 #'   \code{class(x)} is a vector of length 5. The first 3 components are
 #'   \code{c("lax", "chandwich", "ismev")}.
 #'   The remaining 2 components depend on the model that was fitted.
@@ -99,6 +100,11 @@
 #'                             cadjust = FALSE)
 #'   summary(adj_newlyn_fit)
 #'   summary(attr(adj_newlyn_fit, "pu_aloglik"))
+#'
+#'   # Add inference about the extremal index theta, using K = 1
+#'   adj_newlyn_theta <- alogLik(newlyn_fit, cluster = cluster, binom = TRUE,
+#'                               k = 1, cadjust = FALSE)
+#'   summary(attr(adj_newlyn_theta, "theta"))
 #'
 #'   # PP model -----
 #'
@@ -217,7 +223,7 @@ alogLik.pp.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
 #' @rdname ismev
 #' @export
 alogLik.gpd.fit <- function(x, cluster = NULL, use_vcov = TRUE, binom = FALSE,
-                            ...) {
+                            k, inc_cens = FALSE, ...) {
   # List of ismev objects supported
   supported_by_lax <- list(ismev_gpd = "gpd.fit")
   # Does x have a supported class?
@@ -272,6 +278,18 @@ alogLik.gpd.fit <- function(x, cluster = NULL, use_vcov = TRUE, binom = FALSE,
     afitb <- alogLik(fitb, cluster = full_cluster, ...)
     attr(res, "pu_aloglik") <- afitb
     class(res) <- c("lax", "chandwich", "ismev", "bin-gpd", "stat")
+  }
+  # For a stationary model, and if a valid k has been supplied, then calculate
+  # the K-gaps model log-likelihood
+  if (!x$trans && !missing(k) && length(k) == 1) {
+    if (!is.wholenumber(k) || k < 0) {
+      stop("k must be a positive integer")
+    }
+  # Call exdex::kgaps() to estimate the extremal index theta and store values
+  # from which the log-likelihood can be calculated
+    theta <- exdex::kgaps(data = x$xdata, u = x$threshold, k = k,
+                          inc_cens = inc_cens)
+    attr(res, "theta") <- theta
   }
   return(res)
 }

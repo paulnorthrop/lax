@@ -12,7 +12,15 @@
 
 \method{alogLik}{pp.fit}(x, cluster = NULL, use_vcov = TRUE, ...)
 
-\method{alogLik}{gpd.fit}(x, cluster = NULL, use_vcov = TRUE, binom = FALSE, ...)
+\method{alogLik}{gpd.fit}(
+  x,
+  cluster = NULL,
+  use_vcov = TRUE,
+  binom = FALSE,
+  k,
+  inc_cens = FALSE,
+  ...
+)
 
 \method{alogLik}{rlarg.fit}(x, cluster = NULL, use_vcov = TRUE, ...)
 }
@@ -55,10 +63,23 @@ adjustment is only performed using the GP model. If \code{binom = TRUE}
 then loglikelihood adjustment is also performed for inferences about the
 probability of threshold exceedance, using a Bernoulli model for the
 instances of threshold exceedance.}
+
+\item{k}{A non-negative integer scalar.  This option is only relevant to
+\strong{GP models} and is only available in the \strong{stationary}
+(no covariates) case.  If \code{k} is supplied then it is passed as the
+run parameter \eqn{K} to \code{\link[exdex]{kgaps}} for making inferences
+about the extremal index \eqn{\theta} using the \eqn{K}-gaps model of
+Suveges and Davison (2010).}
+
+\item{inc_cens}{A logical scalar.  This argument is only relevant if
+\code{k} is supplied.  Passed to \code{\link[exdex]{kgaps}} to indicate
+whether or not to include censored inter-exceedance times, relating to
+the first and last observations.}
 }
 \value{
 An object inheriting from class \code{"chandwich"}.  See
   \code{\link[chandwich]{adjust_loglik}}.
+
   \code{class(x)} is a vector of length 5. The first 3 components are
   \code{c("lax", "chandwich", "ismev")}.
   The remaining 2 components depend on the model that was fitted.
@@ -157,6 +178,11 @@ if (got_ismev) {
   summary(adj_newlyn_fit)
   summary(attr(adj_newlyn_fit, "pu_aloglik"))
 
+  # Add inference about the extremal index theta, using K = 1
+  adj_newlyn_theta <- alogLik(newlyn_fit, cluster = cluster, binom = TRUE,
+                              k = 1, cadjust = FALSE)
+  summary(attr(adj_newlyn_theta, "theta"))
+
   # PP model -----
 
   # An example from the ismev::pp.fit documentation
@@ -218,6 +244,11 @@ if (got_ismev) {
 Chandler, R. E. and Bate, S. (2007). Inference for clustered
   data using the independence loglikelihood. \emph{Biometrika},
   \strong{94}(1), 167-183. \doi{10.1093/biomet/asm015}
+
+Suveges, M. and Davison, A. C. (2010) Model
+  misspecification in peaks over threshold analysis, \emph{The Annals of
+  Applied Statistics}, \strong{4}(1), 203-221.
+  \url{https://doi.org/10.1214/09-AOAS292}
 
 Zeileis (2006) Object-Oriented Computation and Sandwich
   Estimators.  \emph{Journal of Statistical Software}, \strong{16}, 1-16.
