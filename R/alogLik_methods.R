@@ -57,6 +57,16 @@ logLikVec <- function(object, ...) {
 #'   then loglikelihood adjustment is also performed for inferences about the
 #'   probability of threshold exceedance, using a Bernoulli model for the
 #'   instances of threshold exceedance.
+#' @param k A non-negative integer scalar.  This option is only relevant to
+#'   \strong{GP models} and is only available in the \strong{stationary}
+#'   (no covariates) case.  If \code{k} is supplied then it is passed as the
+#'   run parameter \eqn{K} to \code{\link[exdex]{kgaps}} for making inferences
+#'   about the extremal index \eqn{\theta} using the \eqn{K}-gaps model of
+#'   Suveges and Davison (2010).
+#' @param inc_cens A logical scalar.  This argument is only relevant if
+#'   \code{k} is supplied.  Passed to \code{\link[exdex]{kgaps}} to indicate
+#'   whether or not to include censored inter-exceedance times, relating to
+#'   the first and last observations.
 #' @param ... Further arguments to be passed to the functions in the
 #'   sandwich package \code{\link[sandwich]{meat}} (if \code{cluster = NULL}),
 #'   or \code{\link[sandwich:vcovCL]{meatCL}} (if \code{cluster} is not
@@ -120,6 +130,12 @@ logLikVec <- function(object, ...) {
 #'   probability of threshold exceedance. Also, the 4th component of the class
 #'   of the returned object becomes \code{"bin-gpd"}.
 #'
+#'   If \code{k} is supplied then the returned object has an extra attribute
+#'   named \code{theta} that contains an object inheriting from class
+#'   \code{c("kgaps", "exdex")} relating specifically to inferences about the
+#'   extremal index \eqn{\theta}.  See the \strong{Value} section in
+#'   \code{\link[exdex]{kgaps}}.
+#'
 #'   If \code{x} is one of the supported models then the class of the returned
 #'   object is a vector of length 5. The first 3 components are
 #'   \code{c("lax", "chandwich", "name_of_package")}, where
@@ -144,6 +160,10 @@ logLikVec <- function(object, ...) {
 #' @references Chandler, R. E. and Bate, S. (2007). Inference for clustered
 #'   data using the independence loglikelihood. \emph{Biometrika},
 #'   \strong{94}(1), 167-183. \doi{10.1093/biomet/asm015}
+#' @references Suveges, M. and Davison, A. C. (2010) Model
+#'   misspecification in peaks over threshold analysis, \emph{The Annals of
+#'   Applied Statistics}, \strong{4}(1), 203-221.
+#'   \url{https://doi.org/10.1214/09-AOAS292}
 #' @references Zeileis (2006) Object-Oriented Computation and Sandwich
 #'   Estimators.  \emph{Journal of Statistical Software}, \strong{16}, 1-16.
 #'   \doi{10.18637/jss.v016.i09}
@@ -169,7 +189,8 @@ logLikVec <- function(object, ...) {
 #'   \code{\link{ismev}}, \code{\link{mev}}, \code{\link{POT}} and
 #'   \code{\link{texmex}}.
 #' @export
-alogLik <- function(x, cluster = NULL, use_vcov = TRUE, binom = FALSE, ...) {
+alogLik <- function(x, cluster = NULL, use_vcov = TRUE, binom = FALSE, k,
+                    inc_cens = FALSE, ...) {
   UseMethod("alogLik")
 }
 
