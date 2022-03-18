@@ -355,7 +355,7 @@ bingp_rl_prof <- function(x, m, level, npy, inc, type, rl_sym, u) {
       return(bingp_negloglik(bingp_pars, type = type))
     }
     max_loglik <- attr(x, "max_loglik") + attr(bin_object, "max_loglik") +
-      attr(adj_newlyn_theta, "theta")$max_loglik
+      theta_info$max_loglik
   } else {
     bingp_mle <- c(bin_mle, gp_mle)
     bingp_negloglik <- function(pars, type) {
