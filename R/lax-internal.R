@@ -259,21 +259,41 @@ bingp_rl_CI <- function (x, m, level, npy, type, u) {
   } else {
     gp_mat <- attr(x, "adjVC")
   }
-  # Create the covariance matrix for all 3 parameters (pu, sigmau, xi)
-  mat <- matrix(0, 3, 3)
+  # If it exists, extract information from the extremal index inference
+  theta_exists <- !is.null(attr(x, "theta"))
+  if (theta_exists) {
+    theta_info <- attr(x, "theta")
+    theta <- theta_info$theta
+    theta_se <- theta_info$se
+    theta_mat <- theta_se ^ 2
+  } else {
+    theta <- 1
+  }
+  # Create the covariance matrix for all 3 (or 4) parameters:
+  # (pu, sigmau, xi) or (pu, sigmau, xi, theta)
+  npars <- ifelse(theta_exists, 4, 3)
+  mat <- matrix(0, npars, npars)
   mat[1, 1] <- bin_mat
   mat[2:3, 2:3] <- gp_mat
-  # pmnpy is approximately equal to 1 / (m * npy)
-  pmnpy <- 1 - (1 - 1 / m) ^ (1 / npy)
+  # pmnpy is approximately equal to 1 / (m * npy * theta)
+  con <- 1 - 1 / m
+  nt <- npy * theta
+  pmnpy <- 1 - con ^ (1 / nt)
   p <- pmnpy / pu
   rp <- 1 / p
   rl_mle <- revdbayes::qgp(p, loc = u, scale = sigmau, shape = xi,
                            lower.tail = FALSE)
-  delta <- matrix(0, 3, 1)
+  delta <- matrix(0, npars, 1)
   delta[1, ] <- sigmau * pu ^ (xi - 1) / pmnpy ^ xi
   delta[2, ] <- revdbayes::qgp(p, loc = 0, scale = 1, shape = xi,
                                lower.tail = FALSE)
   delta[3, ] <- sigmau * box_cox_deriv(rp, lambda = xi)
+  # Add information about theta, if it is available
+  if (theta_exists) {
+    delta[4, ] <- -sigmau * rp ^ (xi - 1) * pu * con ^ (1 / nt) * log(con) /
+      (npy * theta ^ 2 * pmnpy ^ 2)
+    mat[4, 4] <- theta_mat
+  }
   rl_var <- t(delta) %*% mat %*% delta
   rl_se <- sqrt(rl_var)
   z_val <- stats::qnorm(1 - (1 - level) / 2)
@@ -431,4 +451,31 @@ ismev_ppp <- function (a, npy) {
   sc <- a[2] + a[3] * (u - a[1])
   xi <- a[3]
   c(la, sc, xi)
+}
+
+# ======================== Check for an integer number ====================== #
+
+#' @keywords internal
+#' @rdname lax-internal
+is.wholenumber <-  function(x, tol = .Machine$double.eps^0.5) {
+  return(abs(x - round(x)) < tol)
+}
+
+# =============================== kgaps_loglik ============================== #
+# Included because this is not exported from exdex
+
+#' @keywords internal
+#' @rdname lax-internal
+kgaps_loglik <- function(theta, N0, N1, sum_qs, n_kgaps){
+  if (theta < 0 || theta > 1) {
+    return(-Inf)
+  }
+  loglik <- 0
+  if (N1 > 0) {
+    loglik <- loglik + 2 * N1 * log(theta) - sum_qs * theta
+  }
+  if (N0 > 0) {
+    loglik <- loglik + N0 * log(1 - theta)
+  }
+  return(loglik)
 }
