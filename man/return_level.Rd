@@ -170,7 +170,7 @@ if (got_ismev) {
 
   # Add inference about the extremal index theta, using K = 1
   adj_newlyn_theta <- alogLik(newlyn_fit, cluster = cluster, binom = TRUE,
-                              k = 1,cadjust = FALSE)
+                              k = 1, cadjust = FALSE)
   rl <- return_level(adj_newlyn_theta, inc = 0.02)
   rl
 }
