@@ -77,7 +77,7 @@ NULL
 fit_bernoulli <- function(data) {
   res <- list()
   res$data <- data
-  obs_data <- na.omit(data)
+  obs_data <- stats::na.omit(data)
   res$obs_data <- obs_data
   res$mle <- mean(obs_data)
   res$nobs <- length(obs_data)
