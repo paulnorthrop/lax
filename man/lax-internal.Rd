@@ -11,6 +11,8 @@
 \alias{bingp_rl_prof}
 \alias{box_cox_deriv}
 \alias{ismev_ppp}
+\alias{is.wholenumber}
+\alias{kgaps_loglik}
 \title{Internal lax functions}
 \usage{
 adj_object(x, cluster = NULL, use_vcov = TRUE, ...)
@@ -30,6 +32,10 @@ bingp_rl_prof(x, m, level, npy, inc, type, rl_sym, u)
 box_cox_deriv(x, lambda = 1, lambda_tol = 1/50, poly_order = 3)
 
 ismev_ppp(a, npy)
+
+is.wholenumber(x, tol = .Machine$double.eps^0.5)
+
+kgaps_loglik(theta, N0, N1, sum_qs, n_kgaps)
 }
 \description{
 Internal lax functions
