@@ -156,22 +156,24 @@ if (got_ismev) {
   plot(rl)
 }
 
-# Use Newlyn seas surges data from the exdex package
-surges <- exdex::newlyn
-u <- quantile(surges, probs = 0.9)
-newlyn_fit <- gpd.fit(surges, u, show = FALSE)
-# Create 5 clusters each corresponding approximately to 1 year of data
-cluster <- rep(1:5, each = 579)[-1]
-adj_newlyn_fit <- alogLik(newlyn_fit, cluster = cluster, binom = TRUE,
-                          cadjust = FALSE)
-rl <- return_level(adj_newlyn_fit, inc = 0.02)
-rl
+if (got_ismev) {
+  # Use Newlyn seas surges data from the exdex package
+  surges <- exdex::newlyn
+  u <- quantile(surges, probs = 0.9)
+  newlyn_fit <- gpd.fit(surges, u, show = FALSE)
+  # Create 5 clusters each corresponding approximately to 1 year of data
+  cluster <- rep(1:5, each = 579)[-1]
+  adj_newlyn_fit <- alogLik(newlyn_fit, cluster = cluster, binom = TRUE,
+                            cadjust = FALSE)
+  rl <- return_level(adj_newlyn_fit, inc = 0.02)
+  rl
 
-# Add inference about the extremal index theta, using K = 1
-adj_newlyn_theta <- alogLik(newlyn_fit, cluster = cluster, binom = TRUE,
-                            k = 1,cadjust = FALSE)
-rl <- return_level(adj_newlyn_theta, prof = FALSE)
-rl
+  # Add inference about the extremal index theta, using K = 1
+  adj_newlyn_theta <- alogLik(newlyn_fit, cluster = cluster, binom = TRUE,
+                              k = 1,cadjust = FALSE)
+  rl <- return_level(adj_newlyn_theta, inc = 0.02)
+  rl
+}
 }
 \references{
 Coles, S. G. (2001) \emph{An Introduction to Statistical
