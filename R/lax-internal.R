@@ -314,36 +314,76 @@ bingp_rl_prof <- function(x, m, level, npy, inc, type, rl_sym, u) {
   if (is.null(bin_object)) {
     stop("The argument ''binom = TRUE'' must be used when calling alogLik()")
   }
+  # If it exists, extract the theta adjusted loglikelihood object
+  theta_exists <- !is.null(attr(x, "theta"))
+  if (theta_exists) {
+    theta_info <- attr(x, "theta")
+    theta_mle <- theta_info$theta
+    theta_loglik <- function(tval) {
+      theta_list <- c(list(theta = tval), theta_info$ss)
+      return(do.call(kgaps_loglik, theta_list))
+    }
+  }
   # Extract the MLEs of (pu, sigmau, xi)
   bin_mle <- attr(bin_object, "MLE")
   gp_mle <- attr(x, "MLE")
-  bingp_mle <- c(bin_mle, gp_mle)
   # Function to calculate the negated adjusted binomial-GP loglikelihood
-  bingp_negloglik <- function(pars, type) {
-    gp_negloglik <- -x(pars[2:3], type = type)
-    bin_negloglik <- -bin_object(pars[1], type = type)
-    return(gp_negloglik + bin_negloglik)
-  }
-  pmnpy <- 1 - (1 - 1 / m) ^ (1 / npy)
-  # Calculates the negated profile loglikelihood of the m-year return level
-  bingp_neg_prof_loglik <- function(a, xp) {
-    # a[1] is pu, a[2] is xi
-    # Check that pu is in (0, 1)
-    if (a[1] <= 0 || a[1] >= 1) {
-      return(10 ^ 10)
+  if (theta_exists) {
+    bingp_mle <- c(bin_mle, gp_mle, theta = theta_mle)
+    bingp_negloglik <- function(pars, type) {
+      gp_negloglik <- -x(pars[2:3], type = type)
+      bin_negloglik <- -bin_object(pars[1], type = type)
+      theta_negloglik <- -theta_loglik(pars[4])
+      return(gp_negloglik + bin_negloglik + theta_negloglik)
     }
-    p <- pmnpy / a[1]
-    sigmau <- (xp - u) / revdbayes::qgp(p, loc = 0, scale = 1, shape = a[2],
-                                        lower.tail = FALSE)
-    # Check that sigmau is positive
-    if (sigmau <= 0) {
-      return(10 ^ 10)
+    # Calculates the negated profile loglikelihood of the m-year return level
+    bingp_neg_prof_loglik <- function(a, xp) {
+      # a[1] is pu, a[2] is xi, a[3] is theta
+      # Check that pu is in (0, 1) and theta is in (0, 1]
+      if (a[1] <= 0 || a[1] >= 1 || a[3] <= 0 || a[3] > 1) {
+        return(10 ^ 10)
+      }
+      pmnpy <- 1 - (1 - 1 / m) ^ (1 / (npy * a[3]))
+      p <- pmnpy / a[1]
+      sigmau <- (xp - u) / revdbayes::qgp(p, loc = 0, scale = 1, shape = a[2],
+                                          lower.tail = FALSE)
+      # Check that sigmau is positive
+      if (sigmau <= 0) {
+        return(10 ^ 10)
+      }
+      bingp_pars <- c(a[1], sigmau, a[2], a[3])
+      return(bingp_negloglik(bingp_pars, type = type))
     }
-    bingp_pars <- c(a[1], sigmau, a[2])
-    return(bingp_negloglik(bingp_pars, type = type))
+    max_loglik <- attr(x, "max_loglik") + attr(bin_object, "max_loglik") +
+      attr(adj_newlyn_theta, "theta")$max_loglik
+  } else {
+    bingp_mle <- c(bin_mle, gp_mle)
+    bingp_negloglik <- function(pars, type) {
+      gp_negloglik <- -x(pars[2:3], type = type)
+      bin_negloglik <- -bin_object(pars[1], type = type)
+      return(gp_negloglik + bin_negloglik)
+    }
+    pmnpy <- 1 - (1 - 1 / m) ^ (1 / npy)
+    # Calculates the negated profile loglikelihood of the m-year return level
+    bingp_neg_prof_loglik <- function(a, xp) {
+      # a[1] is pu, a[2] is xi
+      # Check that pu is in (0, 1)
+      if (a[1] <= 0 || a[1] >= 1) {
+        return(10 ^ 10)
+      }
+      p <- pmnpy / a[1]
+      sigmau <- (xp - u) / revdbayes::qgp(p, loc = 0, scale = 1, shape = a[2],
+                                          lower.tail = FALSE)
+      # Check that sigmau is positive
+      if (sigmau <= 0) {
+        return(10 ^ 10)
+      }
+      bingp_pars <- c(a[1], sigmau, a[2])
+      return(bingp_negloglik(bingp_pars, type = type))
+    }
+    max_loglik <- attr(x, "max_loglik") + attr(bin_object, "max_loglik")
   }
   rl_mle <- rl_sym["mle"]
-  max_loglik <- attr(x, "max_loglik") + attr(bin_object, "max_loglik")
   conf_line <- max_loglik - 0.5 * stats::qchisq(level, 1)
   v1 <- v2 <- x1 <- x2 <- NULL
   x2[1] <- x1[1] <- rl_mle
@@ -356,7 +396,7 @@ bingp_rl_prof <- function(x, m, level, npy, inc, type, rl_sym, u) {
   xp <- rl_mle
   my_val <- max_loglik
   ii <- 1
-  sol <- bingp_mle[c(1, 3)]
+  sol <- bingp_mle[-2]
   while (my_val > conf_line){
     xp <- xp + inc
     opt <- stats::optim(sol, bingp_neg_prof_loglik, method = "BFGS", xp = xp)
@@ -371,7 +411,7 @@ bingp_rl_prof <- function(x, m, level, npy, inc, type, rl_sym, u) {
   xp <- rl_mle
   my_val <- max_loglik
   ii <- 1
-  sol <- bingp_mle[c(1, 3)]
+  sol <- bingp_mle[-2]
   while (my_val > conf_line){
     xp <- xp - inc
     opt <- stats::optim(sol, bingp_neg_prof_loglik, method = "BFGS", xp = xp)
@@ -463,6 +503,8 @@ is.wholenumber <-  function(x, tol = .Machine$double.eps^0.5) {
 
 # =============================== kgaps_loglik ============================== #
 # Included because this is not exported from exdex
+# The argument n_kgaps is not used here but it is included because it is
+# included in the list returned by exdex::kgaps_stat()
 
 #' @keywords internal
 #' @rdname lax-internal
