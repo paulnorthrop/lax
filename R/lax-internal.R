@@ -355,7 +355,9 @@ bingp_rl_prof <- function(x, m, level, npy, inc, type, rl_sym, u) {
       return(bingp_negloglik(bingp_pars, type = type))
     }
     max_loglik <- attr(x, "max_loglik") + attr(bin_object, "max_loglik") +
-      theta_info$max_loglik
+       theta_loglik(theta_mle)
+#      This could be used once exdex 1.0.2 is on CRAN
+#      theta_info$max_loglik
   } else {
     bingp_mle <- c(bin_mle, gp_mle)
     bingp_negloglik <- function(pars, type) {
