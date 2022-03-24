@@ -10,7 +10,7 @@ alogLik(
   use_vcov = TRUE,
   binom = FALSE,
   k,
-  inc_cens = FALSE,
+  inc_cens = TRUE,
   ...
 )
 }

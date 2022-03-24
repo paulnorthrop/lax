@@ -223,7 +223,7 @@ alogLik.pp.fit <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
 #' @rdname ismev
 #' @export
 alogLik.gpd.fit <- function(x, cluster = NULL, use_vcov = TRUE, binom = FALSE,
-                            k, inc_cens = FALSE, ...) {
+                            k, inc_cens = TRUE, ...) {
   # List of ismev objects supported
   supported_by_lax <- list(ismev_gpd = "gpd.fit")
   # Does x have a supported class?
@@ -285,8 +285,8 @@ alogLik.gpd.fit <- function(x, cluster = NULL, use_vcov = TRUE, binom = FALSE,
     if (!is.wholenumber(k) || k < 0) {
       stop("k must be a positive integer")
     }
-  # Call exdex::kgaps() to estimate the extremal index theta and store values
-  # from which the log-likelihood can be calculated
+    # Call exdex::kgaps() to estimate the extremal index theta and store values
+    # from which the log-likelihood can be calculated
     theta <- exdex::kgaps(data = x$xdata, u = x$threshold, k = k,
                           inc_cens = inc_cens)
     attr(res, "theta") <- theta

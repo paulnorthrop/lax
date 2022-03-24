@@ -190,7 +190,7 @@ logLikVec <- function(object, ...) {
 #'   \code{\link{texmex}}.
 #' @export
 alogLik <- function(x, cluster = NULL, use_vcov = TRUE, binom = FALSE, k,
-                    inc_cens = FALSE, ...) {
+                    inc_cens = TRUE, ...) {
   UseMethod("alogLik")
 }
 
