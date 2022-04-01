@@ -5,8 +5,6 @@
 #' @export
 estfun.default <- function(x, loglik_fn, ...) {
   U <- numDeriv::jacobian(loglik_fn, x = coef(x), ...)
-  print(dim(U))
-  print(summary(U))
   colnames(U) <- names(coef(x))
   return(U)
 }
