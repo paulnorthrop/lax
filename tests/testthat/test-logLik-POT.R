@@ -14,11 +14,12 @@ if (requireNamespace("POT", quietly = TRUE)) {
   class(temp) <- "POT_fitgpd"
 
   test_that("POT::fitgpd: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(fit), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("POT::fitgpd: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit), logLik(adj_fit))
+    testthat::expect_equal(logLik(fit), logLik(adj_fit), ignore_attr = TRUE)
   })
   # Check logLik.POT_fitgpd: trivially correct
   test_that("POT::fitgpd: logLik() vs. logLik(logLikVec)", {

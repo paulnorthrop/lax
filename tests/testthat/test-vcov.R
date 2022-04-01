@@ -45,7 +45,7 @@ if (requireNamespace("evd", quietly = TRUE)) {
   class(temp) <- "evd_fgev"
   test_that("evd::fgev: vcov.gev vs vcov.evd_gev", {
     # column names differ
-    testthat::expect_equivalent(vcov(M1), vcov(temp))
+    testthat::expect_equal(vcov(M1), vcov(temp), ignore_attr = TRUE)
   })
 }
 
@@ -60,7 +60,7 @@ if (requireNamespace("extRemes", quietly = TRUE)) {
   class(temp) <- "extRemes_gev"
   test_that("extRemes::fevd: vcov.fevd vs vcov.extRemes_gev", {
     # column names differ
-    testthat::expect_equivalent(vcov(fitPORTstdmax), vcov(temp))
+    testthat::expect_equal(vcov(fitPORTstdmax), vcov(temp), ignore_attr = TRUE)
   })
 }
 
@@ -156,6 +156,6 @@ if (requireNamespace("texmex", quietly = TRUE)) {
   class(temp) <- "texmex_evmOpt"
   test_that("texmex::evm: vcov.evmOpt vs vcov.texmex_evmOpt", {
     # column names differ
-    testthat::expect_equivalent(vcov(mod), vcov(temp))
+    testthat::expect_equal(vcov(mod), vcov(temp), ignore_attr = TRUE)
   })
 }

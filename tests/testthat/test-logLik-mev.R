@@ -86,11 +86,12 @@ if (requireNamespace("mev", quietly = TRUE)) {
   # equal to "scale".  logLik.mev_rlarg() and logLik.laxmev_rlarg() also
   # disagree on nobs. Therefore, use equivalent in the first two tests
   test_that("mev::fit.rlarg: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(rfit), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(rfit), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("mev::fit.rlarg: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(rfit), logLik(adj_rfit))
+    testthat::expect_equal(logLik(rfit), logLik(adj_rfit), ignore_attr = TRUE)
   })
   # Check logLik.rlarg.fit: trivially correct
   test_that("mev::fit.rlarg: logLik() vs. logLik(logLikVec)", {
@@ -113,11 +114,13 @@ if (requireNamespace("mev", quietly = TRUE)) {
       # logLik.mev_egp() produces an object with an extra attribute names
       # equal to "scale".  Therefore, use equivalent in the first two tests
       test_that("mev::fit.egp: logLik() vs. logLik(logLikVec)", {
-        testthat::expect_equivalent(logLik(fitted), logLik(logLikVec(temp)))
+        testthat::expect_equal(logLik(fitted), logLik(logLikVec(temp)),
+                               ignore_attr = TRUE)
       })
       # Check that alogLik also returned the correct maximised log-likelihood
       test_that("mev::fit.egp: logLik() vs. logLik(logLikVec)", {
-        testthat::expect_equivalent(logLik(fitted), logLik(adj_fitted))
+        testthat::expect_equal(logLik(fitted), logLik(adj_fitted),
+                               ignore_attr = TRUE)
       })
       # Check logLik.evd_fgev: trivially correct (up to naming)
       test_that("mev::fit.egp: logLik() vs. logLik(logLikVec)", {

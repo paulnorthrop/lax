@@ -11,11 +11,13 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   adj_gev_fit <- alogLik(gev_fit)
   class(temp) <- "ismev_gev"
   test_that("ismev::gev.fit: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(gev_fit), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(gev_fit), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("ismev::gev_fit: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(gev_fit), logLik(adj_gev_fit))
+    testthat::expect_equal(logLik(gev_fit), logLik(adj_gev_fit),
+                           ignore_attr = TRUE)
   })
   # Check logLik.gev.fit: trivially correct
   test_that("ismev::gev.fit: logLik() vs. logLik(logLikVec)", {
@@ -36,7 +38,8 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("ismev::gev_fit, reg: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(gev_fit), logLik(adj_gev_fit))
+    testthat::expect_equal(logLik(gev_fit), logLik(adj_gev_fit),
+                           ignore_attr = TRUE)
   })
   # Check logLik.evd_fgev: trivially correct
   test_that("ismev::gev.fit, reg: logLik() vs. logLik(logLikVec)", {
@@ -52,11 +55,13 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   adj_rain_fit <- alogLik(rain_fit)
   class(temp) <- "ismev_gpd"
   test_that("ismev::gpd.fit: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(rain_fit), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(rain_fit), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("ismev::gpd.fit: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(rain_fit), logLik(adj_rain_fit))
+    testthat::expect_equal(logLik(rain_fit), logLik(adj_rain_fit),
+                           ignore_attr = TRUE)
   })
   # Check logLik.evd_fgev: trivially correct
   test_that("ismev::gpd.fit: logLik() vs. logLik(logLikVec)", {
@@ -70,11 +75,13 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   adj_reg_rain_fit <- alogLik(reg_rain_fit)
   class(temp) <- "ismev_gpd"
   test_that("ismev::gpd.fit, reg: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(reg_rain_fit), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(reg_rain_fit), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("ismev::gpd.fit, reg: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(reg_rain_fit), logLik(adj_reg_rain_fit))
+    testthat::expect_equal(logLik(reg_rain_fit), logLik(adj_reg_rain_fit),
+                           ignore_attr = TRUE)
   })
   # Check logLik.gpd.fit: trivially correct
   test_that("ismev::gpd.fit, reg: logLik() vs. logLik(logLikVec)", {
@@ -95,11 +102,13 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   adj_rain_fit <- alogLik(rain_fit)
   class(temp) <- "ismev_pp"
   test_that("ismev::pp.fit: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(rain_fit), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(rain_fit), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("ismev::pp.fit, reg: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(reg_rain_fit), logLik(adj_reg_rain_fit))
+    testthat::expect_equal(logLik(reg_rain_fit), logLik(adj_reg_rain_fit),
+                           ignore_attr = TRUE)
   })
   # Check logLik.pp.fit: trivially correct
   test_that("ismev::pp.fit: logLik() vs. logLik(logLikVec)", {
@@ -127,11 +136,13 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   adj_wooster.pp <- alogLik(wooster.pp)
   class(temp) <- "ismev_pp"
   test_that("ismev::pp.fit, reg: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(wooster.pp), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(wooster.pp), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("ismev::pp.fit, reg: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(wooster.pp), logLik(adj_wooster.pp))
+    testthat::expect_equal(logLik(wooster.pp), logLik(adj_wooster.pp),
+                           ignore_attr = TRUE)
   })
   # Check logLik.pp.fit: trivially correct
   test_that("ismev::pp.fit, reg: logLik() vs. logLik(logLikVec)", {
@@ -149,11 +160,12 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   adj_rfit <- alogLik(rfit)
   class(temp) <- "ismev_rlarg"
   test_that("ismev::rlarg.fit: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(rfit), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(rfit), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("ismev::rlarg.fit: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(rfit), logLik(adj_rfit))
+    testthat::expect_equal(logLik(rfit), logLik(adj_rfit), ignore_attr = TRUE)
   })
   # Check logLik.rlarg.fit: trivially correct
   test_that("ismev::rlarg.fit: logLik() vs. logLik(logLikVec)", {
@@ -171,11 +183,13 @@ if (requireNamespace("ismev", quietly = TRUE)) {
   adj_rfit2 <- alogLik(rfit2)
   class(temp) <- "ismev_rlarg"
   test_that("lax::rlarg_refit, reg: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(rfit2), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(rfit2), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("lax::rlarg_refit, reg: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(rfit2), logLik(adj_rfit2))
+    testthat::expect_equal(logLik(rfit2), logLik(adj_rfit2),
+                           ignore_attr = TRUE)
   })
   # Check logLik.rlarg.fit: trivially correct
   test_that("lax::rlarg_refit, reg: logLik() vs. logLik(logLikVec)", {

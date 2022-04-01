@@ -58,3 +58,4 @@ Suggests: distillery,
 VignetteBuilder: knitr
 URL: https://paulnorthrop.github.io/lax/, https://github.com/paulnorthrop/lax
 BugReports: https://github.com/paulnorthrop/lax/issues
+Config/testthat/edition: 3

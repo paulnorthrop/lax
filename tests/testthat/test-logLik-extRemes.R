@@ -19,11 +19,12 @@ if (got_extRemes & got_distillery) {
   adj_fit0 <- alogLik(fit0)
   class(temp) <- "extRemes_gev"
   test_that("extRemes::fevd, GEV: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit0), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(fit0), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("extRemes::fevd, GEV: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit0), logLik(adj_fit0))
+    testthat::expect_equal(logLik(fit0), logLik(adj_fit0), ignore_attr = TRUE)
   })
   # Check logLik.extRemes_gev, GEV: trivially correct
   test_that("extRemes::fevd, GEV: logLik() vs. logLik(logLikVec)", {
@@ -38,11 +39,12 @@ if (got_extRemes & got_distillery) {
   class(temp) <- "extRemes_gev"
 
   test_that("extRemes::fevd, reg, loc: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit1), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(fit1), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("extRemes::fevd, reg, loc: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit1), logLik(adj_fit1))
+    testthat::expect_equal(logLik(fit1), logLik(adj_fit1), ignore_attr = TRUE)
   })
   # Check logLik.extRemes_gev, GEV: trivially correct
   test_that("extRemes::fevd, reg, loc: logLik() vs. logLik(logLikVec)", {
@@ -57,11 +59,12 @@ if (got_extRemes & got_distillery) {
   class(temp) <- "extRemes_gev"
 
   test_that("extRemes::fevd, reg, phi: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit1), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(fit1), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("extRemes::fevd, reg, phi: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit1), logLik(adj_fit1))
+    testthat::expect_equal(logLik(fit1), logLik(adj_fit1), ignore_attr = TRUE)
   })
   # Check logLik.extRemes_gev, GEV: trivially correct
   test_that("extRemes::fevd, reg, phi: logLik() vs. logLik(logLikVec)", {
@@ -76,11 +79,12 @@ if (got_extRemes & got_distillery) {
   class(temp) <- "extRemes_gev"
 
   test_that("extRemes::fgev, reg, sigma: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit1), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(fit1), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("extRemes::fgev, reg, sigma: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit1), logLik(adj_fit1))
+    testthat::expect_equal(logLik(fit1), logLik(adj_fit1), ignore_attr = TRUE)
   })
   # Check logLik.extRemes_gev, reg: trivially correct
   test_that("extRemes::fevd, reg, sigma: logLik() vs. logLik(logLikVec)", {
@@ -98,11 +102,12 @@ if (got_extRemes & got_distillery) {
   class(temp) <- "extRemes_gp"
 
   test_that("extRemes::fevd, GP: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit1), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(fit1), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("extRemes::fevd, GP: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit1), logLik(adj_fit1))
+    testthat::expect_equal(logLik(fit1), logLik(adj_fit1), ignore_attr = TRUE)
   })
   # Check logLik.extRemes_gp, GEV: trivially correct
   test_that("extRemes::fevd, GP: logLik() vs. logLik(logLikVec)", {
@@ -120,11 +125,12 @@ if (got_extRemes & got_distillery) {
   class(temp) <- "extRemes_gp"
 
   test_that("extRemes::fevd, GP reg: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(fit), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("extRemes::fevd, GP reg: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit), logLik(adj_fit))
+    testthat::expect_equal(logLik(fit), logLik(adj_fit), ignore_attr = TRUE)
   })
   # Check logLik.extRemes_gp, GP reg: trivially correct
   test_that("extRemes::fevd, reg: logLik() vs. logLik(logLikVec)", {
@@ -139,11 +145,12 @@ if (got_extRemes & got_distillery) {
   class(temp) <- "extRemes_pp"
 
   test_that("extRemes::fevd, PP: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(fit), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("extRemes::fevd, PP: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit), logLik(adj_fit))
+    testthat::expect_equal(logLik(fit), logLik(adj_fit), ignore_attr = TRUE)
   })
   # Check logLik.extRemes_gp, PP: trivially correct
   test_that("extRemes::fevd, PP: logLik() vs. logLik(logLikVec)", {
@@ -160,11 +167,12 @@ if (got_extRemes & got_distillery) {
   class(temp) <- "extRemes_pp"
 
   test_that("extRemes::fevd, PP, var u: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(fit), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("extRemes::fevd, PP, var u: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit), logLik(adj_fit))
+    testthat::expect_equal(logLik(fit), logLik(adj_fit), ignore_attr = TRUE)
   })
   # Check logLik.extRemes_pp, PP: trivially correct
   test_that("extRemes::fevd, PP, var u: logLik() vs. logLik(logLikVec)", {
@@ -192,11 +200,13 @@ if (got_extRemes & got_distillery) {
     class(temp) <- "extRemes_pp"
 
     test_that("extRemes::fevd, PP reg: logLik() vs. logLik(logLikVec)", {
-      testthat::expect_equivalent(logLik(fitPP), logLik(logLikVec(temp)))
+      testthat::expect_equal(logLik(fitPP), logLik(logLikVec(temp)),
+                             ignore_attr = TRUE)
     })
     # Check that alogLik also returned the correct maximised log-likelihood
     test_that("extRemes::fevd, PP reg: logLik() vs. logLik(logLikVec)", {
-      testthat::expect_equivalent(logLik(fitPP), logLik(adj_fit))
+      testthat::expect_equal(logLik(fitPP), logLik(adj_fit),
+                             ignore_attr = TRUE)
     })
     # Check logLik.extRemes_gp, PP: trivially correct
     test_that("extRemes::fevd, PP reg: logLik() vs. logLik(logLikVec)", {

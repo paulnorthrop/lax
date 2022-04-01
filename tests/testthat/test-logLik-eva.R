@@ -17,11 +17,13 @@ if (requireNamespace("eva", quietly = TRUE)) {
   # loglik.laxeva_gpd() gives the number of threshold excesses
   # Therefore, use equivalent in the first two tests
   test_that("eva::gpdFit: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(mle_fit), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(mle_fit), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("eva::gpdFit: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(mle_fit), logLik(adj_mle_fit))
+    testthat::expect_equal(logLik(mle_fit), logLik(adj_mle_fit),
+                           ignore_attr = TRUE)
   })
   # Check logLik.gev.fit: trivially correct
   test_that("eva::gpdFit: logLik() vs. logLik(logLikVec)", {
@@ -58,11 +60,13 @@ if (requireNamespace("eva", quietly = TRUE)) {
   # loglik.laxeva_gpd() gives the number of threshold excesses
   # Therefore, use equivalent in the first two tests
   test_that("eva::gpdFit inc. covariates: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(result1), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(result1), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("eva::gpdFit inc. covariates: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(result1), logLik(adj_result1))
+    testthat::expect_equal(logLik(result1), logLik(adj_result1),
+                           ignore_attr = TRUE)
   })
   # Check logLik.gev.fit: trivially correct
   test_that("eva::gpdFit inc. covariates: logLik() vs. logLik(logLikVec)", {

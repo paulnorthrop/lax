@@ -50,11 +50,13 @@ if (got_evd) {
   summary_rl <- summary(rl)
   test_that("print.rl vs summary.rl, MLEs", {
     # Names differ
-    testthat::expect_equivalent(summary_rl$matrix[, 1], print_rl$rl_sym["mle"])
+    testthat::expect_equal(summary_rl$matrix[, 1], print_rl$rl_sym["mle"],
+                           ignore_attr = TRUE)
   })
   test_that("print.rl vs summary.rl, EEs", {
     # Names differ
-    testthat::expect_equivalent(summary_rl$matrix[, 2], print_rl$rl_se)
+    testthat::expect_equal(summary_rl$matrix[, 2], print_rl$rl_se,
+                           ignore_attr = TRUE)
   })
 
 }

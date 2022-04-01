@@ -13,13 +13,14 @@ if (requireNamespace("evd", quietly = TRUE)) {
   adj_fgev <- alogLik(M1)
   class(temp) <- "evd_fgev"
   # Note: evd::logLik.evd returns non-standard attributes (no nobs)
-  # Therefore, use expect_equivalent(), rather than expect_equal()
+  # Therefore, use expect_equal(, ignore_attr = TRUE)
   test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(M1), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(M1), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(M1), logLik(adj_fgev))
+    testthat::expect_equal(logLik(M1), logLik(adj_fgev), ignore_attr = TRUE)
   })
   # Check logLik.evd_fgev: trivially correct
   test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
@@ -34,7 +35,7 @@ if (requireNamespace("evd", quietly = TRUE)) {
   class(temp) <- "evd_fgev"
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("evd::fgev: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(M2), logLik(adj_fgev))
+    testthat::expect_equal(logLik(M2), logLik(adj_fgev), ignore_attr = TRUE)
   })
 
   # evd::fpot
@@ -61,13 +62,14 @@ if (requireNamespace("evd", quietly = TRUE)) {
     class(M1) <- rev(class(M1))
   }
   # Note: evd::logLik.evd returns non-standard attributes (no nobs)
-  # Therefore, use expect_equivalent(), rather than expect_equal()
+  # Therefore, use expect_equal(ignore_attr = TRUE)
   test_that("evd::fpot, gpd: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(M1), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(M1), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("evd::fpot: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(M1), logLik(adj_fpot))
+    testthat::expect_equal(logLik(M1), logLik(adj_fpot), ignore_attr = TRUE)
   })
   # Check logLik.evd_fgev: trivially correct
   test_that("evd::fpot, gpd: logLik() vs. logLik(logLikVec)", {
@@ -83,13 +85,14 @@ if (requireNamespace("evd", quietly = TRUE)) {
     class(M1) <- rev(class(M1))
   }
   # Note: evd::logLik.evd returns non-standard attributes (no nobs)
-  # Therefore, use expect_equivalent(), rather than expect_equal()
+  # Therefore, use expect_equal(, ignore_attr = TRUE)
   test_that("evd::fpot, pp: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(M1), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(M1), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("evd::fpot: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(M1), logLik(adj_fpot))
+    testthat::expect_equal(logLik(M1), logLik(adj_fpot), ignore_attr = TRUE)
   })
   # Check logLik.evd_fgev: trivially correct
   test_that("evd::fpot, pp: logLik() vs. logLik(logLikVec)", {

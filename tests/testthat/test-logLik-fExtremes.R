@@ -16,11 +16,12 @@ if (requireNamespace("fExtremes", quietly = TRUE)) {
   class(temp) <- "fExtremes_gev"
 
   test_that("fExtremes::gevFit: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit), logLik(logLikVec(temp)))
+    testthat::expect_equal(logLik(fit), logLik(logLikVec(temp)),
+                           ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("fExtremes::gevFit: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit), logLik(adj_fit))
+    testthat::expect_equal(logLik(fit), logLik(adj_fit), ignore_attr = TRUE)
   })
   # Check logLik.POT_fitgpd: trivially correct
   test_that("fExtremes::gevFit: logLik() vs. logLik(logLikVec)", {
@@ -41,13 +42,13 @@ if (requireNamespace("fExtremes", quietly = TRUE)) {
   my_tol <- 1e-4
 
   test_that("fExtremes::gpdFit: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit), logLik(logLikVec(temp)),
-                                tol = my_tol)
+    testthat::expect_equal(logLik(fit), logLik(logLikVec(temp)),
+                           tolerance = my_tol, ignore_attr = TRUE)
   })
   # Check that alogLik also returned the correct maximised log-likelihood
   test_that("fExtremes::gpdFit: logLik() vs. logLik(logLikVec)", {
-    testthat::expect_equivalent(logLik(fit), logLik(adj_fit),
-                                tol = my_tol)
+    testthat::expect_equal(logLik(fit), logLik(adj_fit), tolerance = my_tol,
+                           ignore_attr = TRUE)
   })
   # Check logLik.POT_fitgpd: trivially correct
   test_that("fExtremes::gpdFit: logLik() vs. logLik(logLikVec)", {

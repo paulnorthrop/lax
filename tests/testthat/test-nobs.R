@@ -24,7 +24,7 @@ if (requireNamespace("evd", quietly = TRUE)) {
   u <- 1
   M2 <- evd::fpot(uvdata, u)
   test_that("evd::fpot, nobs.evd() vs. sum(response > u)", {
-    testthat::expect_equivalent(nobs(M2), sum(uvdata > u))
+    testthat::expect_equal(nobs(M2), sum(uvdata > u), ignore_attr = TRUE)
   })
   adj_M2 <- alogLik(M2)
   test_that("texmex::evm, nobs.evm_Opt vs. nobs.lax", {
@@ -37,7 +37,7 @@ if (requireNamespace("evd", quietly = TRUE)) {
   M3 <- evd::fextreme(uvdata, list(mean = 0, sd = 1), distn = "norm",
                       mlen = 365)
   test_that("evd::fextreme, nobs.evd() vs. length(response)", {
-    testthat::expect_equivalent(nobs(M3), length(uvdata))
+    testthat::expect_equal(nobs(M3), length(uvdata), ignore_attr = TRUE)
   })
 }
 
