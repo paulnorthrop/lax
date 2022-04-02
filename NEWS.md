@@ -1,5 +1,20 @@
 # lax 1.2.0.9000
 
+## New features
+
+* Binomial-GP.  Note re cluster.
+* `return_level()` stationary only GEV and Binomial-GP only.
+
+## Bug fixes and minor improvements
+
+* The original model object `x` is added as an attribute `"original_fit"` to the object returned from `alogLik(x)`.
+
+* In the documentation of `return_level()` the role of `npy` has been explained and a more accurate calculation is used for the estimation of return levels in the case where `npy` is not equal to 1. 
+
+* If the argument `cluster` was supplied an `alogLik()` method then this is now returned as the attribute `cluster` in the returned object, rather than the default returned by `chandwich::adjust_loglik()`.
+
+* Activated 3rd edition of the `testthat` package
+
 # lax 1.2.0
 
 ## New features
