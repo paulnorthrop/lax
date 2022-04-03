@@ -495,14 +495,6 @@ ismev_ppp <- function (a, npy) {
   c(la, sc, xi)
 }
 
-# ======================== Check for an integer number ====================== #
-
-#' @keywords internal
-#' @rdname lax-internal
-is.wholenumber <-  function(x, tol = .Machine$double.eps^0.5) {
-  return(abs(x - round(x)) < tol)
-}
-
 # =============================== kgaps_loglik ============================== #
 # Included because this is not exported from exdex
 # The argument n_kgaps is not used here but it is included because it is

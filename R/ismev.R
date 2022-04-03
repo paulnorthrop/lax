@@ -282,8 +282,8 @@ alogLik.gpd.fit <- function(x, cluster = NULL, use_vcov = TRUE, binom = FALSE,
   # For a stationary model, and if a valid k has been supplied, then calculate
   # the K-gaps model log-likelihood
   if (!x$trans && !missing(k) && length(k) == 1) {
-    if (!is.wholenumber(k) || k < 0) {
-      stop("k must be a positive integer")
+    if (!is.numeric(k) || k < 0 || length(k) != 1) {
+      stop("k must be a non-negative scalar")
     }
     # Call exdex::kgaps() to estimate the extremal index theta and store values
     # from which the log-likelihood can be calculated
