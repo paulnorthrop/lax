@@ -219,6 +219,9 @@ return_level_bingp <- function(x, m, level, npy, prof, inc, type, npy_given) {
     if (!npy_given) {
       npy <- attr(x, "original_fit")$npy
     }
+    if (is.na(npy)) {
+      stop("'npy' has not been supplied")
+    }
   }
   # MLE and symmetric conf% CI for the return level
   rl_sym <- bingp_rl_CI(x, m, level, npy, type, u)
