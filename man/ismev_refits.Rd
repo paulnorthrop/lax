@@ -90,45 +90,17 @@ rlarg_refit(
     fitting). The number of rows should be the same as the length
     of \code{xdat}.}
 
-\item{mul}{Numeric vectors of integers, giving the columns
+\item{mul, sigl, shl}{Numeric vectors of integers, giving the columns
     of \code{ydat} that contain covariates for generalized linear
     modelling of the location, scale and shape parameters repectively
     (or \code{NULL} (the default) if the corresponding parameter is
     stationary).}
 
-\item{sigl}{Numeric vectors of integers, giving the columns
-    of \code{ydat} that contain covariates for generalized linear
-    modelling of the location, scale and shape parameters repectively
-    (or \code{NULL} (the default) if the corresponding parameter is
-    stationary).}
-
-\item{shl}{Numeric vectors of integers, giving the columns
-    of \code{ydat} that contain covariates for generalized linear
-    modelling of the location, scale and shape parameters repectively
-    (or \code{NULL} (the default) if the corresponding parameter is
-    stationary).}
-
-\item{mulink}{Inverse link functions for generalized
+\item{mulink, siglink, shlink}{Inverse link functions for generalized
     linear modelling of the location, scale and shape parameters
     repectively.}
 
-\item{siglink}{Inverse link functions for generalized
-    linear modelling of the location, scale and shape parameters
-    repectively.}
-
-\item{shlink}{Inverse link functions for generalized
-    linear modelling of the location, scale and shape parameters
-    repectively.}
-
-\item{muinit}{numeric of length equal to total number
-    of parameters used to model the location, scale or shape parameter(s),
-    resp.  See Details section for default (NULL) initial values.}
-
-\item{siginit}{numeric of length equal to total number
-    of parameters used to model the location, scale or shape parameter(s),
-    resp.  See Details section for default (NULL) initial values.}
-
-\item{shinit}{numeric of length equal to total number
+\item{muinit, siginit, shinit}{numeric of length equal to total number
     of parameters used to model the location, scale or shape parameter(s),
     resp.  See Details section for default (NULL) initial values.}
 
