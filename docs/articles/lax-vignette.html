@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,23 +33,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lax</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.2.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.2.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -64,7 +60,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/paulnorthrop/lax/">
+  <a href="https://github.com/paulnorthrop/lax/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -79,281 +75,360 @@
 
       
 
-      </header><script src="lax-vignette_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>An overview of lax</h1>
-                        <h4 class="author">Paul Northrop</h4>
+                        <h4 data-toc-skip class="author">Paul
+Northrop</h4>
             
-            <h4 class="date">2021-07-20</h4>
+            <h4 data-toc-skip class="date">2023-09-02</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/paulnorthrop/lax/blob/master/vignettes/lax-vignette.Rmd"><code>vignettes/lax-vignette.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/paulnorthrop/lax/blob/HEAD/vignettes/lax-vignette.Rmd" class="external-link"><code>vignettes/lax-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>lax-vignette.Rmd</code></div>
 
     </div>
 
     
     
-<p>The <a href="https://CRAN.R-project.org/view=ExtremeValue">CRAN Task View on Extreme Value Analysis</a> provides information about R packages that perform various extreme value analyses. The <em>lax</em> package supplements the functionality of nine of these packages, namely <a href="https://cran.r-project.org/package=evd">eva</a> <span class="citation">(Bader and Yan 2020)</span>, <a href="https://cran.r-project.org/package=evd">evd</a> <span class="citation">(Stephenson 2002)</span>, <a href="https://cran.r-project.org/package=evir">evir</a> <span class="citation">(Pfaff and McNeil 2018)</span>, <a href="https://cran.r-project.org/package=extRemes">extRemes</a> <span class="citation">(Gilleland and Katz 2016)</span>, <a href="https://cran.r-project.org/package=fExtremes">fExtremes</a> <span class="citation">(Wuertz, Setz, and Yohan Chalabi 2017)</span>, <a href="https://cran.r-project.org/package=ismev">ismev</a> <span class="citation">(Heffernan and Stephenson 2018)</span>, <a href="https://cran.r-project.org/package=mev">mev</a> <span class="citation">(Belzile et al. 2019)</span>, <a href="https://cran.r-project.org/package=POT">POT</a> <span class="citation">(Ribatet and Dutang 2016)</span> and <a href="https://cran.r-project.org/package=texmex">texmex</a> <span class="citation">(Southworth, Heffernan, and Metcalfe 2017)</span>. Univariate extreme value models, including regression models, are supported.</p>
-<p>The <a href="https://cran.r-project.org/package=chandwich">chandwich</a> package is used to provide robust sandwich estimation of parameter covariance matrix and loglikelihood adjustment for models fitted by maximum likelihood estimation. This may be useful for cluster correlated data when interest lies in the parameters of the marginal distributions, or for performing inferences that are robust to certain types of model misspecification.</p>
-<p><em>lax</em> works in an object-oriented way, operating on R objects returned from functions in other packages that summarise the fit of an extreme value model. Loglikelihood adjustment and sandwich estimation is performed by an <code>alogLik</code> S3 method. We demonstrate this using the following running example, which involves fitting a Generalised Extreme Value (GEV) regression model. Firstly, we use the <em>ismev</em> package to produce the fitted GEV regression model object on which <code>alogLik</code> will operate, and illustrate what can be done with the objects returned from <code>alogLik</code>. We use the <em>ismev</em> package because it provides an example of a case where we need to refit the model in order to obtain the information that we need to perform adjusted inferences. Then we repeat the adjustment using seven of the other eight packages. The <em>POT</em> package specialises in Generalised Pareto (GP) modelling, for which we use a different example.</p>
-<div id="gev-regression-of-annual-maximum-temperatures" class="section level2">
-<h2 class="hasAnchor">
-<a href="#gev-regression-of-annual-maximum-temperatures" class="anchor"></a>GEV regression of annual maximum temperatures</h2>
-<p>This example is based on the analysis presented in Section 5.2 of <span class="citation">Chandler and Bate (2007)</span>. The data, which are available in the data frame <code>ow</code>, are a bivariate time series of annual maximum temperatures, recorded in degrees Fahrenheit, at Oxford and Worthing in England, for the period 1901 to 1980. If interest is only in the marginal distributions of high temperatures in Oxford and Worthing, then we might fit a GEV regression model in which some or all of the parameters may vary between Oxford and Worthing. However, we should adjust for the cluster dependence between temperatures recorded during the same year.</p>
+<p>The <a href="https://CRAN.R-project.org/view=ExtremeValue" class="external-link">CRAN Task
+View on Extreme Value Analysis</a> provides information about R packages
+that perform various extreme value analyses. The <em>lax</em> package
+supplements the functionality of nine of these packages, namely <a href="https://cran.r-project.org/package=evd" class="external-link">eva</a> <span class="citation">(Bader and Yan 2020)</span>, <a href="https://cran.r-project.org/package=evd" class="external-link">evd</a> <span class="citation">(Stephenson 2002)</span>, <a href="https://cran.r-project.org/package=evir" class="external-link">evir</a> <span class="citation">(Pfaff and McNeil 2018)</span>, <a href="https://cran.r-project.org/package=extRemes" class="external-link">extRemes</a> <span class="citation">(Gilleland and Katz 2016)</span>, <a href="https://cran.r-project.org/package=fExtremes" class="external-link">fExtremes</a> <span class="citation">(Wuertz, Setz, and Yohan Chalabi 2017)</span>, <a href="https://cran.r-project.org/package=ismev" class="external-link">ismev</a> <span class="citation">(Heffernan and Stephenson 2018)</span>, <a href="https://cran.r-project.org/package=mev" class="external-link">mev</a> <span class="citation">(Belzile et al. 2019)</span>, <a href="https://cran.r-project.org/package=POT" class="external-link">POT</a> <span class="citation">(Ribatet and Dutang 2016)</span> and <a href="https://cran.r-project.org/package=texmex" class="external-link">texmex</a> <span class="citation">(Southworth, Heffernan, and Metcalfe 2017)</span>.
+Univariate extreme value models, including regression models, are
+supported.</p>
+<p>The <a href="https://cran.r-project.org/package=chandwich" class="external-link">chandwich</a>
+package is used to provide robust sandwich estimation of parameter
+covariance matrix and loglikelihood adjustment for models fitted by
+maximum likelihood estimation. This may be useful for cluster correlated
+data when interest lies in the parameters of the marginal distributions,
+or for performing inferences that are robust to certain types of model
+misspecification.</p>
+<p><em>lax</em> works in an object-oriented way, operating on R objects
+returned from functions in other packages that summarise the fit of an
+extreme value model. Loglikelihood adjustment and sandwich estimation is
+performed by an <code>alogLik</code> S3 method. We demonstrate this
+using the following running example, which involves fitting a
+Generalised Extreme Value (GEV) regression model. Firstly, we use the
+<em>ismev</em> package to produce the fitted GEV regression model object
+on which <code>alogLik</code> will operate, and illustrate what can be
+done with the objects returned from <code>alogLik</code>. We use the
+<em>ismev</em> package because it provides an example of a case where we
+need to refit the model in order to obtain the information that we need
+to perform adjusted inferences. Then we repeat the adjustment using
+seven of the other eight packages. The <em>POT</em> package specialises
+in Generalised Pareto (GP) modelling, for which we use a different
+example.</p>
+<div class="section level2">
+<h2 id="gev-regression-of-annual-maximum-temperatures">GEV regression of annual maximum temperatures<a class="anchor" aria-label="anchor" href="#gev-regression-of-annual-maximum-temperatures"></a>
+</h2>
+<p>This example is based on the analysis presented in Section 5.2 of
+<span class="citation">Chandler and Bate (2007)</span>. The data, which
+are available in the data frame <code>ow</code>, are a bivariate time
+series of annual maximum temperatures, recorded in degrees Fahrenheit,
+at Oxford and Worthing in England, for the period 1901 to 1980. If
+interest is only in the marginal distributions of high temperatures in
+Oxford and Worthing, then we might fit a GEV regression model in which
+some or all of the parameters may vary between Oxford and Worthing.
+However, we should adjust for the cluster dependence between
+temperatures recorded during the same year.</p>
 </div>
-<div id="ismev" class="section level2">
-<h2 class="hasAnchor">
-<a href="#ismev" class="anchor"></a>ismev</h2>
-<p>The <code><a href="https://rdrr.io/pkg/ismev/man/gev.fit.html">gev.fit()</a></code> function in <em>ismev</em> fits GEV regression models. It allows covariate effects in any of the (location, scale and shape) parameters of the GEV distribution. However, an object returned from <code><a href="https://rdrr.io/pkg/ismev/man/gev.fit.html">gev.fit()</a></code> does not provide all the information about a fitted regression model that <code>alogLik</code> needs, in order to calculate loglikelihood contributions from individual observations: the design matrices are missing. Therefore, <em>lax</em> provides the function <code>gev_refit</code>, which is a version of <code>gev.fit</code> that adds this information.</p>
-<p>The following code fits a GEV regression model in which the location, scale and shape parameters of the GEV distribution vary between Oxford and Worthing. Then <code>alogLik</code> is used to provide adjusted standard errors and an adjusted loglikelihood.</p>
+<div class="section level2">
+<h2 id="ismev">ismev<a class="anchor" aria-label="anchor" href="#ismev"></a>
+</h2>
+<p>The <code><a href="https://rdrr.io/pkg/ismev/man/gev.fit.html" class="external-link">gev.fit()</a></code> function in <em>ismev</em> fits GEV
+regression models. It allows covariate effects in any of the (location,
+scale and shape) parameters of the GEV distribution. However, an object
+returned from <code><a href="https://rdrr.io/pkg/ismev/man/gev.fit.html" class="external-link">gev.fit()</a></code> does not provide all the
+information about a fitted regression model that <code>alogLik</code>
+needs, in order to calculate loglikelihood contributions from individual
+observations: the design matrices are missing. Therefore, <em>lax</em>
+provides the function <code>gev_refit</code>, which is a version of
+<code>gev.fit</code> that adds this information.</p>
+<p>The following code fits a GEV regression model in which the location,
+scale and shape parameters of the GEV distribution vary between Oxford
+and Worthing. Then <code>alogLik</code> is used to provide adjusted
+standard errors and an adjusted loglikelihood.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://paulnorthrop.github.io/lax/">lax</a></span><span class="op">)</span>
-<span class="co"># Column 4 of ow contains 1 for Oxford and -1 for Worthing</span>
-<span class="va">large</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ismev_refits.html">gev_refit</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span>, <span class="va">ow</span>, mul <span class="op">=</span> <span class="fl">4</span>, sigl <span class="op">=</span> <span class="fl">4</span>, shl <span class="op">=</span> <span class="fl">4</span>, show <span class="op">=</span> <span class="cn">FALSE</span>,
-                   method <span class="op">=</span> <span class="st">"BFGS"</span><span class="op">)</span>
-<span class="co"># Adjust the loglikelihood and standard errors</span>
-<span class="va">adj_large</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">large</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span>, cadjust <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="co"># MLEs, SEs and adjusted SEs</span>
-<span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">adj_large</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;             loc locloc  scale scaleloc    shape shapeloc</span>
-<span class="co">#&gt; MLE     81.1700 2.6690 3.7290   0.5312 -0.19890 -0.08835</span>
-<span class="co">#&gt; SE       0.3282 0.3282 0.2292   0.2292  0.04937  0.04937</span>
-<span class="co">#&gt; adj. SE  0.4036 0.2128 0.2425   0.1911  0.03944  0.03625</span></code></pre></div>
-<p>This reproduces the values in rows 1, 3 and 4 in Table 2 of <span class="citation">Chandler and Bate (2007)</span>. The estimation of the ‘meat’ of the sandwich adjustment is performed using the <a href="https://cran.r-project.org/package=sandwich">sandwich</a> package. In this example, we need to pass <code>cadjust = FALSE</code> to <code><a href="https://sandwich.R-Forge.R-project.org//reference/vcovCL.html">sandwich::meatCL</a></code> in order that the adjustment is the same as that used in <span class="citation">Chandler and Bate (2007)</span>. Otherwise, <code>meatCL</code> makes a finite-cluster bias correction.</p>
-<div id="confidence-intervals" class="section level3">
-<h3 class="hasAnchor">
-<a href="#confidence-intervals" class="anchor"></a>Confidence intervals</h3>
-<p>A <code>confint</code> method calculates approximate (95%) confidence intervals for the parameters, based on the adjusted loglikelihood. <span class="citation">Chandler and Bate (2007)</span> consider three types of loglikelihood adjustment: one vertical and two horizontal. The type of adjustment is selected by the argument <code>type</code>. The default is <code>type = "vertical"</code> and there is an option to perform no adjustment.</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://paulnorthrop.github.io/lax/" class="external-link">lax</a></span><span class="op">)</span></span>
+<span><span class="co"># Column 4 of ow contains 1 for Oxford and -1 for Worthing</span></span>
+<span><span class="va">large</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ismev_refits.html">gev_refit</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span>, <span class="va">ow</span>, mul <span class="op">=</span> <span class="fl">4</span>, sigl <span class="op">=</span> <span class="fl">4</span>, shl <span class="op">=</span> <span class="fl">4</span>, show <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>                   method <span class="op">=</span> <span class="st">"BFGS"</span><span class="op">)</span></span>
+<span><span class="co"># Adjust the loglikelihood and standard errors</span></span>
+<span><span class="va">adj_large</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">large</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span>, cadjust <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co"># MLEs, SEs and adjusted SEs</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_large</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;             loc locloc  scale scaleloc    shape shapeloc</span></span>
+<span><span class="co">#&gt; MLE     81.1700 2.6690 3.7290   0.5312 -0.19890 -0.08835</span></span>
+<span><span class="co">#&gt; SE       0.3282 0.3282 0.2292   0.2292  0.04937  0.04937</span></span>
+<span><span class="co">#&gt; adj. SE  0.4036 0.2128 0.2425   0.1911  0.03944  0.03625</span></span></code></pre></div>
+<p>This reproduces the values in rows 1, 3 and 4 in Table 2 of <span class="citation">Chandler and Bate (2007)</span>. The estimation of the
+‘meat’ of the sandwich adjustment is performed using the <a href="https://cran.r-project.org/package=sandwich" class="external-link">sandwich</a> package.
+In this example, we need to pass <code>cadjust = FALSE</code> to
+<code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" class="external-link">sandwich::meatCL</a></code> in order that the adjustment is the same
+as that used in <span class="citation">Chandler and Bate (2007)</span>.
+Otherwise, <code>meatCL</code> makes a finite-cluster bias
+correction.</p>
+<div class="section level3">
+<h3 id="confidence-intervals">Confidence intervals<a class="anchor" aria-label="anchor" href="#confidence-intervals"></a>
+</h3>
+<p>A <code>confint</code> method calculates approximate (95%) confidence
+intervals for the parameters, based on the adjusted loglikelihood. <span class="citation">Chandler and Bate (2007)</span> consider three types of
+loglikelihood adjustment: one vertical and two horizontal. The type of
+adjustment is selected by the argument <code>type</code>. The default is
+<code>type = "vertical"</code> and there is an option to perform no
+adjustment.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">adj_large</span><span class="op">)</span>
-<span class="co">#&gt; Waiting for profiling to be done...</span>
-<span class="co">#&gt;               2.5 %     97.5 %</span>
-<span class="co">#&gt; loc      80.3729001 81.9602100</span>
-<span class="co">#&gt; locloc    2.2437419  3.0831279</span>
-<span class="co">#&gt; scale     3.2991896  4.2598984</span>
-<span class="co">#&gt; scaleloc  0.1611912  0.9433844</span>
-<span class="co">#&gt; shape    -0.2741177 -0.1157069</span>
-<span class="co">#&gt; shapeloc -0.1652089 -0.0200268</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/confint.html">confint</a></span><span class="op">(</span><span class="va">adj_large</span>, type <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>
-<span class="co">#&gt; Waiting for profiling to be done...</span>
-<span class="co">#&gt;                2.5 %       97.5 %</span>
-<span class="co">#&gt; loc      80.52440863 81.813160870</span>
-<span class="co">#&gt; locloc    2.01969229  3.308352990</span>
-<span class="co">#&gt; scale     3.32435238  4.236272757</span>
-<span class="co">#&gt; scaleloc  0.09100223  1.020139218</span>
-<span class="co">#&gt; shape    -0.28957175 -0.094326264</span>
-<span class="co">#&gt; shapeloc -0.18850187  0.008628523</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">adj_large</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Waiting for profiling to be done...</span></span>
+<span><span class="co">#&gt;               2.5 %     97.5 %</span></span>
+<span><span class="co">#&gt; loc      80.3729001 81.9602100</span></span>
+<span><span class="co">#&gt; locloc    2.2437419  3.0831279</span></span>
+<span><span class="co">#&gt; scale     3.2991896  4.2598984</span></span>
+<span><span class="co">#&gt; scaleloc  0.1611912  0.9433844</span></span>
+<span><span class="co">#&gt; shape    -0.2741177 -0.1157069</span></span>
+<span><span class="co">#&gt; shapeloc -0.1652089 -0.0200268</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span><span class="va">adj_large</span>, type <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Waiting for profiling to be done...</span></span>
+<span><span class="co">#&gt;                2.5 %       97.5 %</span></span>
+<span><span class="co">#&gt; loc      80.52440863 81.813160870</span></span>
+<span><span class="co">#&gt; locloc    2.01969229  3.308352990</span></span>
+<span><span class="co">#&gt; scale     3.32435238  4.236272757</span></span>
+<span><span class="co">#&gt; scaleloc  0.09100223  1.020139218</span></span>
+<span><span class="co">#&gt; shape    -0.28957175 -0.094326264</span></span>
+<span><span class="co">#&gt; shapeloc -0.18850187  0.008628523</span></span></code></pre></div>
 </div>
-<div id="confidence-regions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#confidence-regions" class="anchor"></a>Confidence regions</h3>
-<p>The <code>conf_region</code> function in the <em>chandwich</em> package can be used to produce confidence regions for pairs of parameters. Here, we consider the ‘central’ (midway between Oxford and Worthing) scale and shape intercept parameters: <span class="math inline">\(\sigma_0\)</span> and <span class="math inline">\(\xi_0\)</span> in <span class="citation">Chandler and Bate (2007)</span>.</p>
+<div class="section level3">
+<h3 id="confidence-regions">Confidence regions<a class="anchor" aria-label="anchor" href="#confidence-regions"></a>
+</h3>
+<p>The <code>conf_region</code> function in the <em>chandwich</em>
+package can be used to produce confidence regions for pairs of
+parameters. Here, we consider the ‘central’ (midway between Oxford and
+Worthing) scale and shape intercept parameters: <span class="math inline">\(\sigma_0\)</span> and <span class="math inline">\(\xi_0\)</span> in <span class="citation">Chandler
+and Bate (2007)</span>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/paulnorthrop/chandwich">chandwich</a></span><span class="op">)</span>
-<span class="va">which_pars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"scale"</span>, <span class="st">"shape"</span><span class="op">)</span>
-<span class="va">gev_none</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/chandwich/man/conf_region.html">conf_region</a></span><span class="op">(</span><span class="va">adj_large</span>, which_pars <span class="op">=</span> <span class="va">which_pars</span>, type <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>
-<span class="co">#&gt; Waiting for profiling to be done...</span>
-<span class="va">gev_vertical</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/chandwich/man/conf_region.html">conf_region</a></span><span class="op">(</span><span class="va">adj_large</span>, which_pars <span class="op">=</span> <span class="va">which_pars</span><span class="op">)</span>
-<span class="co">#&gt; Waiting for profiling to be done...</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">gev_none</span>, <span class="va">gev_vertical</span>, lwd <span class="op">=</span> <span class="fl">2</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3.1</span>, <span class="fl">4.5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.35</span>, <span class="op">-</span><span class="fl">0.05</span><span class="op">)</span>,
-     xlab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="va">sigma</span><span class="op">[</span><span class="fl">0</span><span class="op">]</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html">expression</a></span><span class="op">(</span><span class="va">xi</span><span class="op">[</span><span class="fl">0</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://paulnorthrop.github.io/chandwich/" class="external-link">chandwich</a></span><span class="op">)</span></span>
+<span><span class="va">which_pars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"scale"</span>, <span class="st">"shape"</span><span class="op">)</span></span>
+<span><span class="va">gev_none</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://paulnorthrop.github.io/chandwich/reference/conf_region.html" class="external-link">conf_region</a></span><span class="op">(</span><span class="va">adj_large</span>, which_pars <span class="op">=</span> <span class="va">which_pars</span>, type <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Waiting for profiling to be done...</span></span>
+<span><span class="va">gev_vertical</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://paulnorthrop.github.io/chandwich/reference/conf_region.html" class="external-link">conf_region</a></span><span class="op">(</span><span class="va">adj_large</span>, which_pars <span class="op">=</span> <span class="va">which_pars</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Waiting for profiling to be done...</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gev_none</span>, <span class="va">gev_vertical</span>, lwd <span class="op">=</span> <span class="fl">2</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3.1</span>, <span class="fl">4.5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.35</span>, <span class="op">-</span><span class="fl">0.05</span><span class="op">)</span>,</span>
+<span>     xlab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">sigma</span><span class="op">[</span><span class="fl">0</span><span class="op">]</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">xi</span><span class="op">[</span><span class="fl">0</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="lax-vignette_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
-<div id="comparing-nested-models" class="section level3">
-<h3 class="hasAnchor">
-<a href="#comparing-nested-models" class="anchor"></a>Comparing nested models</h3>
-<p><code>alogLik</code> also has an <code>anova</code> method, which can be used to perform (adjusted) loglikelihood ratio tests of nested models. To illustrate this we fit, and adjust, a smaller model, in which Oxford and Worthing have a common GEV shape parameter, and then compare this model to the larger one.</p>
+<div class="section level3">
+<h3 id="comparing-nested-models">Comparing nested models<a class="anchor" aria-label="anchor" href="#comparing-nested-models"></a>
+</h3>
+<p><code>alogLik</code> also has an <code>anova</code> method, which can
+be used to perform (adjusted) loglikelihood ratio tests of nested
+models. To illustrate this we fit, and adjust, a smaller model, in which
+Oxford and Worthing have a common GEV shape parameter, and then compare
+this model to the larger one.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">small</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ismev_refits.html">gev_refit</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span>, <span class="va">ow</span>, mul <span class="op">=</span> <span class="fl">4</span>, sigl <span class="op">=</span> <span class="fl">4</span>, show <span class="op">=</span> <span class="cn">FALSE</span>, 
-                   method <span class="op">=</span> <span class="st">"BFGS"</span><span class="op">)</span>
-<span class="va">adj_small</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">small</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span>, cadjust <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">adj_small</span><span class="op">)</span>
-<span class="co">#&gt;              MLE     SE adj. SE</span>
-<span class="co">#&gt; loc      81.1200 0.3260 0.40640</span>
-<span class="co">#&gt; locloc    2.4540 0.3047 0.20370</span>
-<span class="co">#&gt; scale     3.7230 0.2232 0.24020</span>
-<span class="co">#&gt; scaleloc  0.3537 0.2096 0.16840</span>
-<span class="co">#&gt; shape    -0.1845 0.0488 0.04028</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">adj_large</span>, <span class="va">adj_small</span><span class="op">)</span>
-<span class="co">#&gt; Analysis of (Adjusted) Deviance Table</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;           Model.Df Df  ALRTS Pr(&gt;ALRTS)  </span>
-<span class="co">#&gt; adj_large        6                       </span>
-<span class="co">#&gt; adj_small        5  1 6.3572    0.01169 *</span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
-<span class="fu"><a href="https://rdrr.io/r/stats/anova.html">anova</a></span><span class="op">(</span><span class="va">adj_large</span>, <span class="va">adj_small</span>, type <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>
-<span class="co">#&gt; Analysis of (Adjusted) Deviance Table</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;           Model.Df Df  ALRTS Pr(&gt;ALRTS)  </span>
-<span class="co">#&gt; adj_large        6                       </span>
-<span class="co">#&gt; adj_small        5  1 3.1876     0.0742 .</span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div>
-<p>We see that the adjustment of the loglikelihood for clustering makes enough of a difference to matter: if we perform a test at the 5% significance level then we choose the larger model when we adjust but the smaller model if we do not.</p>
+<code class="sourceCode R"><span><span class="va">small</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ismev_refits.html">gev_refit</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span>, <span class="va">ow</span>, mul <span class="op">=</span> <span class="fl">4</span>, sigl <span class="op">=</span> <span class="fl">4</span>, show <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>                   method <span class="op">=</span> <span class="st">"BFGS"</span><span class="op">)</span></span>
+<span><span class="va">adj_small</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">small</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span>, cadjust <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_small</span><span class="op">)</span></span>
+<span><span class="co">#&gt;              MLE     SE adj. SE</span></span>
+<span><span class="co">#&gt; loc      81.1200 0.3260 0.40640</span></span>
+<span><span class="co">#&gt; locloc    2.4540 0.3047 0.20370</span></span>
+<span><span class="co">#&gt; scale     3.7230 0.2232 0.24020</span></span>
+<span><span class="co">#&gt; scaleloc  0.3537 0.2096 0.16840</span></span>
+<span><span class="co">#&gt; shape    -0.1845 0.0488 0.04028</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">adj_large</span>, <span class="va">adj_small</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Analysis of (Adjusted) Deviance Table</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;           Model.Df Df  ALRTS Pr(&gt;ALRTS)  </span></span>
+<span><span class="co">#&gt; adj_large        6                       </span></span>
+<span><span class="co">#&gt; adj_small        5  1 6.3572    0.01169 *</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">adj_large</span>, <span class="va">adj_small</span>, type <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Analysis of (Adjusted) Deviance Table</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;           Model.Df Df  ALRTS Pr(&gt;ALRTS)  </span></span>
+<span><span class="co">#&gt; adj_large        6                       </span></span>
+<span><span class="co">#&gt; adj_small        5  1 3.1876     0.0742 .</span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
+<p>We see that the adjustment of the loglikelihood for clustering makes
+enough of a difference to matter: if we perform a test at the 5%
+significance level then we choose the larger model when we adjust but
+the smaller model if we do not.</p>
 </div>
 </div>
-<div id="texmex" class="section level2">
-<h2 class="hasAnchor">
-<a href="#texmex" class="anchor"></a>texmex</h2>
+<div class="section level2">
+<h2 id="texmex">texmex<a class="anchor" aria-label="anchor" href="#texmex"></a>
+</h2>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/harrysouthworth/texmex">texmex</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co"># Note: phi = log(scale)</span>
-<span class="va">evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/evm.html">evm</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, <span class="va">gev</span>, mu <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, phi <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, xi <span class="op">=</span> <span class="op">~</span><span class="va">loc</span><span class="op">)</span>
-<span class="va">adj_evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">evm_fit</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">adj_evm_fit</span><span class="op">)</span>
-<span class="co">#&gt;                       MLE      SE adj. SE</span>
-<span class="co">#&gt; mu: (Intercept)  81.17000 0.32820 0.40620</span>
-<span class="co">#&gt; mu: loc           2.66800 0.32820 0.21420</span>
-<span class="co">#&gt; phi: (Intercept)  1.30600 0.06091 0.06531</span>
-<span class="co">#&gt; phi: loc          0.14330 0.06091 0.05106</span>
-<span class="co">#&gt; xi: (Intercept)  -0.19900 0.04937 0.03968</span>
-<span class="co">#&gt; xi: loc          -0.08821 0.04937 0.03647</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/harrysouthworth/texmex" class="external-link">texmex</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: package 'texmex' was built under R version 4.2.3</span></span>
+<span><span class="co">#&gt; Warning: package 'mvtnorm' was built under R version 4.2.3</span></span>
+<span><span class="co"># Note: phi = log(scale)</span></span>
+<span><span class="va">evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/evm.html" class="external-link">evm</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, <span class="va">gev</span>, mu <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, phi <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, xi <span class="op">=</span> <span class="op">~</span><span class="va">loc</span><span class="op">)</span></span>
+<span><span class="va">adj_evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">evm_fit</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_evm_fit</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                       MLE      SE adj. SE</span></span>
+<span><span class="co">#&gt; mu: (Intercept)  81.17000 0.32820 0.40620</span></span>
+<span><span class="co">#&gt; mu: loc           2.66800 0.32820 0.21420</span></span>
+<span><span class="co">#&gt; phi: (Intercept)  1.30600 0.06091 0.06531</span></span>
+<span><span class="co">#&gt; phi: loc          0.14330 0.06091 0.05106</span></span>
+<span><span class="co">#&gt; xi: (Intercept)  -0.19900 0.04937 0.03968</span></span>
+<span><span class="co">#&gt; xi: loc          -0.08821 0.04937 0.03647</span></span></code></pre></div>
 </div>
-<div id="evd" class="section level2">
-<h2 class="hasAnchor">
-<a href="#evd" class="anchor"></a>evd</h2>
-<p>The <code><a href="https://rdrr.io/pkg/evd/man/fgev.html">fgev()</a></code> function in <em>evd</em> fits GEV regression models, but it only allows covariate effects in the location parameter.</p>
+<div class="section level2">
+<h2 id="evd">evd<a class="anchor" aria-label="anchor" href="#evd"></a>
+</h2>
+<p>The <code>fgev()</code> function in <em>evd</em> fits GEV regression
+models, but it only allows covariate effects in the location
+parameter.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">evd</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">fgev_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/evd/man/fgev.html">fgev</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span>, nsloc <span class="op">=</span> <span class="va">ow</span><span class="op">[</span>, <span class="st">"loc"</span><span class="op">]</span><span class="op">)</span>
-<span class="va">adj_fgev_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fgev_fit</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">adj_fgev_fit</span><span class="op">)</span>
-<span class="co">#&gt;              MLE      SE adj. SE</span>
-<span class="co">#&gt; loc      81.1600 0.32980 0.40830</span>
-<span class="co">#&gt; loctrend  2.5040 0.31080 0.19910</span>
-<span class="co">#&gt; scale     3.7900 0.22810 0.25230</span>
-<span class="co">#&gt; shape    -0.2097 0.04765 0.04063</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">evd</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">fgev_fit</span> <span class="op">&lt;-</span> <span class="fu">fgev</span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span>, nsloc <span class="op">=</span> <span class="va">ow</span><span class="op">[</span>, <span class="st">"loc"</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">adj_fgev_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fgev_fit</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fgev_fit</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="extremes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#extremes" class="anchor"></a>extRemes</h2>
+<div class="section level2">
+<h2 id="extremes">extRemes<a class="anchor" aria-label="anchor" href="#extremes"></a>
+</h2>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ral.ucar.edu/staff/ericg/extRemes/">extRemes</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">fevd_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html">fevd</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, location.fun <span class="op">=</span> <span class="op">~</span> <span class="va">ow</span><span class="op">$</span><span class="va">loc</span>, scale.fun <span class="op">=</span> <span class="op">~</span> <span class="va">ow</span><span class="op">$</span><span class="va">loc</span>,
-                 shape.fun <span class="op">=</span> <span class="op">~</span> <span class="va">ow</span><span class="op">$</span><span class="va">loc</span><span class="op">)</span>
-<span class="va">adj_fevd_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fevd_fit</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">adj_fevd_fit</span><span class="op">)</span>
-<span class="co">#&gt;             MLE      SE adj. SE</span>
-<span class="co">#&gt; mu0    81.17000 0.32820 0.40620</span>
-<span class="co">#&gt; mu1     2.66800 0.32820 0.21420</span>
-<span class="co">#&gt; sigma0  3.72900 0.22930 0.24410</span>
-<span class="co">#&gt; sigma1  0.53090 0.22930 0.19230</span>
-<span class="co">#&gt; xi0    -0.19890 0.04938 0.03969</span>
-<span class="co">#&gt; xi1    -0.08828 0.04938 0.03648</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://staff.ral.ucar.edu/ericg/extRemes/" class="external-link">extRemes</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">fevd_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, location.fun <span class="op">=</span> <span class="op">~</span> <span class="va">ow</span><span class="op">$</span><span class="va">loc</span>, scale.fun <span class="op">=</span> <span class="op">~</span> <span class="va">ow</span><span class="op">$</span><span class="va">loc</span>,</span>
+<span>                 shape.fun <span class="op">=</span> <span class="op">~</span> <span class="va">ow</span><span class="op">$</span><span class="va">loc</span><span class="op">)</span></span>
+<span><span class="va">adj_fevd_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fevd_fit</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fevd_fit</span><span class="op">)</span></span>
+<span><span class="co">#&gt;             MLE      SE adj. SE</span></span>
+<span><span class="co">#&gt; mu0    81.17000 0.32820 0.40620</span></span>
+<span><span class="co">#&gt; mu1     2.66800 0.32820 0.21420</span></span>
+<span><span class="co">#&gt; sigma0  3.72900 0.22930 0.24410</span></span>
+<span><span class="co">#&gt; sigma1  0.53090 0.22930 0.19230</span></span>
+<span><span class="co">#&gt; xi0    -0.19890 0.04938 0.03969</span></span>
+<span><span class="co">#&gt; xi1    -0.08828 0.04938 0.03648</span></span></code></pre></div>
 </div>
-<div id="eva" class="section level2">
-<h2 class="hasAnchor">
-<a href="#eva" class="anchor"></a>eva</h2>
+<div class="section level2">
+<h2 id="eva">eva<a class="anchor" aria-label="anchor" href="#eva"></a>
+</h2>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/brianbader/eva_package">eva</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">gevr_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/eva/man/gevrFit.html">gevrFit</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span>, information <span class="op">=</span> <span class="st">"observed"</span>,
-                    locvars <span class="op">=</span> <span class="va">ow</span>, locform <span class="op">=</span> <span class="op">~</span> <span class="va">ow</span><span class="op">$</span><span class="va">loc</span>, 
-                    scalevars <span class="op">=</span> <span class="va">ow</span>, scaleform <span class="op">=</span> <span class="op">~</span> <span class="va">ow</span><span class="op">$</span><span class="va">loc</span>,
-                    shapevars <span class="op">=</span> <span class="va">ow</span>, shapeform <span class="op">=</span> <span class="op">~</span> <span class="va">ow</span><span class="op">$</span><span class="va">loc</span><span class="op">)</span>
-<span class="va">adj_gevr_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gevr_fit</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">adj_gevr_fit</span><span class="op">)</span>
-<span class="co">#&gt;                          MLE      SE adj. SE</span>
-<span class="co">#&gt; Location (Intercept) 81.1700 0.32810 0.40620</span>
-<span class="co">#&gt; Location ow$loc       2.6680 0.32810 0.21420</span>
-<span class="co">#&gt; Scale (Intercept)     3.7290 0.22920 0.24400</span>
-<span class="co">#&gt; Scale ow$loc          0.5307 0.22920 0.19230</span>
-<span class="co">#&gt; Shape (Intercept)    -0.1989 0.04936 0.03968</span>
-<span class="co">#&gt; Shape ow$loc         -0.0882 0.04936 0.03647</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/brianbader/eva_package" class="external-link">eva</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">gevr_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/eva/man/gevrFit.html" class="external-link">gevrFit</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span>, information <span class="op">=</span> <span class="st">"observed"</span>,</span>
+<span>                    locvars <span class="op">=</span> <span class="va">ow</span>, locform <span class="op">=</span> <span class="op">~</span> <span class="va">ow</span><span class="op">$</span><span class="va">loc</span>, </span>
+<span>                    scalevars <span class="op">=</span> <span class="va">ow</span>, scaleform <span class="op">=</span> <span class="op">~</span> <span class="va">ow</span><span class="op">$</span><span class="va">loc</span>,</span>
+<span>                    shapevars <span class="op">=</span> <span class="va">ow</span>, shapeform <span class="op">=</span> <span class="op">~</span> <span class="va">ow</span><span class="op">$</span><span class="va">loc</span><span class="op">)</span></span>
+<span><span class="va">adj_gevr_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gevr_fit</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_gevr_fit</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                          MLE      SE adj. SE</span></span>
+<span><span class="co">#&gt; Location (Intercept) 81.1700 0.32810 0.40620</span></span>
+<span><span class="co">#&gt; Location ow$loc       2.6680 0.32810 0.21420</span></span>
+<span><span class="co">#&gt; Scale (Intercept)     3.7290 0.22920 0.24400</span></span>
+<span><span class="co">#&gt; Scale ow$loc          0.5307 0.22920 0.19230</span></span>
+<span><span class="co">#&gt; Shape (Intercept)    -0.1989 0.04936 0.03968</span></span>
+<span><span class="co">#&gt; Shape ow$loc         -0.0882 0.04936 0.03647</span></span></code></pre></div>
 </div>
-<div id="evir" class="section level2">
-<h2 class="hasAnchor">
-<a href="#evir" class="anchor"></a>evir</h2>
-<p>The <code><a href="https://rdrr.io/pkg/mev/man/gev.html">gev()</a></code> function in <em>evir</em> only fits stationary GEV models.</p>
+<div class="section level2">
+<h2 id="evir">evir<a class="anchor" aria-label="anchor" href="#evir"></a>
+</h2>
+<p>The <code><a href="https://rdrr.io/pkg/texmex/man/texmexFamily.html" class="external-link">gev()</a></code> function in <em>evir</em> only fits stationary
+GEV models.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">evir</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">gev_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/evir/man/gev.html">gev</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span>
-<span class="va">adj_gev_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gev_fit</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">adj_gev_fit</span><span class="op">)</span>
-<span class="co">#&gt;           MLE      SE adj. SE</span>
-<span class="co">#&gt; xi    -0.1801 0.06051  0.0509</span>
-<span class="co">#&gt; sigma  4.3980 0.28180  0.2558</span>
-<span class="co">#&gt; mu    80.7800 0.39240  0.4128</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">evir</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">gev_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/texmexFamily.html" class="external-link">gev</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span></span>
+<span><span class="va">adj_gev_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gev_fit</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_gev_fit</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="fextremes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#fextremes" class="anchor"></a>fExtremes</h2>
-<p>The <code><a href="https://rdrr.io/pkg/fExtremes/man/GevModelling.html">gevFit()</a></code> function in <em>fExtremes</em> only fits stationary GEV models.</p>
+<div class="section level2">
+<h2 id="fextremes">fExtremes<a class="anchor" aria-label="anchor" href="#fextremes"></a>
+</h2>
+<p>The <code>gevFit()</code> function in <em>fExtremes</em> only fits
+stationary GEV models.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://www.rmetrics.org">fExtremes</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">gevFit_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/fExtremes/man/GevModelling.html">gevFit</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span>
-<span class="va">adj_gevFit_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gevFit_fit</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">adj_gevFit_fit</span><span class="op">)</span>
-<span class="co">#&gt;          MLE      SE adj. SE</span>
-<span class="co">#&gt; xi   -0.1802 0.06047 0.05087</span>
-<span class="co">#&gt; mu   80.7900 0.39240 0.41290</span>
-<span class="co">#&gt; beta  4.3980 0.28170 0.25570</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.rmetrics.org" class="external-link">fExtremes</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">gevFit_fit</span> <span class="op">&lt;-</span> <span class="fu">gevFit</span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span></span>
+<span><span class="va">adj_gevFit_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gevFit_fit</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_gevFit_fit</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="mev" class="section level2">
-<h2 class="hasAnchor">
-<a href="#mev" class="anchor"></a>mev</h2>
-<p>The <code><a href="https://rdrr.io/pkg/mev/man/fit.gev.html">fit.gev()</a></code> function in <em>mev</em> only fits stationary GEV models.</p>
+<div class="section level2">
+<h2 id="mev">mev<a class="anchor" aria-label="anchor" href="#mev"></a>
+</h2>
+<p>The <code>fit.gev()</code> function in <em>mev</em> only fits
+stationary GEV models.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/lbelzile/mev/">mev</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">gfit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/mev/man/fit.gev.html">fit.gev</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span>
-<span class="va">adj_gfit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gfit</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">adj_gfit</span><span class="op">)</span>
-<span class="co">#&gt;           MLE     SE adj. SE</span>
-<span class="co">#&gt; loc   80.7800 0.3924 0.41290</span>
-<span class="co">#&gt; scale  4.3980 0.2818 0.25580</span>
-<span class="co">#&gt; shape -0.1801 0.0605 0.05089</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lbelzile.github.io/mev/" class="external-link">mev</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">gfit</span> <span class="op">&lt;-</span> <span class="fu">fit.gev</span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span></span>
+<span><span class="va">adj_gfit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gfit</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_gfit</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="pot" class="section level2">
-<h2 class="hasAnchor">
-<a href="#pot" class="anchor"></a>POT</h2>
-<p>Among other things, the <code><a href="https://rdrr.io/pkg/POT/man/fitGPD.html">fitgpd()</a></code> function in the <em>POT</em> package can fit a GP distribution to threshold excesses using maximum likelihood estimation. We illustrate <code>alogLik</code> using an example from the <code>fitgpd</code> documentation. There is no cluster dependence here. However, there may be interest in using a sandwich estimator of covariance if we are concerned about model misspecification. In this case, where we simulate from the correct model, we expect the adjustment to make little difference, and so it proves.</p>
+<div class="section level2">
+<h2 id="pot">POT<a class="anchor" aria-label="anchor" href="#pot"></a>
+</h2>
+<p>Among other things, the <code><a href="https://rdrr.io/pkg/POT/man/fitGPD.html" class="external-link">fitgpd()</a></code> function in the
+<em>POT</em> package can fit a GP distribution to threshold excesses
+using maximum likelihood estimation. We illustrate <code>alogLik</code>
+using an example from the <code>fitgpd</code> documentation. There is no
+cluster dependence here. However, there may be interest in using a
+sandwich estimator of covariance if we are concerned about model
+misspecification. In this case, where we simulate from the correct
+model, we expect the adjustment to make little difference, and so it
+proves.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://pot.r-forge.r-project.org/">POT</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">24082019</span><span class="op">)</span>
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">POT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/POT/man/simGPD.html">rgpd</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">0.25</span><span class="op">)</span>
-<span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/POT/man/fitGPD.html">fitgpd</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">1</span>, <span class="st">"mle"</span><span class="op">)</span>
-<span class="va">adj_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">adj_fit</span><span class="op">)</span>
-<span class="co">#&gt;          MLE      SE adj. SE</span>
-<span class="co">#&gt; scale 1.8670 0.20930 0.19260</span>
-<span class="co">#&gt; shape 0.2573 0.08887 0.07121</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pot.r-forge.r-project.org/" class="external-link">POT</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">24082019</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">POT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/POT/man/simGPD.html" class="external-link">rgpd</a></span><span class="op">(</span><span class="fl">200</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">0.25</span><span class="op">)</span></span>
+<span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/POT/man/fitGPD.html" class="external-link">fitgpd</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">1</span>, <span class="st">"mle"</span><span class="op">)</span></span>
+<span><span class="va">adj_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fit</span><span class="op">)</span></span>
+<span><span class="co">#&gt;          MLE      SE adj. SE</span></span>
+<span><span class="co">#&gt; scale 1.8670 0.20930 0.19260</span></span>
+<span><span class="co">#&gt; shape 0.2573 0.08887 0.07121</span></span></code></pre></div>
 </div>
-<div id="references" class="section level2">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h2>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <script type="text/x-mathjax-config">
    MathJax.Hub.Config({  "HTML-CSS": { minScaleAdjust: 125, availableFonts: [] }  });
 </script><div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-eva" class="csl-entry">
-Bader, B., and J. Yan. 2020. <em>Eva: Extreme Value Analysis with Goodness-of-Fit Testing</em>. <a href="https://CRAN.R-project.org/package=eva">https://CRAN.R-project.org/package=eva</a>.
+Bader, B., and J. Yan. 2020. <em>Eva: Extreme Value Analysis with
+Goodness-of-Fit Testing</em>. <a href="https://CRAN.R-project.org/package=eva" class="external-link">https://CRAN.R-project.org/package=eva</a>.
 </div>
 <div id="ref-mev" class="csl-entry">
-Belzile, L., J. L. Wadsworth, P. J. Northrop, S. D. Grimshaw, and R. Huser. 2019. <em><span class="nocase">m</span>ev: Multivariate Extreme Value Distributions</em>. <a href="https://github.com/lbelzile/mev/">https://github.com/lbelzile/mev/</a>.
+Belzile, L., J. L. Wadsworth, P. J. Northrop, S. D. Grimshaw, and R.
+Huser. 2019. <em><span class="nocase">m</span>ev: Multivariate Extreme
+Value Distributions</em>. <a href="https://github.com/lbelzile/mev/" class="external-link">https://github.com/lbelzile/mev/</a>.
 </div>
 <div id="ref-CB2007" class="csl-entry">
-Chandler, R. E., and S. Bate. 2007. <span>“Inference for Clustered Data Using the Independence Loglikelihood.”</span> <em>Biometrika</em> 94 (1): 167–83. <a href="https://doi.org/10.1093/biomet/asm015">https://doi.org/10.1093/biomet/asm015</a>.
+Chandler, R. E., and S. Bate. 2007. <span>“Inference for Clustered Data
+Using the Independence Loglikelihood.”</span> <em>Biometrika</em> 94
+(1): 167–83. <a href="https://doi.org/10.1093/biomet/asm015" class="external-link">https://doi.org/10.1093/biomet/asm015</a>.
 </div>
 <div id="ref-extRemes" class="csl-entry">
-Gilleland, E., and R. W. Katz. 2016. <span>“<span class="nocase">extRemes</span> 2.0: An Extreme Value Analysis Package in <span>R</span>.”</span> <em>Journal of Statistical Software</em> 72 (8): 1–39. <a href="https://doi.org/10.18637/jss.v072.i08">https://doi.org/10.18637/jss.v072.i08</a>.
+Gilleland, E., and R. W. Katz. 2016. <span>“<span class="nocase">extRemes</span> 2.0: An Extreme Value Analysis Package in
+<span>R</span>.”</span> <em>Journal of Statistical Software</em> 72 (8):
+1–39. <a href="https://doi.org/10.18637/jss.v072.i08" class="external-link">https://doi.org/10.18637/jss.v072.i08</a>.
 </div>
 <div id="ref-ismev" class="csl-entry">
-Heffernan, J. E., and A. G. Stephenson. 2018. <em><span class="nocase">i</span>smev: An Introduction to Statistical Modeling of Extreme Values</em>. <a href="https://CRAN.R-project.org/package=ismev">https://CRAN.R-project.org/package=ismev</a>.
+Heffernan, J. E., and A. G. Stephenson. 2018. <em><span class="nocase">i</span>smev: An Introduction to Statistical Modeling of
+Extreme Values</em>. <a href="https://CRAN.R-project.org/package=ismev" class="external-link">https://CRAN.R-project.org/package=ismev</a>.
 </div>
 <div id="ref-evir" class="csl-entry">
-Pfaff, B., and A. McNeil. 2018. <em><span class="nocase">e</span>vir: Extreme Values in r</em>. <a href="https://CRAN.R-project.org/package=evir">https://CRAN.R-project.org/package=evir</a>.
+Pfaff, B., and A. McNeil. 2018. <em><span class="nocase">e</span>vir:
+Extreme Values in r</em>. <a href="https://CRAN.R-project.org/package=evir" class="external-link">https://CRAN.R-project.org/package=evir</a>.
 </div>
 <div id="ref-POT" class="csl-entry">
-Ribatet, M., and C. Dutang. 2016. <em>POT: Generalized Pareto Distribution and Peaks over Threshold</em>. <a href="https://CRAN.R-project.org/package=POT">https://CRAN.R-project.org/package=POT</a>.
+Ribatet, M., and C. Dutang. 2016. <em>POT: Generalized Pareto
+Distribution and Peaks over Threshold</em>. <a href="https://CRAN.R-project.org/package=POT" class="external-link">https://CRAN.R-project.org/package=POT</a>.
 </div>
 <div id="ref-texmex" class="csl-entry">
-Southworth, H., J. E. Heffernan, and P. D. Metcalfe. 2017. <em><span class="nocase">t</span>exmex: Statistical Modelling of Extreme Values</em>. <a href="https://CRAN.R-project.org/package=texmex">https://CRAN.R-project.org/package=texmex</a>.
+Southworth, H., J. E. Heffernan, and P. D. Metcalfe. 2017. <em><span class="nocase">t</span>exmex: Statistical Modelling of Extreme
+Values</em>. <a href="https://CRAN.R-project.org/package=texmex" class="external-link">https://CRAN.R-project.org/package=texmex</a>.
 </div>
 <div id="ref-evd" class="csl-entry">
-Stephenson, A. G. 2002. <span>“<span class="nocase">e</span>vd: Extreme Value Distributions.”</span> <em>R News</em> 2 (2): 0. <a href="https://CRAN.R-project.org/doc/Rnews/">https://CRAN.R-project.org/doc/Rnews/</a>.
+Stephenson, A. G. 2002. <span>“<span class="nocase">e</span>vd: Extreme
+Value Distributions.”</span> <em>R News</em> 2 (2): 0. <a href="https://CRAN.R-project.org/doc/Rnews/" class="external-link">https://CRAN.R-project.org/doc/Rnews/</a>.
 </div>
 <div id="ref-fExtremes" class="csl-entry">
-Wuertz, D., T. Setz, and Y. Yohan Chalabi. 2017. <em><span class="nocase">fExtremes</span>: Rmetrics - Modelling Extreme Events in Finance</em>. <a href="https://CRAN.R-project.org/package=fExtremes">https://CRAN.R-project.org/package=fExtremes</a>.
+Wuertz, D., T. Setz, and Y. Yohan Chalabi. 2017. <em><span class="nocase">fExtremes</span>: Rmetrics - Modelling Extreme Events in
+Finance</em>. <a href="https://CRAN.R-project.org/package=fExtremes" class="external-link">https://CRAN.R-project.org/package=fExtremes</a>.
 </div>
 </div>
 </div>
@@ -370,11 +445,13 @@ Wuertz, D., T. Setz, and Y. Yohan Chalabi. 2017. <em><span class="nocase">fExtre
 
 
       <footer><div class="copyright">
-  <p>Developed by Paul J. Northrop, Camellia Yin.</p>
+  <p></p>
+<p>Developed by Paul J. Northrop, Camellia Yin.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -382,6 +459,8 @@ Wuertz, D., T. Setz, and Y. Yohan Chalabi. 2017. <em><span class="nocase">fExtre
 
   
 
+
+  
 
   </body>
 </html>
