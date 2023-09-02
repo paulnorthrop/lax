@@ -248,7 +248,7 @@ Chandler, R. E. and Bate, S. (2007). Inference for clustered
 Suveges, M. and Davison, A. C. (2010) Model
   misspecification in peaks over threshold analysis, \emph{The Annals of
   Applied Statistics}, \strong{4}(1), 203-221.
-  \url{https://doi.org/10.1214/09-AOAS292}
+  \doi{10.1214/09-AOAS292}
 
 Zeileis (2006) Object-Oriented Computation and Sandwich
   Estimators.  \emph{Journal of Statistical Software}, \strong{16}, 1-16.
