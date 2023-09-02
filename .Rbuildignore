@@ -10,3 +10,6 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^vignettes/return-levels\.Rmd$
+^R/return_level_bingp\.Rmd$
+^R/return_level_bingp\.R$

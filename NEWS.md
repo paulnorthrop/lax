@@ -1,9 +1,4 @@
-# lax 1.2.0.9000
-
-## New features
-
-* Binomial-GP.  Note re cluster.
-* `return_level()` stationary only GEV and Binomial-GP only.
+# lax 1.2.1
 
 ## Bug fixes and minor improvements
 
@@ -12,6 +7,10 @@
 * In the documentation of `return_level()` the role of `npy` has been explained and a more accurate calculation is used for the estimation of return levels in the case where `npy` is not equal to 1. 
 
 * If the argument `cluster` was supplied an `alogLik()` method then this is now returned as the attribute `cluster` in the returned object, rather than the default returned by `chandwich::adjust_loglik()`.
+
+* Create the help file for the package correctly, with alias lax-package.
+
+* README.md: Used app.codecov.io as base for codecov link.
 
 * Activated 3rd edition of the `testthat` package
 
