@@ -141,7 +141,7 @@ Object \code{x} \emph{must} have the following S3
     \item{\code{vcov: }}{returns the estimated variance-covariance matrix of
       the (main) parameters of a fitted model, see
       \code{\link[stats]{vcov}};}
-    \item{\code{estfun: }}{returns an \eqn{n x k} matrix, in which each
+    \item{\code{estfun: }}{returns an \eqn{n} by \eqn{k} matrix, in which each
       column gives the derivative of the loglikelihood at each of \eqn{n}
       observation with respect to the \eqn{k} parameters of the model, see
       \code{\link[sandwich]{estfun}}.}
