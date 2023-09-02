@@ -207,9 +207,8 @@ Zeileis (2006) Object-Oriented Computation and Sandwich
   \code{\link[chandwich]{conf_region}} for confidence regions for
   pairs of parameters.
 
-\code{\link[chandwich]{adjust_loglik}} in the
-  \code{\link[chandwich]{chandwich}} package to adjust a user-supplied
-  loglikelihood.
+\code{\link[chandwich]{adjust_loglik}} in the \code{chandwich}
+  package to adjust a user-supplied loglikelihood.
 
 \code{\link[sandwich]{meat}} and
   \code{\link[sandwich:vcovCL]{meatCL}} in the sandwich package.
