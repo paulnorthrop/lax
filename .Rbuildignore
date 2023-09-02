@@ -13,3 +13,4 @@
 ^vignettes/return-levels\.Rmd$
 ^R/return_level_bingp\.Rmd$
 ^R/return_level_bingp\.R$
+^\.github$
