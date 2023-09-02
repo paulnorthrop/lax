@@ -86,11 +86,10 @@
 #'   Estimators. \emph{Journal of Statistical Software}, \strong{16}(9),
 #'   1-16. \doi{10.18637/jss.v016.i09}.
 #' @docType package
-#' @name lax
 #' @import sandwich
 #' @importFrom stats nobs vcov coef logLik
 #' @importFrom graphics plot
-NULL
+"_PACKAGE"
 
 #' Oxford and Worthing annual maximum temperatures
 #'
