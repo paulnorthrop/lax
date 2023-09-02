@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 # lax
 
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/paulnorthrop/lax?branch=master&svg=true)](https://ci.appveyor.com/project/paulnorthrop/lax)
-[![Coverage Status](https://codecov.io/github/paulnorthrop/lax/coverage.svg?branch=master)](https://codecov.io/github/paulnorthrop/lax?branch=master)
+[![Coverage Status](https://codecov.io/github/paulnorthrop/lax/coverage.svg?branch=master)](https://app.codecov.io/github/paulnorthrop/lax?branch=master)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/lax)](https://cran.r-project.org/package=lax)
 [![Downloads (monthly)](https://cranlogs.r-pkg.org/badges/lax?color=brightgreen)](https://cran.r-project.org/package=lax)
 [![Downloads (total)](https://cranlogs.r-pkg.org/badges/grand-total/lax?color=brightgreen)](https://cran.r-project.org/package=lax)
@@ -42,7 +42,7 @@ This example is based on the analysis presented in Section 5.2 of
 
 The following code fits such a model using the `evm` function in the [texmex](https://cran.r-project.org/package=texmex) package and the uses `alogLik` to perform adjusted inferences.
 
-```{r}
+```{r, warning = FALSE}
 library(lax)
 library(texmex, quietly = TRUE)
 # Fit a GEV model with separate location, scale and shape for Oxford and Worthing

@@ -6,7 +6,7 @@
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/paulnorthrop/lax?branch=master&svg=true)](https://ci.appveyor.com/project/paulnorthrop/lax)
 [![Coverage
-Status](https://codecov.io/github/paulnorthrop/lax/coverage.svg?branch=master)](https://codecov.io/github/paulnorthrop/lax?branch=master)
+Status](https://codecov.io/github/paulnorthrop/lax/coverage.svg?branch=master)](https://app.codecov.io/github/paulnorthrop/lax?branch=master)
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/lax)](https://cran.r-project.org/package=lax)
 [![Downloads
 (monthly)](https://cranlogs.r-pkg.org/badges/lax?color=brightgreen)](https://cran.r-project.org/package=lax)
