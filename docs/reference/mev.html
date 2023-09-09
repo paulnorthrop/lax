@@ -65,8 +65,8 @@ mev package."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/lib
     <div class="ref-description">
     <p>S3 <code>alogLik</code> method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the functions
-<code>fit.gev</code>, <code>fit.gpd</code>, and
-<code>fit.pp</code> and <code>fit.rlarg</code> in the
+<code><a href="https://lbelzile.github.io/mev/reference/fit.gev.html" class="external-link">fit.gev</a></code>, <code><a href="https://lbelzile.github.io/mev/reference/fit.gpd.html" class="external-link">fit.gpd</a></code>, and
+<code><a href="https://lbelzile.github.io/mev/reference/fit.pp.html" class="external-link">fit.pp</a></code> and <code><a href="https://lbelzile.github.io/mev/reference/fit.rlarg.html" class="external-link">fit.rlarg</a></code> in the
 mev package.</p>
     </div>
 
@@ -140,28 +140,28 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
 <p><code>c("lax", "chandwich", "mev")</code>.
   The 4th component depends on which model was fitted.</p>
 <p></p>
-<p><code>"gev"</code> if <code>fit.gev</code> was used;</p>
+<p><code>"gev"</code> if <code><a href="https://lbelzile.github.io/mev/reference/fit.gev.html" class="external-link">fit.gev</a></code> was used;</p>
 <p></p>
-<p><code>"gpd"</code> if <code>fit.gpd</code> was used;</p>
+<p><code>"gpd"</code> if <code><a href="https://lbelzile.github.io/mev/reference/fit.gpd.html" class="external-link">fit.gpd</a></code> was used;</p>
 <p></p>
 <p><code>"pp"</code></p>
 <p></p>
-<p><code>fit.pp</code> was used;</p>
+<p><code><a href="https://lbelzile.github.io/mev/reference/fit.pp.html" class="external-link">fit.pp</a></code> was used;</p>
 <p></p>
 <p><code>"egp"</code></p>
 <p></p>
-<p><code>fit.egp</code> was used;</p>
+<p><code><a href="https://lbelzile.github.io/mev/reference/fit.egp.html" class="external-link">fit.egp</a></code> was used;</p>
 <p></p>
 <p><code>"rlarg"</code></p>
 <p></p>
-<p><code>fit.rlarg</code> was used;
+<p><code><a href="https://lbelzile.github.io/mev/reference/fit.rlarg.html" class="external-link">fit.rlarg</a></code> was used;
   The 5th component is <code>"stat"</code> (for stationary).</p>
     </div>
     <div id="details">
     <h2>Details</h2>
     <p>See <code><a href="alogLik.html">alogLik</a></code> for details.</p>
-<p>If <code>x</code> was returned from <code>fit.pp</code> then the data
-<code>xdat</code> supplied to <code>fit.pp</code> must contain <em>all</em>
+<p>If <code>x</code> was returned from <code><a href="https://lbelzile.github.io/mev/reference/fit.pp.html" class="external-link">fit.pp</a></code> then the data
+<code>xdat</code> supplied to <code><a href="https://lbelzile.github.io/mev/reference/fit.pp.html" class="external-link">fit.pp</a></code> must contain <em>all</em>
 the data, both threshold exceedances and non-exceedances.</p>
     </div>
     <div id="references">
@@ -190,36 +190,64 @@ the data, both threshold exceedances and non-exceedances.</p>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="va">got_mev</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lbelzile.github.io/mev/" class="external-link">mev</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from the mev::gev.fit documentation</span></span></span>
-<span class="r-in"><span>  <span class="va">gev_mev</span> <span class="op">&lt;-</span> <span class="fu">fit.gev</span><span class="op">(</span><span class="fu">revdbayes</span><span class="fu">::</span><span class="va"><a href="https://paulnorthrop.github.io/revdbayes/reference/portpirie.html" class="external-link">portpirie</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">gev_mev</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lbelzile.github.io/mev/reference/fit.gev.html" class="external-link">fit.gev</a></span><span class="op">(</span><span class="fu">revdbayes</span><span class="fu">::</span><span class="va"><a href="https://paulnorthrop.github.io/revdbayes/reference/portpirie.html" class="external-link">portpirie</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_gev_mev</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gev_mev</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_gev_mev</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Use simulated data</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1112019</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">revdbayes</span><span class="fu">::</span><span class="fu"><a href="https://paulnorthrop.github.io/revdbayes/reference/gp.html" class="external-link">rgp</a></span><span class="op">(</span><span class="fl">365</span> <span class="op">*</span> <span class="fl">10</span>, loc <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">pfit</span> <span class="op">&lt;-</span> <span class="fu">fit.pp</span><span class="op">(</span><span class="va">x</span>, threshold <span class="op">=</span> <span class="fl">1</span>, npp <span class="op">=</span> <span class="fl">365</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">pfit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lbelzile.github.io/mev/reference/fit.pp.html" class="external-link">fit.pp</a></span><span class="op">(</span><span class="va">x</span>, threshold <span class="op">=</span> <span class="fl">1</span>, npp <span class="op">=</span> <span class="fl">365</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_pfit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">pfit</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_pfit</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from the mev::fit.gpd documentation</span></span></span>
-<span class="r-in"><span>  <span class="va">gpd_mev</span> <span class="op">&lt;-</span> <span class="fu">fit.gpd</span><span class="op">(</span><span class="va">eskrain</span>, threshold <span class="op">=</span> <span class="fl">35</span>, method <span class="op">=</span> <span class="st">'Grimshaw'</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">gpd_mev</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lbelzile.github.io/mev/reference/fit.gpd.html" class="external-link">fit.gpd</a></span><span class="op">(</span><span class="va">eskrain</span>, threshold <span class="op">=</span> <span class="fl">35</span>, method <span class="op">=</span> <span class="st">'Grimshaw'</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_gpd_mev</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gpd_mev</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_gpd_mev</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from the mev::fit.egp documentation</span></span></span>
 <span class="r-in"><span>  <span class="co"># (model = "egp1" and model = "egp3" also work)</span></span></span>
-<span class="r-in"><span>  <span class="va">xdat</span> <span class="op">&lt;-</span> <span class="fu">evd</span><span class="fu">::</span><span class="fu">rgpd</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">100</span>, loc <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">fitted</span> <span class="op">&lt;-</span> <span class="fu">fit.egp</span><span class="op">(</span>xdat <span class="op">=</span> <span class="va">xdat</span>, thresh <span class="op">=</span> <span class="fl">1</span>, model <span class="op">=</span> <span class="st">"egp2"</span>, show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">xdat</span> <span class="op">&lt;-</span> <span class="fu">evd</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/evd/man/gpd.html" class="external-link">rgpd</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">100</span>, loc <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">fitted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lbelzile.github.io/mev/reference/fit.egp.html" class="external-link">fit.egp</a></span><span class="op">(</span>xdat <span class="op">=</span> <span class="va">xdat</span>, thresh <span class="op">=</span> <span class="fl">1</span>, model <span class="op">=</span> <span class="st">"egp2"</span>, show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_fitted</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fitted</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fitted</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from the mev::fit.rlarg documentation</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">31102019</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">xdat</span> <span class="op">&lt;-</span> <span class="fu">rrlarg</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, loc <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.1</span>, r <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">fitr</span> <span class="op">&lt;-</span> <span class="fu">fit.rlarg</span><span class="op">(</span><span class="va">xdat</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">xdat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lbelzile.github.io/mev/reference/rrlarg.html" class="external-link">rrlarg</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, loc <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.1</span>, r <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">fitr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lbelzile.github.io/mev/reference/fit.rlarg.html" class="external-link">fit.rlarg</a></span><span class="op">(</span><span class="va">xdat</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_fitr</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fitr</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fitr</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>package 'mev' was built under R version 4.2.3</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: 'mev'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following object is masked _by_ '.GlobalEnv':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     venice</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:fExtremes':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     dgev, pgev, qgev, rgev</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following object is masked from 'package:extRemes':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     taildep</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:evir':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     dgev, pgev, qgev, rgev</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:eva':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     pgev, qgev</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:texmex':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     dgev, pgev, qgev, rgev</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:evd':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     dgev, pgev, qgev, rgev, venice</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           MLE     SE adj. SE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> loc   -0.1223 0.2859 0.29490</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> scale  1.0750 0.2450 0.20520</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> shape  0.2490 0.1552 0.07926</span>
 </code></pre></div>
     </div>
   </div>

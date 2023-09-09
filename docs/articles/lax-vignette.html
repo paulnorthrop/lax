@@ -82,7 +82,7 @@
                         <h4 data-toc-skip class="author">Paul
 Northrop</h4>
             
-            <h4 data-toc-skip class="date">2023-09-02</h4>
+            <h4 data-toc-skip class="date">2023-09-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/paulnorthrop/lax/blob/HEAD/vignettes/lax-vignette.Rmd" class="external-link"><code>vignettes/lax-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>lax-vignette.Rmd</code></div>
@@ -280,14 +280,20 @@ the smaller model if we do not.</p>
 <div class="section level2">
 <h2 id="evd">evd<a class="anchor" aria-label="anchor" href="#evd"></a>
 </h2>
-<p>The <code>fgev()</code> function in <em>evd</em> fits GEV regression
+<p>The <code><a href="https://rdrr.io/pkg/evd/man/fgev.html" class="external-link">fgev()</a></code> function in <em>evd</em> fits GEV regression
 models, but it only allows covariate effects in the location
 parameter.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">evd</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">fgev_fit</span> <span class="op">&lt;-</span> <span class="fu">fgev</span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span>, nsloc <span class="op">=</span> <span class="va">ow</span><span class="op">[</span>, <span class="st">"loc"</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: package 'evd' was built under R version 4.2.3</span></span>
+<span><span class="va">fgev_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/evd/man/fgev.html" class="external-link">fgev</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span>, nsloc <span class="op">=</span> <span class="va">ow</span><span class="op">[</span>, <span class="st">"loc"</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">adj_fgev_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fgev_fit</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fgev_fit</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fgev_fit</span><span class="op">)</span></span>
+<span><span class="co">#&gt;              MLE      SE adj. SE</span></span>
+<span><span class="co">#&gt; loc      81.1600 0.32980 0.40830</span></span>
+<span><span class="co">#&gt; loctrend  2.5040 0.31080 0.19910</span></span>
+<span><span class="co">#&gt; scale     3.7900 0.22810 0.25230</span></span>
+<span><span class="co">#&gt; shape    -0.2097 0.04765 0.04063</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="extremes">extRemes<a class="anchor" aria-label="anchor" href="#extremes"></a>
@@ -328,35 +334,49 @@ parameter.</p>
 <div class="section level2">
 <h2 id="evir">evir<a class="anchor" aria-label="anchor" href="#evir"></a>
 </h2>
-<p>The <code><a href="https://rdrr.io/pkg/texmex/man/texmexFamily.html" class="external-link">gev()</a></code> function in <em>evir</em> only fits stationary
+<p>The <code><a href="https://rdrr.io/pkg/evir/man/gev.html" class="external-link">gev()</a></code> function in <em>evir</em> only fits stationary
 GEV models.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">evir</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">gev_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/texmexFamily.html" class="external-link">gev</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span></span>
+<span><span class="va">gev_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/evir/man/gev.html" class="external-link">gev</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span></span>
 <span><span class="va">adj_gev_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gev_fit</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_gev_fit</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_gev_fit</span><span class="op">)</span></span>
+<span><span class="co">#&gt;           MLE      SE adj. SE</span></span>
+<span><span class="co">#&gt; xi    -0.1801 0.06051  0.0509</span></span>
+<span><span class="co">#&gt; sigma  4.3980 0.28180  0.2558</span></span>
+<span><span class="co">#&gt; mu    80.7800 0.39240  0.4128</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="fextremes">fExtremes<a class="anchor" aria-label="anchor" href="#fextremes"></a>
 </h2>
-<p>The <code>gevFit()</code> function in <em>fExtremes</em> only fits
+<p>The <code><a href="https://rdrr.io/pkg/fExtremes/man/GevModelling.html" class="external-link">gevFit()</a></code> function in <em>fExtremes</em> only fits
 stationary GEV models.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.rmetrics.org" class="external-link">fExtremes</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">gevFit_fit</span> <span class="op">&lt;-</span> <span class="fu">gevFit</span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: package 'fExtremes' was built under R version 4.2.3</span></span>
+<span><span class="va">gevFit_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/fExtremes/man/GevModelling.html" class="external-link">gevFit</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span></span>
 <span><span class="va">adj_gevFit_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gevFit_fit</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_gevFit_fit</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_gevFit_fit</span><span class="op">)</span></span>
+<span><span class="co">#&gt;          MLE      SE adj. SE</span></span>
+<span><span class="co">#&gt; xi   -0.1802 0.06047 0.05087</span></span>
+<span><span class="co">#&gt; mu   80.7900 0.39240 0.41290</span></span>
+<span><span class="co">#&gt; beta  4.3980 0.28170 0.25570</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="mev">mev<a class="anchor" aria-label="anchor" href="#mev"></a>
 </h2>
-<p>The <code>fit.gev()</code> function in <em>mev</em> only fits
+<p>The <code><a href="https://lbelzile.github.io/mev/reference/fit.gev.html" class="external-link">fit.gev()</a></code> function in <em>mev</em> only fits
 stationary GEV models.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lbelzile.github.io/mev/" class="external-link">mev</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">gfit</span> <span class="op">&lt;-</span> <span class="fu">fit.gev</span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: package 'mev' was built under R version 4.2.3</span></span>
+<span><span class="va">gfit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lbelzile.github.io/mev/reference/fit.gev.html" class="external-link">fit.gev</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span></span>
 <span><span class="va">adj_gfit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gfit</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_gfit</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_gfit</span><span class="op">)</span></span>
+<span><span class="co">#&gt;           MLE     SE adj. SE</span></span>
+<span><span class="co">#&gt; loc   80.7800 0.3924 0.41290</span></span>
+<span><span class="co">#&gt; scale  4.3980 0.2818 0.25580</span></span>
+<span><span class="co">#&gt; shape -0.1801 0.0605 0.05089</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="pot">POT<a class="anchor" aria-label="anchor" href="#pot"></a>
@@ -399,12 +419,12 @@ Value Distributions</em>. <a href="https://github.com/lbelzile/mev/" class="exte
 <div id="ref-CB2007" class="csl-entry">
 Chandler, R. E., and S. Bate. 2007. <span>“Inference for Clustered Data
 Using the Independence Loglikelihood.”</span> <em>Biometrika</em> 94
-(1): 167–83. <a href="https://doi.org/10.1093/biomet/asm015" class="external-link">https://doi.org/10.1093/biomet/asm015</a>.
+(1): 167–183. doi:<a href="https://doi.org/10.1093/biomet/asm015" class="external-link">10.1093/biomet/asm015</a>.
 </div>
 <div id="ref-extRemes" class="csl-entry">
 Gilleland, E., and R. W. Katz. 2016. <span>“<span class="nocase">extRemes</span> 2.0: An Extreme Value Analysis Package in
 <span>R</span>.”</span> <em>Journal of Statistical Software</em> 72 (8):
-1–39. <a href="https://doi.org/10.18637/jss.v072.i08" class="external-link">https://doi.org/10.18637/jss.v072.i08</a>.
+1–39. doi:<a href="https://doi.org/10.18637/jss.v072.i08" class="external-link">10.18637/jss.v072.i08</a>.
 </div>
 <div id="ref-ismev" class="csl-entry">
 Heffernan, J. E., and A. G. Stephenson. 2018. <em><span class="nocase">i</span>smev: An Introduction to Statistical Modeling of

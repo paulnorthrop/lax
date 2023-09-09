@@ -66,7 +66,7 @@ peaks over thresholds (POT), and returns an object of class "potd".</h1>
     </div>
 
     <div class="ref-description">
-    <p>This is a slightly modified versions of the <code>pot</code>
+    <p>This is a slightly modified versions of the <code><a href="https://rdrr.io/pkg/evir/man/pot.html" class="external-link">pot</a></code>
 function in the <code>evir</code> package.
 The main modification is to add to the returned object the argument
 <code>data</code> supplied by the user.  This is added to the returned
@@ -99,7 +99,7 @@ given but not both).</p></dd>
 
 <dt>run</dt>
 <dd><p>if the data are to be declustered the run length parameter for
-the runs method (see <code>decluster</code>) should be entered
+the runs method (see <code><a href="https://rdrr.io/pkg/evir/man/decluster.html" class="external-link">decluster</a></code>) should be entered
 here.</p></dd>
 
 
@@ -126,11 +126,15 @@ performed.</p></dd>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="va">got_evir</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">evir</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">danish</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">pot</span><span class="op">(</span><span class="va">danish</span>, <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/evir/man/pot.html" class="external-link">pot</a></span><span class="op">(</span><span class="va">danish</span>, <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu">pot_refit</span><span class="op">(</span><span class="va">danish</span>, <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "converged"     "data"          "input_data"    "intensity"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "n"             "n.exceed"      "nllh.final"    "p.less.thresh"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "par.ests"      "par.ses"       "period"        "run"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "span"          "threshold"     "varcov"       </span>
 </code></pre></div>
     </div>
   </div>

@@ -66,9 +66,9 @@ need to be re-fitted using pot_refit."><!-- mathjax --><script src="https://cdnj
     <div class="ref-description">
     <p>S3 <code>alogLik</code> method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the functions
-<code>gev</code>, <code>gpd</code> and <code>pot</code>
+<code><a href="https://rdrr.io/pkg/evir/man/gev.html" class="external-link">gev</a></code>, <code><a href="https://rdrr.io/pkg/evir/man/gpd.html" class="external-link">gpd</a></code> and <code><a href="https://rdrr.io/pkg/evir/man/pot.html" class="external-link">pot</a></code>
 in the evir package.
-If <code>x</code> was returned from <code>pot</code> then the model will
+If <code>x</code> was returned from <code><a href="https://rdrr.io/pkg/evir/man/pot.html" class="external-link">pot</a></code> then the model will
 need to be re-fitted using <code><a href="pot_refit.html">pot_refit</a></code>.</p>
     </div>
 
@@ -135,10 +135,10 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
 <p></p>
 <p><code>c("lax", "chandwich", "evir")</code>.
   The remaining 2 components depend on the model that was fitted.
-  If <code>gev</code> was used then these components are</p>
+  If <code><a href="https://rdrr.io/pkg/evir/man/gev.html" class="external-link">gev</a></code> was used then these components are</p>
 <p></p>
 <p><code>c("gev", "stat")</code>.
-  If <code>gpd</code> was used then these components are</p>
+  If <code><a href="https://rdrr.io/pkg/evir/man/gpd.html" class="external-link">gpd</a></code> was used then these components are</p>
 <p></p>
 <p><code>c("gpd", "stat")</code>.
   If <code><a href="pot_refit.html">pot_refit</a></code> was used then these components are</p>
@@ -148,7 +148,7 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
     <div id="details">
     <h2>Details</h2>
     <p>See <code><a href="alogLik.html">alogLik</a></code> for details.</p>
-<p>If <code>pot</code> was used then <code>x</code> does not contain the
+<p>If <code><a href="https://rdrr.io/pkg/evir/man/pot.html" class="external-link">pot</a></code> was used then <code>x</code> does not contain the
 raw data that <code>alogLik</code> needs.  The model will need to be
 re-fitted using <code><a href="pot_refit.html">pot_refit</a></code> and the user will be prompted to
 do this by an error message produced by <code><a href="alogLik.html">alogLik</a></code>.</p>
@@ -179,13 +179,13 @@ do this by an error message produced by <code><a href="alogLik.html">alogLik</a>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">evir</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from the evir::gev documentation</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">bmw</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/texmexFamily.html" class="external-link">gev</a></span><span class="op">(</span><span class="va">bmw</span>, <span class="st">"month"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/evir/man/gev.html" class="external-link">gev</a></span><span class="op">(</span><span class="va">bmw</span>, <span class="st">"month"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_out</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from the evir::gpd documentation</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">danish</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/texmexFamily.html" class="external-link">gpd</a></span><span class="op">(</span><span class="va">danish</span>, <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/evir/man/gpd.html" class="external-link">gpd</a></span><span class="op">(</span><span class="va">danish</span>, <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_out</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -195,6 +195,24 @@ do this by an error message produced by <code><a href="alogLik.html">alogLik</a>
 <span class="r-in"><span>  <span class="va">adj_out</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_out</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: 'evir'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:eva':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     dgpd, pgev, pgpd, qgev, qgpd, rgpd</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:texmex':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     dgev, dgpd, pgev, pgpd, qgev, qgpd, rgev, rgpd</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following object is masked from 'package:ggplot2':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     qplot</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:evd':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     dgev, dgpd, pgev, pgpd, qgev, qgpd, rgev, rgpd</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           MLE     SE adj. SE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> xi     0.4972 0.1359  0.1435</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sigma  1.1610 0.6888  0.7086</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> mu    -1.6960 3.4380  3.4270</span>
 </code></pre></div>
     </div>
   </div>

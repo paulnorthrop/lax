@@ -216,8 +216,8 @@ an adjusted loglikelihood function.  See <strong>Details</strong> and
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">evd</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from the evd::fgev documentation</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">4082019</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">uvdata</span> <span class="op">&lt;-</span> <span class="fu">evd</span><span class="fu">::</span><span class="fu">rgev</span><span class="op">(</span><span class="fl">100</span>, loc <span class="op">=</span> <span class="fl">0.13</span>, scale <span class="op">=</span> <span class="fl">1.1</span>, shape <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu">fgev</span><span class="op">(</span><span class="va">uvdata</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">uvdata</span> <span class="op">&lt;-</span> <span class="fu">evd</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/evd/man/gev.html" class="external-link">rgev</a></span><span class="op">(</span><span class="fl">100</span>, loc <span class="op">=</span> <span class="fl">0.13</span>, scale <span class="op">=</span> <span class="fl">1.1</span>, shape <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/evd/man/fgev.html" class="external-link">fgev</a></span><span class="op">(</span><span class="va">uvdata</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_fgev</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># Large inc set here for speed, sacrificing accuracy</span></span></span>
 <span class="r-in"><span>  <span class="va">rl</span> <span class="op">&lt;-</span> <span class="fu">return_level</span><span class="op">(</span><span class="va">adj_fgev</span>, inc <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
@@ -225,6 +225,9 @@ an adjusted loglikelihood function.  See <strong>Details</strong> and
 <span class="r-in"><span>  <span class="va">rl</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">rl</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-plt img"><img src="return_level-1.png" alt="" width="700" height="433"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     lower       mle     upper </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  5.337685  6.992529 10.354765 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">got_ismev</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"ismev"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -239,7 +242,7 @@ an adjusted loglikelihood function.  See <strong>Details</strong> and
 <span class="r-in"><span>  <span class="va">rl</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">rl</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-plt img"><img src="return_level-1.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="return_level-2.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    lower      mle    upper </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4.518708 4.688429 5.070614 </span>
 <span class="r-in"><span></span></span>
@@ -257,7 +260,7 @@ an adjusted loglikelihood function.  See <strong>Details</strong> and
 <span class="r-in"><span>  <span class="va">rl</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">rl</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-plt img"><img src="return_level-2.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="return_level-3.png" alt="" width="700" height="433"></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     lower       mle     upper </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  76.00807  87.01603 103.60984 </span>
 <span class="r-in"><span></span></span>
