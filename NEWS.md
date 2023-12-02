@@ -1,3 +1,9 @@
+# lax 1.2.2
+
+## Bug fixes
+
+* Fixed issues with the incorrect use of \itemize in some Rd files.
+
 # lax 1.2.1
 
 ## Bug fixes and minor improvements
