@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lax</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.2.1</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.2.2</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@
                         <h4 data-toc-skip class="author">Paul
 Northrop</h4>
             
-            <h4 data-toc-skip class="date">2023-09-09</h4>
+            <h4 data-toc-skip class="date">2023-12-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/paulnorthrop/lax/blob/HEAD/vignettes/lax-vignette.Rmd" class="external-link"><code>vignettes/lax-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>lax-vignette.Rmd</code></div>
@@ -263,8 +263,6 @@ the smaller model if we do not.</p>
 </h2>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/harrysouthworth/texmex" class="external-link">texmex</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: package 'texmex' was built under R version 4.2.3</span></span>
-<span><span class="co">#&gt; Warning: package 'mvtnorm' was built under R version 4.2.3</span></span>
 <span><span class="co"># Note: phi = log(scale)</span></span>
 <span><span class="va">evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/evm.html" class="external-link">evm</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, <span class="va">gev</span>, mu <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, phi <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, xi <span class="op">=</span> <span class="op">~</span><span class="va">loc</span><span class="op">)</span></span>
 <span><span class="va">adj_evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">evm_fit</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span>
@@ -285,7 +283,6 @@ models, but it only allows covariate effects in the location
 parameter.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">evd</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: package 'evd' was built under R version 4.2.3</span></span>
 <span><span class="va">fgev_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/evd/man/fgev.html" class="external-link">fgev</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span>, nsloc <span class="op">=</span> <span class="va">ow</span><span class="op">[</span>, <span class="st">"loc"</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="va">adj_fgev_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fgev_fit</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fgev_fit</span><span class="op">)</span></span>
@@ -353,7 +350,6 @@ GEV models.</p>
 stationary GEV models.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.rmetrics.org" class="external-link">fExtremes</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: package 'fExtremes' was built under R version 4.2.3</span></span>
 <span><span class="va">gevFit_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/fExtremes/man/GevModelling.html" class="external-link">gevFit</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span></span>
 <span><span class="va">adj_gevFit_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gevFit_fit</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_gevFit_fit</span><span class="op">)</span></span>
@@ -369,7 +365,6 @@ stationary GEV models.</p>
 stationary GEV models.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lbelzile.github.io/mev/" class="external-link">mev</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: package 'mev' was built under R version 4.2.3</span></span>
 <span><span class="va">gfit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lbelzile.github.io/mev/reference/fit.gev.html" class="external-link">fit.gev</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span></span>
 <span><span class="va">adj_gfit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gfit</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_gfit</span><span class="op">)</span></span>

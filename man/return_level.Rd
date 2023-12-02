@@ -71,18 +71,18 @@ At present \code{return_level} only supports GEV models.
 
   \strong{Care must be taken in specifying the input value of \code{npy}.}
   \itemize{
-    \item{\strong{GEV models}: }{it is common to have one observation per year,
+    \item \strong{GEV models}: it is common to have one observation per year,
      either because the data are annual maxima or because for each year only
      the maximum value over a particular season is extracted from the raw
      data. In this case, \code{npy = 1}, which is the default.  If instead
      we extract the maximum values over the first and second halves of each
-     year then \code{npy = 2}.}
-    \item{\strong{Binomial-GP models}: }{\code{npy} provides information
+     year then \code{npy = 2}.
+    \item \strong{Binomial-GP models}: \code{npy} provides information
      about the (intended) frequency of sampling in time, that is, the number
      of observations that would be observed in a year if there are no
      missing values.  If the number of observations may vary between years
      then \code{npy} should be set equal to the mean number of observations
-     per year.}
+     per year.
   }
   \strong{Supplying \code{npy} for binomial-GP models.}
   The value of \code{npy} (or an equivalent, perhaps differently named,

@@ -71,7 +71,7 @@ An object inheriting from class \code{"chandwich"}.  See
   \code{\link[chandwich]{adjust_loglik}}.
 
   The original fitted model object is available as an attribute named
-  code{"original_fit"}, accessible using \code{attr(name, "original_fit")},
+  \code{"original_fit"}, accessible using \code{attr(name, "original_fit")},
   where \code{name} is the name of the object to which the object returned
   from \code{alogLik} is assigned.
 
@@ -129,22 +129,22 @@ objects are explained in \strong{Details}.
 Object \code{x} \emph{must} have the following S3
   methods:
   \itemize{
-    \item{\code{logLikVec: }}{returns a vector of the contributions to the
-      independence loglikelihood from individual observations;}
-    \item{\code{coef: }}{returns a vector of model coefficients, see
-      \code{\link[stats]{coef}};}
-    \item{\code{nobs: }}{returns the number of (non-missing) observations
-      used in a model fit, see \code{\link[stats]{nobs}}};
+    \item \code{logLikVec}: returns a vector of the contributions to the
+      independence loglikelihood from individual observations;
+    \item \code{coef}: returns a vector of model coefficients, see
+      \code{\link[stats]{coef}};
+    \item \code{nobs}: returns the number of (non-missing) observations
+      used in a model fit, see \code{\link[stats]{nobs}};
   }
   and \emph{may} have the following S3 methods
   \itemize{
-    \item{\code{vcov: }}{returns the estimated variance-covariance matrix of
+    \item \code{vcov}: returns the estimated variance-covariance matrix of
       the (main) parameters of a fitted model, see
-      \code{\link[stats]{vcov}};}
-    \item{\code{estfun: }}{returns an \eqn{n} by \eqn{k} matrix, in which each
+      \code{\link[stats]{vcov}};
+    \item \code{estfun}: returns an \eqn{n} by \eqn{k} matrix, in which each
       column gives the derivative of the loglikelihood at each of \eqn{n}
       observation with respect to the \eqn{k} parameters of the model, see
-      \code{\link[sandwich]{estfun}}.}
+      \code{\link[sandwich]{estfun}}.
   }
   Loglikelihood adjustment is performed using the
   \code{\link[chandwich]{adjust_loglik}} function in the

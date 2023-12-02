@@ -7,12 +7,12 @@
 \format{
 A dataframe with 80 rows and 4 columns.
   \itemize{
-    \item{Column 1, \code{temp}: }{annual maximum temperatures in degrees
-      Fahrenheit.}
-    \item{Column 2, \code{year}: }{year in which the maximum was recorded.}
-    \item{Column 3, \code{name}: }{name of location, "oxford" or "worthing"}
-    \item{Column 4, \code{loc}: }{location: 1 for "oxford", -1 for
-      "worthing"}
+    \item Column 1, \code{temp}: annual maximum temperatures in degrees
+      Fahrenheit.
+    \item Column 2, \code{year}: year in which the maximum was recorded.
+    \item Column 3, \code{name}: name of location, "oxford" or "worthing"
+    \item Column 4, \code{loc}: location: 1 for "oxford", -1 for
+      "worthing"
  }
 }
 \source{

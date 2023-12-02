@@ -30,7 +30,7 @@ objects are explained in Details."><!-- mathjax --><script src="https://cdnjs.cl
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lax</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.2.1</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.2.2</span>
       </span>
     </div>
 
@@ -175,8 +175,9 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
 <p><code><a href="https://paulnorthrop.github.io/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code>.</p>
 
 
-<p>The original fitted model object is available as an attribute named
-  code"original_fit", accessible using <code>attr(name, "original_fit")</code>,
+<p>The original fitted model object is available as an attribute named</p>
+<p></p>
+<p><code>"original_fit"</code>, accessible using <code>attr(name, "original_fit")</code>,
   where <code>name</code> is the name of the object to which the object returned
   from <code>alogLik</code> is assigned.</p>
 
@@ -236,22 +237,22 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
     <div id="details">
     <h2>Details</h2>
     <p>Object <code>x</code> <em>must</em> have the following S3
-  methods:</p><ul><li><p><code>logLikVec: </code>returns a vector of the contributions to the
+  methods:</p><ul><li><p><code>logLikVec</code>: returns a vector of the contributions to the
       independence loglikelihood from individual observations;</p></li>
-<li><p><code>coef: </code>returns a vector of model coefficients, see
+<li><p><code>coef</code>: returns a vector of model coefficients, see
       <code><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></code>;</p></li>
-<li><p><code>nobs: </code>returns the number of (non-missing) observations
+<li><p><code>nobs</code>: returns the number of (non-missing) observations
       used in a model fit, see <code><a href="https://rdrr.io/r/stats/nobs.html" class="external-link">nobs</a></code>;</p></li>
-</ul><p>and <em>may</em> have the following S3 methods</p><ul><li><p><code>vcov: </code>returns the estimated variance-covariance matrix of
+</ul><p>and <em>may</em> have the following S3 methods</p><ul><li><p><code>vcov</code>: returns the estimated variance-covariance matrix of
       the (main) parameters of a fitted model, see
       <code><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></code>;</p></li>
-<li><p><code>estfun: </code>returns an \(n\) by \(k\) matrix, in which each
+<li><p><code>estfun</code>: returns an \(n\) by \(k\) matrix, in which each
       column gives the derivative of the loglikelihood at each of \(n\)
       observation with respect to the \(k\) parameters of the model, see
       <code><a href="https://sandwich.R-Forge.R-project.org/reference/estfun.html" class="external-link">estfun</a></code>.</p></li>
 </ul><p>Loglikelihood adjustment is performed using the
   <code><a href="https://paulnorthrop.github.io/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code> function in the
-  <code><a href="https://paulnorthrop.github.io/chandwich/reference/chandwich-package.html" class="external-link">chandwich</a></code> package.
+  <code><a href="https://paulnorthrop.github.io/chandwich/reference/chandwich.html" class="external-link">chandwich</a></code> package.
   The relevant arguments to <code><a href="https://paulnorthrop.github.io/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code>, namely
   <code>loglik, mle, H</code> and <code>V</code>, are created based on the class of
   the object <code>x</code>.</p>
