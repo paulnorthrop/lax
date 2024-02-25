@@ -148,14 +148,16 @@ if (requireNamespace("POT", quietly = TRUE)) {
 
 # --------------------------------- texmex ---------------------------------- #
 
-if (requireNamespace("texmex", quietly = TRUE)) {
-  library(texmex, quietly = TRUE)
+# 25/2/2024: commented out to avoid ERROR in texmex
 
-  mod <- evm(rain, th = 30)
-  temp <- mod
-  class(temp) <- "texmex_evmOpt"
-  test_that("texmex::evm: vcov.evmOpt vs vcov.texmex_evmOpt", {
-    # column names differ
-    testthat::expect_equal(vcov(mod), vcov(temp), ignore_attr = TRUE)
-  })
-}
+#if (requireNamespace("texmex", quietly = TRUE)) {
+#  library(texmex, quietly = TRUE)
+#
+#  mod <- evm(rain, th = 30)
+#  temp <- mod
+#  class(temp) <- "texmex_evmOpt"
+#  test_that("texmex::evm: vcov.evmOpt vs vcov.texmex_evmOpt", {
+#    # column names differ
+#    testthat::expect_equal(vcov(mod), vcov(temp), ignore_attr = TRUE)
+#  })
+#}
