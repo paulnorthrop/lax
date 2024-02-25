@@ -22,6 +22,8 @@
 #'   \code{"nonstat"} otherwise.
 #' @seealso \code{\link{alogLik}}: loglikelihood adjustment for model fits.
 #' @examples
+#' \dontrun{
+#' # Not run to avoid CRAN package check error inherited from the texmex package
 #' # We need the texmex package, and ismev for the fremantle dataset
 #' got_texmex <- requireNamespace("texmex", quietly = TRUE)
 #' got_ismev <- requireNamespace("ismev", quietly = TRUE)
@@ -81,6 +83,7 @@
 #'   evm_fit <- evm(temp, ow, gev, mu = ~ loc, phi = ~ loc, xi = ~loc)
 #'   adj_evm_fit <- alogLik(evm_fit, cluster = ow$year, cadjust = FALSE)
 #'   summary(adj_evm_fit)
+#' }
 #' }
 #' @name texmex
 NULL
