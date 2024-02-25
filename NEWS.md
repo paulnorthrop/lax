@@ -2,6 +2,8 @@
 
 ## Bug fixes
 
+* Calls to `texmex::evm()`, which resulted in CRAN package check ERRORs on some platforms, have been avoided. 
+
 # lax 1.2.2
 
 ## Bug fixes
