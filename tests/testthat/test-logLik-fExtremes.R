@@ -1,7 +1,7 @@
 # Check that logLik(object) and logLik(logLikVec(object)) agree
 
 if (requireNamespace("fExtremes", quietly = TRUE)) {
-  library(fExtremes)
+  library(fExtremes, quietly = TRUE)
 
   # fExtremes::gevFit
 

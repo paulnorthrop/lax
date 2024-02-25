@@ -7,7 +7,7 @@ got_ismev <- requireNamespace("ismev", quietly = TRUE)
 # Examples from the texmex::evm documentation
 
 if (got_texmex) {
-  library(texmex)
+  library(texmex, quietly = TRUE)
 
   # texmex::evm, GEV
   mod <- texmex::evm(SeaLevel, data = texmex::portpirie, family = gev)
@@ -69,7 +69,7 @@ if (got_texmex) {
   # GEV regression
   # An example from page 113 of Coles (2001)
   if (got_ismev) {
-    library(ismev)
+    library(ismev, quietly = TRUE)
     data(fremantle)
     new_fremantle <- fremantle
     # Set year 1897 to 1 for consistency with page 113 of Coles (2001)

@@ -4,7 +4,7 @@
 got_evd <- requireNamespace("evd", quietly = TRUE)
 
 if (got_evd) {
-  library(evd)
+  library(evd, quietly = TRUE)
   small <- fgev(ow$temp, nsloc = ow$loc)
   adj_small <- alogLik(small, cluster = ow$year)
   tiny <- fgev(ow$temp)

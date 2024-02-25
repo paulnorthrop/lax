@@ -1,7 +1,7 @@
 # Check that logLik(object) and logLik(logLikVec(object)) agree
 
 if (requireNamespace("eva", quietly = TRUE)) {
-  library(eva)
+  library(eva, quietly = TRUE)
 
   # eva::gpdFit
 

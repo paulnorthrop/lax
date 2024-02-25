@@ -3,7 +3,7 @@
 # ismev::gev.fit() and lax::gev_refit
 
 if (requireNamespace("ismev", quietly = TRUE)) {
-  library(ismev)
+  library(ismev, quietly = TRUE)
 
   # Based on the example from the ismev::rlarg.fit documentation
   # Use revdbayes::venice to avoid ambiguity

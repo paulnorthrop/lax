@@ -1,7 +1,7 @@
 # Check that nobs.evd behaves correctly
 
 if (requireNamespace("evd", quietly = TRUE)) {
-  library(evd)
+  library(evd, quietly = TRUE)
 
   # evd::fgev
 
@@ -44,7 +44,7 @@ if (requireNamespace("evd", quietly = TRUE)) {
 # Check that nobs.evmOpt behaves correctly
 
 if (requireNamespace("texmex", quietly = TRUE)) {
-  library(texmex)
+  library(texmex, quietly = TRUE)
   # texmex::evm, GEV
   mod <- texmex::evm(SeaLevel, texmex::portpirie, family = gev)
   test_that("texmex::evm, nobs.evmOpt vs. length(response)", {
@@ -59,7 +59,7 @@ if (requireNamespace("texmex", quietly = TRUE)) {
 # Check that nobs.pot behaves correctly
 
 if (requireNamespace("POT", quietly = TRUE)) {
-  library(POT)
+  library(POT, quietly = TRUE)
   # An example from the POT::fitgpd documentation.
   set.seed(24082019)
   x <- POT::rgpd(200, 1, 2, 0.25)

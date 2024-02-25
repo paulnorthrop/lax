@@ -5,7 +5,7 @@
 got_evd <- requireNamespace("evd", quietly = TRUE)
 
 if (got_evd) {
-  library(evd)
+  library(evd, quietly = TRUE)
 
   # An example from the evd::fgev documentation
   set.seed(4082019)

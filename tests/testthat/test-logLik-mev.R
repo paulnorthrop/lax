@@ -1,7 +1,7 @@
 # Check that logLik(object) and logLik(logLikVec(object)) agree
 
 if (requireNamespace("mev", quietly = TRUE)) {
-  library(mev)
+  library(mev, quietly = TRUE)
 
   # mev::fit.gev
 

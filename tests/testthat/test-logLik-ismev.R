@@ -1,7 +1,7 @@
 # Check that logLik(object) and logLik(logLikVec(object)) agree
 
 if (requireNamespace("ismev", quietly = TRUE)) {
-  library(ismev)
+  library(ismev, quietly = TRUE)
 
   # ismev::gev.fit
 

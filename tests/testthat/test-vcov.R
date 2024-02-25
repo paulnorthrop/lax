@@ -3,7 +3,7 @@
 # ---------------------------------- evir ------------------------------------#
 
 if (requireNamespace("evir", quietly = TRUE)) {
-  library(evir)
+  library(evir, quietly = TRUE)
 
   # An example from the evir::gev documentation
   data(bmw)
@@ -35,7 +35,7 @@ if (requireNamespace("evir", quietly = TRUE)) {
 # ---------------------------------- evd ------------------------------------#
 
 if (requireNamespace("evd", quietly = TRUE)) {
-  library(evd)
+  library(evd, quietly = TRUE)
 
   # An example from the evd::fgev documentation
   set.seed(3082019)
@@ -52,7 +52,7 @@ if (requireNamespace("evd", quietly = TRUE)) {
 # -------------------------------- extRemes --------------------------------- #
 
 if (requireNamespace("extRemes", quietly = TRUE)) {
-  library(extRemes)
+  library(extRemes, quietly = TRUE)
 
   fitPORTstdmax <- extRemes::fevd(TMX1, PORTw, scale.fun = ~STDTMAX,
                                   use.phi = TRUE)
@@ -67,7 +67,7 @@ if (requireNamespace("extRemes", quietly = TRUE)) {
 # -------------------------------- fExtremes --------------------------------- #
 
 if (requireNamespace("fExtremes", quietly = TRUE)) {
-  library(fExtremes)
+  library(fExtremes, quietly = TRUE)
 
   # An example from the fExtremes::gevFit documentation
   set.seed(4082019)
@@ -97,7 +97,7 @@ if (requireNamespace("fExtremes", quietly = TRUE)) {
 # ---------------------------------- ismev ---------------------------------- #
 
 if (requireNamespace("ismev", quietly = TRUE)) {
-  library(ismev)
+  library(ismev, quietly = TRUE)
 
   mod <- ismev::gev.fit(revdbayes::portpirie, show = FALSE)
   temp <- mod
@@ -132,7 +132,7 @@ if (requireNamespace("ismev", quietly = TRUE)) {
 # --------------------------------- POT ---------------------------------- #
 
 if (requireNamespace("POT", quietly = TRUE)) {
-  library(POT)
+  library(POT, quietly = TRUE)
 
   # An example from the POT::fitgpd documentation.
   set.seed(24082019)
@@ -149,7 +149,7 @@ if (requireNamespace("POT", quietly = TRUE)) {
 # --------------------------------- texmex ---------------------------------- #
 
 if (requireNamespace("texmex", quietly = TRUE)) {
-  library(texmex)
+  library(texmex, quietly = TRUE)
 
   mod <- evm(rain, th = 30)
   temp <- mod

@@ -7,8 +7,8 @@ got_distillery <- requireNamespace("distillery", quietly = TRUE)
 # Examples from the extRemes::fevd documentation
 
 if (got_extRemes & got_distillery) {
-  library(extRemes)
-  library(distillery)
+  library(extRemes, quietly = TRUE)
+  library(distillery, quietly = TRUE)
   data(PORTw)
 
   ##### extRemes::fevd, GEV
@@ -184,7 +184,7 @@ if (got_extRemes & got_distillery) {
   # Code from demo ismev::wooster.temps
 
   if (requireNamespace("ismev", quietly = TRUE)) {
-    library(ismev)
+    library(ismev, quietly = TRUE)
     data(wooster)
     x <- seq(along = wooster)
     usin <- function(x, a, b, d) {

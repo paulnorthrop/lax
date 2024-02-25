@@ -1,7 +1,7 @@
 # Check that logLik(object) and logLik(logLikVec(object)) agree
 
 if (requireNamespace("evd", quietly = TRUE)) {
-  library(evd)
+  library(evd, quietly = TRUE)
 
   # evd::fgev
 

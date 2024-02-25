@@ -1,7 +1,7 @@
 # Check that logLik(object) and logLik(logLikVec(object)) agree
 
 if (requireNamespace("POT", quietly = TRUE)) {
-  library(POT)
+  library(POT, quietly = TRUE)
 
   # POT::fitgpd
 

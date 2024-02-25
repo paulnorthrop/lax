@@ -3,7 +3,7 @@
 # evir::gev
 
 if (requireNamespace("evir", quietly = TRUE)) {
-  library(evir)
+  library(evir, quietly = TRUE)
 
   # An example from the evir::gev documentation
   data(bmw)
