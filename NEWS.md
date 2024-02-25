@@ -1,3 +1,7 @@
+# lax 1.2.3
+
+## Bug fixes
+
 # lax 1.2.2
 
 ## Bug fixes

@@ -1,4 +1,4 @@
-A patch to fix the problems at https://cran.r-project.org/web/checks/check_results_lax.html has been fixed.
+This is a patch to fix the ERROR at https://cran.r-project.org/web/checks/check_results_lax.html.
 
 ## R CMD check results
 
