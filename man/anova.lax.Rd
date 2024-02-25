@@ -60,14 +60,15 @@ if (got_evd) {
   anova(adj1, adj0)
 }
 
-got_texmex <- requireNamespace("texmex", quietly = TRUE)
-if (got_texmex) {
-  library(texmex)
-  large <- evm(temp, ow, gev, mu = ~ loc, phi = ~ loc, xi = ~loc)
-  medium <- evm(temp, ow, gev, mu = ~ loc, phi = ~ loc)
-  small <- evm(temp, ow, gev, mu = ~ loc)
-  tiny <- evm(temp, ow, gev)
-  adj_large<- alogLik(large, cluster = ow$year)
+got_extRemes <- requireNamespace("extRemes", quietly = TRUE)
+if (got_extRemes) {
+  library(extRemes)
+  large <- fevd(temp, ow, location.fun = ~ ow$loc, scale.fun = ~ ow$loc,
+                shape.fun = ~ ow$loc)
+  medium <- fevd(temp, ow, location.fun = ~ ow$loc, scale.fun = ~ ow$loc)
+  small <- fevd(temp, ow, location.fun = ~ ow$loc)
+  tiny <- fevd(temp, ow)
+  adj_large <- alogLik(large, cluster = ow$year)
   adj_medium <- alogLik(medium, cluster = ow$year)
   adj_small <- alogLik(small, cluster = ow$year)
   adj_tiny <- alogLik(tiny, cluster = ow$year)
