@@ -23,7 +23,7 @@
 #' @seealso \code{\link{alogLik}}: loglikelihood adjustment for model fits.
 #' @examples
 #' \dontrun{
-#' # Not run to avoid CRAN package check error inherited from the texmex package
+#' # Not run to avoid a CRAN check error inherited from the texmex package
 #' # We need the texmex package, and ismev for the fremantle dataset
 #' got_texmex <- requireNamespace("texmex", quietly = TRUE)
 #' got_ismev <- requireNamespace("ismev", quietly = TRUE)
