@@ -57,10 +57,10 @@
 #' got_extRemes <- requireNamespace("extRemes", quietly = TRUE)
 #' if (got_extRemes) {
 #'   library(extRemes)
-#'   large <- fevd(temp, ow, location.fun = ~ ow$loc, scale.fun = ~ ow$loc,
-#'                 shape.fun = ~ ow$loc)
-#'   medium <- fevd(temp, ow, location.fun = ~ ow$loc, scale.fun = ~ ow$loc)
-#'   small <- fevd(temp, ow, location.fun = ~ ow$loc)
+#'   large <- fevd(temp, ow, location.fun = ~ loc, scale.fun = ~ loc,
+#'                 shape.fun = ~ loc)
+#'   medium <- fevd(temp, ow, location.fun = ~ loc, scale.fun = ~ loc)
+#'   small <- fevd(temp, ow, location.fun = ~ loc)
 #'   tiny <- fevd(temp, ow)
 #'   adj_large <- alogLik(large, cluster = ow$year)
 #'   adj_medium <- alogLik(medium, cluster = ow$year)
