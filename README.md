@@ -53,27 +53,33 @@ some or all of the parameters may vary between Oxford and Worthing.
 However, we should adjust for the cluster dependence between
 temperatures recorded during the same year.
 
-The following code fits such a model using the `evm` function in the
-[texmex](https://cran.r-project.org/package=texmex) package and the uses
-`alogLik` to perform adjusted inferences.
+The following code fits such a model using the `fevd` function in the
+[extRemes](https://cran.r-project.org/package=extRemes) package and the
+uses `alogLik` to perform adjusted inferences.
 
 ``` r
 library(lax)
-library(texmex, quietly = TRUE)
+library(extRemes, quietly = TRUE)
+#> 
+#> Attaching package: 'extRemes'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     qqnorm, qqplot
 # Fit a GEV model with separate location, scale and shape for Oxford and Worthing
 # Note: phi = log(scale)
-evm_fit <- evm(temp, ow, gev, mu = ~ loc, phi = ~ loc, xi = ~loc)
+evm_fit <- fevd(temp, ow, location.fun = ~ loc, scale.fun = ~ loc, 
+                shape.fun = ~ loc)
 # Adjust the loglikelihood and standard errors
 adj_evm_fit <- alogLik(evm_fit, cluster = ow$year, cadjust = FALSE)
 # MLEs, SEs and adjusted SEs
 summary(adj_evm_fit)
-#>                       MLE      SE adj. SE
-#> mu: (Intercept)  81.17000 0.32820 0.40360
-#> mu: loc           2.66800 0.32820 0.21280
-#> phi: (Intercept)  1.30600 0.06091 0.06490
-#> phi: loc          0.14330 0.06091 0.05074
-#> xi: (Intercept)  -0.19900 0.04937 0.03943
-#> xi: loc          -0.08821 0.04937 0.03624
+#>             MLE      SE adj. SE
+#> mu0    81.17000 0.32820 0.40360
+#> mu1     2.66800 0.32820 0.21280
+#> sigma0  3.72900 0.22930 0.24260
+#> sigma1  0.53090 0.22930 0.19110
+#> xi0    -0.19890 0.04938 0.03944
+#> xi1    -0.08828 0.04938 0.03625
 ```
 
 An object returned from `aloglik` is a function to evaluate the adjusted

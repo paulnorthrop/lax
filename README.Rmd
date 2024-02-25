@@ -41,14 +41,15 @@ The [CRAN Task View on Extreme Value Analysis](https://CRAN.R-project.org/view=E
 This example is based on the analysis presented in Section 5.2 of 
 [Chandler and Bate (2007)](https://doi.org/10.1093/biomet/asm015).  The data, which are available in the data frame `ow`, are a bivariate time series of annual maximum temperatures, recorded in degrees Fahrenheit, at Oxford and Worthing in England, for the period 1901 to 1980.  If interest is only in the marginal distributions of high temperatures in Oxford and Worthing, then we might fit a GEV regression model in which some or all of the parameters may vary between Oxford and Worthing.  However, we should adjust for the cluster dependence between temperatures recorded during the same year.
 
-The following code fits such a model using the `evm` function in the [texmex](https://cran.r-project.org/package=texmex) package and the uses `alogLik` to perform adjusted inferences.
+The following code fits such a model using the `fevd` function in the [extRemes](https://cran.r-project.org/package=extRemes) package and the uses `alogLik` to perform adjusted inferences.
 
 ```{r, warning = FALSE}
 library(lax)
-library(texmex, quietly = TRUE)
+library(extRemes, quietly = TRUE)
 # Fit a GEV model with separate location, scale and shape for Oxford and Worthing
 # Note: phi = log(scale)
-evm_fit <- evm(temp, ow, gev, mu = ~ loc, phi = ~ loc, xi = ~loc)
+evm_fit <- fevd(temp, ow, location.fun = ~ loc, scale.fun = ~ loc, 
+                shape.fun = ~ loc)
 # Adjust the loglikelihood and standard errors
 adj_evm_fit <- alogLik(evm_fit, cluster = ow$year, cadjust = FALSE)
 # MLEs, SEs and adjusted SEs
