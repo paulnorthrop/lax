@@ -1,4 +1,4 @@
-This is a patch to fix the ERROR at https://cran.r-project.org/web/checks/check_results_lax.html.
+This is a patch to fix the ERROR at https://cran.r-project.org/web/checks/check_results_lax.html. These problems are inherited from the texmex package, so I have suppressed examples and tests that involve texmex
 
 ## R CMD check results
 
