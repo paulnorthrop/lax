@@ -21,7 +21,7 @@ parameters of the larger model is held fixed.'><!-- mathjax --><script src="http
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lax</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.2.2</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.2.3</span>
       </span>
     </div>
 
@@ -161,34 +161,37 @@ chooses the type of adjustment.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> adj1        4                    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> adj0        3  1 1.421     0.2332</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">got_texmex</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"texmex"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="va">got_texmex</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/harrysouthworth/texmex" class="external-link">texmex</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">large</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/evm.html" class="external-link">evm</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, <span class="va">gev</span>, mu <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, phi <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, xi <span class="op">=</span> <span class="op">~</span><span class="va">loc</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">medium</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/evm.html" class="external-link">evm</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, <span class="va">gev</span>, mu <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, phi <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">small</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/evm.html" class="external-link">evm</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, <span class="va">gev</span>, mu <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">tiny</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/evm.html" class="external-link">evm</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, <span class="va">gev</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">adj_large</span><span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">large</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">got_extRemes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"extRemes"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="va">got_extRemes</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://staff.ral.ucar.edu/ericg/extRemes/" class="external-link">extRemes</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">large</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, location.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, scale.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>,</span></span>
+<span class="r-in"><span>                shape.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">medium</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, location.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, scale.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">small</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, location.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">tiny</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">adj_large</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">large</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_medium</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">medium</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_small</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">small</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_tiny</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">tiny</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">adj_large</span>, <span class="va">adj_medium</span>, <span class="va">adj_small</span>, <span class="va">adj_tiny</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: mvtnorm</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: ggplot2</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: Lmoments</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: distillery</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: 'texmex'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: 'extRemes'</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:evd':</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     dgev, dgpd, dgumbel, pgev, pgpd, pgumbel, portpirie, qgev, qgpd,</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     qgumbel, rgev, rgpd, rgumbel, rl</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     fbvpot, mrlplot</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:stats':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     qqnorm, qqplot</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Analysis of (Adjusted) Deviance Table</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            Model.Df Df  ALRTS Pr(&gt;ALRTS)    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> adj_large         6                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> adj_medium        5  1  6.315    0.01197 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> adj_small         4  1  4.241    0.03947 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> adj_tiny          3  1 88.594    &lt; 2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> adj_medium        5  1  6.276    0.01224 *  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> adj_small         4  1  4.198    0.04048 *  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> adj_tiny          3  1 80.697    &lt; 2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 </code></pre></div>

@@ -20,7 +20,7 @@ The model must have been fitted using maximum likelihood estimation."><!-- mathj
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lax</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.2.2</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.2.3</span>
       </span>
     </div>
 
@@ -160,7 +160,9 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># We need the texmex package, and ismev for the fremantle dataset</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># Not run to avoid a CRAN check error inherited from the texmex package</span></span></span>
+<span class="r-in"><span><span class="co"># We need the texmex package, and ismev for the fremantle dataset</span></span></span>
 <span class="r-in"><span><span class="va">got_texmex</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"texmex"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">got_ismev</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"ismev"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="va">got_texmex</span><span class="op">)</span> <span class="op">{</span></span></span>
@@ -220,7 +222,7 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
 <span class="r-in"><span>  <span class="va">adj_evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">evm_fit</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span>, cadjust <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_evm_fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in fam$param:</span> object of type 'closure' is not subsettable</span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>

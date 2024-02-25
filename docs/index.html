@@ -53,7 +53,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">lax</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.2.2</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">1.2.3</span>
       </span>
     </div>
 
@@ -113,24 +113,30 @@
 <h3 id="an-example">An example<a class="anchor" aria-label="anchor" href="#an-example"></a>
 </h3>
 <p>This example is based on the analysis presented in Section 5.2 of <a href="https://doi.org/10.1093/biomet/asm015" class="external-link">Chandler and Bate (2007)</a>. The data, which are available in the data frame <code>ow</code>, are a bivariate time series of annual maximum temperatures, recorded in degrees Fahrenheit, at Oxford and Worthing in England, for the period 1901 to 1980. If interest is only in the marginal distributions of high temperatures in Oxford and Worthing, then we might fit a GEV regression model in which some or all of the parameters may vary between Oxford and Worthing. However, we should adjust for the cluster dependence between temperatures recorded during the same year.</p>
-<p>The following code fits such a model using the <code>evm</code> function in the <a href="https://cran.r-project.org/package=texmex" class="external-link">texmex</a> package and the uses <code>alogLik</code> to perform adjusted inferences.</p>
+<p>The following code fits such a model using the <code>fevd</code> function in the <a href="https://cran.r-project.org/package=extRemes" class="external-link">extRemes</a> package and the uses <code>alogLik</code> to perform adjusted inferences.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://paulnorthrop.github.io/lax/" class="external-link">lax</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/harrysouthworth/texmex" class="external-link">texmex</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://staff.ral.ucar.edu/ericg/extRemes/" class="external-link">extRemes</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attaching package: 'extRemes'</span></span>
+<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     qqnorm, qqplot</span></span>
 <span><span class="co"># Fit a GEV model with separate location, scale and shape for Oxford and Worthing</span></span>
 <span><span class="co"># Note: phi = log(scale)</span></span>
-<span><span class="va">evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/evm.html" class="external-link">evm</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, <span class="va">gev</span>, mu <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, phi <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, xi <span class="op">=</span> <span class="op">~</span><span class="va">loc</span><span class="op">)</span></span>
+<span><span class="va">evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, location.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, scale.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, </span>
+<span>                shape.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span><span class="op">)</span></span>
 <span><span class="co"># Adjust the loglikelihood and standard errors</span></span>
 <span><span class="va">adj_evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">evm_fit</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span>, cadjust <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="co"># MLEs, SEs and adjusted SEs</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_evm_fit</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                       MLE      SE adj. SE</span></span>
-<span><span class="co">#&gt; mu: (Intercept)  81.17000 0.32820 0.40360</span></span>
-<span><span class="co">#&gt; mu: loc           2.66800 0.32820 0.21280</span></span>
-<span><span class="co">#&gt; phi: (Intercept)  1.30600 0.06091 0.06490</span></span>
-<span><span class="co">#&gt; phi: loc          0.14330 0.06091 0.05074</span></span>
-<span><span class="co">#&gt; xi: (Intercept)  -0.19900 0.04937 0.03943</span></span>
-<span><span class="co">#&gt; xi: loc          -0.08821 0.04937 0.03624</span></span></code></pre></div>
+<span><span class="co">#&gt;             MLE      SE adj. SE</span></span>
+<span><span class="co">#&gt; mu0    81.17000 0.32820 0.40360</span></span>
+<span><span class="co">#&gt; mu1     2.66800 0.32820 0.21280</span></span>
+<span><span class="co">#&gt; sigma0  3.72900 0.22930 0.24260</span></span>
+<span><span class="co">#&gt; sigma1  0.53090 0.22930 0.19110</span></span>
+<span><span class="co">#&gt; xi0    -0.19890 0.04938 0.03944</span></span>
+<span><span class="co">#&gt; xi1    -0.08828 0.04938 0.03625</span></span></code></pre></div>
 <p>An object returned from <code>aloglik</code> is a function to evaluate the adjusted loglikelihood, with <code>anova</code>, <code>coef</code>, <code>confint</code>, <code>logLik</code>, <code>nobs</code>, <code>plot</code>, <code>print</code>, <code>summary</code> and <code>vcov</code> methods.</p>
 </div>
 <div class="section level3">
