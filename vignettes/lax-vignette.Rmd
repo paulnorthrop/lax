@@ -96,11 +96,14 @@ We see that the adjustment of the loglikelihood for clustering makes enough of a
 
 ```{r, echo = FALSE}
 got_texmex <- requireNamespace("texmex", quietly = TRUE)
+# 25/02/2024: avoid ERROR in texmex
+got_texmex <- FALSE
 ```
 
 ## texmex
 
 ```{r, eval = got_texmex}
+# This code is not run, so there are no results
 library(texmex, quietly = TRUE)
 # Note: phi = log(scale)
 evm_fit <- evm(temp, ow, gev, mu = ~ loc, phi = ~ loc, xi = ~loc)
