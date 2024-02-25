@@ -103,7 +103,7 @@ got_texmex <- FALSE
 ## texmex
 
 ```{r, eval = got_texmex}
-# This code is not run, so there are no results
+# This code is not run, to avoid an error from evm(), so there are no results
 library(texmex, quietly = TRUE)
 # Note: phi = log(scale)
 evm_fit <- evm(temp, ow, gev, mu = ~ loc, phi = ~ loc, xi = ~loc)
