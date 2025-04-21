@@ -219,7 +219,7 @@ return_level <- function(x, m = 100, level = 0.95, npy = 1, prof = TRUE,
 #' See the examples in \code{\link{return_level}}.
 #' @export
 plot.retlev <- function(x, y = NULL, level = NULL, legend = TRUE, digits = 3,
-                        plot= TRUE, ...) {
+                        plot = TRUE, ...) {
   if (!inherits(x, "retlev")) {
     stop("use only with \"retlev\" objects")
   }
