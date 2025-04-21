@@ -21,7 +21,7 @@ return_level(
 \item{m}{A numeric scalar.  The return period, in years.}
 
 \item{level}{A numeric scalar in (0, 1).  The confidence level required for
-confidence interval for the \code{m}-year return level.}
+the confidence interval for the \code{m}-year return level.}
 
 \item{npy}{A numeric scalar.  The (mean) number of observations per year.
 \strong{Setting this appropriately is important}. See \strong{Details}.}

@@ -12,7 +12,7 @@
 #'   \code{\link{alogLik}}.
 #' @param m A numeric scalar.  The return period, in years.
 #' @param level A numeric scalar in (0, 1).  The confidence level required for
-#'   confidence interval for the \code{m}-year return level.
+#'   the confidence interval for the \code{m}-year return level.
 #' @param npy A numeric scalar.  The (mean) number of observations per year.
 #'   \strong{Setting this appropriately is important}. See \strong{Details}.
 #' @param prof A logical scalar.  Should we calculate intervals based on
