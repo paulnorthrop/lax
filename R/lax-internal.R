@@ -112,7 +112,7 @@ gev_rl_CI <- function (x, m, level, npy, type) {
   delta <- matrix(0, 3, 1)
   delta[1, ] <- 1
   delta[2, ] <- revdbayes::qgev(p, loc = 0, scale = 1, shape = xi,
-                               lower.tail = FALSE)
+                                lower.tail = FALSE)
   delta[3, ] <- sigma * box_cox_deriv(yp, lambda = -xi)
   rl_var <- t(delta) %*% mat %*% delta
   rl_se <- sqrt(rl_var)
