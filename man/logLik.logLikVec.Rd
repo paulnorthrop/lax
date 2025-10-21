@@ -12,6 +12,20 @@
 
 \item{...}{Further arguments.}
 }
+\value{
+An object of class \code{"logLik"}. This is the value of the
+  loglikelihood, with attributes \code{"df"} (degrees of freedom) giving
+  the number of free parameters, and \code{"nobs"} giving the number of
+  observations.
+}
 \description{
 S3 logLik method for logLikVec objects.
 }
+\details{
+See \code{\link{alogLik}}: loglikelihood adjustment for model fits.
+}
+\section{Examples}{
+
+See the example in \code{\link{bernoulli}}.
+}
+

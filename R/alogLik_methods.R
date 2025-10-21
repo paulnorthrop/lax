@@ -5,6 +5,11 @@
 #'
 #' @param object A fitted model object.
 #' @param ... Further arguments.
+#' @details See \code{\link{alogLik}}: loglikelihood adjustment for model fits.
+#' @return An object of class \code{"logLikVec"}, a vector containing
+#'   individual loglikelihood contributions.
+#' @section Examples:
+#' See the example in \code{\link{bernoulli}}.
 #' @export
 logLikVec <- function(object, ...) {
   UseMethod("logLikVec")
@@ -209,6 +214,13 @@ alogLik.default <- function(x, cluster = NULL, use_vcov = TRUE, binom = FALSE,
 #' @param object An object of class \code{"logLikVec"} return from a
 #'   \code{logLikVec} method.
 #' @param ... Further arguments.
+#' @details See \code{\link{alogLik}}: loglikelihood adjustment for model fits.
+#' @return An object of class \code{"logLik"}. This is the value of the
+#'   loglikelihood, with attributes \code{"df"} (degrees of freedom) giving
+#'   the number of free parameters, and \code{"nobs"} giving the number of
+#'   observations.
+#' @section Examples:
+#' See the example in \code{\link{bernoulli}}.
 #' @export
 logLik.logLikVec <- function(object, ...) {
   save_attributes <- attributes(object)

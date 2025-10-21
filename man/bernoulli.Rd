@@ -59,8 +59,8 @@ any missing values have been removed, using
 \code{\link[stats:na.fail]{na.omit}}.
 
 \code{logLikVec.bernoulli} returns an object of class \code{"logLikVec"}, a
-vector length \code{length(data)} containing the likelihood contributions
-from the individual observations in \code{data}.
+vector of length \code{length(data)} containing the loglikelihood
+contributions from the individual observations in \code{data}.
 }
 \description{
 Functions involved in making inferences about the probability of success

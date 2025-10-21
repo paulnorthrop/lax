@@ -11,7 +11,19 @@ logLikVec(object, ...)
 
 \item{...}{Further arguments.}
 }
+\value{
+An object of class \code{"logLikVec"}, a vector containing
+  individual loglikelihood contributions.
+}
 \description{
 Generic function for calculating loglikelihood contributions from
 individual observations for a fitted model.
 }
+\details{
+See \code{\link{alogLik}}: loglikelihood adjustment for model fits.
+}
+\section{Examples}{
+
+See the example in \code{\link{bernoulli}}.
+}
+

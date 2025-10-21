@@ -38,8 +38,8 @@
 #' \code{\link[stats:na.fail]{na.omit}}.
 #'
 #' \code{logLikVec.bernoulli} returns an object of class \code{"logLikVec"}, a
-#' vector length \code{length(data)} containing the likelihood contributions
-#' from the individual observations in \code{data}.
+#' vector of length \code{length(data)} containing the loglikelihood
+#' contributions from the individual observations in \code{data}.
 #' @seealso \code{\link[stats]{Binomial}}.  The Bernoulli distribution is the
 #'   special case where \code{size = 1}.
 #' @examples
