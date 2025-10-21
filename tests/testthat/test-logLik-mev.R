@@ -102,7 +102,7 @@ if (requireNamespace("mev", quietly = TRUE)) {
 
   # An example from the mev::fit.egp documentation
   if (requireNamespace("evd", quietly = TRUE)) {
-    models <- as.list(args(mev::fit.egp))$model
+    models <- as.character(formals(fit.egp)$model)[-1]
     set.seed(7102019)
     xdat <- revdbayes::rgp(n = 100, loc = 0, scale = 1, shape = 0.5)
     for (i in seq_along(models)) {
