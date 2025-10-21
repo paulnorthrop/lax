@@ -1,102 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/lax-vignette.html</loc>
-  </url>
-  <url>
-    <loc>/articles/return-levels.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/alogLik.html</loc>
-  </url>
-  <url>
-    <loc>/reference/anova.lax.html</loc>
-  </url>
-  <url>
-    <loc>/reference/bernoulli.html</loc>
-  </url>
-  <url>
-    <loc>/reference/eva.html</loc>
-  </url>
-  <url>
-    <loc>/reference/evd.html</loc>
-  </url>
-  <url>
-    <loc>/reference/evir.html</loc>
-  </url>
-  <url>
-    <loc>/reference/extRemes.html</loc>
-  </url>
-  <url>
-    <loc>/reference/fExtremes.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ismev.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ismev_refits.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lax-internal.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lax-package.html</loc>
-  </url>
-  <url>
-    <loc>/reference/lax.html</loc>
-  </url>
-  <url>
-    <loc>/reference/logLik.logLikVec.html</loc>
-  </url>
-  <url>
-    <loc>/reference/logLikVec.html</loc>
-  </url>
-  <url>
-    <loc>/reference/mev.html</loc>
-  </url>
-  <url>
-    <loc>/reference/ow.html</loc>
-  </url>
-  <url>
-    <loc>/reference/plot.retlev.html</loc>
-  </url>
-  <url>
-    <loc>/reference/POT.html</loc>
-  </url>
-  <url>
-    <loc>/reference/pot_refit.html</loc>
-  </url>
-  <url>
-    <loc>/reference/print.retlev.html</loc>
-  </url>
-  <url>
-    <loc>/reference/print.summary.retlev.html</loc>
-  </url>
-  <url>
-    <loc>/reference/return_level.html</loc>
-  </url>
-  <url>
-    <loc>/reference/summary.retlev.html</loc>
-  </url>
-  <url>
-    <loc>/reference/texmex.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://github.com/paulnorthrop/lax/404.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/articles/index.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/articles/lax-vignette.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/articles/return-levels.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/authors.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/index.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/LICENSE.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/news/index.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/alogLik.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/anova.lax.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/bernoulli.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/eva.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/evd.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/evir.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/extRemes.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/fExtremes.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/index.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/ismev.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/ismev_refits.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/lax-internal.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/lax-package.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/logLik.logLikVec.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/logLikVec.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/mev.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/ow.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/plot.retlev.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/POT.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/pot_refit.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/print.retlev.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/print.summary.retlev.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/return_level.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/summary.retlev.html</loc></url>
+<url><loc>https://github.com/paulnorthrop/lax/reference/texmex.html</loc></url>
 </urlset>
+
