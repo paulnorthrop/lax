@@ -184,7 +184,7 @@ the data, both threshold exceedances and non-exceedances.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from the mev::fit.egp documentation</span></span></span>
 <span class="r-in"><span>  <span class="co"># (model = "egp1" and model = "egp3" also work)</span></span></span>
-<span class="r-in"><span>  <span class="va">xdat</span> <span class="op">&lt;-</span> <span class="fu">evd</span><span class="fu">::</span><span class="fu">rgpd</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">100</span>, loc <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">xdat</span> <span class="op">&lt;-</span> <span class="fu">evd</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/evd/man/gpd.html" class="external-link">rgpd</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">100</span>, loc <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">fitted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lbelzile.github.io/mev/reference/fit.egp.html" class="external-link">fit.egp</a></span><span class="op">(</span>xdat <span class="op">=</span> <span class="va">xdat</span>, thresh <span class="op">=</span> <span class="fl">1</span>, model <span class="op">=</span> <span class="st">"egp2"</span>, show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_fitted</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fitted</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fitted</span><span class="op">)</span></span></span>
@@ -196,7 +196,30 @@ the data, both threshold exceedances and non-exceedances.</p>
 <span class="r-in"><span>  <span class="va">adj_fitr</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fitr</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fitr</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called 'evd'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: 'mev'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following object is masked _by_ '.GlobalEnv':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     venice</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:fExtremes':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     dgev, pgev, qgev, rgev</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:evir':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     dgev, pgev, qgev, rgev</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:eva':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     pgev, qgev</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following object is masked from 'package:extRemes':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     taildep</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:evd':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     dgev, pgev, qgev, rgev, venice</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           MLE     SE adj. SE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> loc   -0.1223 0.2859 0.29490</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> scale  1.0750 0.2450 0.20520</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> shape  0.2490 0.1552 0.07926</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

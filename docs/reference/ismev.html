@@ -56,9 +56,9 @@ the model will need to be re-fitted, see ismev_refits."></head><body>
     <div class="ref-description section level2">
     <p>S3 <code>alogLik</code> method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the functions
-<code>gev.fit</code>, <code>gpd.fit</code>,
-<code>pp.fit</code> and <code>rlarg.fit</code> in the
-<code>ismev</code> package.  If regression modelling is used then
+<code><a href="https://rdrr.io/pkg/ismev/man/gev.fit.html" class="external-link">gev.fit</a></code>, <code><a href="https://rdrr.io/pkg/ismev/man/gpd.fit.html" class="external-link">gpd.fit</a></code>,
+<code><a href="https://rdrr.io/pkg/ismev/man/pp.fit.html" class="external-link">pp.fit</a></code> and <code><a href="https://rdrr.io/pkg/ismev/man/rlarg.fit.html" class="external-link">rlarg.fit</a></code> in the
+<code><a href="https://rdrr.io/pkg/ismev/man/ismev.html" class="external-link">ismev</a></code> package.  If regression modelling is used then
 the model will need to be re-fitted, see <code><a href="ismev_refits.html">ismev_refits</a></code>.</p>
     </div>
 
@@ -161,13 +161,13 @@ the first and last observations.</p></dd>
   <code>c("lax", "chandwich", "ismev")</code>.
   The remaining 2 components depend on the model that was fitted.
   The 4th component is:
-  <code>"gev"</code> if <code>gev.fit</code>
+  <code>"gev"</code> if <code><a href="https://rdrr.io/pkg/ismev/man/gev.fit.html" class="external-link">gev.fit</a></code>
   (or <code><a href="ismev_refits.html">gev_refit</a></code>) was used;
-  <code>"gpd"</code> if <code>gpd.fit</code>
+  <code>"gpd"</code> if <code><a href="https://rdrr.io/pkg/ismev/man/gpd.fit.html" class="external-link">gpd.fit</a></code>
   (or <code><a href="ismev_refits.html">gpd_refit</a></code>) was used;
-  <code>"pp"</code> <code>pp.fit</code>
+  <code>"pp"</code> <code><a href="https://rdrr.io/pkg/ismev/man/pp.fit.html" class="external-link">pp.fit</a></code>
   (or <code><a href="ismev_refits.html">pp_refit</a></code>) was used;
-  <code>"rlarg"</code> <code>rlarg.fit</code>
+  <code>"rlarg"</code> <code><a href="https://rdrr.io/pkg/ismev/man/rlarg.fit.html" class="external-link">rlarg.fit</a></code>
   (or <code><a href="ismev_refits.html">rlarg_refit</a></code>) was used.
   The 5th component is
   <code>"stat"</code> if <code>x$trans = FALSE</code> and
@@ -177,8 +177,8 @@ the first and last observations.</p></dd>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>See <code><a href="alogLik.html">alogLik</a></code> for details.</p>
 <p>If regression modelling is used then the ismev functions
-<code>gev.fit</code>, <code>gpd.fit</code>,
-<code>pp.fit</code> and <code>rlarg.fit</code>
+<code><a href="https://rdrr.io/pkg/ismev/man/gev.fit.html" class="external-link">gev.fit</a></code>, <code><a href="https://rdrr.io/pkg/ismev/man/gpd.fit.html" class="external-link">gpd.fit</a></code>,
+<code><a href="https://rdrr.io/pkg/ismev/man/pp.fit.html" class="external-link">pp.fit</a></code> and <code><a href="https://rdrr.io/pkg/ismev/man/rlarg.fit.html" class="external-link">rlarg.fit</a></code>
 return residuals but <code><a href="alogLik.html">alogLik</a></code> needs the raw data.
 The model will need to be re-fitted, using one of the functions in
 <code><a href="ismev_refits.html">ismev_refits</a></code>, and the user will be prompted to do this
@@ -213,7 +213,7 @@ by an error message produced by <code><a href="alogLik.html">alogLik</a></code>.
 <span class="r-in"><span>  <span class="co"># GEV model -----</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from the ismev::gev.fit documentation</span></span></span>
-<span class="r-in"><span>  <span class="va">gev_fit</span> <span class="op">&lt;-</span> <span class="fu">gev.fit</span><span class="op">(</span><span class="fu">revdbayes</span><span class="fu">::</span><span class="va"><a href="https://paulnorthrop.github.io/revdbayes/reference/portpirie.html" class="external-link">portpirie</a></span>, show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">gev_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ismev/man/gev.fit.html" class="external-link">gev.fit</a></span><span class="op">(</span><span class="fu">revdbayes</span><span class="fu">::</span><span class="va"><a href="https://paulnorthrop.github.io/revdbayes/reference/portpirie.html" class="external-link">portpirie</a></span>, show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_gev_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gev_fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_gev_fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -243,7 +243,7 @@ by an error message produced by <code><a href="alogLik.html">alogLik</a></code>.
 <span class="r-in"><span>  <span class="co"># An example from the ismev::gpd.fit documentation</span></span></span>
 <span class="r-in"><span>  <span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">rain</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">rain_fit</span> <span class="op">&lt;-</span> <span class="fu">gpd.fit</span><span class="op">(</span><span class="va">rain</span>, <span class="fl">10</span>, show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">rain_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ismev/man/gpd.fit.html" class="external-link">gpd.fit</a></span><span class="op">(</span><span class="va">rain</span>, <span class="fl">10</span>, show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_rain_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">rain_fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_rain_fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># Continuing to the regression example on page 119 of Coles (2001)</span></span></span>
@@ -258,7 +258,7 @@ by an error message produced by <code><a href="alogLik.html">alogLik</a></code>.
 <span class="r-in"><span>  <span class="co"># Use Newlyn seas surges data from the exdex package</span></span></span>
 <span class="r-in"><span>  <span class="va">surges</span> <span class="op">&lt;-</span> <span class="fu">exdex</span><span class="fu">::</span><span class="va"><a href="https://paulnorthrop.github.io/exdex/reference/newlyn.html" class="external-link">newlyn</a></span></span></span>
 <span class="r-in"><span>  <span class="va">u</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">surges</span>, probs <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">newlyn_fit</span> <span class="op">&lt;-</span> <span class="fu">gpd.fit</span><span class="op">(</span><span class="va">surges</span>, <span class="va">u</span>, show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">newlyn_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ismev/man/gpd.fit.html" class="external-link">gpd.fit</a></span><span class="op">(</span><span class="va">surges</span>, <span class="va">u</span>, show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># Create 5 clusters each corresponding approximately to 1 year of data</span></span></span>
 <span class="r-in"><span>  <span class="va">cluster</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, each <span class="op">=</span> <span class="fl">579</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_newlyn_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">newlyn_fit</span>, cluster <span class="op">=</span> <span class="va">cluster</span>, binom <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
@@ -311,7 +311,7 @@ by an error message produced by <code><a href="alogLik.html">alogLik</a></code>.
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># An example based on the ismev::rlarg.fit() documentation</span></span></span>
 <span class="r-in"><span>  <span class="va">vdata</span> <span class="op">&lt;-</span> <span class="fu">revdbayes</span><span class="fu">::</span><span class="va"><a href="https://paulnorthrop.github.io/revdbayes/reference/venice.html" class="external-link">venice</a></span></span></span>
-<span class="r-in"><span>  <span class="va">rfit</span> <span class="op">&lt;-</span> <span class="fu">rlarg.fit</span><span class="op">(</span><span class="va">vdata</span>, muinit <span class="op">=</span> <span class="fl">120.54</span>, siginit <span class="op">=</span> <span class="fl">12.78</span>,</span></span>
+<span class="r-in"><span>  <span class="va">rfit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ismev/man/rlarg.fit.html" class="external-link">rlarg.fit</a></span><span class="op">(</span><span class="va">vdata</span>, muinit <span class="op">=</span> <span class="fl">120.54</span>, siginit <span class="op">=</span> <span class="fl">12.78</span>,</span></span>
 <span class="r-in"><span>                    shinit <span class="op">=</span> <span class="op">-</span><span class="fl">0.1129</span>, show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_rfit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">rfit</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_rfit</span><span class="op">)</span></span></span>
@@ -327,6 +327,14 @@ by an error message produced by <code><a href="alogLik.html">alogLik</a></code>.
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_rfit2</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># }</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: mgcv</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: nlme</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> This is mgcv 1.9-3. For overview type 'help("mgcv-package")'.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            MLE      SE adj. SE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> loc   122.8000 1.77100 3.17100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> loc1   -5.5400 2.65700 4.46100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> scale  12.6500 0.53290 0.81270</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> shape  -0.1172 0.01948 0.02741</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

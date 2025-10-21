@@ -85,7 +85,7 @@
 <span><span class="co">#&gt;     qqnorm, qqplot</span></span>
 <span><span class="co"># Fit a GEV model with separate location, scale and shape for Oxford and Worthing</span></span>
 <span><span class="co"># Note: phi = log(scale)</span></span>
-<span><span class="va">evm_fit</span> <span class="op">&lt;-</span> <span class="fu">fevd</span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, location.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, scale.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, </span>
+<span><span class="va">evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, location.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, scale.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, </span>
 <span>                shape.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span><span class="op">)</span></span>
 <span><span class="co"># Adjust the loglikelihood and standard errors</span></span>
 <span><span class="va">adj_evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">evm_fit</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span>, cadjust <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>

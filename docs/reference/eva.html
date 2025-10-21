@@ -50,7 +50,7 @@ gevrFit and gpdFit in the eva package."></head><body>
     <div class="ref-description section level2">
     <p>S3 <code>alogLik</code> method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the functions
-<code>gevrFit</code> and <code>gpdFit</code> in the eva package.</p>
+<code><a href="https://rdrr.io/pkg/eva/man/gevrFit.html" class="external-link">gevrFit</a></code> and <code><a href="https://rdrr.io/pkg/eva/man/gpdFit.html" class="external-link">gpdFit</a></code> in the eva package.</p>
     </div>
 
     <div class="section level2">
@@ -111,8 +111,8 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
   <code>class(x)</code> is a vector of length 5. The first 3 components are
   <code>c("lax", "chandwich", "eva")</code>.
   The 4th component depends on which model was fitted.
-  <code>"rlarg"</code> if <code>gevrFit</code> was used;
-  <code>"gpd"</code> if <code>gpdFit</code> was used.
+  <code>"rlarg"</code> if <code><a href="https://rdrr.io/pkg/eva/man/gevrFit.html" class="external-link">gevrFit</a></code> was used;
+  <code>"gpd"</code> if <code><a href="https://rdrr.io/pkg/eva/man/gpdFit.html" class="external-link">gpdFit</a></code> was used.
   The 5th component is
   <code>"stat"</code> if there are no covariates in the mode and
   <code>"nonstat"</code> otherwise.</p>
@@ -121,14 +121,14 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>See <code><a href="alogLik.html">alogLik</a></code> for details.</p>
 <p>In the stationary case (no covariates) the function
-  <code>gevrFit</code> and <code>gpdFit</code> in the eva
+  <code><a href="https://rdrr.io/pkg/eva/man/gevrFit.html" class="external-link">gevrFit</a></code> and <code><a href="https://rdrr.io/pkg/eva/man/gpdFit.html" class="external-link">gpdFit</a></code> in the eva
   package offer standard errors based on the expected information or on the
   observed information, via the argument <code>information</code>.  In contrast,
   <code><a href="alogLik.html">alogLik()</a></code> always bases calculations on the observed information
   matrix. Therefore, unadjusted standard errors resulting from
   <code><a href="alogLik.html">alogLik()</a></code> may be different the corresponding standard errors
-  from  <code>gevrFit</code> or <code>gpdFit</code>.</p>
-<p>For <code>gevrFit</code> only GEV fits (<code>gumbel = FALSE</code>) are
+  from  <code><a href="https://rdrr.io/pkg/eva/man/gevrFit.html" class="external-link">gevrFit</a></code> or <code><a href="https://rdrr.io/pkg/eva/man/gpdFit.html" class="external-link">gpdFit</a></code>.</p>
+<p>For <code><a href="https://rdrr.io/pkg/eva/man/gevrFit.html" class="external-link">gevrFit</a></code> only GEV fits (<code>gumbel = FALSE</code>) are
   supported.</p>
     </div>
     <div class="section level2">
@@ -158,8 +158,8 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/brianbader/eva_package" class="external-link">eva</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from the eva::gpdFit documentation</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">eva</span><span class="fu">::</span><span class="fu">rgpd</span><span class="op">(</span><span class="fl">2000</span>, loc <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">2</span>, shape <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">mle_fit</span> <span class="op">&lt;-</span> <span class="fu">eva</span><span class="fu">::</span><span class="fu">gpdFit</span><span class="op">(</span><span class="va">x</span>, threshold <span class="op">=</span> <span class="fl">4</span>, method <span class="op">=</span> <span class="st">"mle"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">eva</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/eva/man/gpd.html" class="external-link">rgpd</a></span><span class="op">(</span><span class="fl">2000</span>, loc <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">2</span>, shape <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">mle_fit</span> <span class="op">&lt;-</span> <span class="fu">eva</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/eva/man/gpdFit.html" class="external-link">gpdFit</a></span><span class="op">(</span><span class="va">x</span>, threshold <span class="op">=</span> <span class="fl">4</span>, method <span class="op">=</span> <span class="st">"mle"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_mle_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">mle_fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_mle_fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -167,18 +167,18 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
 <span class="r-in"><span>  <span class="co"># A linear trend in the scale parameter</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">300</span></span></span>
-<span class="r-in"><span>  <span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu">eva</span><span class="fu">::</span><span class="fu">rgpd</span><span class="op">(</span><span class="va">n</span>, loc <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span><span class="op">:</span><span class="va">n</span> <span class="op">/</span> <span class="fl">200</span>, shape <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu">eva</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/eva/man/gpd.html" class="external-link">rgpd</a></span><span class="op">(</span><span class="va">n</span>, loc <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span><span class="op">:</span><span class="va">n</span> <span class="op">/</span> <span class="fl">200</span>, shape <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">covs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">n</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">covs</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Trend1"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">result1</span> <span class="op">&lt;-</span> <span class="fu">eva</span><span class="fu">::</span><span class="fu">gpdFit</span><span class="op">(</span><span class="va">x2</span>, threshold <span class="op">=</span> <span class="fl">0</span>, scalevars <span class="op">=</span> <span class="va">covs</span>,</span></span>
+<span class="r-in"><span>  <span class="va">result1</span> <span class="op">&lt;-</span> <span class="fu">eva</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/eva/man/gpdFit.html" class="external-link">gpdFit</a></span><span class="op">(</span><span class="va">x2</span>, threshold <span class="op">=</span> <span class="fl">0</span>, scalevars <span class="op">=</span> <span class="va">covs</span>,</span></span>
 <span class="r-in"><span>                         scaleform <span class="op">=</span> <span class="op">~</span> <span class="va">Trend1</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_result1</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">result1</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_result1</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from the eva::gevrFit documentation</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">7</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">x1</span> <span class="op">&lt;-</span> <span class="fu">eva</span><span class="fu">::</span><span class="fu">rgevr</span><span class="op">(</span><span class="fl">500</span>, <span class="fl">1</span>, loc <span class="op">=</span> <span class="fl">0.5</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">result1</span> <span class="op">&lt;-</span> <span class="fu">eva</span><span class="fu">::</span><span class="fu">gevrFit</span><span class="op">(</span><span class="va">x1</span>, method <span class="op">=</span> <span class="st">"mle"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">x1</span> <span class="op">&lt;-</span> <span class="fu">eva</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/eva/man/gevr.html" class="external-link">rgevr</a></span><span class="op">(</span><span class="fl">500</span>, <span class="fl">1</span>, loc <span class="op">=</span> <span class="fl">0.5</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">result1</span> <span class="op">&lt;-</span> <span class="fu">eva</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/eva/man/gevrFit.html" class="external-link">gevrFit</a></span><span class="op">(</span><span class="va">x1</span>, method <span class="op">=</span> <span class="st">"mle"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_result1</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">result1</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_result1</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -186,19 +186,33 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
 <span class="r-in"><span>  <span class="co"># A linear trend in the location and scale parameter</span></span></span>
 <span class="r-in"><span>  <span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">100</span></span></span>
 <span class="r-in"><span>  <span class="va">r</span> <span class="op">&lt;-</span> <span class="fl">10</span></span></span>
-<span class="r-in"><span>  <span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu">eva</span><span class="fu">::</span><span class="fu">rgevr</span><span class="op">(</span><span class="va">n</span>, <span class="va">r</span>, loc <span class="op">=</span> <span class="fl">100</span> <span class="op">+</span> <span class="fl">1</span><span class="op">:</span><span class="va">n</span> <span class="op">/</span> <span class="fl">50</span>,  scale <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span><span class="op">:</span><span class="va">n</span> <span class="op">/</span> <span class="fl">300</span>,</span></span>
+<span class="r-in"><span>  <span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu">eva</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/eva/man/gevr.html" class="external-link">rgevr</a></span><span class="op">(</span><span class="va">n</span>, <span class="va">r</span>, loc <span class="op">=</span> <span class="fl">100</span> <span class="op">+</span> <span class="fl">1</span><span class="op">:</span><span class="va">n</span> <span class="op">/</span> <span class="fl">50</span>,  scale <span class="op">=</span> <span class="fl">1</span> <span class="op">+</span> <span class="fl">1</span><span class="op">:</span><span class="va">n</span> <span class="op">/</span> <span class="fl">300</span>,</span></span>
 <span class="r-in"><span>                   shape <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">covs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="va">n</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">covs</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Trend1"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># Create some unrelated covariates</span></span></span>
 <span class="r-in"><span>  <span class="va">covs</span><span class="op">$</span><span class="va">Trend2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">covs</span><span class="op">$</span><span class="va">Trend3</span> <span class="op">&lt;-</span> <span class="fl">30</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">result2</span> <span class="op">&lt;-</span> <span class="fu">eva</span><span class="fu">::</span><span class="fu">gevrFit</span><span class="op">(</span>data <span class="op">=</span> <span class="va">x2</span>, method <span class="op">=</span> <span class="st">"mle"</span>, locvars <span class="op">=</span> <span class="va">covs</span>,</span></span>
+<span class="r-in"><span>  <span class="va">result2</span> <span class="op">&lt;-</span> <span class="fu">eva</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/eva/man/gevrFit.html" class="external-link">gevrFit</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">x2</span>, method <span class="op">=</span> <span class="st">"mle"</span>, locvars <span class="op">=</span> <span class="va">covs</span>,</span></span>
 <span class="r-in"><span>                          locform <span class="op">=</span> <span class="op">~</span> <span class="va">Trend1</span> <span class="op">+</span> <span class="va">Trend2</span><span class="op">*</span><span class="va">Trend3</span>,</span></span>
 <span class="r-in"><span>                          scalevars <span class="op">=</span> <span class="va">covs</span>, scaleform <span class="op">=</span> <span class="op">~</span> <span class="va">Trend1</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_result2</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">result2</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_result2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: 'eva'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:evd':</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>     dgpd, pgev, pgpd, qgev, qgpd, rgpd</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                               MLE       SE  adj. SE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Location (Intercept)   100.200000 0.199200 0.229000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Location Trend1          0.018110 0.003192 0.003304</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Location Trend2         -0.004186 0.063170 0.066540</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Location Trend3         -0.003237 0.003934 0.003736</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Location Trend2:Trend3  -0.001259 0.004247 0.004489</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Scale (Intercept)        1.123000 0.092090 0.115700</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Scale Trend1             0.002235 0.001208 0.001218</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Shape (Intercept)        0.034370 0.030470 0.030090</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -167,7 +167,7 @@ an adjusted loglikelihood function.  See <strong>Details</strong> and
 </ul><p><strong>Supplying <code>npy</code> for binomial-GP models.</strong>
   The value of <code>npy</code> (or an equivalent, perhaps differently named,
   quantity) may have been set in the call to fit a GP model.
-  For example, the <code>gpd.fit()</code> function in the <code>ismev</code> package
+  For example, the <code><a href="https://rdrr.io/pkg/ismev/man/gpd.fit.html" class="external-link">gpd.fit()</a></code> function in the <code>ismev</code> package
   has a <code>npy</code> argument and the value of <code>npy</code> is stored in the
   fitted model object.  If <code>npy</code> is supplied by the user in the call to
   <code>return_level</code> then this will be used in preference to the value
@@ -208,8 +208,8 @@ an adjusted loglikelihood function.  See <strong>Details</strong> and
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">evd</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from the evd::fgev documentation</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">4082019</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">uvdata</span> <span class="op">&lt;-</span> <span class="fu">evd</span><span class="fu">::</span><span class="fu">rgev</span><span class="op">(</span><span class="fl">100</span>, loc <span class="op">=</span> <span class="fl">0.13</span>, scale <span class="op">=</span> <span class="fl">1.1</span>, shape <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu">fgev</span><span class="op">(</span><span class="va">uvdata</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">uvdata</span> <span class="op">&lt;-</span> <span class="fu">evd</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/evd/man/gev.html" class="external-link">rgev</a></span><span class="op">(</span><span class="fl">100</span>, loc <span class="op">=</span> <span class="fl">0.13</span>, scale <span class="op">=</span> <span class="fl">1.1</span>, shape <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/evd/man/fgev.html" class="external-link">fgev</a></span><span class="op">(</span><span class="va">uvdata</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_fgev</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># Large inc set here for speed, sacrificing accuracy</span></span></span>
 <span class="r-in"><span>  <span class="va">rl</span> <span class="op">&lt;-</span> <span class="fu">return_level</span><span class="op">(</span><span class="va">adj_fgev</span>, inc <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
@@ -217,13 +217,16 @@ an adjusted loglikelihood function.  See <strong>Details</strong> and
 <span class="r-in"><span>  <span class="va">rl</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">rl</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-plt img"><img src="return_level-1.png" alt="" width="700" height="433"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     lower       mle     upper </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  5.337685  6.992529 10.354765 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">got_ismev</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"ismev"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="va">got_ismev</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ismev</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from the ismev::gev.fit documentation</span></span></span>
-<span class="r-in"><span>  <span class="va">gev_fit</span> <span class="op">&lt;-</span> <span class="fu">gev.fit</span><span class="op">(</span><span class="fu">revdbayes</span><span class="fu">::</span><span class="va"><a href="https://paulnorthrop.github.io/revdbayes/reference/portpirie.html" class="external-link">portpirie</a></span>, show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">gev_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ismev/man/gev.fit.html" class="external-link">gev.fit</a></span><span class="op">(</span><span class="fu">revdbayes</span><span class="fu">::</span><span class="va"><a href="https://paulnorthrop.github.io/revdbayes/reference/portpirie.html" class="external-link">portpirie</a></span>, show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_gev_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gev_fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># Large inc set here for speed, sacrificing accuracy</span></span></span>
 <span class="r-in"><span>  <span class="va">rl</span> <span class="op">&lt;-</span> <span class="fu">return_level</span><span class="op">(</span><span class="va">adj_gev_fit</span>, inc <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></span>
@@ -231,6 +234,9 @@ an adjusted loglikelihood function.  See <strong>Details</strong> and
 <span class="r-in"><span>  <span class="va">rl</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">rl</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-plt img"><img src="return_level-2.png" alt="" width="700" height="433"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    lower      mle    upper </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4.518708 4.688429 5.070614 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Binomial-GP model -----</span></span></span>
 <span class="r-in"><span></span></span>
@@ -238,7 +244,7 @@ an adjusted loglikelihood function.  See <strong>Details</strong> and
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ismev</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">rain</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from the ismev::gpd.fit documentation</span></span></span>
-<span class="r-in"><span>  <span class="va">rain_fit</span> <span class="op">&lt;-</span> <span class="fu">gpd.fit</span><span class="op">(</span><span class="va">rain</span>, <span class="fl">10</span>, show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">rain_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ismev/man/gpd.fit.html" class="external-link">gpd.fit</a></span><span class="op">(</span><span class="va">rain</span>, <span class="fl">10</span>, show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_rain_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">rain_fit</span>, binom <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># Large inc set here for speed, sacrificing accuracy</span></span></span>
 <span class="r-in"><span>  <span class="va">rl</span> <span class="op">&lt;-</span> <span class="fu">return_level</span><span class="op">(</span><span class="va">adj_rain_fit</span>, inc <span class="op">=</span> <span class="fl">2.5</span><span class="op">)</span></span></span>
@@ -246,12 +252,15 @@ an adjusted loglikelihood function.  See <strong>Details</strong> and
 <span class="r-in"><span>  <span class="va">rl</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">rl</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-plt img"><img src="return_level-3.png" alt="" width="700" height="433"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     lower       mle     upper </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  76.00807  87.01603 103.60984 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="va">got_ismev</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="co"># Use Newlyn seas surges data from the exdex package</span></span></span>
 <span class="r-in"><span>  <span class="va">surges</span> <span class="op">&lt;-</span> <span class="fu">exdex</span><span class="fu">::</span><span class="va"><a href="https://paulnorthrop.github.io/exdex/reference/newlyn.html" class="external-link">newlyn</a></span></span></span>
 <span class="r-in"><span>  <span class="va">u</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">surges</span>, probs <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">newlyn_fit</span> <span class="op">&lt;-</span> <span class="fu">gpd.fit</span><span class="op">(</span><span class="va">surges</span>, <span class="va">u</span>, show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">newlyn_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ismev/man/gpd.fit.html" class="external-link">gpd.fit</a></span><span class="op">(</span><span class="va">surges</span>, <span class="va">u</span>, show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># Create 5 clusters each corresponding approximately to 1 year of data</span></span></span>
 <span class="r-in"><span>  <span class="va">cluster</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, each <span class="op">=</span> <span class="fl">579</span><span class="op">)</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_newlyn_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">newlyn_fit</span>, cluster <span class="op">=</span> <span class="va">cluster</span>, binom <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
@@ -265,6 +274,19 @@ an adjusted loglikelihood function.  See <strong>Details</strong> and
 <span class="r-in"><span>  <span class="va">rl</span> <span class="op">&lt;-</span> <span class="fu">return_level</span><span class="op">(</span><span class="va">adj_newlyn_theta</span>, inc <span class="op">=</span> <span class="fl">0.02</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">rl</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> return_level(x = adj_newlyn_theta, inc = 0.02)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MLE and 95% confidence limits for the 100-year return level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Normal interval:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  lower     mle   upper  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.7489  0.8424  0.9359  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  Profile likelihood-based interval:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  lower     mle   upper  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.7593  0.8424  0.9450  </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -70,7 +70,7 @@ confint(adj_large, type = "none")
 
 The `conf_region` function in the *chandwich* package can be used to produce confidence regions for pairs of parameters.  Here, we consider the 'central' (midway between Oxford and Worthing) scale and shape intercept parameters: $\sigma_0$ and $\xi_0$ in @CB2007.
 
-```{r, fig.align='center', fig.width=7, fig.height=7}
+```{r, fig.align='center', fig.width=7, fig.height=7, fig.alt = "Plot of 95 percent confidence regions for the scale and intercept parameters. The region with a solid outline is based on the independence loglikelihood and the region with a dashed outline on the vertically-adjusted loglikelihood. In this case the regions are similar, with the adjusted region being rotated a little anticlockwise relative to the unadjusted region."}
 library(chandwich)
 which_pars <- c("scale", "shape")
 gev_none <- conf_region(adj_large, which_pars = which_pars, type = "none")

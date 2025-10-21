@@ -3,7 +3,7 @@
 ## Bug fixes
 
 * Updates to methods for `mev::fit.egp()` to comply with versions 2.0 and add new models.
-* Add Details, Value and Examples sections in `logLik.logLikVec.Rd` and `logLikVec.Rd` to avoid "Warning: missing </ul> before </div>" CRAN check warning on r-devel Debian.
+* Add Details, Value and Examples sections in `logLik.logLikVec.Rd` and `logLikVec.Rd` to avoid CRAN HTML validation NOTE on r-devel Debian.
 
 # lax 1.2.3
 
