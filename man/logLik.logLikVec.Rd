@@ -13,5 +13,5 @@
 \item{...}{Further arguments.}
 }
 \description{
-S3 logLik method for logLikVec objects
+S3 logLik method for logLikVec objects.
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/alogLik_methods.R
 \name{alogLik}
 \alias{alogLik}
-\title{Loglikelihood adjustment for model fits}
+\title{Loglikelihood adjustment for model fits.}
 \usage{
 alogLik(
   x,

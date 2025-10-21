@@ -1,6 +1,6 @@
 #' Internal lax functions
 #'
-#' Internal lax functions
+#' Internal lax functions.
 #' @details
 #' These functions are not intended to be called by the user.
 #' @name lax-internal

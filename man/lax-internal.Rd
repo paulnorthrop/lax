@@ -35,7 +35,7 @@ ismev_ppp(a, npy)
 kgaps_loglik(theta, N0, N1, sum_qs, n_kgaps)
 }
 \description{
-Internal lax functions
+Internal lax functions.
 }
 \details{
 These functions are not intended to be called by the user.

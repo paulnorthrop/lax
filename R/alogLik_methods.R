@@ -10,7 +10,7 @@ logLikVec <- function(object, ...) {
   UseMethod("logLikVec")
 }
 
-#' Loglikelihood adjustment for model fits
+#' Loglikelihood adjustment for model fits.
 #'
 #' This function is generic.  It performs adjustment of the loglikelihood
 #' associated with fitted model objects, following Chandler and Bate (2007).
@@ -204,7 +204,7 @@ alogLik.default <- function(x, cluster = NULL, use_vcov = TRUE, binom = FALSE,
 
 #' Sum loglikelihood contributions from individual observations
 #'
-#' S3 logLik method for logLikVec objects
+#' S3 logLik method for logLikVec objects.
 #'
 #' @param object An object of class \code{"logLikVec"} return from a
 #'   \code{logLikVec} method.
