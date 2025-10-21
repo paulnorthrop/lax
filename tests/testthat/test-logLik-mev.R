@@ -102,10 +102,10 @@ if (requireNamespace("mev", quietly = TRUE)) {
 
   # An example from the mev::fit.egp documentation
   if (requireNamespace("evd", quietly = TRUE)) {
-    models <- c("egp1", "egp2", "egp3")
+    models <- as.list(args(mev::fit.egp))$model
     set.seed(7102019)
     xdat <- revdbayes::rgp(n = 100, loc = 0, scale = 1, shape = 0.5)
-    for (i in 1:3) {
+    for (i in seq_along(models)) {
       fitted <- fit.egp(xdat = xdat, thresh = 1, model = models[i],
                         show = FALSE)
       temp <- fitted
