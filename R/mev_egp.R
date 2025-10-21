@@ -22,7 +22,7 @@ logLikVec.laxmev_egp <- function(object, pars = NULL, ...) {
     val <- -Inf
   } else {
     fn <- function(i) {
-      return(mev::egp.ll(xdat = response_data[i], thresh = object$thresh,
+      return(mev::egp.ll(xdat = response_data[i], thresh = 0,
                          par = pars, model = object$model))
     }
     val <- vapply(1:n, fn, 0.0)
