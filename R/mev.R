@@ -7,7 +7,7 @@
 #' \code{\link[mev]{fit.gev}}, \code{\link[mev]{fit.gpd}}, and
 #' \code{\link[mev]{fit.pp}} and \code{\link[mev]{fit.rlarg}} in the
 #' mev package.
-#'
+#' @importFrom utils packageVersion
 #' @inherit alogLik params references
 #' @details See \code{\link{alogLik}} for details.
 #'
@@ -75,8 +75,10 @@ alogLik.mev_gev <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # Does x have a supported class?
   is_supported <- NULL
   for (i in 1:length(supported_by_lax)) {
-    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
-                                                  use.names = FALSE))
+    is_supported[i] <- identical(
+      class(x),
+      unlist(supported_by_lax[i], use.names = FALSE)
+    )
   }
   if (!any(is_supported)) {
     stop(paste("x's class", deparse(class(x)), "is not supported"))
@@ -101,8 +103,10 @@ alogLik.mev_pp <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # Does x have a supported class?
   is_supported <- NULL
   for (i in 1:length(supported_by_lax)) {
-    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
-                                                  use.names = FALSE))
+    is_supported[i] <- identical(
+      class(x),
+      unlist(supported_by_lax[i], use.names = FALSE)
+    )
   }
   if (!any(is_supported)) {
     stop(paste("x's class", deparse(class(x)), "is not supported"))
@@ -124,8 +128,10 @@ alogLik.mev_gpd <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # Does x have a supported class?
   is_supported <- NULL
   for (i in 1:length(supported_by_lax)) {
-    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
-                                                  use.names = FALSE))
+    is_supported[i] <- identical(
+      class(x),
+      unlist(supported_by_lax[i], use.names = FALSE)
+    )
   }
   if (!any(is_supported)) {
     stop(paste("x's class", deparse(class(x)), "is not supported"))
@@ -147,8 +153,10 @@ alogLik.mev_egp <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # Does x have a supported class?
   is_supported <- NULL
   for (i in 1:length(supported_by_lax)) {
-    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
-                                                  use.names = FALSE))
+    is_supported[i] <- identical(
+      class(x),
+      unlist(supported_by_lax[i], use.names = FALSE)
+    )
   }
   if (!any(is_supported)) {
     stop(paste("x's class", deparse(class(x)), "is not supported"))
@@ -170,8 +178,10 @@ alogLik.mev_rlarg <- function(x, cluster = NULL, use_vcov = TRUE, ...) {
   # Does x have a supported class?
   is_supported <- NULL
   for (i in 1:length(supported_by_lax)) {
-    is_supported[i] <- identical(class(x), unlist(supported_by_lax[i],
-                                                  use.names = FALSE))
+    is_supported[i] <- identical(
+      class(x),
+      unlist(supported_by_lax[i], use.names = FALSE)
+    )
   }
   if (!any(is_supported)) {
     stop(paste("x's class", deparse(class(x)), "is not supported"))

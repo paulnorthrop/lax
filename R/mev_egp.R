@@ -16,14 +16,23 @@ logLikVec.laxmev_egp <- function(object, pars = NULL, ...) {
   #
   # Threshold exceedances (values that lie above the threshold)
   response_data <- object$exceedances
+  if (packageVersion("mev") < "2.0") {
+    thresh <- object$threshold
+  } else {
+    thresh <- 0 # exceedances only consist of values beyond thresh
+  }
   n <- length(response_data)
   # Calculate the loglikelihood contributions
   if (pars[2] <= 0) {
     val <- -Inf
   } else {
     fn <- function(i) {
-      return(mev::egp.ll(xdat = response_data[i], thresh = 0,
-                         par = pars, model = object$model))
+      return(mev::egp.ll(
+        xdat = response_data[i],
+        thresh = thresh,
+        par = pars,
+        model = object$model
+      ))
     }
     val <- vapply(1:n, fn, 0.0)
   }

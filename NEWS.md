@@ -1,3 +1,9 @@
+# lax 1.2.4
+
+## Bug fixes
+
+* Updates to methods for `mev::fit.egp()` to comply with versions 2.0 and add new models.
+
 # lax 1.2.3
 
 ## Bug fixes
