@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# lax
+# lax <a href="https://paulnorthrop.github.io/lax/"><img src="man/figures/lax_logo.png" align="right" style="float:right; height:150px;" alt = "lax logo"/></a>
 
 [![R-CMD-check](https://github.com/paulnorthrop/lax/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/paulnorthrop/lax/actions/workflows/R-CMD-check.yaml)
 [![Coverage
