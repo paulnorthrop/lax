@@ -1,8 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
-^\.travis\.yml$
-^appveyor\.yml$
 ^doc$
 ^Meta$
 ^cran-comments\.md$
