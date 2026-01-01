@@ -90,8 +90,8 @@ the Bernoulli success probability.</p></dd>
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Further arguments to be passed to the functions in the
-sandwich package <code><a href="https://sandwich.R-Forge.R-project.org/reference/meat.html" class="external-link">meat</a></code> (if <code>cluster = NULL</code>),
-or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" class="external-link">meatCL</a></code> (if <code>cluster</code> is not
+sandwich package <code><a href="https://rdrr.io/pkg/sandwich/man/meat.html" class="external-link">meat</a></code> (if <code>cluster = NULL</code>),
+or <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-link">meatCL</a></code> (if <code>cluster</code> is not
 <code>NULL</code>).</p></dd>
 
 
@@ -142,7 +142,7 @@ additive constant.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Set up data</span></span></span>
-<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">exdex</span><span class="fu">::</span><span class="va"><a href="https://paulnorthrop.github.io/exdex/reference/newlyn.html" class="external-link">newlyn</a></span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">exdex</span><span class="fu">::</span><span class="va"><a href="https://github.com/paulnorthrop/exdex/reference/newlyn.html" class="external-link">newlyn</a></span></span></span>
 <span class="r-in"><span><span class="va">u</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">x</span>, probs <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">exc</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">&gt;</span> <span class="va">u</span></span></span>
 <span class="r-in"><span></span></span>

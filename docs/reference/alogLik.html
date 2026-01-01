@@ -148,22 +148,22 @@ instances of threshold exceedance.</p></dd>
 <dd><p>A non-negative integer scalar.  This option is only relevant to
 <strong>GP models</strong> and is only available in the <strong>stationary</strong>
 (no covariates) case.  If <code>k</code> is supplied then it is passed as the
-run parameter \(K\) to <code><a href="https://paulnorthrop.github.io/exdex/reference/kgaps.html" class="external-link">kgaps</a></code> for making inferences
+run parameter \(K\) to <code><a href="https://github.com/paulnorthrop/exdex/reference/kgaps.html" class="external-link">kgaps</a></code> for making inferences
 about the extremal index \(\theta\) using the \(K\)-gaps model of
 Suveges and Davison (2010).</p></dd>
 
 
 <dt id="arg-inc-cens">inc_cens<a class="anchor" aria-label="anchor" href="#arg-inc-cens"></a></dt>
 <dd><p>A logical scalar.  This argument is only relevant if
-<code>k</code> is supplied.  Passed to <code><a href="https://paulnorthrop.github.io/exdex/reference/kgaps.html" class="external-link">kgaps</a></code> to indicate
+<code>k</code> is supplied.  Passed to <code><a href="https://github.com/paulnorthrop/exdex/reference/kgaps.html" class="external-link">kgaps</a></code> to indicate
 whether or not to include censored inter-exceedance times, relating to
 the first and last observations.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Further arguments to be passed to the functions in the
-sandwich package <code><a href="https://sandwich.R-Forge.R-project.org/reference/meat.html" class="external-link">meat</a></code> (if <code>cluster = NULL</code>),
-or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" class="external-link">meatCL</a></code> (if <code>cluster</code> is not
+sandwich package <code><a href="https://rdrr.io/pkg/sandwich/man/meat.html" class="external-link">meat</a></code> (if <code>cluster = NULL</code>),
+or <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-link">meatCL</a></code> (if <code>cluster</code> is not
 <code>NULL</code>).</p></dd>
 
 </dl></div>
@@ -184,7 +184,7 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
   named <code>theta</code> that contains an object inheriting from class
   <code>c("kgaps", "exdex")</code> relating specifically to inferences about the
   extremal index \(\theta\).  See the <strong>Value</strong> section in
-  <code><a href="https://paulnorthrop.github.io/exdex/reference/kgaps.html" class="external-link">kgaps</a></code>.</p>
+  <code><a href="https://github.com/paulnorthrop/exdex/reference/kgaps.html" class="external-link">kgaps</a></code>.</p>
 <p>If <code>x</code> is one of the supported models then the class of the returned
   object is a vector of length 5. The first 3 components are
   <code>c("lax", "chandwich", "name_of_package")</code>, where
@@ -220,7 +220,7 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
 <li><p><code>estfun</code>: returns an \(n\) by \(k\) matrix, in which each
       column gives the derivative of the loglikelihood at each of \(n\)
       observation with respect to the \(k\) parameters of the model, see
-      <code><a href="https://sandwich.R-Forge.R-project.org/reference/estfun.html" class="external-link">estfun</a></code>.</p></li>
+      <code><a href="https://rdrr.io/pkg/sandwich/man/estfun.html" class="external-link">estfun</a></code>.</p></li>
 </ul><p>Loglikelihood adjustment is performed using the
   <code><a href="https://github.com/paulnorthrop/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code> function in the
   <code><a href="https://github.com/paulnorthrop/chandwich/reference/chandwich-package.html" class="external-link">chandwich</a></code> package.
@@ -232,15 +232,15 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
   calculated) is estimated inside <code><a href="https://github.com/paulnorthrop/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code>
   using <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optimHess</a></code>.</p>
 <p>The <code>sandwich</code> package is used to estimate the variance matrix
-  <code>V</code> of the score vector: <code><a href="https://sandwich.R-Forge.R-project.org/reference/meat.html" class="external-link">meat</a></code> is used if
-  <code>cluster = NULL</code>; <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" class="external-link">meatCL</a></code> is used if
+  <code>V</code> of the score vector: <code><a href="https://rdrr.io/pkg/sandwich/man/meat.html" class="external-link">meat</a></code> is used if
+  <code>cluster = NULL</code>; <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-link">meatCL</a></code> is used if
   <code>cluster</code> is not <code>NULL</code>.
   If <code>cluster</code> is <code>NULL</code> then any arguments of
-  <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" class="external-link">meatCL</a></code> present in ... will be ignored.
+  <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-link">meatCL</a></code> present in ... will be ignored.
   Similarly, if <code>cluster</code> is not <code>NULL</code> then any arguments of
-  <code><a href="https://sandwich.R-Forge.R-project.org/reference/meat.html" class="external-link">meat</a></code> present in ... will be ignored.
-  <code><a href="https://sandwich.R-Forge.R-project.org/reference/meat.html" class="external-link">meat</a></code> and <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" class="external-link">meatCL</a></code>
-  require an <code><a href="https://sandwich.R-Forge.R-project.org/reference/estfun.html" class="external-link">estfun</a></code> method to be available, which,
+  <code><a href="https://rdrr.io/pkg/sandwich/man/meat.html" class="external-link">meat</a></code> present in ... will be ignored.
+  <code><a href="https://rdrr.io/pkg/sandwich/man/meat.html" class="external-link">meat</a></code> and <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-link">meatCL</a></code>
+  require an <code><a href="https://rdrr.io/pkg/sandwich/man/estfun.html" class="external-link">estfun</a></code> method to be available, which,
   in the current context, provides matrix of score contributions.
   If a bespoke <code>estfun</code> method is not provided then this is constructed
   by estimating the score contributions using <code><a href="https://rdrr.io/pkg/numDeriv/man/jacobian.html" class="external-link">jacobian</a></code>.</p>
@@ -281,8 +281,8 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
   pairs of parameters.</p>
 <p><code><a href="https://github.com/paulnorthrop/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code> in the <code>chandwich</code>
   package to adjust a user-supplied loglikelihood.</p>
-<p><code><a href="https://sandwich.R-Forge.R-project.org/reference/meat.html" class="external-link">meat</a></code> and
-  <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" class="external-link">meatCL</a></code> in the sandwich package.</p></div>
+<p><code><a href="https://rdrr.io/pkg/sandwich/man/meat.html" class="external-link">meat</a></code> and
+  <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-link">meatCL</a></code> in the sandwich package.</p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
