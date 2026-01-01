@@ -114,7 +114,7 @@ See <strong>Details</strong>.</p></dd>
   The length of <code>cluster</code> must be consistent with the <code>estfun</code>
   method to be used in the estimation of the 'meat' <code>V</code> of the sandwich
   estimator of the covariance matrix of the parameters to be passed to
-  <code><a href="https://paulnorthrop.github.io/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code>.  In most cases, <code>cluster</code>
+  <code><a href="https://github.com/paulnorthrop/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code>.  In most cases, <code>cluster</code>
   must have length equal to the number of observations in data.  The
   exception is the GP (only) model (<code>binom = FALSE</code>), where the
   <code>cluster</code> may either contain a value for each observation in the raw
@@ -128,9 +128,9 @@ See <strong>Details</strong>.</p></dd>
 <dd><p>A logical scalar.  Should we use the <code>vcov</code> S3 method
 for <code>x</code> (if this exists) to estimate the Hessian of the independence
 loglikelihood to be passed as the argument <code>H</code> to
-<code><a href="https://paulnorthrop.github.io/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code>?
+<code><a href="https://github.com/paulnorthrop/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code>?
 Otherwise, <code>H</code> is estimated inside
-<code><a href="https://paulnorthrop.github.io/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code> using
+<code><a href="https://github.com/paulnorthrop/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code> using
 <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optimHess</a></code>.</p></dd>
 
 
@@ -170,7 +170,7 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>An object inheriting from class <code>"chandwich"</code>.  See
-  <code><a href="https://paulnorthrop.github.io/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code>.</p>
+  <code><a href="https://github.com/paulnorthrop/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code>.</p>
 <p>The original fitted model object is available as an attribute named
   <code>"original_fit"</code>, accessible using <code>attr(name, "original_fit")</code>,
   where <code>name</code> is the name of the object to which the object returned
@@ -222,14 +222,14 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
       observation with respect to the \(k\) parameters of the model, see
       <code><a href="https://sandwich.R-Forge.R-project.org/reference/estfun.html" class="external-link">estfun</a></code>.</p></li>
 </ul><p>Loglikelihood adjustment is performed using the
-  <code><a href="https://paulnorthrop.github.io/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code> function in the
-  <code><a href="https://paulnorthrop.github.io/chandwich/reference/chandwich-package.html" class="external-link">chandwich</a></code> package.
-  The relevant arguments to <code><a href="https://paulnorthrop.github.io/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code>, namely
+  <code><a href="https://github.com/paulnorthrop/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code> function in the
+  <code><a href="https://github.com/paulnorthrop/chandwich/reference/chandwich-package.html" class="external-link">chandwich</a></code> package.
+  The relevant arguments to <code><a href="https://github.com/paulnorthrop/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code>, namely
   <code>loglik, mle, H</code> and <code>V</code>, are created based on the class of
   the object <code>x</code>.</p>
 <p>If a <code>vcov</code> method is not available, or if <code>use_vcov = FALSE</code>,
   then the variance-covariance matrix of the MLE (from which <code>H</code> is
-  calculated) is estimated inside <code><a href="https://paulnorthrop.github.io/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code>
+  calculated) is estimated inside <code><a href="https://github.com/paulnorthrop/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code>
   using <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optimHess</a></code>.</p>
 <p>The <code>sandwich</code> package is used to estimate the variance matrix
   <code>V</code> of the score vector: <code><a href="https://sandwich.R-Forge.R-project.org/reference/meat.html" class="external-link">meat</a></code> is used if
@@ -269,17 +269,17 @@ or <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" 
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://paulnorthrop.github.io/chandwich/reference/summary.chandwich.html" class="external-link">summary.chandwich</a></code>,
-  <code><a href="https://paulnorthrop.github.io/chandwich/reference/plot.chandwich.html" class="external-link">plot.chandwich</a></code>,
-  <code><a href="https://paulnorthrop.github.io/chandwich/reference/confint.chandwich.html" class="external-link">confint.chandwich</a></code>,
-  <code><a href="https://paulnorthrop.github.io/chandwich/reference/anova.chandwich.html" class="external-link">anova.chandwich</a></code>,
-  <code><a href="https://paulnorthrop.github.io/chandwich/reference/coef.chandwich.html" class="external-link">coef.chandwich</a></code>,
-  <code><a href="https://paulnorthrop.github.io/chandwich/reference/vcov.chandwich.html" class="external-link">vcov.chandwich</a></code>
-  and <code><a href="https://paulnorthrop.github.io/chandwich/reference/logLik.chandwich.html" class="external-link">logLik.chandwich</a></code>
+    <div class="dont-index"><p><code><a href="https://github.com/paulnorthrop/chandwich/reference/summary.chandwich.html" class="external-link">summary.chandwich</a></code>,
+  <code><a href="https://github.com/paulnorthrop/chandwich/reference/plot.chandwich.html" class="external-link">plot.chandwich</a></code>,
+  <code><a href="https://github.com/paulnorthrop/chandwich/reference/confint.chandwich.html" class="external-link">confint.chandwich</a></code>,
+  <code><a href="https://github.com/paulnorthrop/chandwich/reference/anova.chandwich.html" class="external-link">anova.chandwich</a></code>,
+  <code><a href="https://github.com/paulnorthrop/chandwich/reference/coef.chandwich.html" class="external-link">coef.chandwich</a></code>,
+  <code><a href="https://github.com/paulnorthrop/chandwich/reference/vcov.chandwich.html" class="external-link">vcov.chandwich</a></code>
+  and <code><a href="https://github.com/paulnorthrop/chandwich/reference/logLik.chandwich.html" class="external-link">logLik.chandwich</a></code>
   for S3 methods for objects of class <code>"chandwich"</code>.</p>
-<p><code><a href="https://paulnorthrop.github.io/chandwich/reference/conf_region.html" class="external-link">conf_region</a></code> for confidence regions for
+<p><code><a href="https://github.com/paulnorthrop/chandwich/reference/conf_region.html" class="external-link">conf_region</a></code> for confidence regions for
   pairs of parameters.</p>
-<p><code><a href="https://paulnorthrop.github.io/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code> in the <code>chandwich</code>
+<p><code><a href="https://github.com/paulnorthrop/chandwich/reference/adjust_loglik.html" class="external-link">adjust_loglik</a></code> in the <code>chandwich</code>
   package to adjust a user-supplied loglikelihood.</p>
 <p><code><a href="https://sandwich.R-Forge.R-project.org/reference/meat.html" class="external-link">meat</a></code> and
   <code><a href="https://sandwich.R-Forge.R-project.org/reference/vcovCL.html" class="external-link">meatCL</a></code> in the sandwich package.</p></div>

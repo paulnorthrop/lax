@@ -66,7 +66,7 @@
                         <h4 data-toc-skip class="author">Paul
 Northrop</h4>
             
-            <h4 data-toc-skip class="date">2025-10-21</h4>
+            <h4 data-toc-skip class="date">2026-01-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/paulnorthrop/lax/blob/HEAD/vignettes/lax-vignette.Rmd"><code>vignettes/lax-vignette.Rmd</code></a></small>
       <div class="d-none name"><code>lax-vignette.Rmd</code></div>
@@ -192,9 +192,9 @@ and Bate (2007)</span>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://paulnorthrop.github.io/chandwich/" class="external-link">chandwich</a></span><span class="op">)</span></span>
 <span><span class="va">which_pars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"scale"</span>, <span class="st">"shape"</span><span class="op">)</span></span>
-<span><span class="va">gev_none</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://paulnorthrop.github.io/chandwich/reference/conf_region.html" class="external-link">conf_region</a></span><span class="op">(</span><span class="va">adj_large</span>, which_pars <span class="op">=</span> <span class="va">which_pars</span>, type <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
+<span><span class="va">gev_none</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/paulnorthrop/chandwich/reference/conf_region.html" class="external-link">conf_region</a></span><span class="op">(</span><span class="va">adj_large</span>, which_pars <span class="op">=</span> <span class="va">which_pars</span>, type <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Waiting for profiling to be done...</span></span>
-<span><span class="va">gev_vertical</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://paulnorthrop.github.io/chandwich/reference/conf_region.html" class="external-link">conf_region</a></span><span class="op">(</span><span class="va">adj_large</span>, which_pars <span class="op">=</span> <span class="va">which_pars</span><span class="op">)</span></span>
+<span><span class="va">gev_vertical</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://github.com/paulnorthrop/chandwich/reference/conf_region.html" class="external-link">conf_region</a></span><span class="op">(</span><span class="va">adj_large</span>, which_pars <span class="op">=</span> <span class="va">which_pars</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Waiting for profiling to be done...</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gev_none</span>, <span class="va">gev_vertical</span>, lwd <span class="op">=</span> <span class="fl">2</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3.1</span>, <span class="fl">4.5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.35</span>, <span class="op">-</span><span class="fl">0.05</span><span class="op">)</span>,</span>
 <span>     xlab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">sigma</span><span class="op">[</span><span class="fl">0</span><span class="op">]</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="va">xi</span><span class="op">[</span><span class="fl">0</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -342,6 +342,7 @@ stationary GEV models.</p>
 stationary GEV models.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lbelzile.github.io/mev/" class="external-link">mev</a></span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: package 'mev' was built under R version 4.5.2</span></span>
 <span><span class="va">gfit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lbelzile.github.io/mev/reference/fit.gev.html" class="external-link">fit.gev</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span></span>
 <span><span class="va">adj_gfit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gfit</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_gfit</span><span class="op">)</span></span>
