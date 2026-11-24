@@ -5,7 +5,7 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Loglikelihood adjustment for mev fits — mev"><meta name="description" content="S3 alogLik method to perform loglikelihood adjustment for fitted
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Loglikelihood adjustment for mev fits — mev"><meta name="description" content="S3 alogLik method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the functions
 fit.gev, fit.gpd, and
 fit.pp and fit.rlarg in the
@@ -21,7 +21,7 @@ mev package."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">lax</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,8 +114,8 @@ Otherwise, <code>H</code> is estimated inside
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Further arguments to be passed to the functions in the
-sandwich package <code><a href="https://rdrr.io/pkg/sandwich/man/meat.html" class="external-link">meat</a></code> (if <code>cluster = NULL</code>),
-or <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-link">meatCL</a></code> (if <code>cluster</code> is not
+sandwich package <code><a href="https://zeileis.codeberg.page/sandwich/reference/meat.html" class="external-link">meat</a></code> (if <code>cluster = NULL</code>),
+or <code><a href="https://zeileis.codeberg.page/sandwich/reference/vcovCL.html" class="external-link">meatCL</a></code> (if <code>cluster</code> is not
 <code>NULL</code>).</p></dd>
 
 </dl></div>
@@ -166,13 +166,13 @@ the data, both threshold exceedances and non-exceedances.</p>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="va">got_mev</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lbelzile.github.io/mev/" class="external-link">mev</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from the mev::gev.fit documentation</span></span></span>
-<span class="r-in"><span>  <span class="va">gev_mev</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lbelzile.github.io/mev/reference/fit.gev.html" class="external-link">fit.gev</a></span><span class="op">(</span><span class="fu">revdbayes</span><span class="fu">::</span><span class="va"><a href="https://paulnorthrop.github.io/revdbayes/reference/portpirie.html" class="external-link">portpirie</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">gev_mev</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lbelzile.github.io/mev/reference/fit.gev.html" class="external-link">fit.gev</a></span><span class="op">(</span><span class="fu">revdbayes</span><span class="fu">::</span><span class="va"><a href="https://github.com/paulnorthrop/revdbayes/reference/portpirie.html" class="external-link">portpirie</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_gev_mev</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">gev_mev</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_gev_mev</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Use simulated data</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1112019</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">revdbayes</span><span class="fu">::</span><span class="fu"><a href="https://paulnorthrop.github.io/revdbayes/reference/gp.html" class="external-link">rgp</a></span><span class="op">(</span><span class="fl">365</span> <span class="op">*</span> <span class="fl">10</span>, loc <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">revdbayes</span><span class="fu">::</span><span class="fu"><a href="https://github.com/paulnorthrop/revdbayes/reference/gp.html" class="external-link">rgp</a></span><span class="op">(</span><span class="fl">365</span> <span class="op">*</span> <span class="fl">10</span>, loc <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">pfit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lbelzile.github.io/mev/reference/fit.pp.html" class="external-link">fit.pp</a></span><span class="op">(</span><span class="va">x</span>, threshold <span class="op">=</span> <span class="fl">1</span>, npp <span class="op">=</span> <span class="fl">365</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_pfit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">pfit</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_pfit</span><span class="op">)</span></span></span>
@@ -184,7 +184,7 @@ the data, both threshold exceedances and non-exceedances.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from the mev::fit.egp documentation</span></span></span>
 <span class="r-in"><span>  <span class="co"># (model = "egp1" and model = "egp3" also work)</span></span></span>
-<span class="r-in"><span>  <span class="va">xdat</span> <span class="op">&lt;-</span> <span class="fu">evd</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/evd/man/gpd.html" class="external-link">rgpd</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">100</span>, loc <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">xdat</span> <span class="op">&lt;-</span> <span class="fu">evd</span><span class="fu">::</span><span class="fu">rgpd</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">100</span>, loc <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">fitted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://lbelzile.github.io/mev/reference/fit.egp.html" class="external-link">fit.egp</a></span><span class="op">(</span>xdat <span class="op">=</span> <span class="va">xdat</span>, thresh <span class="op">=</span> <span class="fl">1</span>, model <span class="op">=</span> <span class="st">"egp2"</span>, show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_fitted</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fitted</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fitted</span><span class="op">)</span></span></span>
@@ -196,31 +196,12 @@ the data, both threshold exceedances and non-exceedances.</p>
 <span class="r-in"><span>  <span class="va">adj_fitr</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fitr</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fitr</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>package 'mev' was built under R version 4.5.2</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: 'mev'</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> The following object is masked _by_ '.GlobalEnv':</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>     venice</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:fExtremes':</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     dgev, pgev, qgev, rgev</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:evir':</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     dgev, pgev, qgev, rgev</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:eva':</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     pgev, qgev</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following object is masked from 'package:extRemes':</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     taildep</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:evd':</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     dgev, pgev, qgev, rgev, venice</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           MLE     SE adj. SE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> loc   -0.1223 0.2859 0.29490</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> scale  1.0750 0.2450 0.20520</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> shape  0.2490 0.1552 0.07926</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called 'evd'</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -232,7 +213,7 @@ the data, both threshold exceedances and non-exceedances.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

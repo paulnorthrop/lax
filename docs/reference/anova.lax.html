@@ -5,7 +5,7 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Comparison of nested models — anova.lax"><meta name="description" content='anova method for objects of class "lax".
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Comparison of nested models — anova.lax"><meta name="description" content='anova method for objects of class "lax".
 Compares two or more nested models using the adjusted likelihood ratio
 test statistic (ALRTS) described in Section 3.5 of Chandler and Bate (2007).
 The nesting must result from the simple constraint that a subset of the
@@ -21,7 +21,7 @@ parameters of the larger model is held fixed.'></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">lax</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -130,59 +130,35 @@ chooses the type of adjustment.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">got_evd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"evd"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="va">got_evd</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">evd</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">small</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/evd/man/fgev.html" class="external-link">fgev</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span>, nsloc <span class="op">=</span> <span class="va">ow</span><span class="op">[</span>, <span class="st">"loc"</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">small</span> <span class="op">&lt;-</span> <span class="fu">fgev</span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span>, nsloc <span class="op">=</span> <span class="va">ow</span><span class="op">[</span>, <span class="st">"loc"</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_small</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">small</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">tiny</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/evd/man/fgev.html" class="external-link">fgev</a></span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">tiny</span> <span class="op">&lt;-</span> <span class="fu">fgev</span><span class="op">(</span><span class="va">ow</span><span class="op">$</span><span class="va">temp</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_tiny</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">tiny</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">adj_small</span>, <span class="va">adj_tiny</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">4082019</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">uvdata</span> <span class="op">&lt;-</span> <span class="fu">evd</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/evd/man/gev.html" class="external-link">rgev</a></span><span class="op">(</span><span class="fl">100</span>, loc <span class="op">=</span> <span class="fl">0.13</span>, scale <span class="op">=</span> <span class="fl">1.1</span>, shape <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">M0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/evd/man/fgev.html" class="external-link">fgev</a></span><span class="op">(</span><span class="va">uvdata</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/evd/man/fgev.html" class="external-link">fgev</a></span><span class="op">(</span><span class="va">uvdata</span>, nsloc <span class="op">=</span> <span class="op">(</span><span class="op">-</span><span class="fl">49</span><span class="op">:</span><span class="fl">50</span><span class="op">)</span><span class="op">/</span><span class="fl">100</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">uvdata</span> <span class="op">&lt;-</span> <span class="fu">evd</span><span class="fu">::</span><span class="fu">rgev</span><span class="op">(</span><span class="fl">100</span>, loc <span class="op">=</span> <span class="fl">0.13</span>, scale <span class="op">=</span> <span class="fl">1.1</span>, shape <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">M0</span> <span class="op">&lt;-</span> <span class="fu">fgev</span><span class="op">(</span><span class="va">uvdata</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">M1</span> <span class="op">&lt;-</span> <span class="fu">fgev</span><span class="op">(</span><span class="va">uvdata</span>, nsloc <span class="op">=</span> <span class="op">(</span><span class="op">-</span><span class="fl">49</span><span class="op">:</span><span class="fl">50</span><span class="op">)</span><span class="op">/</span><span class="fl">100</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj0</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">M0</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj1</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">M1</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">adj1</span>, <span class="va">adj0</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Analysis of (Adjusted) Deviance Table</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      Model.Df Df ALRTS Pr(&gt;ALRTS)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> adj1        4                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> adj0        3  1 1.421     0.2332</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">got_extRemes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"extRemes"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="va">got_extRemes</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">extRemes</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">large</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, location.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, scale.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>,</span></span>
+<span class="r-in"><span>  <span class="va">large</span> <span class="op">&lt;-</span> <span class="fu">fevd</span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, location.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, scale.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>,</span></span>
 <span class="r-in"><span>                shape.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">medium</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, location.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, scale.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">small</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, location.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">tiny</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">medium</span> <span class="op">&lt;-</span> <span class="fu">fevd</span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, location.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, scale.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">small</span> <span class="op">&lt;-</span> <span class="fu">fevd</span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, location.fun <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">tiny</span> <span class="op">&lt;-</span> <span class="fu">fevd</span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_large</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">large</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_medium</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">medium</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_small</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">small</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_tiny</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">tiny</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">adj_large</span>, <span class="va">adj_medium</span>, <span class="va">adj_small</span>, <span class="va">adj_tiny</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: Lmoments</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: distillery</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: 'extRemes'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following object is masked from 'package:evd':</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     mrlplot</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:stats':</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     qqnorm, qqplot</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Analysis of (Adjusted) Deviance Table</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            Model.Df Df  ALRTS Pr(&gt;ALRTS)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> adj_large         6                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> adj_medium        5  1  6.276    0.01224 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> adj_small         4  1  4.198    0.04048 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> adj_tiny          3  1 80.697    &lt; 2e-16 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -194,7 +170,7 @@ chooses the type of adjustment.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

@@ -5,7 +5,7 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Loglikelihood adjustment for fExtremes fits — fExtremes"><meta name="description" content="S3 alogLik method to perform loglikelihood adjustment for fitted
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Loglikelihood adjustment for fExtremes fits — fExtremes"><meta name="description" content="S3 alogLik method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the functions
 gevFit,
 gumbelFit and
@@ -25,7 +25,7 @@ The model must have been fitted using maximum likelihood estimation."></head><bo
 
     <a class="navbar-brand me-2" href="../index.html">lax</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,9 +58,9 @@ The model must have been fitted using maximum likelihood estimation."></head><bo
     <div class="ref-description section level2">
     <p>S3 <code>alogLik</code> method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the functions
-<code><a href="https://rdrr.io/pkg/fExtremes/man/GevModelling.html" class="external-link">gevFit</a></code>,
-<code><a href="https://rdrr.io/pkg/fExtremes/man/GevModelling.html" class="external-link">gumbelFit</a></code> and
-<code><a href="https://rdrr.io/pkg/fExtremes/man/GpdModelling.html" class="external-link">gpdFit</a></code>
+<code>gevFit</code>,
+<code>gumbelFit</code> and
+<code>gpdFit</code>
 in the <code>fExtremes</code> package.
 The model must have been fitted using maximum likelihood estimation.</p>
     </div>
@@ -111,8 +111,8 @@ Otherwise, <code>H</code> is estimated inside
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Further arguments to be passed to the functions in the
-sandwich package <code><a href="https://rdrr.io/pkg/sandwich/man/meat.html" class="external-link">meat</a></code> (if <code>cluster = NULL</code>),
-or <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-link">meatCL</a></code> (if <code>cluster</code> is not
+sandwich package <code><a href="https://zeileis.codeberg.page/sandwich/reference/meat.html" class="external-link">meat</a></code> (if <code>cluster = NULL</code>),
+or <code><a href="https://zeileis.codeberg.page/sandwich/reference/vcovCL.html" class="external-link">meatCL</a></code> (if <code>cluster</code> is not
 <code>NULL</code>).</p></dd>
 
 </dl></div>
@@ -123,10 +123,10 @@ or <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-
   <code>class(x)</code> is a vector of length 5. The first 3 components are
   <code>c("lax", "chandwich", "fExtremes")</code>.
   The remaining 2 components depend on the model that was fitted.
-  If <code><a href="https://rdrr.io/pkg/fExtremes/man/GevModelling.html" class="external-link">gevFit</a></code> or
-  <code><a href="https://rdrr.io/pkg/fExtremes/man/GevModelling.html" class="external-link">gumbelFit</a></code> was used then these
+  If <code>gevFit</code> or
+  <code>gumbelFit</code> was used then these
   components are <code>c("gev", "stat")</code>.
-  If <code><a href="https://rdrr.io/pkg/fExtremes/man/GpdModelling.html" class="external-link">gpdFit</a></code> was used then these
+  If <code>gpdFit</code> was used then these
   components are <code>c("gpd", "stat")</code>.</p>
     </div>
     <div class="section level2">
@@ -161,35 +161,21 @@ or <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-
 <span class="r-in"><span>  <span class="co"># GEV</span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from the fExtremes::gevFit documentation</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">4082019</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">fExtremes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/fExtremes/man/GevModelling.html" class="external-link">gevSim</a></span><span class="op">(</span>model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>xi<span class="op">=</span><span class="fl">0.25</span>, mu<span class="op">=</span><span class="fl">0</span>, beta<span class="op">=</span><span class="fl">1</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">fExtremes</span><span class="fu">::</span><span class="fu">gevSim</span><span class="op">(</span>model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>xi<span class="op">=</span><span class="fl">0.25</span>, mu<span class="op">=</span><span class="fl">0</span>, beta<span class="op">=</span><span class="fl">1</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># Fit GEV distribution by maximum likelihood estimation</span></span></span>
-<span class="r-in"><span>  <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">fExtremes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/fExtremes/man/GevModelling.html" class="external-link">gevFit</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">fExtremes</span><span class="fu">::</span><span class="fu">gevFit</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># GP</span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from the fExtremes::gpdFit documentation</span></span></span>
 <span class="r-in"><span>  <span class="co"># Simulate GP data</span></span></span>
-<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">fExtremes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/fExtremes/man/GpdModelling.html" class="external-link">gpdSim</a></span><span class="op">(</span>model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>xi <span class="op">=</span> <span class="fl">0.25</span>, mu <span class="op">=</span> <span class="fl">0</span>, beta <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">fExtremes</span><span class="fu">::</span><span class="fu">gpdSim</span><span class="op">(</span>model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>xi <span class="op">=</span> <span class="fl">0.25</span>, mu <span class="op">=</span> <span class="fl">0</span>, beta <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="co"># Fit GP distribution by maximum likelihood estimation</span></span></span>
-<span class="r-in"><span>  <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">fExtremes</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/fExtremes/man/GpdModelling.html" class="external-link">gpdFit</a></span><span class="op">(</span><span class="va">x</span>, u <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">fExtremes</span><span class="fu">::</span><span class="fu">gpdFit</span><span class="op">(</span><span class="va">x</span>, u <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: 'fExtremes'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:evir':</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     dgev, dgpd, pgev, pgpd, qgev, qgpd, rgev, rgpd</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:eva':</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     dgpd, gpdFit, mrlPlot, pgev, pgpd, qgev, qgpd, rgpd</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from 'package:evd':</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     dgev, dgpd, pgev, pgpd, qgev, qgpd, rgev, rgpd</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         MLE      SE adj. SE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> xi   0.2514 0.03844 0.04026</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> beta 0.9989 0.04909 0.04852</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -201,7 +187,7 @@ or <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

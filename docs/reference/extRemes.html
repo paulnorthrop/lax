@@ -5,7 +5,7 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Loglikelihood adjustment for extRemes fits — extRemes"><meta name="description" content="S3 alogLik method to perform loglikelihood adjustment for fitted
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Loglikelihood adjustment for extRemes fits — extRemes"><meta name="description" content="S3 alogLik method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the function
 fevd in the
 extRemes package.
@@ -21,7 +21,7 @@ The model must have been fitted using maximum likelihood estimation."></head><bo
 
     <a class="navbar-brand me-2" href="../index.html">lax</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,8 +54,8 @@ The model must have been fitted using maximum likelihood estimation."></head><bo
     <div class="ref-description section level2">
     <p>S3 <code>alogLik</code> method to perform loglikelihood adjustment for fitted
 extreme value model objects returned from the function
-<code><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></code> in the
-<code><a href="https://rdrr.io/pkg/extRemes/man/extRemes-package.html" class="external-link">extRemes</a></code> package.
+<code>fevd</code> in the
+<code>extRemes</code> package.
 The model must have been fitted using maximum likelihood estimation.</p>
     </div>
 
@@ -102,8 +102,8 @@ Otherwise, <code>H</code> is estimated inside
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Further arguments to be passed to the functions in the
-sandwich package <code><a href="https://rdrr.io/pkg/sandwich/man/meat.html" class="external-link">meat</a></code> (if <code>cluster = NULL</code>),
-or <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-link">meatCL</a></code> (if <code>cluster</code> is not
+sandwich package <code><a href="https://zeileis.codeberg.page/sandwich/reference/meat.html" class="external-link">meat</a></code> (if <code>cluster = NULL</code>),
+or <code><a href="https://zeileis.codeberg.page/sandwich/reference/vcovCL.html" class="external-link">meatCL</a></code> (if <code>cluster</code> is not
 <code>NULL</code>).</p></dd>
 
 </dl></div>
@@ -118,8 +118,8 @@ or <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-
   <code>x$type = "Gumbel"</code>; <code>"gp"</code> if <code>x$type = "GP"</code> or
   <code>x$type = "Exponential"</code>; <code>"pp"</code> if <code>x$type = "PP"</code>.
   The 5th component is
-  <code>"stat"</code> if <code><a href="https://rdrr.io/pkg/extRemes/man/is.fixedfevd.html" class="external-link">is.fixedfevd</a> = TRUE</code> and
-  <code>"nonstat"</code> if <code><a href="https://rdrr.io/pkg/extRemes/man/is.fixedfevd.html" class="external-link">is.fixedfevd</a> = FALSE</code>.</p>
+  <code>"stat"</code> if <code>is.fixedfevd = TRUE</code> and
+  <code>"nonstat"</code> if <code>is.fixedfevd = FALSE</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -156,15 +156,15 @@ or <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">PORTw</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># GEV</span></span></span>
-<span class="r-in"><span>  <span class="va">fit0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">TMX1</span>, <span class="va">PORTw</span>, units <span class="op">=</span> <span class="st">"deg C"</span>, use.phi <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">fit0</span> <span class="op">&lt;-</span> <span class="fu">fevd</span><span class="op">(</span><span class="va">TMX1</span>, <span class="va">PORTw</span>, units <span class="op">=</span> <span class="st">"deg C"</span>, use.phi <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_fit0</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fit0</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fit0</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># GEV regression</span></span></span>
-<span class="r-in"><span>  <span class="va">fitPORTstdmax</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">TMX1</span>, <span class="va">PORTw</span>, scale.fun <span class="op">=</span> <span class="op">~</span><span class="va">STDTMAX</span>, use.phi <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">fitPORTstdmax</span> <span class="op">&lt;-</span> <span class="fu">fevd</span><span class="op">(</span><span class="va">TMX1</span>, <span class="va">PORTw</span>, scale.fun <span class="op">=</span> <span class="op">~</span><span class="va">STDTMAX</span>, use.phi <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fitPORTstdmax</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fit1</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">fitPORTstdmax2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">TMX1</span>, <span class="va">PORTw</span>, location.fun <span class="op">=</span> <span class="op">~</span><span class="va">STDTMAX</span>,</span></span>
+<span class="r-in"><span>  <span class="va">fitPORTstdmax2</span> <span class="op">&lt;-</span> <span class="fu">fevd</span><span class="op">(</span><span class="va">TMX1</span>, <span class="va">PORTw</span>, location.fun <span class="op">=</span> <span class="op">~</span><span class="va">STDTMAX</span>,</span></span>
 <span class="r-in"><span>                         scale.fun <span class="op">=</span> <span class="op">~</span><span class="va">STDTMAX</span>, use.phi <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_fit2</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fitPORTstdmax2</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fit2</span><span class="op">)</span></span></span>
@@ -174,54 +174,50 @@ or <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">adj_fit0</span>, <span class="va">adj_fit1</span>, <span class="va">adj_fit2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Gumbel</span></span></span>
-<span class="r-in"><span>  <span class="va">fit0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">TMX1</span>, <span class="va">PORTw</span>, type <span class="op">=</span> <span class="st">"Gumbel"</span>, units <span class="op">=</span> <span class="st">"deg C"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">fit0</span> <span class="op">&lt;-</span> <span class="fu">fevd</span><span class="op">(</span><span class="va">TMX1</span>, <span class="va">PORTw</span>, type <span class="op">=</span> <span class="st">"Gumbel"</span>, units <span class="op">=</span> <span class="st">"deg C"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_fit0</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fit0</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fit0</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># GP</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">damage</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">Dam</span>, <span class="va">damage</span>, threshold <span class="op">=</span> <span class="fl">6</span>, type <span class="op">=</span> <span class="st">"GP"</span>,</span></span>
+<span class="r-in"><span>  <span class="va">fit1</span> <span class="op">&lt;-</span> <span class="fu">fevd</span><span class="op">(</span><span class="va">Dam</span>, <span class="va">damage</span>, threshold <span class="op">=</span> <span class="fl">6</span>, type <span class="op">=</span> <span class="st">"GP"</span>,</span></span>
 <span class="r-in"><span>               time.units <span class="op">=</span> <span class="st">"2.05/year"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_fit1</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fit1</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fit1</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Exponential</span></span></span>
-<span class="r-in"><span>  <span class="va">fit0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">Dam</span>, <span class="va">damage</span>, threshold <span class="op">=</span> <span class="fl">6</span>, type<span class="op">=</span><span class="st">"Exponential"</span>,</span></span>
+<span class="r-in"><span>  <span class="va">fit0</span> <span class="op">&lt;-</span> <span class="fu">fevd</span><span class="op">(</span><span class="va">Dam</span>, <span class="va">damage</span>, threshold <span class="op">=</span> <span class="fl">6</span>, type<span class="op">=</span><span class="st">"Exponential"</span>,</span></span>
 <span class="r-in"><span>               time.units <span class="op">=</span> <span class="st">"2.05/year"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_fit0</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fit0</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fit0</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># GP non-constant threshold</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">Fort</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">Prec</span>, <span class="va">Fort</span>, threshold <span class="op">=</span> <span class="fl">0.475</span>,</span></span>
+<span class="r-in"><span>  <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">fevd</span><span class="op">(</span><span class="va">Prec</span>, <span class="va">Fort</span>, threshold <span class="op">=</span> <span class="fl">0.475</span>,</span></span>
 <span class="r-in"><span>              threshold.fun <span class="op">=</span> <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.15</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">cos</a></span><span class="op">(</span><span class="fl">2</span> <span class="op">*</span> <span class="va">pi</span> <span class="op">*</span> <span class="va">month</span> <span class="op">/</span> <span class="fl">12</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>              type <span class="op">=</span> <span class="st">"GP"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Exponential non-constant threshold</span></span></span>
-<span class="r-in"><span>  <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">Prec</span>, <span class="va">Fort</span>, threshold <span class="op">=</span> <span class="fl">0.475</span>,</span></span>
+<span class="r-in"><span>  <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">fevd</span><span class="op">(</span><span class="va">Prec</span>, <span class="va">Fort</span>, threshold <span class="op">=</span> <span class="fl">0.475</span>,</span></span>
 <span class="r-in"><span>              threshold.fun <span class="op">=</span> <span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.15</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">cos</a></span><span class="op">(</span><span class="fl">2</span> <span class="op">*</span> <span class="va">pi</span> <span class="op">*</span> <span class="va">month</span> <span class="op">/</span> <span class="fl">12</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>              type <span class="op">=</span> <span class="st">"Exponential"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># PP model</span></span></span>
-<span class="r-in"><span>  <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">Prec</span>, <span class="va">Fort</span>, threshold <span class="op">=</span> <span class="fl">0.475</span>, type <span class="op">=</span> <span class="st">"PP"</span>, units <span class="op">=</span> <span class="st">"inches"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">fevd</span><span class="op">(</span><span class="va">Prec</span>, <span class="va">Fort</span>, threshold <span class="op">=</span> <span class="fl">0.475</span>, type <span class="op">=</span> <span class="st">"PP"</span>, units <span class="op">=</span> <span class="st">"inches"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># PP non-constant threshold</span></span></span>
-<span class="r-in"><span>  <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/extRemes/man/fevd.html" class="external-link">fevd</a></span><span class="op">(</span><span class="va">Prec</span>, <span class="va">Fort</span>, threshold <span class="op">=</span> <span class="fl">0.475</span>,</span></span>
+<span class="r-in"><span>  <span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">fevd</span><span class="op">(</span><span class="va">Prec</span>, <span class="va">Fort</span>, threshold <span class="op">=</span> <span class="fl">0.475</span>,</span></span>
 <span class="r-in"><span>              threshold.fun<span class="op">=</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.15</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/Trig.html" class="external-link">cos</a></span><span class="op">(</span><span class="fl">2</span> <span class="op">*</span> <span class="va">pi</span> <span class="op">*</span> <span class="va">month</span> <span class="op">/</span> <span class="fl">12</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>              type <span class="op">=</span> <span class="st">"PP"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           MLE      SE adj. SE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> mu0    1.4200 0.04277 0.04286</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sigma0 0.5226 0.03129 0.03075</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> xi0    0.1162 0.03791 0.03404</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -233,7 +229,7 @@ or <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>

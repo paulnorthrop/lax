@@ -5,7 +5,7 @@
       fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
     }
   };
-</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Loglikelihood adjustment of texmex fits — texmex"><meta name="description" content="S3 alogLik method to perform loglikelihood adjustment of fitted
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"><link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"><script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Loglikelihood adjustment of texmex fits — texmex"><meta name="description" content="S3 alogLik method to perform loglikelihood adjustment of fitted
 extreme value model objects returned from the evm
 function in the texmex package.
 The model must have been fitted using maximum likelihood estimation."><meta property="og:description" content="S3 alogLik method to perform loglikelihood adjustment of fitted
@@ -19,7 +19,7 @@ The model must have been fitted using maximum likelihood estimation."></head><bo
 
     <a class="navbar-brand me-2" href="../index.html">lax</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">1.2.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,8 +51,8 @@ The model must have been fitted using maximum likelihood estimation."></head><bo
 
     <div class="ref-description section level2">
     <p>S3 <code>alogLik</code> method to perform loglikelihood adjustment of fitted
-extreme value model objects returned from the <code><a href="https://rdrr.io/pkg/texmex/man/evm.html" class="external-link">evm</a></code>
-function in the <code><a href="https://rdrr.io/pkg/texmex/man/texmex-package.html" class="external-link">texmex</a></code> package.
+extreme value model objects returned from the <code>evm</code>
+function in the <code>texmex</code> package.
 The model must have been fitted using maximum likelihood estimation.</p>
     </div>
 
@@ -99,8 +99,8 @@ Otherwise, <code>H</code> is estimated inside
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Further arguments to be passed to the functions in the
-sandwich package <code><a href="https://rdrr.io/pkg/sandwich/man/meat.html" class="external-link">meat</a></code> (if <code>cluster = NULL</code>),
-or <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-link">meatCL</a></code> (if <code>cluster</code> is not
+sandwich package <code><a href="https://zeileis.codeberg.page/sandwich/reference/meat.html" class="external-link">meat</a></code> (if <code>cluster = NULL</code>),
+or <code><a href="https://zeileis.codeberg.page/sandwich/reference/vcovCL.html" class="external-link">meatCL</a></code> (if <code>cluster</code> is not
 <code>NULL</code>).</p></dd>
 
 </dl></div>
@@ -152,21 +152,21 @@ or <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-
 <span class="r-in"><span>  <span class="co"># Examples from the texmex::evm documentation</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># GEV</span></span></span>
-<span class="r-in"><span>  <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/evm.html" class="external-link">evm</a></span><span class="op">(</span><span class="va">SeaLevel</span>, data <span class="op">=</span> <span class="fu">texmex</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/texmex/man/rain.html" class="external-link">portpirie</a></span>, family <span class="op">=</span> <span class="va">gev</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">evm</span><span class="op">(</span><span class="va">SeaLevel</span>, data <span class="op">=</span> <span class="fu">texmex</span><span class="fu">::</span><span class="va">portpirie</span>, family <span class="op">=</span> <span class="va">gev</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_mod</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># GP</span></span></span>
-<span class="r-in"><span>  <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/evm.html" class="external-link">evm</a></span><span class="op">(</span><span class="va">rain</span>, th <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">evm</span><span class="op">(</span><span class="va">rain</span>, th <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_mod</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/evm.html" class="external-link">evm</a></span><span class="op">(</span><span class="va">rain</span>, th <span class="op">=</span> <span class="fl">30</span>, cov <span class="op">=</span> <span class="st">"sandwich"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">evm</span><span class="op">(</span><span class="va">rain</span>, th <span class="op">=</span> <span class="fl">30</span>, cov <span class="op">=</span> <span class="st">"sandwich"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">mod</span><span class="op">$</span><span class="va">se</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">adj_mod</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># EGP3</span></span></span>
-<span class="r-in"><span>  <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/evm.html" class="external-link">evm</a></span><span class="op">(</span><span class="va">rain</span>, th <span class="op">=</span> <span class="fl">30</span>, family <span class="op">=</span> <span class="va">egp3</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">evm</span><span class="op">(</span><span class="va">rain</span>, th <span class="op">=</span> <span class="fl">30</span>, family <span class="op">=</span> <span class="va">egp3</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_mod</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -174,11 +174,11 @@ or <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-
 <span class="r-in"><span>  <span class="co"># An example from page 119 of Coles (2001)</span></span></span>
 <span class="r-in"><span>  <span class="va">n_rain</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">rain</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">rain_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>rain <span class="op">=</span> <span class="va">rain</span>, time <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">n_rain</span> <span class="op">/</span> <span class="va">n_rain</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/evm.html" class="external-link">evm</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">rain</span>, data <span class="op">=</span> <span class="va">rain_df</span>, family <span class="op">=</span> <span class="va">gpd</span>, th <span class="op">=</span> <span class="fl">30</span>,</span></span>
+<span class="r-in"><span>  <span class="va">evm_fit</span> <span class="op">&lt;-</span> <span class="fu">evm</span><span class="op">(</span>y <span class="op">=</span> <span class="va">rain</span>, data <span class="op">=</span> <span class="va">rain_df</span>, family <span class="op">=</span> <span class="va">gpd</span>, th <span class="op">=</span> <span class="fl">30</span>,</span></span>
 <span class="r-in"><span>                 phi <span class="op">=</span> <span class="op">~</span> <span class="va">time</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">evm_fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_evm_fit</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/evm.html" class="external-link">evm</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">rain</span>, data <span class="op">=</span> <span class="va">rain_df</span>, family <span class="op">=</span> <span class="va">gpd</span>, th <span class="op">=</span> <span class="fl">30</span>,</span></span>
+<span class="r-in"><span>  <span class="va">evm_fit</span> <span class="op">&lt;-</span> <span class="fu">evm</span><span class="op">(</span>y <span class="op">=</span> <span class="va">rain</span>, data <span class="op">=</span> <span class="va">rain_df</span>, family <span class="op">=</span> <span class="va">gpd</span>, th <span class="op">=</span> <span class="fl">30</span>,</span></span>
 <span class="r-in"><span>                 phi <span class="op">=</span> <span class="op">~</span> <span class="va">time</span>, cov <span class="op">=</span> <span class="st">"sandwich"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">evm_fit</span><span class="op">$</span><span class="va">se</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">adj_evm_fit</span><span class="op">)</span></span></span>
@@ -192,7 +192,7 @@ or <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-
 <span class="r-in"><span>    <span class="va">new_fremantle</span> <span class="op">&lt;-</span> <span class="va">fremantle</span></span></span>
 <span class="r-in"><span>    <span class="co"># Set year 1897 to 1 for consistency with page 113 of Coles (2001)</span></span></span>
 <span class="r-in"><span>    <span class="va">new_fremantle</span><span class="op">[</span>, <span class="st">"Year"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">new_fremantle</span><span class="op">[</span>, <span class="st">"Year"</span><span class="op">]</span> <span class="op">-</span> <span class="fl">1896</span></span></span>
-<span class="r-in"><span>    <span class="va">evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/evm.html" class="external-link">evm</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">SeaLevel</span>, data <span class="op">=</span> <span class="va">new_fremantle</span>, family <span class="op">=</span> <span class="va">gev</span>,</span></span>
+<span class="r-in"><span>    <span class="va">evm_fit</span> <span class="op">&lt;-</span> <span class="fu">evm</span><span class="op">(</span>y <span class="op">=</span> <span class="va">SeaLevel</span>, data <span class="op">=</span> <span class="va">new_fremantle</span>, family <span class="op">=</span> <span class="va">gev</span>,</span></span>
 <span class="r-in"><span>                   mu <span class="op">=</span> <span class="op">~</span> <span class="va">Year</span> <span class="op">+</span> <span class="va">SOI</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="va">adj_evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">evm_fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_evm_fit</span><span class="op">)</span></span></span>
@@ -200,7 +200,7 @@ or <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># An example from Chandler and Bate (2007)</span></span></span>
 <span class="r-in"><span>  <span class="co"># Note: evm uses phi = log(sigma)</span></span></span>
-<span class="r-in"><span>  <span class="va">evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/texmex/man/evm.html" class="external-link">evm</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, <span class="va">gev</span>, mu <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, phi <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, xi <span class="op">=</span> <span class="op">~</span><span class="va">loc</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">evm_fit</span> <span class="op">&lt;-</span> <span class="fu">evm</span><span class="op">(</span><span class="va">temp</span>, <span class="va">ow</span>, <span class="va">gev</span>, mu <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, phi <span class="op">=</span> <span class="op">~</span> <span class="va">loc</span>, xi <span class="op">=</span> <span class="op">~</span><span class="va">loc</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">adj_evm_fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="alogLik.html">alogLik</a></span><span class="op">(</span><span class="va">evm_fit</span>, cluster <span class="op">=</span> <span class="va">ow</span><span class="op">$</span><span class="va">year</span>, cadjust <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">adj_evm_fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
@@ -216,7 +216,7 @@ or <code><a href="https://rdrr.io/pkg/sandwich/man/vcovCL.html" class="external-
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer></div>
