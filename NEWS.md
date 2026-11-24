@@ -1,3 +1,9 @@
+# lax 1.2.5
+
+## Documentation correction
+
+* Corrected the number of rows in the dataset `ow` from 80 to 160.
+
 # lax 1.2.4
 
 ## Bug fixes

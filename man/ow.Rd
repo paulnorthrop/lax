@@ -5,7 +5,7 @@
 \alias{ow}
 \title{Oxford and Worthing annual maximum temperatures}
 \format{
-A dataframe with 80 rows and 4 columns.
+A dataframe with 160 rows and 4 columns.
   \itemize{
     \item Column 1, \code{temp}: annual maximum temperatures in degrees
       Fahrenheit.

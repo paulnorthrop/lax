@@ -96,7 +96,7 @@
 #' Annual maximum temperatures at Oxford and Worthing (England), for the
 #' period 1901 to 1980.
 #'
-#' @format A dataframe with 80 rows and 4 columns.
+#' @format A dataframe with 160 rows and 4 columns.
 #'   \itemize{
 #'     \item Column 1, \code{temp}: annual maximum temperatures in degrees
 #'       Fahrenheit.
