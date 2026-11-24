@@ -228,8 +228,10 @@ export(return_level)
 export(rlarg_refit)
 import(sandwich)
 importFrom(graphics,plot)
-importFrom(stats,coef)
-importFrom(stats,logLik)
-importFrom(stats,nobs)
-importFrom(stats,vcov)
+importFrom(stats,
+  coef,
+  logLik,
+  nobs,
+  vcov
+)
 importFrom(utils,packageVersion)

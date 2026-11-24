@@ -1,7 +1,7 @@
 Package: lax
 Title: Loglikelihood Adjustment for Extreme Value Models
-Version: 1.2.4
-Date: 2025-10-21
+Version: 1.2.5
+Date: 2026-11-24
 Authors@R: c(
     person(c("Paul", "J."), "Northrop", email = "p.northrop@ucl.ac.uk",
       role = c("aut", "cre", "cph")),
@@ -41,7 +41,6 @@ LazyData: TRUE
 Encoding: UTF-8
 Depends:
     R (>= 3.3.0)
-RoxygenNote: 7.3.3
 Suggests: distillery,
     eva,
     evd,
@@ -59,3 +58,4 @@ VignetteBuilder: knitr
 URL: https://paulnorthrop.github.io/lax/, https://github.com/paulnorthrop/lax
 BugReports: https://github.com/paulnorthrop/lax/issues
 Config/testthat/edition: 3
+Config/roxygen2/version: 8.1.1

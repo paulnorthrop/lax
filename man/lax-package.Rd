@@ -122,6 +122,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Paul J. Northrop \email{p.northrop@ucl.ac.uk} [copyright holder]
   \item Camellia Yin [copyright holder]
 }
 
